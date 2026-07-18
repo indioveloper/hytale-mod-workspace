@@ -38,13 +38,6 @@
 
                                                  }
                                     },
-                      "Support":  {
-                                      "Down":  [
-                                                   {
-                                                       "FaceType":  "Full"
-                                                   }
-                                               ]
-                                  },
                       "Interactions":  {
                                            "Use":  {
                                                        "Effects":  {
@@ -61,7 +54,7 @@
                                                                         ]
                                                    }
                                        },
-                      "InteractionHint":  "server.interactionHints.press",
+                      "InteractionHint":  "interactionHints.activate",
                       "BlockParticleSetId":  "Dust",
                       "TextureComputedColor":  "#57C7FF",
                       "Light":  {
@@ -71,7 +64,7 @@
                       "State":  {
                                     "Definitions":  {
                                                         "Idle":  {
-                                                                     "InteractionHint":  "server.interactionHints.press",
+                                                                     "InteractionHint":  "interactionHints.activate",
                                                                      "CustomModelAnimation":  "Blocks/Animations/OrbGenesis/Essence_Button_Idle.blockyanim"
                                                                  }
                                                     }

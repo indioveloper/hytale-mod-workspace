@@ -25,5 +25,3 @@ server.items.Essence_Button_Void.name = Void Essence Button
 server.items.Essence_Button_Void.description = A floating void essence button.
 items.Essence_Button_Void.name = Void Essence Button
 items.Essence_Button_Void.description = A floating void essence button.
-
-server.interactionHints.press = press

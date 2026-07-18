@@ -8,7 +8,8 @@ Incluye:
   `on`/`off`; el centro pasa a naranja al activarse y la colocacion sigue la
   cara del bloque seleccionada.
 - Essence buttons: cuatro botones flotantes animados con iconos y texturas de
-  esencia `Ice`, `Life`, `Lightning` y `Void`.
+  esencia `Ice`, `Life`, `Lightning` y `Void`. Se apoyan sobre cualquier
+  bloque sin requisito de cara completa y usan el aviso nativo de activacion.
 
 Origen:
 
