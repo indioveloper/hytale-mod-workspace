@@ -1,19 +1,27 @@
 {
-  "Group": "raynor",
-  "Name": "raynor-npcs",
-  "Version": "1.0.0",
-  "Description": "Custom NPC roles and spawn markers.",
+  "Group": "Raynor",
+  "Name": "Raynor NPCs",
+  "Version": "1.1.0",
+  "Description": "Reusable NPC roles, spawn markers, random-model spawning, NPC equipment, and item-removal Trigger Volume effects.",
   "Authors": [
     {
-      "Name": "raynor"
+      "Name": "Raynor"
+    },
+    {
+      "Name": "OrbGenesis",
+      "Url": "https://orbgenesis.gg"
     }
   ],
   "Website": "",
-  "ServerVersion": "2026.05.07-5efa15f6d",
-  "Dependencies": {},
+  "ServerVersion": ">=0.6.0-pre <0.7.0",
+  "Dependencies": {
+    "Hytale:NPC": "*",
+    "Hytale:TriggerVolumes": "*"
+  },
   "OptionalDependencies": {},
   "LoadBefore": {},
   "DisabledByDefault": false,
-  "IncludesAssetPack": false,
-  "SubPlugins": []
+  "IncludesAssetPack": true,
+  "SubPlugins": [],
+  "Main": "gg.orbgenesis.raynornpcs.RaynorNpcsPlugin"
 }

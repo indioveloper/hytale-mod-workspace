@@ -1,6 +1,6 @@
 # Nexus Siege Handoff
 
-Last updated: 2026-07-11
+Last updated: 2026-07-18
 
 ## Current State
 
@@ -13,12 +13,12 @@ trigger volumes, and server plugin work. Server plugin work is intentionally
 reserved and has not been touched.
 
 The first active work area is `npcs/`, with a vanilla-only humanoid runner NPC
-specified under `npcs/vanilla/avatar-sword-runner/`.
+documented under `npcs/vanilla/avatar-sword-runner/`.
 
 Current NPC asset candidate:
 
-- Role source: `npcs/vanilla/avatar-sword-runner/asset-pack-src/Server/NPC/Roles/Nexus_Avatar_Sword_Runner.json`
-- Manifest: `npcs/vanilla/avatar-sword-runner/asset-pack-src/manifest.json`
+- Role source: `mods/asset-packs/raynor-npcs/Server/NPC/Roles/Nexus_Avatar_Sword_Runner.json`
+- Pack/plugin manifest: `mods/asset-packs/raynor-npcs/manifest.json`
 - Runtime contract: the NPC expects a stored position slot named `NexusTarget`.
 - Behavior: reads `NexusTarget`, uses `Seek` with `Walk`, and runs primary
   `Attack` plus `PlayAnimation` on the `Action` animation slot.
@@ -32,6 +32,8 @@ Current NPC asset candidate:
 - Build a small playable prototype before attempting broad feature scope.
 - Do not edit plugin/server logic yet; another developer will prepare it.
 - Start NPC work with vanilla assets and vanilla behavior systems.
+- Keep reusable NPC assets and Trigger Volume NPC effects in `Raynor NPCs`
+  instead of project-specific Nexus Siege packs.
 - Treat the Hytale source code on GitHub as the technical source of truth for
   vanilla APIs, schemas, NPC behavior, trigger volumes, and server internals.
 

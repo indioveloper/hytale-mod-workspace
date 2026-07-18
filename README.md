@@ -19,8 +19,9 @@ backups, instalaciones del juego, el Hytale Shared Source ni mundos completos.
 | `mods/java/chest-labels` | Prototipo, v0.1.0 | Nombres e iconos persistentes para cofres, con HUD y editor. |
 | `mods/java/scoreboards` | Legacy unificado, Hytale 0.5 | Editor y seguimiento de scoreboards mediante UI nativa. Absorbe la variante local; requiere migracion antes de usarlo en 0.6.x. |
 
-`games/nexus-siege` contiene el proyecto del minijuego, sus NPCs vanilla, el
-plugin `Triggers_NPCs`, documentacion, pruebas y contratos de comportamiento.
+`games/nexus-siege` contiene el proyecto del minijuego, documentacion, pruebas
+y contratos de comportamiento. Los NPCs reutilizables viven en
+`mods/asset-packs/raynor-npcs`.
 
 ### Asset packs
 

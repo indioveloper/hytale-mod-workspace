@@ -2,3 +2,33 @@ server.npcRoles.Raynor_Klops_Miner_Patrol.name=Klops minero patrulla de Raynor
 server.npcRoles.Raynor_Static_Human_Emoter.name=Humano estatico con gestos
 server.npcRoles.Raynor_Worker_Route.name=Trabajador de ruta
 server.npcRoles.Raynor_Static_Guard.name=Guardia estatico
+server.npcRoles.Nexus_Avatar_Sword_Runner.name=Avatar corredor con espada
+nexus_siege.npc.avatar_sword_runner = Avatar corredor
+
+customUI.triggerVolumeEffectEditor.effectType.SpawnNpcRandomModel = Crear NPC con modelo aleatorio
+customUI.triggerVolumeEffectEditor.effectType.EquipNpcItem = Equipar item a NPC
+customUI.triggerVolumeEffectEditor.effectType.RemoveOneItemInVolume = Eliminar un item del volumen
+
+customUI.triggerVolumeEffectEditor.field.SpawnNpcRandomModel.NpcType = Rol de NPC
+customUI.triggerVolumeEffectEditor.field.SpawnNpcRandomModel.NpcType.tooltip = Rol de NPC que aparecera con un modelo de jugador aleatorio.
+customUI.triggerVolumeEffectEditor.field.SpawnNpcRandomModel.NpcType.placeholder = ej. Nexus_Avatar_Sword_Runner
+customUI.triggerVolumeEffectEditor.field.SpawnNpcRandomModel.GroupType = Tipo de grupo
+customUI.triggerVolumeEffectEditor.field.SpawnNpcRandomModel.GroupType.tooltip = Definicion opcional de flock. Dejalo vacio para crear el NPC sin flock.
+customUI.triggerVolumeEffectEditor.field.SpawnNpcRandomModel.GroupType.placeholder = id de flock opcional
+customUI.triggerVolumeEffectEditor.field.SpawnNpcRandomModel.Origin = Origen de aparicion
+customUI.triggerVolumeEffectEditor.field.SpawnNpcRandomModel.Origin.tooltip = Elige si Offset es relativo al volumen, a la entidad activadora o coordenadas absolutas del mundo.
+customUI.triggerVolumeEffectEditor.field.SpawnNpcRandomModel.Origin.option.VOLUME_ORIGIN = Origen del volumen
+customUI.triggerVolumeEffectEditor.field.SpawnNpcRandomModel.Origin.option.ENTITY = Entidad activadora
+customUI.triggerVolumeEffectEditor.field.SpawnNpcRandomModel.Origin.option.WORLD_ABSOLUTE = Coordenadas absolutas
+customUI.triggerVolumeEffectEditor.field.SpawnNpcRandomModel.Offset = Desplazamiento
+customUI.triggerVolumeEffectEditor.field.SpawnNpcRandomModel.Offset.tooltip = Desplazamiento de aparicion en bloques, o posicion absoluta si el origen usa coordenadas absolutas.
+customUI.triggerVolumeEffectEditor.field.SpawnNpcRandomModel.Count = Cantidad
+customUI.triggerVolumeEffectEditor.field.SpawnNpcRandomModel.Count.tooltip = Numero de NPCs que aparecen, limitado entre 1 y 64.
+customUI.triggerVolumeEffectEditor.field.SpawnNpcRandomModel.Yaw = Yaw
+customUI.triggerVolumeEffectEditor.field.SpawnNpcRandomModel.Yaw.tooltip = Rotacion de aparicion alrededor del eje vertical, en grados.
+
+customUI.triggerVolumeEffectEditor.field.EquipNpcItem.Item = Item
+customUI.triggerVolumeEffectEditor.field.EquipNpcItem.Item.tooltip = Item que se equipa en el NPC que activo este volumen. Las piezas de armadura se equipan como armadura; el resto va a la mano.
+
+customUI.triggerVolumeEffectEditor.field.RemoveOneItemInVolume.Item = Item expuesto
+customUI.triggerVolumeEffectEditor.field.RemoveOneItemInVolume.Item.tooltip = Se elimina al azar una entidad de item coincidente dentro del volumen.

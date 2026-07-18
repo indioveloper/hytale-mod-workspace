@@ -95,9 +95,9 @@ con el numero de version nuevo en la misma carpeta.
   colision de plataforma extraidos de Player Trigger Tags.
 - `mods/java/trigger-execute-command`: efecto `ExecuteCommand` actualizado a
   rango 0.6.x; revisar en juego antes de usar comandos destructivos.
-- `games/nexus-siege`: workspace del minijuego. Su plugin `Triggers_NPCs` esta
-  bajo `trigger-volumes/Triggers_NPCs`; los NPCs vanilla y sus contratos estan
-  bajo `npcs/vanilla`.
+- `games/nexus-siege`: workspace del minijuego. Los NPCs reutilizables y
+  efectos de Trigger Volumes para NPCs viven en `mods/asset-packs/raynor-npcs`;
+  la carpeta `npcs/vanilla` conserva contratos y notas de diseno del juego.
 - `mods/java/scoreboards`: codigo de 0.5.x. Revisar APIs, manifest y UI antes de
   intentar instalarlo en 0.6.x.
 - `mods/asset-packs`: packs independientes relativamente limpios.

@@ -31,7 +31,7 @@ Origen: `real-lever-animation` y `essence-buttons`.
 
 ### `mods/asset-packs/raynor-npcs`
 
-Pack de NPCs Raynor.
+Mod/asset pack unificado de NPCs Raynor.
 
 Incluye:
 
@@ -39,10 +39,14 @@ Incluye:
 - Roles `Raynor_Klops_Miner_Patrol`, `Raynor_Static_Guard`,
   `Raynor_Static_Human_Emoter` y `Raynor_Worker_Route`.
 - Spawn markers para esos cuatro roles.
+- Rol reutilizable `Nexus_Avatar_Sword_Runner`.
+- Sonido `nexus_war_cry` y evento `SFX_Nexus_War_Cry`.
+- Efectos de Trigger Volumes `SpawnNpcRandomModel`, `EquipNpcItem` y
+  `RemoveOneItemInVolume`.
 - Localizaciones `en-US` y `es-ES`.
 
-Estado: manifest fechado `2026.05.07-5efa15f6d`; conviene validar roles,
-modelos y markers contra 0.6.8 antes de instalarlo.
+Estado: actualizado a rango de pre-release 0.6.x; compilar y smoke testear en
+0.6.8 antes de usarlo en mapas importantes.
 
 ### `mods/asset-packs/nexus-siege-props`
 

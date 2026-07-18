@@ -11,10 +11,10 @@ monorepo pasa a ser la fuente canonica despues de publicarla.
 | `mods/java/trigger-execute-command` | `Desktop/mods/trigger execute command mod` | Actualizado a pre-release 0.6.x; fuente promovida fuera de `legacy`; localizaciones revisadas. |
 | `mods/java/chest-labels` | `workspace/chest-labels-mod` | Activo/prototipo. |
 | `mods/java/scoreboards` | `mod-interfaces/Mod interfaces/scoreboards_fixed` + `Desktop/mods/scoreboards mod` | Legacy 0.5.x unificado; la carpeta local separada fue absorbida/eliminada. |
-| `games/nexus-siege` | `workspace/nexus-siege` | Activo; incluye NPC assets y `Triggers_NPCs`. |
+| `games/nexus-siege` | `workspace/nexus-siege` | Activo; los assets/plugins NPC reutilizables se movieron a `mods/asset-packs/raynor-npcs`. |
 | `mods/asset-packs/blocks` | `Barrier_Block_Texture` + pack global `ghost-outline-blocks` | Pack fusionado de barrera visible y ghost outline blocks. |
 | `mods/asset-packs/mechanisms` | `essence-pulsadores-stage` + `lever-real-stage` | Pack fusionado de botones de esencia y palancas animadas. |
-| `mods/asset-packs/raynor-npcs` | pack global `raynor-npcs` | Assets Raynor. |
+| `mods/asset-packs/raynor-npcs` | pack global `raynor-npcs` + `Triggers_NPCs` + `Nexus Siege NPCs` | Mod/asset pack unificado de NPCs reutilizables. |
 | `mods/asset-packs/nexus-siege-props` | pack global `Raynor.Nexus Siege Props` | Props Nexus Siege. |
 | `experiments/asset-packs/tests-0.6.3` | pack global `0.6.3.tests` | Snapshot experimental. |
 | `experiments/asset-packs/tests-0.6.4` | `disabled-pack-test/0.6.4.Tests` | Flechazo, outlines, ventanas y prefabs. |
