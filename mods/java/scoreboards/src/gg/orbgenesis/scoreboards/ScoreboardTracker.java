@@ -7,6 +7,7 @@ import com.hypixel.hytale.builtin.adventure.objectives.ObjectivePlugin;
 import com.hypixel.hytale.builtin.adventure.objectives.config.ObjectiveAsset;
 import com.hypixel.hytale.builtin.adventure.objectives.config.completion.ObjectiveCompletionAsset;
 import com.hypixel.hytale.builtin.adventure.objectives.config.task.TaskSet;
+import com.hypixel.hytale.protocol.FormattedMessage;
 import com.hypixel.hytale.protocol.Objective;
 import com.hypixel.hytale.protocol.ObjectiveTask;
 import com.hypixel.hytale.protocol.packets.assets.TrackOrUpdateObjective;
@@ -264,19 +265,21 @@ public class ScoreboardTracker {
     private Objective toObjective() {
       ObjectiveTask[] objectiveTasks = new ObjectiveTask[definition.taskCount];
       for (int i = 0; i < definition.taskCount; i++) {
-        objectiveTasks[i] = new ObjectiveTask(safeText(definition.tasks[i]), current[i], needed[i]);
+        objectiveTasks[i] = new ObjectiveTask(formatText(definition.tasks[i]), current[i], needed[i]);
       }
 
       return new Objective(
           definition.objectiveUuid,
-          safeText(definition.title),
-          safeText(definition.description),
+          formatText(definition.title),
+          formatText(definition.description),
           definition.lineId,
           objectiveTasks);
     }
   }
 
-  private static String safeText(String text) {
-    return text == null ? "" : text;
+  private static FormattedMessage formatText(String text) {
+    FormattedMessage message = new FormattedMessage();
+    message.rawText = text == null ? "" : text;
+    return message;
   }
 }
