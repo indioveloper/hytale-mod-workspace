@@ -9,8 +9,8 @@ monorepo pasa a ser la fuente canonica despues de publicarla.
 | `mods/java/player-trigger-tags` | `workspace/trigger-volumes-extensions`; funciones utiles de `player-triggers-src` y `Downloads/Player_Triggers-1_3_2-source` revisadas | Activo; v1.5.6; compila contra 0.6.8; ya no contiene efectos de movimiento de entidades. |
 | `mods/java/entity-motion-triggers` | Extraido desde `mods/java/player-trigger-tags` | Activo/prototipo; contiene los efectos de movimiento y colision de plataforma separados de los tags de jugador. |
 | `mods/java/trigger-execute-command` | `Desktop/mods/trigger execute command mod` | Actualizado a pre-release 0.6.x; fuente promovida fuera de `legacy`; localizaciones revisadas. |
-| `mods/java/chest-labels` | `workspace/chest-labels-mod` | Activo/prototipo. |
-| `mods/java/scoreboards` | `mod-interfaces/Mod interfaces/scoreboards_fixed` + `Desktop/mods/scoreboards mod` | Legacy 0.5.x unificado; la carpeta local separada fue absorbida/eliminada. |
+| `mods/java/chest-labels` | `workspace/chest-labels-mod` | Pendiente de migracion de UI: el editor usa `PageOverlay`, nodo no reconocido por pre-release 0.6.8. No instalar hasta portarlo. |
+| `mods/java/scoreboards` | `mod-interfaces/Mod interfaces/scoreboards_fixed` + `Desktop/mods/scoreboards mod` | Legacy 0.5.x unificado; la carpeta local separada fue absorbida/eliminada. Pendiente de migrar `Common.ui`: usa `PageOverlay`, nodo no reconocido por pre-release 0.6.8. |
 | `games/nexus-siege` | `workspace/nexus-siege` | Activo; los assets/plugins NPC reutilizables se movieron a `mods/asset-packs/raynor-npcs`. |
 | `mods/asset-packs/blocks` | `Barrier_Block_Texture` + pack global `ghost-outline-blocks` | Pack fusionado de barrera visible y ghost outline blocks. |
 | `mods/asset-packs/mechanisms` | `essence-pulsadores-stage` + `lever-real-stage` | Pack fusionado de botones de esencia y palancas animadas. |

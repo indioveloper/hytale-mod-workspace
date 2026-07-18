@@ -2,6 +2,10 @@
 
 Mod base para Hytale que permite poner nombre e icono a cofres o contenedores y mostrarlo encima del texto normal de interaccion al apuntarlos.
 
+Estado: pendiente de migrar la UI a pre-release 0.6.8. El editor usa
+`PageOverlay`, un nodo que esa version no reconoce, por lo que el JAR no debe
+instalarse hasta portar y probar sus documentos de interfaz.
+
 Uso principal:
 
 - abre el cofre
