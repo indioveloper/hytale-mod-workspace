@@ -106,9 +106,7 @@ public class ApplyHorizontalPlatformMotionEffect extends TriggerEffect {
         double distanceX = targetX - start.x;
         double distanceY = targetY - start.y;
         double distanceZ = targetZ - start.z;
-        if (isStopped(distanceX, speed)
-            && isStopped(distanceY, speedY)
-            && isStopped(distanceZ, speedZ)) {
+        if (distanceX == 0.0D && distanceY == 0.0D && distanceZ == 0.0D) {
           continue;
         }
         if (isUnreachable(distanceX, speed)
@@ -136,10 +134,6 @@ public class ApplyHorizontalPlatformMotionEffect extends TriggerEffect {
         }
       }
     }
-  }
-
-  private static boolean isStopped(double distance, double axisSpeed) {
-    return distance == 0.0D || axisSpeed == 0.0D;
   }
 
   private static boolean isUnreachable(double distance, double axisSpeed) {
