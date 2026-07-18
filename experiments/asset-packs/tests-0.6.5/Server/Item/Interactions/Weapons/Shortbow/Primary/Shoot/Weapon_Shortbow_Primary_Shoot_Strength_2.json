@@ -1,0 +1,7 @@
+{
+  "Parent": "Weapon_Shortbow_Primary_Shoot_Projectile",
+  "Config": "Projectile_Config_Flechazo_Arrow",
+  "Effects": {
+    "ItemAnimationId": "ShootCharged"
+  }
+}

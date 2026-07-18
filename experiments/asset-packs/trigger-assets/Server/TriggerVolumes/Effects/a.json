@@ -1,0 +1,17 @@
+{
+  "Effects": [
+    {
+      "Type": "ModifyTags",
+      "Event": "ENTITY_DIED",
+      "Interval": 0.0,
+      "Delay": 0.0,
+      "Operation": "Set",
+      "TagKey": "",
+      "TagValue": "Empty",
+      "MatchKey": "",
+      "MatchValue": "",
+      "Radius": 50.0,
+      "Center": "Volume"
+    }
+  ]
+}

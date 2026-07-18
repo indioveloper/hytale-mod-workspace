@@ -1,0 +1,19 @@
+{
+  "Group": "OrbGenesis",
+  "Name": "ChestLabels",
+  "Version": "0.1.0",
+  "Description": "Adds custom names and icons to storage containers and shows them above the interaction hint when you aim at them.",
+  "Authors": [
+    {
+      "Name": "Codex"
+    }
+  ],
+  "ServerVersion": ">=0.5.0",
+  "Dependencies": {
+    "Hytale:EntityModule": "*"
+  },
+  "OptionalDependencies": {},
+  "DisabledByDefault": false,
+  "Main": "gg.orbgenesis.chestlabels.ChestLabelsPlugin",
+  "IncludesAssetPack": true
+}

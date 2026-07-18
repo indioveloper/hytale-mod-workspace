@@ -1,0 +1,11 @@
+{
+  "Group": "0.6.3",
+  "Name": "tests",
+  "Authors": [],
+  "Dependencies": {},
+  "OptionalDependencies": {},
+  "LoadBefore": {},
+  "DisabledByDefault": false,
+  "IncludesAssetPack": false,
+  "SubPlugins": []
+}

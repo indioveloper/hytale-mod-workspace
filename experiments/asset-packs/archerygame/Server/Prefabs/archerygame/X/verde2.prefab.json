@@ -1,0 +1,275 @@
+{
+    "version":  8,
+    "blockIdVersion":  11,
+    "anchorX":  0,
+    "anchorY":  0,
+    "anchorZ":  0,
+    "blocks":  [
+                   {
+                       "x":  -2,
+                       "y":  0,
+                       "z":  0,
+                       "name":  "Empty"
+                   },
+                   {
+                       "x":  -2,
+                       "y":  1,
+                       "z":  0,
+                       "name":  "Empty"
+                   },
+                   {
+                       "x":  -2,
+                       "y":  2,
+                       "z":  0,
+                       "name":  "Empty"
+                   },
+                   {
+                       "x":  -2,
+                       "y":  3,
+                       "z":  0,
+                       "name":  "Empty"
+                   },
+                   {
+                       "x":  -1,
+                       "y":  0,
+                       "z":  0,
+                       "name":  "Empty"
+                   },
+                   {
+                       "x":  -1,
+                       "y":  1,
+                       "z":  0,
+                       "name":  "Empty"
+                   },
+                   {
+                       "x":  -1,
+                       "y":  2,
+                       "z":  0,
+                       "name":  "Empty"
+                   },
+                   {
+                       "x":  -1,
+                       "y":  3,
+                       "z":  0,
+                       "name":  "Empty"
+                   },
+                   {
+                       "x":  0,
+                       "y":  0,
+                       "z":  0,
+                       "name":  "Empty"
+                   },
+                   {
+                       "x":  0,
+                       "y":  1,
+                       "z":  0,
+                       "name":  "Empty"
+                   },
+                   {
+                       "x":  0,
+                       "y":  2,
+                       "z":  0,
+                       "name":  "Empty"
+                   },
+                   {
+                       "x":  0,
+                       "y":  3,
+                       "z":  0,
+                       "name":  "Empty"
+                   },
+                   {
+                       "x":  1,
+                       "y":  0,
+                       "z":  0,
+                       "name":  "Build_Lightsource_Green",
+                       "rotation":  4
+                   },
+                   {
+                       "x":  1,
+                       "y":  1,
+                       "z":  0,
+                       "name":  "Empty"
+                   },
+                   {
+                       "x":  1,
+                       "y":  2,
+                       "z":  0,
+                       "name":  "Empty"
+                   },
+                   {
+                       "x":  1,
+                       "y":  3,
+                       "z":  0,
+                       "name":  "Empty"
+                   },
+                   {
+                       "x":  2,
+                       "y":  0,
+                       "z":  0,
+                       "name":  "Empty"
+                   },
+                   {
+                       "x":  2,
+                       "y":  1,
+                       "z":  0,
+                       "name":  "Empty"
+                   },
+                   {
+                       "x":  2,
+                       "y":  2,
+                       "z":  0,
+                       "name":  "Empty"
+                   },
+                   {
+                       "x":  2,
+                       "y":  3,
+                       "z":  0,
+                       "name":  "Empty"
+                   }
+               ],
+    "fluids":  [
+                   {
+                       "x":  -2,
+                       "y":  0,
+                       "z":  0,
+                       "name":  "Empty",
+                       "level":  0
+                   },
+                   {
+                       "x":  -2,
+                       "y":  1,
+                       "z":  0,
+                       "name":  "Empty",
+                       "level":  0
+                   },
+                   {
+                       "x":  -2,
+                       "y":  2,
+                       "z":  0,
+                       "name":  "Empty",
+                       "level":  0
+                   },
+                   {
+                       "x":  -2,
+                       "y":  3,
+                       "z":  0,
+                       "name":  "Empty",
+                       "level":  0
+                   },
+                   {
+                       "x":  -1,
+                       "y":  0,
+                       "z":  0,
+                       "name":  "Empty",
+                       "level":  0
+                   },
+                   {
+                       "x":  -1,
+                       "y":  1,
+                       "z":  0,
+                       "name":  "Empty",
+                       "level":  0
+                   },
+                   {
+                       "x":  -1,
+                       "y":  2,
+                       "z":  0,
+                       "name":  "Empty",
+                       "level":  0
+                   },
+                   {
+                       "x":  -1,
+                       "y":  3,
+                       "z":  0,
+                       "name":  "Empty",
+                       "level":  0
+                   },
+                   {
+                       "x":  0,
+                       "y":  0,
+                       "z":  0,
+                       "name":  "Empty",
+                       "level":  0
+                   },
+                   {
+                       "x":  0,
+                       "y":  1,
+                       "z":  0,
+                       "name":  "Empty",
+                       "level":  0
+                   },
+                   {
+                       "x":  0,
+                       "y":  2,
+                       "z":  0,
+                       "name":  "Empty",
+                       "level":  0
+                   },
+                   {
+                       "x":  0,
+                       "y":  3,
+                       "z":  0,
+                       "name":  "Empty",
+                       "level":  0
+                   },
+                   {
+                       "x":  1,
+                       "y":  0,
+                       "z":  0,
+                       "name":  "Empty",
+                       "level":  0
+                   },
+                   {
+                       "x":  1,
+                       "y":  1,
+                       "z":  0,
+                       "name":  "Empty",
+                       "level":  0
+                   },
+                   {
+                       "x":  1,
+                       "y":  2,
+                       "z":  0,
+                       "name":  "Empty",
+                       "level":  0
+                   },
+                   {
+                       "x":  1,
+                       "y":  3,
+                       "z":  0,
+                       "name":  "Empty",
+                       "level":  0
+                   },
+                   {
+                       "x":  2,
+                       "y":  0,
+                       "z":  0,
+                       "name":  "Empty",
+                       "level":  0
+                   },
+                   {
+                       "x":  2,
+                       "y":  1,
+                       "z":  0,
+                       "name":  "Empty",
+                       "level":  0
+                   },
+                   {
+                       "x":  2,
+                       "y":  2,
+                       "z":  0,
+                       "name":  "Empty",
+                       "level":  0
+                   },
+                   {
+                       "x":  2,
+                       "y":  3,
+                       "z":  0,
+                       "name":  "Empty",
+                       "level":  0
+                   }
+               ],
+    "entities":  [
+
+                 ]
+}

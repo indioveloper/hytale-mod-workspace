@@ -1,0 +1,9 @@
+{
+  "Type": "Variant",
+  "Reference": "Klops_Miner",
+  "Modify": {
+    "Patrol": true,
+    "FollowPatrolPath": true,
+    "NameTranslationKey": "server.npcRoles.Raynor_Klops_Miner_Patrol.name"
+  }
+}

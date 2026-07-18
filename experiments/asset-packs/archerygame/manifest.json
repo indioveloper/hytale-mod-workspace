@@ -1,0 +1,11 @@
+{
+  "Group": "tests",
+  "Name": "archerygame",
+  "Authors": [],
+  "Dependencies": {},
+  "OptionalDependencies": {},
+  "LoadBefore": {},
+  "DisabledByDefault": false,
+  "IncludesAssetPack": false,
+  "SubPlugins": []
+}

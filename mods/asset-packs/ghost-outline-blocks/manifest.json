@@ -1,0 +1,17 @@
+{
+  "Group": "OrbGenesis",
+  "Name": "Ghost Outline Blocks",
+  "Version": "1.0.0",
+  "Description": "Adds non-colliding transparent outline blocks for locked platform previews.",
+  "Authors": [
+    {
+      "Name": "OrbGenesis",
+      "Url": "https://orbgenesis.gg"
+    }
+  ],
+  "DisabledByDefault": false,
+  "IncludesAssetPack": true,
+  "Dependencies": {},
+  "OptionalDependencies": {},
+  "ServerVersion": "*"
+}

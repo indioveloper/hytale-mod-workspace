@@ -1,0 +1,21 @@
+$C = "../../Common.ui";
+
+Group #LineRow0 {
+  LayoutMode: Left;
+  Anchor: (Bottom: 8, Height: 38);
+
+  $C.@TextField #TaskInput0 {
+    @Anchor = (Width: 350);
+    Value: "";
+  }
+
+  $C.@TextField #CurrentInput0 {
+    @Anchor = (Left: 10, Width: 100);
+    Value: "";
+  }
+
+  $C.@TextField #NeededInput0 {
+    @Anchor = (Left: 10, Width: 100);
+    Value: "";
+  }
+}

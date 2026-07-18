@@ -1,0 +1,15 @@
+{
+  "Group": "0.6.4",
+  "Name": "Tests",
+  "Version": "1.0.0",
+  "Description": "",
+  "Authors": [],
+  "Website": "",
+  "ServerVersion": ">=0.6.0-pre <0.7.0",
+  "Dependencies": {},
+  "OptionalDependencies": {},
+  "LoadBefore": {},
+  "DisabledByDefault": false,
+  "IncludesAssetPack": false,
+  "SubPlugins": []
+}

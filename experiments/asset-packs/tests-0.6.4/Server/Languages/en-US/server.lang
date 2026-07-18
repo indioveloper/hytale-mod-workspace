@@ -1,0 +1,16 @@
+server.items.Ghost_Outline_Rock_Stone.name = Ghost Outline: Stone
+server.items.Ghost_Outline_Rock_Stone.description = Non-colliding transparent stone outline used as a locked platform preview.
+server.items.Ghost_Outline_Build_Lightsource_Red_Dashed.name = Ghost Outline: Dashed Red Light
+server.items.Ghost_Outline_Build_Lightsource_Red_Dashed.description = Non-colliding dashed red outline used as a locked platform preview.
+
+server.items.Furniture_Village_Window_Glass.name = Simple Wooden Glass Window
+server.items.Furniture_Village_Window_Glass.description = A simple wooden window with intact glass panes.
+server.items.Furniture_Village_Window_Glass_Damaged_1.name = Simple Wooden Glass Window (Cracked)
+server.items.Furniture_Village_Window_Glass_Damaged_1.description = A simple wooden window with one pane knocked out.
+server.items.Furniture_Village_Window_Glass_Damaged_2.name = Simple Wooden Glass Window (Broken)
+server.items.Furniture_Village_Window_Glass_Damaged_2.description = A simple wooden window with most of its glass missing.
+server.items.Furniture_Village_Window_Glass_Empty.name = Simple Wooden Window (No Glass)
+server.items.Furniture_Village_Window_Glass_Empty.description = The same wooden window after its glass has been shattered.
+server.items.Flechazo_Arrow.name = Flechazo Arrow
+server.items.Flechazo_Arrow.description = On impact, creates a trigger volume that sends the message Flechazo!
+server.messages.flechazo = Flechazo!

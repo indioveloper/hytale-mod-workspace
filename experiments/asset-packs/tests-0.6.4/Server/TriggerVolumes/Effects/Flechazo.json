@@ -1,0 +1,13 @@
+{
+  "Effects": [
+    {
+      "Type": "SendMessage",
+      "Event": "VOLUME_CREATE",
+      "Interval": 0.0,
+      "Delay": 0.0,
+      "Enabled": true,
+      "Message": "server.messages.flechazo",
+      "Recipient": "AllPlayers"
+    }
+  ]
+}

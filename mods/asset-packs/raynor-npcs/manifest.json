@@ -1,0 +1,19 @@
+{
+  "Group": "raynor",
+  "Name": "raynor-npcs",
+  "Version": "1.0.0",
+  "Description": "Custom NPC roles and spawn markers.",
+  "Authors": [
+    {
+      "Name": "raynor"
+    }
+  ],
+  "Website": "",
+  "ServerVersion": "2026.05.07-5efa15f6d",
+  "Dependencies": {},
+  "OptionalDependencies": {},
+  "LoadBefore": {},
+  "DisabledByDefault": false,
+  "IncludesAssetPack": false,
+  "SubPlugins": []
+}

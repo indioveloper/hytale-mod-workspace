@@ -1,0 +1,11 @@
+{
+  "Group": "tests prefabs",
+  "Name": "caja",
+  "Authors": [],
+  "Dependencies": {},
+  "OptionalDependencies": {},
+  "LoadBefore": {},
+  "DisabledByDefault": false,
+  "IncludesAssetPack": false,
+  "SubPlugins": []
+}

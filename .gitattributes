@@ -1,0 +1,13 @@
+* text=auto
+*.java text eol=lf
+*.json text eol=lf
+*.md text eol=lf
+*.ps1 text eol=crlf
+*.lang text eol=lf
+*.ui text eol=lf
+*.png binary
+*.ogg binary
+*.blockymodel text eol=lf
+*.blockyanim text eol=lf
+*.prefab binary
+*.prefab.json text eol=lf

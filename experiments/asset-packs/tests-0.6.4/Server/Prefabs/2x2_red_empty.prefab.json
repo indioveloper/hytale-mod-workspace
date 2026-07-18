@@ -1,0 +1,119 @@
+{
+  "version": 8,
+  "blockIdVersion": 11,
+  "anchorX": 0,
+  "anchorY": 0,
+  "anchorZ": 0,
+  "blocks": [
+    {
+      "x": 0,
+      "y": 0,
+      "z": 0,
+      "name": "Ghost_Outline_Build_Lightsource_Red_Dashed"
+    },
+    {
+      "x": 0,
+      "y": 0,
+      "z": 1,
+      "name": "Ghost_Outline_Build_Lightsource_Red_Dashed"
+    },
+    {
+      "x": 1,
+      "y": 0,
+      "z": 0,
+      "name": "Ghost_Outline_Build_Lightsource_Red_Dashed"
+    },
+    {
+      "x": 1,
+      "y": 0,
+      "z": 1,
+      "name": "Ghost_Outline_Build_Lightsource_Red_Dashed"
+    }
+  ],
+  "fluids": [
+    {
+      "x": 0,
+      "y": 0,
+      "z": 0,
+      "name": "Empty",
+      "level": 0
+    },
+    {
+      "x": 0,
+      "y": 0,
+      "z": 1,
+      "name": "Empty",
+      "level": 0
+    },
+    {
+      "x": 1,
+      "y": 0,
+      "z": 0,
+      "name": "Empty",
+      "level": 0
+    },
+    {
+      "x": 1,
+      "y": 0,
+      "z": 1,
+      "name": "Empty",
+      "level": 0
+    }
+  ],
+  "entities": [
+    {
+      "Components": {
+        "Transform": {
+          "Position": {
+            "X": -1.0,
+            "Y": 1.0,
+            "Z": 1.0
+          },
+          "Rotation": {
+            "Pitch": 0.0,
+            "Yaw": 0.0,
+            "Roll": 0.0
+          }
+        },
+        "TriggerVolume": {
+          "Shape": {
+            "Type": "Box",
+            "Min": {
+              "X": -1.0,
+              "Y": 0.0,
+              "Z": -1.0
+            },
+            "Max": {
+              "X": 1.0,
+              "Y": 2.0,
+              "Z": 1.0
+            }
+          },
+          "Effects": [
+            {
+              "Type": "PastePrefab",
+              "Event": "ENTER",
+              "Interval": 0.0,
+              "Delay": 0.0,
+              "PrefabList": "",
+              "Prefab": "2x2_red",
+              "Position": {
+                "X": -1.0,
+                "Y": -1.0,
+                "Z": -1.0
+              },
+              "AtVolumeOrigin": true,
+              "ShowParticles": false
+            }
+          ],
+          "Enabled": true,
+          "TargetTypes": [
+            "Player"
+          ],
+          "KeepLoaded": false,
+          "PrefabIndex": 0
+        }
+      }
+    }
+  ]
+}

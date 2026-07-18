@@ -1,0 +1,13 @@
+{
+  "Group": "tests",
+  "Name": "0.6.5",
+  "Authors": [],
+  "Dependencies": {
+    "Hytale:Audio": "*"
+  },
+  "OptionalDependencies": {},
+  "LoadBefore": {},
+  "DisabledByDefault": false,
+  "IncludesAssetPack": true,
+  "SubPlugins": []
+}

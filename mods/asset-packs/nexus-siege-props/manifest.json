@@ -1,0 +1,11 @@
+{
+  "Group": "Raynor",
+  "Name": "Nexus Siege Props",
+  "Authors": [],
+  "Dependencies": {},
+  "OptionalDependencies": {},
+  "LoadBefore": {},
+  "DisabledByDefault": false,
+  "IncludesAssetPack": false,
+  "SubPlugins": []
+}

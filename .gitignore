@@ -1,0 +1,39 @@
+# Build outputs
+.build/
+**/build/
+**/dist/
+**/target/
+**/classes/
+**/jar_stage/
+**/.gradle/
+
+# Packaged artifacts
+*.jar
+*.zip
+*.class
+
+# Runtime and extracted dependencies
+hytale-shared-source/
+HytaleServer.jar
+Assets.zip
+logs/
+backup/
+backups/
+**/backup-*/
+Saves/
+*.log
+
+# Editors and OS
+.idea/
+.vscode/
+*.iml
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Local scratch files
+.tmp*/
+*.bak
+*.lpf
+target-classpath.txt
+probe_ref.java

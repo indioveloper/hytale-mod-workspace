@@ -1,0 +1,13 @@
+{
+  "NPCs": [
+    {
+      "Id": "Nexus_Avatar_Sword_Runner",
+      "Weight": 1
+    }
+  ],
+  "DayTimeRange": [
+    0,
+    24
+  ],
+  "Notes": "Draft only. The role needs the stored position slot NexusTarget to be set by map, trigger-volume, spawn flow, or later plugin logic before it can run toward the destination."
+}

@@ -1,0 +1,124 @@
+{
+  "version": 8,
+  "blockIdVersion": 11,
+  "anchorX": 0,
+  "anchorY": 0,
+  "anchorZ": 0,
+  "blocks": [
+    {
+      "x": 0,
+      "y": 0,
+      "z": 0,
+      "name": "*Bench_Furnace_State_Definitions_Processing",
+      "components": {
+        "Components": {
+          "BenchBlock": {
+            "TierLevel": 1,
+            "UpgradeItems": []
+          },
+          "ProcessingBenchBlock": {
+            "InputContainer": {
+              "Id": "Simple",
+              "Capacity": 2,
+              "Items": {}
+            },
+            "FuelContainer": {
+              "Id": "Simple",
+              "Capacity": 1,
+              "Items": {
+                "0": {
+                  "Id": "Wood_Oak_Trunk",
+                  "Quantity": 4,
+                  "Durability": 0.0,
+                  "MaxDurability": 0.0,
+                  "Quality": 0,
+                  "OverrideDroppedItemAnimation": false
+                }
+              }
+            },
+            "OutputContainer": {
+              "Id": "Simple",
+              "Capacity": 4,
+              "Items": {
+                "0": {
+                  "Id": "Ingredient_Charcoal",
+                  "Quantity": 1,
+                  "Durability": 0.0,
+                  "MaxDurability": 0.0,
+                  "Quality": 0,
+                  "OverrideDroppedItemAnimation": false
+                }
+              }
+            },
+            "Progress": 0.0,
+            "FuelTime": 4.466578006744385,
+            "Active": true,
+            "NextExtra": 1,
+            "LastTickGameTime": "0001-01-10T16:37:17.661236993Z"
+          },
+          "PlacedByInteraction": {
+            "WhoPlacedUuid": {
+              "$binary": "PMpQT7H8Q4ul5h5KAPv2Cg==",
+              "$type": "04"
+            }
+          }
+        }
+      },
+      "rotation": 2
+    },
+    {
+      "x": 0,
+      "y": 1,
+      "z": 0,
+      "name": "*Bench_Furnace_State_Definitions_Processing",
+      "filler": 1024,
+      "rotation": 2
+    },
+    {
+      "x": 1,
+      "y": 0,
+      "z": 0,
+      "name": "*Bench_Furnace_State_Definitions_Processing",
+      "filler": 1,
+      "rotation": 2
+    },
+    {
+      "x": 1,
+      "y": 1,
+      "z": 0,
+      "name": "*Bench_Furnace_State_Definitions_Processing",
+      "filler": 1025,
+      "rotation": 2
+    }
+  ],
+  "fluids": [
+    {
+      "x": 0,
+      "y": 0,
+      "z": 0,
+      "name": "Empty",
+      "level": 0
+    },
+    {
+      "x": 0,
+      "y": 1,
+      "z": 0,
+      "name": "Empty",
+      "level": 0
+    },
+    {
+      "x": 1,
+      "y": 0,
+      "z": 0,
+      "name": "Empty",
+      "level": 0
+    },
+    {
+      "x": 1,
+      "y": 1,
+      "z": 0,
+      "name": "Empty",
+      "level": 0
+    }
+  ]
+}

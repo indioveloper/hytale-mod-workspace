@@ -1,0 +1,14 @@
+server.customUI.triggerVolumeEffectEditor.field.SpawnNpcRandomModel.NpcType = NPC type
+server.customUI.triggerVolumeEffectEditor.field.SpawnNpcRandomModel.NpcType.tooltip = NPC role to spawn with a random player model.
+server.customUI.triggerVolumeEffectEditor.field.SpawnNpcRandomModel.GroupType = Group type
+server.customUI.triggerVolumeEffectEditor.field.SpawnNpcRandomModel.GroupType.tooltip = Optional flock definition.
+server.customUI.triggerVolumeEffectEditor.field.SpawnNpcRandomModel.Origin = Spawn origin
+server.customUI.triggerVolumeEffectEditor.field.SpawnNpcRandomModel.Offset = Offset
+server.customUI.triggerVolumeEffectEditor.field.SpawnNpcRandomModel.Count = Count
+server.customUI.triggerVolumeEffectEditor.field.SpawnNpcRandomModel.Yaw = Yaw
+
+server.customUI.triggerVolumeEffectEditor.field.EquipNpcItem.Item = Item
+server.customUI.triggerVolumeEffectEditor.field.EquipNpcItem.Item.tooltip = Item to equip on the NPC that activated this volume.
+
+server.customUI.triggerVolumeEffectEditor.field.RemoveOneItemInVolume.Item = Display item
+server.customUI.triggerVolumeEffectEditor.field.RemoveOneItemInVolume.Item.tooltip = One matching item entity inside the volume is removed at random.

@@ -1,0 +1,335 @@
+{
+  "Type": "Generic",
+  "StartState": "Standing",
+  "DefaultNPCAttitude": "Ignore",
+  "DefaultPlayerAttitude": "Neutral",
+  "Appearance": "Raynor_Random_Human",
+  "MaxHealth": 100,
+  "DisableDamageGroups": [
+    "Self"
+  ],
+  "KnockbackScale": 0.0,
+  "MotionControllerList": [
+    {
+      "Type": "Walk",
+      "MaxWalkSpeed": 3,
+      "Gravity": 10,
+      "RunThreshold": 0.3,
+      "MaxFallSpeed": 15,
+      "MaxRotationSpeed": 8,
+      "Acceleration": 12
+    }
+  ],
+  "Instructions": [
+    {
+      "Instructions": [
+        {
+          "Sensor": {
+            "Type": "Any",
+            "Once": true
+          },
+          "Continue": true,
+          "Actions": [
+            {
+              "Type": "DisplayName",
+              "DisplayName": ""
+            }
+          ]
+        },
+        {
+          "Sensor": {
+            "Type": "And",
+            "Sensors": [
+              {
+                "Type": "ReadPosition",
+                "Slot": "RaynorJumpPeak",
+                "Range": 4
+              },
+              {
+                "Type": "State",
+                "State": "Jumping"
+              }
+            ]
+          },
+          "Continue": true,
+          "BodyMotion": {
+            "Type": "Seek",
+            "RelativeSpeed": 2,
+            "RelativeSpeedWaypoint": 1,
+            "UsePathfinder": false,
+            "UseSteering": true,
+            "SkipSteering": false,
+            "SlowDownDistance": 0.7,
+            "StopDistance": 0.15,
+            "AbortDistance": 4,
+            "HeightDifference": [
+              -2,
+              2
+            ],
+            "DesiredAltitudeWeight": 1
+          }
+        },
+        {
+          "Sensor": {
+            "Type": "State",
+            "State": "Standing"
+          },
+          "Type": "Random",
+          "Name": "StandingRandom",
+          "Instructions": [
+            {
+              "Weight": 15,
+              "Sensor": {
+                "Type": "Any"
+              },
+              "Actions": [
+                {
+                  "Type": "PlayAnimation",
+                  "Slot": "Status"
+                },
+                {
+                  "Type": "Timeout",
+                  "Delay": [
+                    4,
+                    9
+                  ],
+                  "Action": {
+                    "Type": "Sequence",
+                    "Actions": [
+                      {
+                        "Type": "ResetInstructions",
+                        "Instructions": [
+                          "StandingRandom"
+                        ]
+                      },
+                      {
+                        "Type": "State",
+                        "State": "Standing"
+                      }
+                    ]
+                  }
+                }
+              ],
+              "BodyMotion": {
+                "Type": "Nothing"
+              }
+            },
+            {
+              "Weight": 60,
+              "Sensor": {
+                "Type": "Any"
+              },
+              "Actions": [
+                {
+                  "Type": "PlayAnimation",
+                  "Slot": "Status",
+                  "Animation": "RaiseArms"
+                },
+                {
+                  "Type": "Timeout",
+                  "Delay": [
+                    2,
+                    3
+                  ],
+                  "Action": {
+                    "Type": "Sequence",
+                    "Actions": [
+                      {
+                        "Type": "PlayAnimation",
+                        "Slot": "Status"
+                      },
+                      {
+                        "Type": "ResetInstructions",
+                        "Instructions": [
+                          "StandingRandom"
+                        ]
+                      },
+                      {
+                        "Type": "State",
+                        "State": "Standing"
+                      }
+                    ]
+                  }
+                }
+              ],
+              "BodyMotion": {
+                "Type": "Nothing"
+              }
+            },
+            {
+              "Weight": 25,
+              "Sensor": {
+                "Type": "AdjustPosition",
+                "Sensor": {
+                  "Type": "Self",
+                  "Filters": []
+                },
+                "Offset": [
+                  0,
+                  1,
+                  0
+                ]
+              },
+              "Actions": [
+                {
+                  "Type": "StorePosition",
+                  "Slot": "RaynorJumpPeak"
+                },
+                {
+                  "Type": "PlayAnimation",
+                  "Slot": "Status",
+                  "Animation": "Jump"
+                },
+                {
+                  "Type": "State",
+                  "State": "Jumping"
+                },
+                {
+                  "Type": "Timeout",
+                  "Delay": [
+                    0.75,
+                    0.9
+                  ],
+                  "Action": {
+                    "Type": "Sequence",
+                    "Actions": [
+                      {
+                        "Type": "PlayAnimation",
+                        "Slot": "Status"
+                      },
+                      {
+                        "Type": "ResetInstructions",
+                        "Instructions": [
+                          "StandingRandom"
+                        ]
+                      },
+                      {
+                        "Type": "State",
+                        "State": "Standing"
+                      }
+                    ]
+                  }
+                }
+              ],
+              "BodyMotion": {
+                "Type": "Nothing"
+              }
+            },
+            {
+              "Weight": 20,
+              "Sensor": {
+                "Type": "Any"
+              },
+              "Actions": [
+                {
+                  "Type": "PlayAnimation",
+                  "Slot": "Status",
+                  "Animation": "Sit"
+                },
+                {
+                  "Type": "State",
+                  "State": "Sitting"
+                }
+              ],
+              "BodyMotion": {
+                "Type": "Nothing"
+              }
+            }
+          ]
+        },
+        {
+          "Sensor": {
+            "Type": "State",
+            "State": "Sitting"
+          },
+          "Type": "Random",
+          "Name": "SittingRandom",
+          "Instructions": [
+            {
+              "Weight": 65,
+              "Sensor": {
+                "Type": "Any"
+              },
+              "Actions": [
+                {
+                  "Type": "PlayAnimation",
+                  "Slot": "Status",
+                  "Animation": "Sit"
+                },
+                {
+                  "Type": "Timeout",
+                  "Delay": [
+                    5,
+                    12
+                  ],
+                  "Action": {
+                    "Type": "Sequence",
+                    "Actions": [
+                      {
+                        "Type": "ResetInstructions",
+                        "Instructions": [
+                          "SittingRandom"
+                        ]
+                      },
+                      {
+                        "Type": "State",
+                        "State": "Sitting"
+                      }
+                    ]
+                  }
+                }
+              ],
+              "BodyMotion": {
+                "Type": "Nothing"
+              }
+            },
+            {
+              "Weight": 35,
+              "Sensor": {
+                "Type": "Any"
+              },
+              "Actions": [
+                {
+                  "Type": "PlayAnimation",
+                  "Slot": "Status",
+                  "Animation": "StandUp"
+                },
+                {
+                  "Type": "Timeout",
+                  "Delay": [
+                    1,
+                    1.5
+                  ],
+                  "Action": {
+                    "Type": "Sequence",
+                    "Actions": [
+                      {
+                        "Type": "PlayAnimation",
+                        "Slot": "Status"
+                      },
+                      {
+                        "Type": "ResetInstructions",
+                        "Instructions": [
+                          "StandingRandom",
+                          "SittingRandom"
+                        ]
+                      },
+                      {
+                        "Type": "State",
+                        "State": "Standing"
+                      }
+                    ]
+                  }
+                }
+              ],
+              "BodyMotion": {
+                "Type": "Nothing"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "NameTranslationKey": "server.npcRoles.Raynor_Static_Human_Emoter.name"
+}

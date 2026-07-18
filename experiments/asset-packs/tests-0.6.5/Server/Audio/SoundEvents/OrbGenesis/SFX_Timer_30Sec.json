@@ -1,0 +1,23 @@
+{
+    "Volume":  0,
+    "Pitch":  0,
+    "StartAttenuationDistance":  2,
+    "MaxDistance":  64,
+    "SpatialBlend":  0.6,
+    "MaxInstance":  4,
+    "PreventSoundInterruption":  false,
+    "AudioCategory":  "AudioCat_SFX",
+    "Layers":  [
+                   {
+                       "Volume":  0,
+                       "StartDelay":  0,
+                       "Looping":  false,
+                       "Probability":  100,
+                       "ProbabilityRerollDelay":  1,
+                       "Files":  [
+                                     "Sounds/OrbGenesis/timer30sec.ogg"
+                                 ],
+                       "RoundRobinHistorySize":  0
+                   }
+               ]
+}

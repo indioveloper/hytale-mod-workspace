@@ -1,0 +1,16 @@
+server.customUI.triggerVolumeEffectEditor.field.RemoveEventTitle.FadeOutDuration = Seconds to fade the title out
+server.customUI.triggerVolumeEffectEditor.field.RandomTagSelection.TagKey = Tag to change
+server.customUI.triggerVolumeEffectEditor.field.RandomTagSelection.TagValues = Possible tag values
+server.customUI.triggerVolumeEffectEditor.field.RandomTagSelection.MatchKey = Only affect volumes with this tag
+server.customUI.triggerVolumeEffectEditor.field.RandomTagSelection.MatchValue = Required value for the target tag
+server.customUI.triggerVolumeEffectEditor.field.RandomTagSelection.Radius = How far to search for target volumes
+server.customUI.triggerVolumeEffectEditor.field.RandomTagSelection.Center = Search from volume or triggering entity
+server.customUI.triggerVolumeEffectEditor.field.PasteRandomPrefab.Prefab1 = Prefab name
+server.customUI.triggerVolumeEffectEditor.field.PasteRandomPrefab.Weight1 = Chance
+server.customUI.triggerVolumeEffectEditor.field.PasteRandomPrefab.Prefab2 = Prefab name
+server.customUI.triggerVolumeEffectEditor.field.PasteRandomPrefab.Weight2 = Chance
+server.customUI.triggerVolumeEffectEditor.field.PasteRandomPrefab.Prefabs = Prefab name
+server.customUI.triggerVolumeEffectEditor.field.PasteRandomPrefab.UseWeights = Use chances
+server.customUI.triggerVolumeEffectEditor.field.PasteRandomPrefab.Position = Paste offset or absolute position
+server.customUI.triggerVolumeEffectEditor.field.PasteRandomPrefab.AtVolumeOrigin = Add position as offset from this volume
+server.customUI.triggerVolumeEffectEditor.field.PasteRandomPrefab.ShowParticles = Show paste particles

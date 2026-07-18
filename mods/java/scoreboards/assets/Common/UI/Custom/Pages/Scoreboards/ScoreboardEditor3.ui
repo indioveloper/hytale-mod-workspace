@@ -1,0 +1,180 @@
+$C = "../../Common.ui";
+
+$C.@Container {
+  Anchor: (Left: 80, Top: 120, Width: 680, Height: 650);
+
+  #Title {
+    Group {
+      LayoutMode: Left;
+
+      $C.@Title {
+        @Text = "Scoreboards Editor";
+      }
+    }
+  }
+
+  #Content {
+    Group {
+      LayoutMode: Top;
+      Anchor: (Bottom: 14);
+
+      Group #TopButtons {
+        LayoutMode: Center;
+        Anchor: (Bottom: 14, Height: 44);
+
+        $C.@CancelTextButton #HideTopButton {
+          @Anchor = (Right: 4);
+          Text: "Hide";
+          FlexWeight: 1;
+        }
+
+        $C.@SecondaryTextButton #AddLineButton {
+          @Anchor = (Left: 4, Right: 4);
+          Text: "Add line";
+          FlexWeight: 1;
+        }
+
+        $C.@SecondaryTextButton #ResetTopButton {
+          @Anchor = (Left: 4, Right: 4);
+          Text: "Reset";
+          FlexWeight: 1;
+        }
+
+        $C.@TextButton #ApplyTopButton {
+          @Anchor = (Left: 4);
+          Text: "Apply";
+          FlexWeight: 1;
+        }
+      }
+
+      Label {
+        Text: "Title";
+        Anchor: (Bottom: 6);
+        Style: (...$C.@DefaultLabelStyle, RenderUppercase: true);
+      }
+
+      $C.@TextField #TitleInput {
+        @Anchor = (Bottom: 12);
+        Value: "";
+      }
+
+      Label {
+        Text: "Description";
+        Anchor: (Bottom: 6);
+        Style: (...$C.@DefaultLabelStyle, RenderUppercase: true);
+      }
+
+      $C.@TextField #DescriptionInput {
+        @Anchor = (Bottom: 12);
+        Value: "";
+      }
+
+      Label {
+        Text: "Objective Line ID";
+        Anchor: (Bottom: 6);
+        Style: (...$C.@DefaultLabelStyle, RenderUppercase: true);
+      }
+
+      $C.@TextField #LineIdInput {
+        @Anchor = (Bottom: 18);
+        Value: "";
+      }
+
+      $C.@PanelSeparatorFancy {
+        @Anchor = (Bottom: 14);
+      }
+
+      Label {
+        Text: "Scoreboard Lines";
+        Anchor: (Bottom: 10);
+        Style: (...$C.@DefaultLabelStyle, RenderUppercase: true, RenderBold: true);
+      }
+
+      Group {
+        LayoutMode: Left;
+        Anchor: (Bottom: 6, Height: 22);
+
+        Label {
+          Text: "Text";
+          Anchor: (Width: 350);
+          Style: (...$C.@DefaultLabelStyle, FontSize: 13, RenderUppercase: true);
+        }
+
+        Label {
+          Text: "Current";
+          Anchor: (Left: 10, Width: 100);
+          Style: (...$C.@DefaultLabelStyle, FontSize: 13, RenderUppercase: true);
+        }
+
+        Label {
+          Text: "Needed";
+          Anchor: (Left: 10, Width: 100);
+          Style: (...$C.@DefaultLabelStyle, FontSize: 13, RenderUppercase: true);
+        }
+      }
+
+      Group {
+        LayoutMode: Top;
+        Anchor: (Bottom: 20, Height: 230);
+
+      Group {
+        LayoutMode: Left;
+        Anchor: (Bottom: 8, Height: 38);
+
+        $C.@TextField #TaskInput0 {
+          @Anchor = (Width: 350);
+          Value: "";
+        }
+
+        $C.@TextField #CurrentInput0 {
+          @Anchor = (Left: 10, Width: 100);
+          Value: "";
+        }
+
+        $C.@TextField #NeededInput0 {
+          @Anchor = (Left: 10, Width: 100);
+          Value: "";
+        }
+      }
+      Group {
+        LayoutMode: Left;
+        Anchor: (Bottom: 8, Height: 38);
+
+        $C.@TextField #TaskInput1 {
+          @Anchor = (Width: 350);
+          Value: "";
+        }
+
+        $C.@TextField #CurrentInput1 {
+          @Anchor = (Left: 10, Width: 100);
+          Value: "";
+        }
+
+        $C.@TextField #NeededInput1 {
+          @Anchor = (Left: 10, Width: 100);
+          Value: "";
+        }
+      }
+      Group {
+        LayoutMode: Left;
+        Anchor: (Bottom: 8, Height: 38);
+
+        $C.@TextField #TaskInput2 {
+          @Anchor = (Width: 350);
+          Value: "";
+        }
+
+        $C.@TextField #CurrentInput2 {
+          @Anchor = (Left: 10, Width: 100);
+          Value: "";
+        }
+
+        $C.@TextField #NeededInput2 {
+          @Anchor = (Left: 10, Width: 100);
+          Value: "";
+        }
+      }
+      }
+    }
+  }
+}

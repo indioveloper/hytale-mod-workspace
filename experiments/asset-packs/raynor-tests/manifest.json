@@ -1,0 +1,11 @@
+{
+  "Group": "tests",
+  "Name": "raynor tests",
+  "Authors": [],
+  "Dependencies": {},
+  "OptionalDependencies": {},
+  "LoadBefore": {},
+  "DisabledByDefault": false,
+  "IncludesAssetPack": false,
+  "SubPlugins": []
+}

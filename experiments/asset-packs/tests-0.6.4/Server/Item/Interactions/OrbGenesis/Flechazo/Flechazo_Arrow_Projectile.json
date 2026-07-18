@@ -1,0 +1,7 @@
+{
+  "Type": "Projectile",
+  "Config": "Projectile_Config_Flechazo_Arrow",
+  "IgnorePitch": false,
+  "IgnoreYaw": false,
+  "IgnoreRoll": false
+}

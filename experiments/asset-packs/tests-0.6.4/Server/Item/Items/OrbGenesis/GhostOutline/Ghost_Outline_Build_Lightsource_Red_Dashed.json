@@ -1,0 +1,52 @@
+{
+  "TranslationProperties": {
+    "Name": "server.items.Ghost_Outline_Build_Lightsource_Red_Dashed.name",
+    "Description": "server.items.Ghost_Outline_Build_Lightsource_Red_Dashed.description"
+  },
+  "ItemLevel": 10,
+  "MaxStack": 100,
+  "Icon": "Icons/ItemsGenerated/Ghost_Outline_Build_Lightsource_Red_Dashed.png",
+  "Categories": [
+    "Tool.PrefabEditing"
+  ],
+  "SubCategory": "PrefabBlocks",
+  "Quality": "Technical",
+  "PlayerAnimationsId": "Block",
+  "Set": "Ghost_Outline",
+  "BlockType": {
+    "Material": "Empty",
+    "DrawType": "Cube",
+    "RequiresAlphaBlending": true,
+    "Opacity": "Transparent",
+    "Group": "@Tech",
+    "Flags": {
+      "IsStackable": false
+    },
+    "CubeShadingMode": "Fullbright",
+    "Textures": [
+      {
+        "Weight": 1,
+        "All": "BlockTextures/OrbGenesis/GhostOutline/Ghost_Outline_Build_Lightsource_Red_Dashed.png"
+      }
+    ],
+    "ParticleColor": "#ff4444",
+    "BlockParticleSetId": "Crystal",
+    "BlockSoundSetId": "Crystal",
+    "PhysicalMaterialId": "Empty",
+    "VariantRotation": "Pipe",
+    "Light": {
+      "Color": "#811"
+    },
+    "TextureComputedColor": "#F83E3E"
+  },
+  "Tags": {
+    "Type": [
+      "Editor",
+      "GhostOutline"
+    ],
+    "AssociatedBlock": [
+      "Build_Lightsource_Red"
+    ]
+  },
+  "ItemSoundSetId": "ISS_Blocks_Stone"
+}

@@ -1,0 +1,47 @@
+{
+  "TranslationProperties": {
+    "Name": "server.items.Ghost_Outline_Rock_Stone.name",
+    "Description": "server.items.Ghost_Outline_Rock_Stone.description"
+  },
+  "ItemLevel": 10,
+  "MaxStack": 100,
+  "Icon": "Icons/ItemsGenerated/Ghost_Outline_Rock_Stone.png",
+  "Categories": [
+    "Tool.PrefabEditing"
+  ],
+  "SubCategory": "PrefabBlocks",
+  "Quality": "Technical",
+  "PlayerAnimationsId": "Block",
+  "Set": "Ghost_Outline",
+  "BlockType": {
+    "Material": "Empty",
+    "DrawType": "Cube",
+    "RequiresAlphaBlending": true,
+    "Opacity": "Transparent",
+    "Group": "@Tech",
+    "Flags": {
+      "IsStackable": false
+    },
+    "CubeShadingMode": "Flat",
+    "Textures": [
+      {
+        "All": "BlockTextures/OrbGenesis/GhostOutline/Ghost_Outline_Rock_Stone.png"
+      }
+    ],
+    "ParticleColor": "#79785A",
+    "BlockParticleSetId": "Stone",
+    "BlockSoundSetId": "Stone",
+    "PhysicalMaterialId": "Empty",
+    "TextureComputedColor": "#79785A"
+  },
+  "Tags": {
+    "Type": [
+      "Editor",
+      "GhostOutline"
+    ],
+    "AssociatedBlock": [
+      "Rock_Stone"
+    ]
+  },
+  "ItemSoundSetId": "ISS_Blocks_Stone"
+}

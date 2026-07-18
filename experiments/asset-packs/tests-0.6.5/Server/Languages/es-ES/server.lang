@@ -1,0 +1,16 @@
+server.items.Ghost_Outline_Rock_Stone.name = Contorno fantasma: piedra
+server.items.Ghost_Outline_Rock_Stone.description = Contorno transparente de piedra sin colision para senalar una plataforma bloqueada.
+server.items.Ghost_Outline_Build_Lightsource_Red_Dashed.name = Contorno fantasma: luz roja discontinua
+server.items.Ghost_Outline_Build_Lightsource_Red_Dashed.description = Contorno rojo discontinuo sin colision para senalar una plataforma bloqueada.
+
+server.items.Furniture_Village_Window_Glass.name = Ventana simple de madera con cristal
+server.items.Furniture_Village_Window_Glass.description = Una ventana simple de madera con los cristales intactos.
+server.items.Furniture_Village_Window_Glass_Damaged_1.name = Ventana simple de madera con cristal agrietado
+server.items.Furniture_Village_Window_Glass_Damaged_1.description = Una ventana simple de madera con un cristal arrancado.
+server.items.Furniture_Village_Window_Glass_Damaged_2.name = Ventana simple de madera con cristal roto
+server.items.Furniture_Village_Window_Glass_Damaged_2.description = Una ventana simple de madera con casi todo el cristal roto.
+server.items.Furniture_Village_Window_Glass_Empty.name = Ventana simple de madera sin cristal
+server.items.Furniture_Village_Window_Glass_Empty.description = La misma ventana de madera despues de romperse todos los cristales.
+server.items.Flechazo_Arrow.name = Flecha flechazo
+server.items.Flechazo_Arrow.description = Al impactar, crea un trigger volume que envia el mensaje Flechazo!
+server.messages.flechazo = Flechazo!

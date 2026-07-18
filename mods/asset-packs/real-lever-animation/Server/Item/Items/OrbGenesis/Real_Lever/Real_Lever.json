@@ -1,0 +1,89 @@
+{
+    "TranslationProperties":  {
+                                  "Name":  "server.items.Real_Lever.name",
+                                  "Description":  "server.items.Real_Lever.description"
+                              },
+    "ItemLevel":  10,
+    "MaxStack":  100,
+    "Icon":  "Icons/ItemsGenerated/Deco_Lever.png",
+    "Interactions":  {
+                         "Primary":  "Block_Primary",
+                         "Secondary":  "Block_Secondary"
+                     },
+    "BlockType":  {
+                      "DrawType":  "Model",
+                      "BlockSoundSetId":  "Metal",
+                      "PhysicalMaterialId":  "Metal",
+                      "Opacity":  "Transparent",
+                      "CustomModel":  "Blocks/Tinkering/Lever.blockymodel",
+                      "CustomModelTexture":  [
+                                                 {
+                                                     "Texture":  "Blocks/Tinkering/Lever_Texture.png",
+                                                     "Weight":  1
+                                                 }
+                                             ],
+                      "HitboxType":  "Plant_Large",
+                      "VariantRotation":  "NESW",
+                      "Flags":  {
+                                    "IsUsable":  true
+                                },
+                      "Gathering":  {
+                                        "Soft":  {
+
+                                                 }
+                                    },
+                      "Support":  {
+                                      "Down":  [
+                                                   {
+                                                       "FaceType":  "Full"
+                                                   }
+                                               ]
+                                  },
+                      "State":  {
+                                    "Definitions":  {
+                                                        "Off":  {
+                                                                    "InteractionHint":  "server.interactionHints.turnon",
+                                                                    "CustomModelAnimation":  "Blocks/Animations/Tinkering/Lever_Off.blockyanim"
+                                                                },
+                                                        "On":  {
+                                                                   "InteractionHint":  "server.interactionHints.turnoff",
+                                                                   "CustomModelAnimation":  "Blocks/Animations/Tinkering/Lever_On.blockyanim"
+                                                               }
+                                                    }
+                                },
+                      "Interactions":  {
+                                           "Use":  {
+                                                       "Effects":  {
+                                                                       "ItemAnimationId":  "Interact"
+                                                                   },
+                                                       "Interactions":  [
+                                                                            {
+                                                                                "Type":  "ChangeState",
+                                                                                "Changes":  {
+                                                                                                "default":  "On",
+                                                                                                "Off":  "On",
+                                                                                                "On":  "Off"
+                                                                                            }
+                                                                            }
+                                                                        ]
+                                                   }
+                                       },
+                      "InteractionHint":  "server.interactionHints.turnon",
+                      "BlockParticleSetId":  "Grass",
+                      "TextureComputedColor":  "#4F4D41",
+                      "PlacementSettings":  {
+                                                "WallPlacementOverrideBlockId":  "Real_Lever_Wall"
+                                            }
+                  },
+    "PlayerAnimationsId":  "Block",
+    "Tags":  {
+                 "Type":  [
+                              "Deco"
+                          ]
+             },
+    "ItemSoundSetId":  "ISS_Blocks_Wood",
+    "Categories":  [
+                       "Blocks.Deco",
+                       "Tool.TechnicalBlocks"
+                   ]
+}

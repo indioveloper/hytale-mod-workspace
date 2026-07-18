@@ -1,0 +1,72 @@
+Group #ChestLabelHoverRoot {
+  // This sits just below Hytale's native interaction prompt.
+  Anchor: (Left: 0, Right: 0, Top: 1380, Height: 46);
+  LayoutMode: Center;
+
+  Group #ChestLabelCard {
+    Anchor: (Width: 280, Height: 46);
+    LayoutMode: Top;
+    Padding: (Left: 9, Right: 9, Top: 4, Bottom: 4);
+    Background: (Color: #101923e8);
+
+    Group #LabelRow {
+      LayoutMode: Left;
+
+      Group #ChestIconStack {
+        Anchor: (Width: 20, Height: 20);
+        Panel #IconLoot {
+          Anchor: (Width: 20, Height: 20);
+          Background: (TexturePath: "../Icons/Loot.png");
+        }
+
+        Panel #IconStar {
+          Anchor: (Width: 20, Height: 20);
+          Background: (TexturePath: "../Icons/Star.png");
+          Visible: false;
+        }
+
+        Panel #IconKey {
+          Anchor: (Width: 20, Height: 20);
+          Background: (TexturePath: "../Icons/Key.png");
+          Visible: false;
+        }
+
+        Panel #IconCheck {
+          Anchor: (Width: 20, Height: 20);
+          Background: (TexturePath: "../Icons/Check.png");
+          Visible: false;
+        }
+
+        Panel #IconWarning {
+          Anchor: (Width: 20, Height: 20);
+          Background: (TexturePath: "../Icons/Warning.png");
+          Visible: false;
+        }
+      }
+
+      Label #ChestName {
+        Anchor: (Left: 7);
+        FlexWeight: 1;
+        Text: "Storage";
+        Style: (
+          FontSize: 14,
+          RenderBold: true,
+          HorizontalAlignment: Center,
+          VerticalAlignment: Center,
+          TextColor: #ffffff
+        );
+      }
+    }
+
+    Label #EditHint {
+      Anchor: (Top: 2);
+      Text: "Use /chestlabel edit to rename";
+      Style: (
+        FontSize: 11,
+        HorizontalAlignment: Center,
+        VerticalAlignment: Center,
+        TextColor: #96a9be
+      );
+    }
+  }
+}

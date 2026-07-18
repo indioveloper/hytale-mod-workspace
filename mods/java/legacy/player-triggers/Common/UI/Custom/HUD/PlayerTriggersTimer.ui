@@ -1,0 +1,28 @@
+Group #TimerRoot {
+  Anchor: (Top: 138, Right: 28, Width: 238, Height: 50);
+  LayoutMode: Left;
+  Padding: (Left: 14, Right: 14, Top: 8, Bottom: 8);
+  Background: (Color: #101923ee);
+
+  Label #TimerLabel {
+    FlexWeight: 1;
+    Text: "Tiempo restante";
+    Style: (
+      FontSize: 14,
+      VerticalAlignment: Center,
+      TextColor: #b9c8d8
+    );
+  }
+
+  Label #TimerValue {
+    Anchor: (Width: 72);
+    Text: "03:00";
+    Style: (
+      FontSize: 19,
+      RenderBold: true,
+      HorizontalAlignment: End,
+      VerticalAlignment: Center,
+      TextColor: #ffffff
+    );
+  }
+}

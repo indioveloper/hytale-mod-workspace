@@ -1,0 +1,144 @@
+$C = "../Common.ui";
+
+@IconTileStyle = ButtonStyle(
+  Default: (Background: (Color: #1c2b3d)),
+  Hovered: (Background: (Color: #304b68)),
+  Pressed: (Background: (Color: #456d91)),
+  Sounds: $C.@ButtonSounds
+);
+
+@IconTile = Button {
+  Anchor: (Width: 54, Height: 42);
+  Style: @IconTileStyle;
+};
+
+$C.@PageOverlay {
+  LayoutMode: Middle;
+
+  $C.@DecoratedContainer {
+    @CloseButton = false;
+    Anchor: (Width: 390, Height: 310);
+
+    #Title {
+      $C.@Title {
+        @Text = "Chest Label";
+      }
+    }
+
+    #Content {
+      LayoutMode: Top;
+      Padding: (Full: 14, Top: 12);
+
+      Label {
+        Anchor: (Bottom: 10);
+        Text: "Name and icon for this chest";
+        Style: (...$C.@DefaultLabelStyle, HorizontalAlignment: Center, FontSize: 13);
+      }
+
+      Group {
+        LayoutMode: Top;
+        Background: (Color: #000000(0.16));
+        Padding: 10;
+
+        $C.@Subtitle {
+          @Text = "Name";
+        }
+
+        $C.@TextField #NameInput {
+          @Anchor = (Width: 342, Bottom: 12);
+          PlaceholderText: "Boss loot";
+        }
+
+        $C.@Subtitle {
+          @Text = "Icon";
+        }
+
+        Group #IconButtons {
+          LayoutMode: Center;
+          Anchor: (Bottom: 10);
+
+          @IconTile #LootButton {
+            @Anchor = (Right: 4);
+            Style: (
+              Default: (Background: "../Icons/Loot.png"),
+              Hovered: (Background: "../Icons/Loot.png"),
+              Pressed: (Background: "../Icons/Loot.png"),
+              Sounds: $C.@ButtonSounds
+            );
+          }
+
+          @IconTile #StarButton {
+            @Anchor = (Horizontal: 4);
+            Style: (
+              Default: (Background: "../Icons/Star.png"),
+              Hovered: (Background: "../Icons/Star.png"),
+              Pressed: (Background: "../Icons/Star.png"),
+              Sounds: $C.@ButtonSounds
+            );
+          }
+
+          @IconTile #KeyButton {
+            @Anchor = (Horizontal: 4);
+            Style: (
+              Default: (Background: "../Icons/Key.png"),
+              Hovered: (Background: "../Icons/Key.png"),
+              Pressed: (Background: "../Icons/Key.png"),
+              Sounds: $C.@ButtonSounds
+            );
+          }
+
+          @IconTile #CheckButton {
+            @Anchor = (Horizontal: 4);
+            Style: (
+              Default: (Background: "../Icons/Check.png"),
+              Hovered: (Background: "../Icons/Check.png"),
+              Pressed: (Background: "../Icons/Check.png"),
+              Sounds: $C.@ButtonSounds
+            );
+          }
+
+          @IconTile #WarningButton {
+            @Anchor = (Left: 4);
+            Style: (
+              Default: (Background: "../Icons/Warning.png"),
+              Hovered: (Background: "../Icons/Warning.png"),
+              Pressed: (Background: "../Icons/Warning.png"),
+              Sounds: $C.@ButtonSounds
+            );
+          }
+        }
+
+        Group {
+          LayoutMode: Center;
+
+          Label {
+            Anchor: (Right: 6);
+            Text: "Selected";
+            Style: (...$C.@DefaultLabelStyle, FontSize: 12, VerticalAlignment: Center);
+          }
+
+          Label #SelectedIconValue {
+            Anchor: (Left: 6);
+            Text: "Loot";
+            Style: (...$C.@SubtitleStyle, FontSize: 12, VerticalAlignment: Center);
+          }
+        }
+      }
+
+      Group {
+        Anchor: (Top: 12);
+        LayoutMode: Left;
+
+        $C.@TextButton #SaveButton {
+          @Anchor = (Width: 173, Right: 4);
+          @Text = "Save";
+        }
+
+        $C.@CancelTextButton #ClearButton {
+          @Anchor = (Width: 173, Left: 4);
+          @Text = "Clear";
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,75 @@
+{
+  "Parent": "Outlander",
+  "AnimationSets": {
+    "RaiseArms": {
+      "Animations": [
+        {
+          "Animation": "Characters/Animations/Emote/Wave_Signal.blockyanim",
+          "BlendingDuration": 0.2,
+          "Looping": false,
+          "Speed": 1.0
+        }
+      ]
+    },
+    "StandUp": {
+      "Animations": [
+        {
+          "Animation": "Characters/Animations/Default/Idle.blockyanim",
+          "BlendingDuration": 0.25,
+          "Looping": false,
+          "Speed": 1.0
+        }
+      ]
+    },
+    "Jump": {
+      "Animations": [
+        {
+          "Animation": "Characters/Animations/Default/Jump.blockyanim",
+          "BlendingDuration": 0.1,
+          "Looping": false,
+          "Speed": 1.0
+        }
+      ]
+    },
+    "SwordAttack": {
+      "Animations": [
+        {
+          "Animation": "Characters/Animations/Items/Main_Handed/Sword/Attacks/Swing_Right/Swing_Right.blockyanim",
+          "BlendingDuration": 0.1,
+          "Looping": false,
+          "Speed": 1.0
+        }
+      ]
+    },
+    "ShieldBlock": {
+      "Animations": [
+        {
+          "Animation": "Characters/Animations/Items/Off_Handed/Shield/Attacks/Guard/Guard.blockyanim",
+          "BlendingDuration": 0.15,
+          "Looping": true,
+          "Speed": 1.0
+        }
+      ]
+    },
+    "SwingRight": {
+      "Animations": [
+        {
+          "Animation": "Characters/Animations/Items/Main_Handed/Sword/Attacks/Swing_Right/Swing_Right.blockyanim",
+          "BlendingDuration": 0.1,
+          "Looping": false,
+          "Speed": 1.0
+        }
+      ]
+    },
+    "Guard": {
+      "Animations": [
+        {
+          "Animation": "Characters/Animations/Items/Off_Handed/Shield/Attacks/Guard/Guard.blockyanim",
+          "BlendingDuration": 0.15,
+          "Looping": true,
+          "Speed": 1.0
+        }
+      ]
+    }
+  }
+}

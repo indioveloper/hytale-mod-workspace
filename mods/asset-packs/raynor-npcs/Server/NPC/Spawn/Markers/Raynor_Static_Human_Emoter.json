@@ -1,0 +1,13 @@
+{
+  "Model": "NPC_Spawn_Marker",
+  "NPCs": [
+    {
+      "Name": "Raynor_Static_Human_Emoter",
+      "Weight": 100,
+      "SpawnAfterGameTime": "P1D"
+    }
+  ],
+  "ExclusionRadius": 2,
+  "MaxDropHeight": 4,
+  "DeactivationDistance": 150
+}

@@ -1,0 +1,210 @@
+{
+  "Type": "Generic",
+  "StartState": "Guarding",
+  "DefaultNPCAttitude": "Ignore",
+  "DefaultPlayerAttitude": "Neutral",
+  "Appearance": "Raynor_Random_Human",
+  "MaxHealth": 100,
+  "DisableDamageGroups": [
+    "Self"
+  ],
+  "KnockbackScale": 0.0,
+  "HotbarItems": [
+    "Weapon_Sword_Iron"
+  ],
+  "OffHandItems": [
+    "Weapon_Shield_Iron"
+  ],
+  "OffHandSlots": 1,
+  "DefaultOffHandSlot": 0,
+  "Armor": [
+    "Armor_Iron_Head",
+    "Armor_Iron_Chest",
+    "Armor_Iron_Hands",
+    "Armor_Iron_Legs"
+  ],
+  "MotionControllerList": [
+    {
+      "Type": "Walk",
+      "MaxWalkSpeed": 0.1,
+      "Gravity": 10,
+      "RunThreshold": 0.3,
+      "MaxFallSpeed": 15,
+      "MaxRotationSpeed": 1,
+      "Acceleration": 0.1
+    }
+  ],
+  "Instructions": [
+    {
+      "Instructions": [
+        {
+          "Sensor": {
+            "Type": "Any",
+            "Once": true
+          },
+          "Continue": true,
+          "Actions": [
+            {
+              "Type": "DisplayName",
+              "DisplayName": ""
+            }
+          ]
+        },
+        {
+          "Sensor": {
+            "Type": "State",
+            "State": "GuardBusy"
+          },
+          "Continue": true,
+          "BodyMotion": {
+            "Type": "Nothing"
+          }
+        },
+        {
+          "Sensor": {
+            "Type": "State",
+            "State": "Guarding"
+          },
+          "Type": "Random",
+          "Name": "GuardAction",
+          "Instructions": [
+            {
+              "Weight": 10,
+              "Sensor": {
+                "Type": "Any"
+              },
+              "Actions": [
+                {
+                  "Type": "PlayAnimation",
+                  "Slot": "Status"
+                },
+                {
+                  "Type": "State",
+                  "State": "GuardBusy"
+                },
+                {
+                  "Type": "Timeout",
+                  "Delay": [
+                    0.8,
+                    1.8
+                  ],
+                  "Action": {
+                    "Type": "Sequence",
+                    "Actions": [
+                      {
+                        "Type": "ResetInstructions",
+                        "Instructions": [
+                          "GuardAction"
+                        ]
+                      },
+                      {
+                        "Type": "State",
+                        "State": "Guarding"
+                      }
+                    ]
+                  }
+                }
+              ],
+              "BodyMotion": {
+                "Type": "Nothing"
+              }
+            },
+            {
+              "Weight": 50,
+              "Sensor": {
+                "Type": "Any"
+              },
+              "Actions": [
+                {
+                  "Type": "PlayAnimation",
+                  "Slot": "Action",
+                  "Animation": "SwingRight"
+                },
+                {
+                  "Type": "State",
+                  "State": "GuardBusy"
+                },
+                {
+                  "Type": "Timeout",
+                  "Delay": [
+                    0.8,
+                    1.1
+                  ],
+                  "Action": {
+                    "Type": "Sequence",
+                    "Actions": [
+                      {
+                        "Type": "PlayAnimation",
+                        "Slot": "Action"
+                      },
+                      {
+                        "Type": "ResetInstructions",
+                        "Instructions": [
+                          "GuardAction"
+                        ]
+                      },
+                      {
+                        "Type": "State",
+                        "State": "Guarding"
+                      }
+                    ]
+                  }
+                }
+              ],
+              "BodyMotion": {
+                "Type": "Nothing"
+              }
+            },
+            {
+              "Weight": 40,
+              "Sensor": {
+                "Type": "Any"
+              },
+              "Actions": [
+                {
+                  "Type": "PlayAnimation",
+                  "Slot": "Action",
+                  "Animation": "Guard"
+                },
+                {
+                  "Type": "State",
+                  "State": "GuardBusy"
+                },
+                {
+                  "Type": "Timeout",
+                  "Delay": [
+                    0.8,
+                    1.4
+                  ],
+                  "Action": {
+                    "Type": "Sequence",
+                    "Actions": [
+                      {
+                        "Type": "PlayAnimation",
+                        "Slot": "Action"
+                      },
+                      {
+                        "Type": "ResetInstructions",
+                        "Instructions": [
+                          "GuardAction"
+                        ]
+                      },
+                      {
+                        "Type": "State",
+                        "State": "Guarding"
+                      }
+                    ]
+                  }
+                }
+              ],
+              "BodyMotion": {
+                "Type": "Nothing"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "NameTranslationKey": "server.npcRoles.Raynor_Static_Guard.name"
+}
