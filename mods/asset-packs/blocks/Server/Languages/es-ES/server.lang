@@ -1,0 +1,6 @@
+server.items.OrbGenesis_Barrier_Visible.name = Bloque barrera visible
+server.items.OrbGenesis_Barrier_Visible.description = Barrera tecnica solida con una textura roja sutil.
+server.items.Barrier_Visible.name = Bloque barrera visible
+server.items.Barrier_Visible.description = Barrera tecnica solida con una textura roja sutil.
+server.items.Ghost_Outline_Rock_Stone.name = Contorno fantasma: piedra
+server.items.Ghost_Outline_Rock_Stone.description = Contorno transparente de piedra sin colision para senalar una plataforma bloqueada.

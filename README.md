@@ -13,16 +13,11 @@ backups, instalaciones del juego, el Hytale Shared Source ni mundos completos.
 
 | Proyecto | Estado | Descripcion |
 | --- | --- | --- |
-| `mods/java/player-trigger-tags` | Activo, v1.5.6 | Tags de jugador, condiciones y efectos de Trigger Volumes, movimiento de entidades, colision para plataformas y conversion de bloques en entidades. |
+| `mods/java/player-trigger-tags` | Activo, v1.5.6 | Tags de jugador, condiciones y efectos de Trigger Volumes, y conversion de bloques en entidades. |
+| `mods/java/entity-motion-triggers` | Activo/prototipo, v1.0.0 | Efectos de Trigger Volumes para mover entidades y aplicar/quitar colision de plataforma. |
+| `mods/java/trigger-execute-command` | Actualizado, v1.1.0 | Efecto `ExecuteCommand` para lanzar comandos desde Trigger Volumes en pre-release 0.6.x. |
 | `mods/java/chest-labels` | Prototipo, v0.1.0 | Nombres e iconos persistentes para cofres, con HUD y editor. |
-| `mods/java/scoreboards` | Legacy, Hytale 0.5 | Editor y seguimiento de scoreboards mediante UI nativa. Requiere migracion antes de usarlo en 0.6.x. |
-| `mods/java/legacy/player-triggers` | Legacy | Seguimiento de jugadores, tags, contadores, temporizadores y HUD. |
-| `mods/java/legacy/player-triggers-1.3.2-local` | Legacy/local | Snapshot encontrado en este PC con HUDs de player count/tag value y efecto de permisos. |
-| `mods/java/legacy/more-triggers` | Legacy | Efectos `RemoveEventTitle`, `RandomTagSelection` y `PasteRandomPrefab`. |
-| `mods/java/legacy/trigger-execute-command` | Legacy/local | Mod standalone `Trigger Execute Command` encontrado en este PC. |
-| `mods/java/legacy/trigger-remove-event-title` | Legacy/local | Mod standalone `Trigger Remove Event Title` encontrado en este PC. |
-| `mods/java/legacy/scoreboards-mod-local` | Legacy/local | Variante local de `Scoreboards Mod` encontrada en este PC; se conserva aparte de `mods/java/scoreboards`. |
-| `mods/java/legacy/trigger-random-tag` | Legacy/incompleto | Predecesor de More Triggers; se conserva como referencia historica. |
+| `mods/java/scoreboards` | Legacy unificado, Hytale 0.5 | Editor y seguimiento de scoreboards mediante UI nativa. Absorbe la variante local; requiere migracion antes de usarlo en 0.6.x. |
 
 `games/nexus-siege` contiene el proyecto del minijuego, sus NPCs vanilla, el
 plugin `Triggers_NPCs`, documentacion, pruebas y contratos de comportamiento.
@@ -31,10 +26,8 @@ plugin `Triggers_NPCs`, documentacion, pruebas y contratos de comportamiento.
 
 `mods/asset-packs` contiene los packs independientes que siguen siendo utiles:
 
-- `visible-barrier-block`
-- `ghost-outline-blocks`
-- `essence-buttons`
-- `real-lever-animation`
+- `blocks`
+- `mechanisms`
 - `raynor-npcs`
 - `nexus-siege-props`
 
@@ -42,6 +35,7 @@ plugin `Triggers_NPCs`, documentacion, pruebas y contratos de comportamiento.
 flechas con `SpawnTriggerVolume`, outlines, ventanas, prefabs, archery game,
 pruebas Raynor y packs usados durante las migraciones 0.6.x. Pueden contener
 overrides vanilla y no deben instalarse todos a la vez sin revisar sus IDs.
+Consulta `docs/ASSET_PACKS.md` para el detalle de cada pack.
 
 ## Preparar otro PC
 
@@ -81,6 +75,26 @@ Ejemplo para Player Trigger Tags, cuyo package root es `src`:
   -SourceRoot src `
   -PackageRoot src `
   -ArtifactName Player_Trigger_Tags-1_5_6.jar
+```
+
+Ejemplo para Entity Motion Triggers:
+
+```powershell
+.\scripts\Build-JavaMod.ps1 `
+  -ProjectPath .\mods\java\entity-motion-triggers `
+  -SourceRoot src `
+  -PackageRoot src `
+  -ArtifactName Entity_Motion_Triggers-1_0_0.jar
+```
+
+Ejemplo para Trigger Execute Command:
+
+```powershell
+.\scripts\Build-JavaMod.ps1 `
+  -ProjectPath .\mods\java\trigger-execute-command `
+  -SourceRoot src `
+  -PackageRoot . `
+  -ArtifactName Trigger_Execute_Command-1_1_0.jar
 ```
 
 Ejemplo para Chest Labels:

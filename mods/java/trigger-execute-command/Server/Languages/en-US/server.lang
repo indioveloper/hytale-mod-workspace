@@ -1,0 +1,8 @@
+customUI.triggerVolumeEffectEditor.effectType.ExecuteCommand = Execute command
+customUI.triggerVolumeEffectEditor.field.ExecuteCommand.Command = Command
+customUI.triggerVolumeEffectEditor.field.ExecuteCommand.Command.tooltip = Command to run when the Trigger Volume fires. Placeholders: {player}, {uuid}, {x}, {y}, {z}.
+customUI.triggerVolumeEffectEditor.field.ExecuteCommand.Command.placeholder = e.g. say Hello {player}
+customUI.triggerVolumeEffectEditor.field.ExecuteCommand.Executor = Run as
+customUI.triggerVolumeEffectEditor.field.ExecuteCommand.Executor.tooltip = Choose whether to dispatch the command from the server console or the triggering player.
+customUI.triggerVolumeEffectEditor.field.ExecuteCommand.Executor.option.SERVER = Server console
+customUI.triggerVolumeEffectEditor.field.ExecuteCommand.Executor.option.PLAYER = Triggering player

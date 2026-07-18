@@ -1,0 +1,20 @@
+{
+  "Group": "OrbGenesis",
+  "Name": "Entity Motion Triggers",
+  "Version": "1.0.0",
+  "Description": "Adds Trigger Volume effects for moving entities and applying platform collision.",
+  "Authors": [
+    {
+      "Name": "OrbGenesis",
+      "Url": "https://orbgenesis.gg"
+    }
+  ],
+  "DisabledByDefault": false,
+  "IncludesAssetPack": true,
+  "Dependencies": {
+    "Hytale:TriggerVolumes": "*"
+  },
+  "OptionalDependencies": {},
+  "ServerVersion": ">=0.6.0-pre <0.7.0",
+  "Main": "gg.orbgenesis.playertriggertags.EntityMotionTriggersPlugin"
+}

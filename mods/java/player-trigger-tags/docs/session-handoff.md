@@ -1,25 +1,19 @@
-# Trigger Volumes Extensions Handoff
+# Player Trigger Tags Handoff
 
-Last updated: 2026-06-26
+Last updated: 2026-07-18
 
 ## Current State
 
-The clean workspace has been created at:
-
-`workspace/trigger-volumes-extensions/`
-
-Historical mod artifacts remain at the repository root and have not been moved,
-rebuilt, renamed, or deleted.
-
-`Player Trigger Tags 1.0.0` has been implemented and packaged inside the clean
-workspace.
+`Player Trigger Tags` is the canonical mod for persistent player tags and tag
+conditions/effects. It is now under `mods/java/player-trigger-tags`.
 
 ## Decisions
 
-- Use a clean development area for the new Trigger Volume mod.
-- Keep historical work as read-only reference until a specific migration or cleanup plan is approved.
-- Require a brief plan and user confirmation before medium or large implementation work.
-- Small inspection, diagnosis, and research tasks can proceed without mutating files.
+- Historical `Player Triggers` snapshots were removed as separate projects.
+- Entity movement and platform collision effects were extracted to
+  `mods/java/entity-motion-triggers`.
+- `Player Trigger Tags` keeps `ConvertBlocksToEntities`, because it creates
+  entities from blocks but does not move entities.
 
 ## Hytale Reference
 
@@ -28,18 +22,11 @@ workspace.
 - Local branch is behind `origin/pre-release` by 1 commit.
 - The observed remote update is `4b5139ce70f5b1db95373a91fb91811ca2528e45`.
 
-## Existing Trigger Volume Mods
+## Current Mod: Player Trigger Tags 1.5.6
 
-- `Player Triggers 1.3.2`: follow player, player tags, kill counter, timer HUD.
-- `More Triggers 1.0.3`: remove event title, random tag selection, paste random prefab.
-- `Trigger Remove Event Title 1.1.0`: historical predecessor for remove title/random tag behavior.
-
-## New Mod: Player Trigger Tags 1.0.0
-
-- Source: `workspace/trigger-volumes-extensions/src/`
-- Documentation: `workspace/trigger-volumes-extensions/docs/player-trigger-tags-v1.md`
-- Jar: `workspace/trigger-volumes-extensions/dist/Player_Trigger_Tags-1_0_0.jar`
-- SHA-256: `54D643ED274BFBD3B90098DDFEF8643F4C168CC018384A5482434250DDE521CA`
+- Source: `mods/java/player-trigger-tags/src/`.
+- Documentation: `mods/java/player-trigger-tags/docs/player-trigger-tags-v1.md`.
+- Build command: see root `README.md`.
 
 Included behavior:
 
@@ -49,6 +36,7 @@ Included behavior:
 - Tag change dispatch modes: `NONE`, `CURRENT_VOLUME`, `TAGGED_VOLUMES`.
 - Non-remove changes dispatch `TAG_ADDED` with event `TagKey` / `TagValue`.
 - Remove changes dispatch `TAG_REMOVED` with event `TagKey` / previous `TagValue`.
+- `ConvertBlocksToEntities` with item asset selector and optional collision.
 - Includes `en-US` and `es-ES` Trigger Volume editor localizations for field labels,
   tooltips, placeholders, and enum dropdown options.
 
@@ -67,4 +55,4 @@ Included behavior:
 2. Smoke test server startup and confirm the plugin registers.
 3. Create the minigame test case: obstacle uses `ModifyPlayerTag`, receiver listens via `TAG_ADDED`.
 4. If the test works, decide whether to add `VolumesContainingPlayer` dispatch as a v1.1 feature.
-5. Separately review old `Player Triggers` features for possible migration.
+5. Keep movement/platform work in `mods/java/entity-motion-triggers`.

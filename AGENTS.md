@@ -25,9 +25,6 @@ Funciones principales:
 
 - Tags string persistentes en jugadores.
 - Efecto `ModifyPlayerTag` y condicion `PlayerTagCondition`.
-- `ApplyHorizontalPlatformMotion` se muestra como `Mover entidad`; mueve props
-  en linea recta hacia coordenadas XYZ absolutas y puede volver en bucle.
-- Efectos para aplicar o retirar colision de plataforma al jugador.
 - `ConvertBlocksToEntities` convierte bloques dentro del Trigger Volume usando
   un item elegido. Los items con modelo usan `ModelComponent`; los items-bloque
   normales usan `BlockEntity`; otros items usan `ItemComponent`.
@@ -39,14 +36,13 @@ Funciones principales:
 La correccion de colision de v1.5.6 compila y esta desplegada, pero al crear este
 handoff aun necesita confirmacion manual dentro del juego.
 
+Los efectos de movimiento y colision de plataformas se han separado a
+`mods/java/entity-motion-triggers`.
+
 Reglas importantes de este mod:
 
 - No cambies IDs internos de efectos existentes solo para renombrar su etiqueta;
   romperias Trigger Volumes guardados.
-- Un efecto de movimiento representa un unico tramo recto. Las secuencias se
-  programan apilando efectos y usando `Effect Delay` vanilla.
-- Las plataformas solo necesitan colision con jugadores, no con NPCs.
-- Las entidades seleccionadas por efectos deben seguir siendo `PropComponent`.
 - El selector de items debe usar la fuente vanilla `Item`; filtrar por
   `Item.getModel()` deja fuera los items-bloque.
 
@@ -95,12 +91,15 @@ con el numero de version nuevo en la misma carpeta.
 
 - `mods/java/chest-labels`: mod funcional en fase de prototipo; conserva datos
   en componentes de bloques y usa UI custom.
+- `mods/java/entity-motion-triggers`: efectos de movimiento de entidades y
+  colision de plataforma extraidos de Player Trigger Tags.
+- `mods/java/trigger-execute-command`: efecto `ExecuteCommand` actualizado a
+  rango 0.6.x; revisar en juego antes de usar comandos destructivos.
 - `games/nexus-siege`: workspace del minijuego. Su plugin `Triggers_NPCs` esta
   bajo `trigger-volumes/Triggers_NPCs`; los NPCs vanilla y sus contratos estan
   bajo `npcs/vanilla`.
 - `mods/java/scoreboards`: codigo de 0.5.x. Revisar APIs, manifest y UI antes de
   intentar instalarlo en 0.6.x.
-- `mods/java/legacy`: referencia para migrar funciones, no asumir compatibilidad.
 - `mods/asset-packs`: packs independientes relativamente limpios.
 - `experiments/asset-packs`: material de laboratorio. Puede sobreescribir IDs
   vanilla y combinar varias pruebas incompatibles; inspeccionar antes de usar.

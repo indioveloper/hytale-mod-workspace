@@ -1,0 +1,73 @@
+# Asset Packs
+
+## Packs Canonicos
+
+### `mods/asset-packs/blocks`
+
+Pack fusionado de bloques tecnicos y de previsualizacion.
+
+Incluye:
+
+- Barrera visible: texturas e items `Barrier_Visible` /
+  `OrbGenesis_Barrier_Visible`.
+- Ghost outline rock stone: textura, icono e item
+  `Ghost_Outline_Rock_Stone`.
+- Herramienta de generacion de textura `tools/make_outline_texture.py`.
+
+Origen: `visible-barrier-block` y `ghost-outline-blocks`.
+
+### `mods/asset-packs/mechanisms`
+
+Pack fusionado de props accionables/animados.
+
+Incluye:
+
+- Palanca real: `Real_Lever`, `Real_Lever_Wall`, modelo de pared y animaciones
+  `Real_Lever_Wall_On/Off`.
+- Botones de esencia: `Essence_Button_Ice`, `Life`, `Lightning` y `Void`, con
+  iconos, texturas y modelo comun `Essence_Button.blockymodel`.
+
+Origen: `real-lever-animation` y `essence-buttons`.
+
+### `mods/asset-packs/raynor-npcs`
+
+Pack de NPCs Raynor.
+
+Incluye:
+
+- Modelo custom `Raynor_Random_Human`.
+- Roles `Raynor_Klops_Miner_Patrol`, `Raynor_Static_Guard`,
+  `Raynor_Static_Human_Emoter` y `Raynor_Worker_Route`.
+- Spawn markers para esos cuatro roles.
+- Localizaciones `en-US` y `es-ES`.
+
+Estado: manifest fechado `2026.05.07-5efa15f6d`; conviene validar roles,
+modelos y markers contra 0.6.8 antes de instalarlo.
+
+### `mods/asset-packs/nexus-siege-props`
+
+Pack minimo de props para Nexus Siege. Ahora mismo contiene el prefab
+`sword_stand.prefab.json`.
+
+## Experiments
+
+`experiments/asset-packs` no es instalable en bloque. Son snapshots de pruebas
+con IDs y overrides potencialmente incompatibles entre si.
+
+- `archerygame`: prefabs de arqueria por colores (`rojo`, `azul`, `verde`,
+  `amarillo`) y variante organizada bajo `Server/Prefabs/archerygame/X`.
+- `prefab-tests`: manifest minimo; no contiene assets utiles actualmente.
+- `raynor-test-commands`: items de prueba (`Chest_A`, `Chest_AA`, `Lever`,
+  `Soil_Hive_Command`, `Test_Block`) y prefab `caja`.
+- `raynor-tests`: prefabs numericos `1`, `2`, `3` y `horno_on`.
+- `tests-0.6.3`: prefabs `bat`, `montaneta`, `pickaxe` y variantes.
+- `tests-0.6.4`: laboratorio grande con Flechazo, overrides de bow/shortbow,
+  projectile configs, ghost outlines, ventana de pueblo con cristal, rubble,
+  prefabs 2x2 y localizaciones.
+- `tests-0.6.5`: continuacion de Flechazo, sonidos `countdown3sec` y
+  `timer30sec`, prefabs de parkour/ores/secuencia de palancas y trigger effect.
+- `tests-0.6.7`: prefabs de filas de roca/aqua para pruebas recientes.
+- `trigger-assets`: dos efectos de Trigger Volumes (`a`, `b`) de laboratorio.
+
+Antes de promover algo desde `experiments`, copiar solo el asset concreto a un
+pack canonico y revisar IDs, dependencias y overrides vanilla.

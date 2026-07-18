@@ -6,21 +6,14 @@ monorepo pasa a ser la fuente canonica despues de publicarla.
 
 | Ruta en el monorepo | Origen local | Estado |
 | --- | --- | --- |
-| `mods/java/player-trigger-tags` | `workspace/trigger-volumes-extensions` | Activo; v1.5.6; compila contra 0.6.8. |
+| `mods/java/player-trigger-tags` | `workspace/trigger-volumes-extensions`; funciones utiles de `player-triggers-src` y `Downloads/Player_Triggers-1_3_2-source` revisadas | Activo; v1.5.6; compila contra 0.6.8; ya no contiene efectos de movimiento de entidades. |
+| `mods/java/entity-motion-triggers` | Extraido desde `mods/java/player-trigger-tags` | Activo/prototipo; contiene los efectos de movimiento y colision de plataforma separados de los tags de jugador. |
+| `mods/java/trigger-execute-command` | `Desktop/mods/trigger execute command mod` | Actualizado a pre-release 0.6.x; fuente promovida fuera de `legacy`; localizaciones revisadas. |
 | `mods/java/chest-labels` | `workspace/chest-labels-mod` | Activo/prototipo. |
-| `mods/java/scoreboards` | `mod-interfaces/Mod interfaces/scoreboards_fixed` | Legacy 0.5.x. |
-| `mods/java/legacy/player-triggers` | `player-triggers-src` + `player-triggers-stage` | Legacy; fuentes y assets reunidos. |
-| `mods/java/legacy/player-triggers-1.3.2-local` | `Downloads/Player_Triggers-1_3_2-source` | Snapshot local de este PC; conserva fuentes, UI, localizaciones y notas sin JARs ni `build`. |
-| `mods/java/legacy/more-triggers` | `more-triggers-src` + `more-triggers-stage` | Legacy; fuentes y localizaciones reunidas. |
-| `mods/java/legacy/trigger-execute-command` | `Desktop/mods/trigger execute command mod` | Mod standalone local; copiado sin JARs, clases ni carpetas de build. |
-| `mods/java/legacy/trigger-remove-event-title` | `Documents/App guarde` | Mod standalone local; copiado sin `dist`, JARs ni clases compiladas. |
-| `mods/java/legacy/scoreboards-mod-local` | `Desktop/mods/scoreboards mod` | Variante local de Scoreboards Mod; se conserva separada porque difiere de `mods/java/scoreboards`. |
-| `mods/java/legacy/trigger-random-tag` | `trigger-random-tag-src` + `trigger-random-tag-stage` | Legacy e incompleto. |
+| `mods/java/scoreboards` | `mod-interfaces/Mod interfaces/scoreboards_fixed` + `Desktop/mods/scoreboards mod` | Legacy 0.5.x unificado; la carpeta local separada fue absorbida/eliminada. |
 | `games/nexus-siege` | `workspace/nexus-siege` | Activo; incluye NPC assets y `Triggers_NPCs`. |
-| `mods/asset-packs/visible-barrier-block` | `Barrier_Block_Texture` | Pack independiente. |
-| `mods/asset-packs/essence-buttons` | `essence-pulsadores-stage` | Pack independiente. |
-| `mods/asset-packs/real-lever-animation` | `lever-real-stage` | Pack independiente. |
-| `mods/asset-packs/ghost-outline-blocks` | pack global `ghost-outline-blocks` | Pack independiente. |
+| `mods/asset-packs/blocks` | `Barrier_Block_Texture` + pack global `ghost-outline-blocks` | Pack fusionado de barrera visible y ghost outline blocks. |
+| `mods/asset-packs/mechanisms` | `essence-pulsadores-stage` + `lever-real-stage` | Pack fusionado de botones de esencia y palancas animadas. |
 | `mods/asset-packs/raynor-npcs` | pack global `raynor-npcs` | Assets Raynor. |
 | `mods/asset-packs/nexus-siege-props` | pack global `Raynor.Nexus Siege Props` | Props Nexus Siege. |
 | `experiments/asset-packs/tests-0.6.3` | pack global `0.6.3.tests` | Snapshot experimental. |

@@ -1,7 +1,0 @@
-server.customUI.triggerVolumeEffectEditor.field.RemoveEventTitle.FadeOutDuration = Fade out duration
-server.customUI.triggerVolumeEffectEditor.field.RandomTagSelection.TagKey = Tag key
-server.customUI.triggerVolumeEffectEditor.field.RandomTagSelection.TagValues = Random values
-server.customUI.triggerVolumeEffectEditor.field.RandomTagSelection.MatchKey = Match tag key
-server.customUI.triggerVolumeEffectEditor.field.RandomTagSelection.MatchValue = Match tag value
-server.customUI.triggerVolumeEffectEditor.field.RandomTagSelection.Radius = Search radius
-server.customUI.triggerVolumeEffectEditor.field.RandomTagSelection.Center = Search center
