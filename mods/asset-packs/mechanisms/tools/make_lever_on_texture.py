@@ -11,11 +11,10 @@ def make_on_texture(source: Path, output: Path) -> None:
     pixels = image.load()
 
     # The black slot is the left texture island used by the lever base.
-    for y in range(4, 15):
-        for x in range(4, 9):
+    for y in range(5, 15):
+        for x in range(5, 7):
             red, green, blue, alpha = pixels[x, y]
-            if alpha and max(red, green, blue) < 35:
-                pixels[x, y] = (242, 130, 24, alpha)
+            pixels[x, y] = (242, 130, 24, alpha)
 
     output.parent.mkdir(parents=True, exist_ok=True)
     image.save(output)
