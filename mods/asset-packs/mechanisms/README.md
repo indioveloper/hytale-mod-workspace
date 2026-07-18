@@ -5,7 +5,8 @@ Pack fusionado de props accionables/animados.
 Incluye:
 
 - Real lever: item/modelo de palanca real y variante de pared con animaciones
-  `on`/`off`.
+  `on`/`off`; el centro pasa a naranja al activarse y la colocacion sigue la
+  cara del bloque seleccionada.
 - Essence buttons: cuatro botones flotantes animados con iconos y texturas de
   esencia `Ice`, `Life`, `Lightning` y `Void`.
 

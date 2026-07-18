@@ -58,11 +58,17 @@
                                     "Definitions":  {
                                                         "Off":  {
                                                                     "InteractionHint":  "server.interactionHints.turnon",
-                                                                    "CustomModelAnimation":  "Blocks/Animations/Tinkering/Lever_Off.blockyanim"
+                                                                    "CustomModelAnimation":  "Blocks/Animations/OrbGenesis/Real_Lever_Wall_Off.blockyanim"
                                                                 },
                                                         "On":  {
                                                                    "InteractionHint":  "server.interactionHints.turnoff",
-                                                                   "CustomModelAnimation":  "Blocks/Animations/Tinkering/Lever_On.blockyanim"
+                                                                   "CustomModelTexture": [
+                                                                       {
+                                                                           "Texture": "Blocks/OrbGenesis/Real_Lever_On.png",
+                                                                           "Weight": 1
+                                                                       }
+                                                                   ],
+                                                                   "CustomModelAnimation":  "Blocks/Animations/OrbGenesis/Real_Lever_Wall_On.blockyanim"
                                                                }
                                                     }
                                 },
@@ -87,6 +93,7 @@
                       "BlockParticleSetId":  "Grass",
                       "TextureComputedColor":  "#4F4D41",
                       "PlacementSettings":  {
+                                                "RotationMode": "BlockNormal",
                                                 "FloorPlacementOverrideBlockId":  "Real_Lever"
                                             }
                   },

@@ -47,6 +47,12 @@
                                                                 },
                                                         "On":  {
                                                                    "InteractionHint":  "server.interactionHints.turnoff",
+                                                                   "CustomModelTexture": [
+                                                                       {
+                                                                           "Texture": "Blocks/OrbGenesis/Real_Lever_On.png",
+                                                                           "Weight": 1
+                                                                       }
+                                                                   ],
                                                                    "CustomModelAnimation":  "Blocks/Animations/Tinkering/Lever_On.blockyanim"
                                                                }
                                                     }
@@ -72,6 +78,7 @@
                       "BlockParticleSetId":  "Grass",
                       "TextureComputedColor":  "#4F4D41",
                       "PlacementSettings":  {
+                                                "RotationMode": "BlockNormal",
                                                 "WallPlacementOverrideBlockId":  "Real_Lever_Wall"
                                             }
                   },
