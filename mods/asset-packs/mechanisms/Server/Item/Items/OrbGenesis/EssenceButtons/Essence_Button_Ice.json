@@ -20,6 +20,7 @@
                       "PhysicalMaterialId":  "Metal",
                       "Opacity":  "Transparent",
                       "CustomModel":  "Resources/OrbGenesis/Essence_Button.blockymodel",
+                      "ModelScale": 0.75,
                       "CustomModelTexture":  [
                                                  {
                                                      "Texture":  "Resources/OrbGenesis/Essence_Textures/Ice_Essence_Texture.png",
@@ -54,7 +55,7 @@
                                                                         ]
                                                    }
                                        },
-                      "InteractionHint":  "interactionHints.activate",
+                      "InteractionHint":  "server.interactionHints.activate",
                       "BlockParticleSetId":  "Dust",
                       "TextureComputedColor":  "#57C7FF",
                       "Light":  {
@@ -64,7 +65,7 @@
                       "State":  {
                                     "Definitions":  {
                                                         "Idle":  {
-                                                                     "InteractionHint":  "interactionHints.activate",
+                                                                     "InteractionHint":  "server.interactionHints.activate",
                                                                      "CustomModelAnimation":  "Blocks/Animations/OrbGenesis/Essence_Button_Idle.blockyanim"
                                                                  }
                                                     }
@@ -80,7 +81,7 @@
     "ItemSoundSetId":  "ISS_Items_Gems",
     "Model":  "Resources/OrbGenesis/Essence_Button.blockymodel",
     "Texture":  "Resources/OrbGenesis/Essence_Textures/Ice_Essence_Texture.png",
-    "Scale":  0.8,
+    "Scale":  0.6,
     "IconProperties":  {
                            "Scale":  0.6,
                            "Rotation":  [

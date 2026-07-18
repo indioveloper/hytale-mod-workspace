@@ -9,7 +9,8 @@ Incluye:
   cara del bloque seleccionada.
 - Essence buttons: cuatro botones flotantes animados con iconos y texturas de
   esencia `Ice`, `Life`, `Lightning` y `Void`. Se apoyan sobre cualquier
-  bloque sin requisito de cara completa y usan el aviso nativo de activacion.
+  bloque sin requisito de cara completa, usan el aviso nativo de activacion y
+  tienen el modelo colocado al 75% de escala.
 
 Origen:
 
