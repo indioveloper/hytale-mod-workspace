@@ -1,0 +1,21 @@
+{
+    "Group": "OrbGenesis",
+    "Name": "Player Triggers",
+    "Version": "1.3.2",
+    "Description": "Adds player-following Trigger Volumes, persistent player tags, mob counters, and programmable HUD timers.",
+    "Authors": [
+        {
+            "Name": "OrbGenesis",
+            "Url": "https://orbgenesis.gg"
+        }
+    ],
+    "DisabledByDefault": false,
+    "IncludesAssetPack": true,
+    "Dependencies": {
+        "Hytale:TriggerVolumes": "*",
+        "Hytale:NPC": "*"
+    },
+    "OptionalDependencies": {},
+    "ServerVersion": ">=0.5.2 <0.6.0",
+    "Main": "gg.orbgenesis.playertriggers.PlayerTriggersPlugin"
+}

@@ -17,7 +17,11 @@ backups, instalaciones del juego, el Hytale Shared Source ni mundos completos.
 | `mods/java/chest-labels` | Prototipo, v0.1.0 | Nombres e iconos persistentes para cofres, con HUD y editor. |
 | `mods/java/scoreboards` | Legacy, Hytale 0.5 | Editor y seguimiento de scoreboards mediante UI nativa. Requiere migracion antes de usarlo en 0.6.x. |
 | `mods/java/legacy/player-triggers` | Legacy | Seguimiento de jugadores, tags, contadores, temporizadores y HUD. |
+| `mods/java/legacy/player-triggers-1.3.2-local` | Legacy/local | Snapshot encontrado en este PC con HUDs de player count/tag value y efecto de permisos. |
 | `mods/java/legacy/more-triggers` | Legacy | Efectos `RemoveEventTitle`, `RandomTagSelection` y `PasteRandomPrefab`. |
+| `mods/java/legacy/trigger-execute-command` | Legacy/local | Mod standalone `Trigger Execute Command` encontrado en este PC. |
+| `mods/java/legacy/trigger-remove-event-title` | Legacy/local | Mod standalone `Trigger Remove Event Title` encontrado en este PC. |
+| `mods/java/legacy/scoreboards-mod-local` | Legacy/local | Variante local de `Scoreboards Mod` encontrada en este PC; se conserva aparte de `mods/java/scoreboards`. |
 | `mods/java/legacy/trigger-random-tag` | Legacy/incompleto | Predecesor de More Triggers; se conserva como referencia historica. |
 
 `games/nexus-siege` contiene el proyecto del minijuego, sus NPCs vanilla, el

@@ -1,0 +1,4 @@
+server.customUI.triggerVolumeEffectEditor.field.ExecuteCommand.Command  = Command
+server.customUI.triggerVolumeEffectEditor.field.ExecuteCommand.Executor = Run as
+server.customUI.triggerVolumeEffectEditor.field.ExecuteCommand.server   = Server (console)
+server.customUI.triggerVolumeEffectEditor.field.ExecuteCommand.player   = Player

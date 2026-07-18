@@ -1,0 +1,18 @@
+{
+    "Group": "OrbGenesis",
+    "Name": "Trigger Execute Command",
+    "Version": "1.0.0",
+    "Description": "Adds Execute Command effect to Trigger Volumes.",
+    "Authors": [
+        {
+            "Name": "OrbGenesis",
+            "Url": "https://orbgenesis.gg"
+        }
+    ],
+    "DisabledByDefault": false,
+    "IncludesAssetPack": false,
+    "Dependencies": {},
+    "OptionalDependencies": {},
+    "ServerVersion": "2026.05.07-5efa15f6d",
+    "Main": "gg.orbgenesis.triggerexec.TriggerExecPlugin"
+}

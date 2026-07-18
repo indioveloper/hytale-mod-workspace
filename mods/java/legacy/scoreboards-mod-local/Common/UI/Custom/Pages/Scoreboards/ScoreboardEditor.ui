@@ -1,0 +1,141 @@
+Group {
+  Anchor: (Width: 620, Height: 520);
+
+  Group {
+    Anchor: (Height: 40);
+    Label {
+      Text: "Scoreboards Editor";
+      Anchor: (Height: 30);
+    }
+  }
+
+  Group {
+    Anchor: (Height: 120);
+    Label {
+      Text: "Title";
+      Anchor: (Height: 20);
+    }
+    TextField #TitleInput {
+      Anchor: (Width: 580, Height: 30);
+      Value: "";
+    }
+    Label {
+      Text: "Description";
+      Anchor: (Height: 20);
+    }
+    TextField #DescriptionInput {
+      Anchor: (Width: 580, Height: 30);
+      Value: "";
+    }
+    Label {
+      Text: "Objective Line ID";
+      Anchor: (Height: 20);
+    }
+    TextField #LineIdInput {
+      Anchor: (Width: 580, Height: 30);
+      Value: "";
+    }
+  }
+
+  Group {
+    Anchor: (Height: 280);
+    Label {
+      Text: "Scoreboard Lines";
+      Anchor: (Height: 20);
+    }
+    Group {
+      Anchor: (Width: 580, Height: 250);
+      Group {
+        Anchor: (Height: 46);
+        TextField #TaskInput0 {
+          Anchor: (Width: 260, Height: 28);
+          Value: "";
+        }
+        TextField #CurrentInput0 {
+          Anchor: (Width: 140, Height: 28);
+          Value: "";
+        }
+        TextField #NeededInput0 {
+          Anchor: (Width: 140, Height: 28);
+          Value: "";
+        }
+      }
+      Group {
+        Anchor: (Height: 46);
+        TextField #TaskInput1 {
+          Anchor: (Width: 260, Height: 28);
+          Value: "";
+        }
+        TextField #CurrentInput1 {
+          Anchor: (Width: 140, Height: 28);
+          Value: "";
+        }
+        TextField #NeededInput1 {
+          Anchor: (Width: 140, Height: 28);
+          Value: "";
+        }
+      }
+      Group {
+        Anchor: (Height: 46);
+        TextField #TaskInput2 {
+          Anchor: (Width: 260, Height: 28);
+          Value: "";
+        }
+        TextField #CurrentInput2 {
+          Anchor: (Width: 140, Height: 28);
+          Value: "";
+        }
+        TextField #NeededInput2 {
+          Anchor: (Width: 140, Height: 28);
+          Value: "";
+        }
+      }
+      Group {
+        Anchor: (Height: 46);
+        TextField #TaskInput3 {
+          Anchor: (Width: 260, Height: 28);
+          Value: "";
+        }
+        TextField #CurrentInput3 {
+          Anchor: (Width: 140, Height: 28);
+          Value: "";
+        }
+        TextField #NeededInput3 {
+          Anchor: (Width: 140, Height: 28);
+          Value: "";
+        }
+      }
+      Group {
+        Anchor: (Height: 46);
+        TextField #TaskInput4 {
+          Anchor: (Width: 260, Height: 28);
+          Value: "";
+        }
+        TextField #CurrentInput4 {
+          Anchor: (Width: 140, Height: 28);
+          Value: "";
+        }
+        TextField #NeededInput4 {
+          Anchor: (Width: 140, Height: 28);
+          Value: "";
+        }
+      }
+    }
+  }
+
+  Group {
+    Anchor: (Height: 40);
+    TextButton #ApplyButton {
+      Anchor: (Width: 100, Height: 30);
+      Text: "Apply";
+    }
+    TextButton #HideButton {
+      Anchor: (Width: 100, Height: 30);
+      Text: "Hide";
+    }
+    TextButton #ResetButton {
+      Anchor: (Width: 100, Height: 30);
+      Text: "Reset";
+    }
+  }
+}

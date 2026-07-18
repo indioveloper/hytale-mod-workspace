@@ -1,0 +1,16 @@
+Group #PlayerCountRoot {
+  Anchor: (Top: 86, Right: 28, Width: 620, Height: 155);
+  Background: "PlayerCountPanel.png";
+
+  Label #PlayerCount {
+    Anchor: (Top: 36, Left: 214, Width: 348, Height: 78);
+    Text: "0";
+    Style: (
+      FontSize: 54,
+      RenderBold: true,
+      HorizontalAlignment: Center,
+      VerticalAlignment: Center,
+      TextColor: #25313a
+    );
+  }
+}

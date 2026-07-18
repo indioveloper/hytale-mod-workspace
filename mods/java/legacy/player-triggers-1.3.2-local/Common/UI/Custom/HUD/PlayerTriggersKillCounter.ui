@@ -1,0 +1,27 @@
+Group #KillCounterRoot {
+  Anchor: (Top: 86, Right: 28, Width: 238, Height: 42);
+  LayoutMode: Left;
+  Padding: (Left: 14, Right: 14, Top: 8, Bottom: 8);
+  Background: (Color: #101923e8);
+
+  Label #KillLabel {
+    FlexWeight: 1;
+    Text: "Mobs derrotados";
+    Style: (
+      FontSize: 15,
+      TextColor: #b9c8d8
+    );
+  }
+
+  Label #KillCount {
+    Anchor: (Width: 64);
+    Text: "0";
+    Style: (
+      FontSize: 18,
+      RenderBold: true,
+      HorizontalAlignment: End,
+      VerticalAlignment: Center,
+      TextColor: #ffffff
+    );
+  }
+}

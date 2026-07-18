@@ -1,0 +1,18 @@
+{
+    "Group": "OrbGenesis",
+    "Name": "Trigger Remove Event Title",
+    "Version": "1.0.0",
+    "Description": "Adds Remove Event Title effect to Trigger Volumes.",
+    "Authors": [
+        {
+            "Name": "OrbGenesis",
+            "Url": "https://orbgenesis.gg"
+        }
+    ],
+    "DisabledByDefault": false,
+    "IncludesAssetPack": false,
+    "Dependencies": {},
+    "OptionalDependencies": {},
+    "ServerVersion": "2026.05.07-5efa15f6d",
+    "Main": "gg.orbgenesis.triggerremoveeventtitle.TriggerRemoveEventTitlePlugin"
+}

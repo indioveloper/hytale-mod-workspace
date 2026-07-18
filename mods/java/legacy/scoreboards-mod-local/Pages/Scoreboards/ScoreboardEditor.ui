@@ -1,0 +1,14 @@
+Group {
+  Anchor: (Width: 300, Height: 200);
+  Label {
+    Text: "Scoreboards Editor";
+    Anchor: (Height: 30);
+  }
+  Group {
+    Anchor: (Height: 50);
+  }
+  TextButton #ApplyButton {
+    Anchor: (Width: 100, Height: 40);
+    Text: "Apply";
+  }
+}

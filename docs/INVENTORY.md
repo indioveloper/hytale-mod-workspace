@@ -10,7 +10,11 @@ monorepo pasa a ser la fuente canonica despues de publicarla.
 | `mods/java/chest-labels` | `workspace/chest-labels-mod` | Activo/prototipo. |
 | `mods/java/scoreboards` | `mod-interfaces/Mod interfaces/scoreboards_fixed` | Legacy 0.5.x. |
 | `mods/java/legacy/player-triggers` | `player-triggers-src` + `player-triggers-stage` | Legacy; fuentes y assets reunidos. |
+| `mods/java/legacy/player-triggers-1.3.2-local` | `Downloads/Player_Triggers-1_3_2-source` | Snapshot local de este PC; conserva fuentes, UI, localizaciones y notas sin JARs ni `build`. |
 | `mods/java/legacy/more-triggers` | `more-triggers-src` + `more-triggers-stage` | Legacy; fuentes y localizaciones reunidas. |
+| `mods/java/legacy/trigger-execute-command` | `Desktop/mods/trigger execute command mod` | Mod standalone local; copiado sin JARs, clases ni carpetas de build. |
+| `mods/java/legacy/trigger-remove-event-title` | `Documents/App guarde` | Mod standalone local; copiado sin `dist`, JARs ni clases compiladas. |
+| `mods/java/legacy/scoreboards-mod-local` | `Desktop/mods/scoreboards mod` | Variante local de Scoreboards Mod; se conserva separada porque difiere de `mods/java/scoreboards`. |
 | `mods/java/legacy/trigger-random-tag` | `trigger-random-tag-src` + `trigger-random-tag-stage` | Legacy e incompleto. |
 | `games/nexus-siege` | `workspace/nexus-siege` | Activo; incluye NPC assets y `Triggers_NPCs`. |
 | `mods/asset-packs/visible-barrier-block` | `Barrier_Block_Texture` | Pack independiente. |
