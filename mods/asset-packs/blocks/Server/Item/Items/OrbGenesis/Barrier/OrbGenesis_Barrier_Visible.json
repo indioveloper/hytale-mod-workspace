@@ -1,7 +1,7 @@
 {
   "TranslationProperties": {
-    "Name": "server.items.OrbGenesis_Barrier_Visible.name",
-    "Description": "server.items.OrbGenesis_Barrier_Visible.description"
+    "Name": "server.items.Barrier.name",
+    "Description": "server.items.Barrier.description"
   },
   "ItemLevel": 10,
   "MaxStack": 100,

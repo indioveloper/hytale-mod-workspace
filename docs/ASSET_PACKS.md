@@ -8,13 +8,19 @@ Pack fusionado de bloques tecnicos y de previsualizacion.
 
 Incluye:
 
-- Barrera visible: texturas e items `Barrier_Visible` /
-  `OrbGenesis_Barrier_Visible`.
+- Barrera: item unico `OrbGenesis_Barrier_Visible` con textura de contorno rojo
+  sutil.
 - Ghost outline rock stone: textura, icono e item
   `Ghost_Outline_Rock_Stone`.
 - Herramienta de generacion de textura `tools/make_outline_texture.py`.
 
 Origen: `visible-barrier-block` y `ghost-outline-blocks`.
+
+Nota sobre modo aventura: el bloque es visible para todos los modos. En
+pre-release 0.6.8 los bloques no tienen una bandera de visibilidad por jugador
+o por modo; `DrawType: "Empty"` (como la barrera nativa) los oculta para todos.
+Para mostrar una guia a constructores y ocultarla a jugadores de aventura hay
+que usar una entidad marcada `HiddenFromAdventurePlayers`, no un bloque.
 
 ### `mods/asset-packs/mechanisms`
 
