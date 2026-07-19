@@ -5,6 +5,7 @@ import com.hypixel.hytale.codec.KeyedCodec;
 import com.hypixel.hytale.codec.builder.BuilderCodec;
 import com.hypixel.hytale.component.Component;
 import com.hypixel.hytale.component.ComponentType;
+import com.hypixel.hytale.math.vector.Rotation3f;
 import com.hypixel.hytale.server.core.universe.world.storage.EntityStore;
 import org.joml.Vector3d;
 
@@ -34,6 +35,20 @@ public class HorizontalMovingPlatformComponent implements Component<EntityStore>
           .add()
           .append(new KeyedCodec<>("LoopBack", Codec.BOOLEAN, false), (c, v) -> c.loopBack = v, c -> c.loopBack)
           .add()
+          .append(new KeyedCodec<>("Rotate", Codec.BOOLEAN, false), (c, v) -> c.rotate = v, c -> c.rotate)
+          .add()
+          .append(new KeyedCodec<>("StartRotationX", Codec.FLOAT, false), (c, v) -> c.startRotationX = v, c -> c.startRotationX)
+          .add()
+          .append(new KeyedCodec<>("StartRotationY", Codec.FLOAT, false), (c, v) -> c.startRotationY = v, c -> c.startRotationY)
+          .add()
+          .append(new KeyedCodec<>("StartRotationZ", Codec.FLOAT, false), (c, v) -> c.startRotationZ = v, c -> c.startRotationZ)
+          .add()
+          .append(new KeyedCodec<>("TargetRotationX", Codec.FLOAT, false), (c, v) -> c.targetRotationX = v, c -> c.targetRotationX)
+          .add()
+          .append(new KeyedCodec<>("TargetRotationY", Codec.FLOAT, false), (c, v) -> c.targetRotationY = v, c -> c.targetRotationY)
+          .add()
+          .append(new KeyedCodec<>("TargetRotationZ", Codec.FLOAT, false), (c, v) -> c.targetRotationZ = v, c -> c.targetRotationZ)
+          .add()
           .build();
 
   private double baseX;
@@ -46,6 +61,13 @@ public class HorizontalMovingPlatformComponent implements Component<EntityStore>
   private double speedY;
   private double speedZ;
   private boolean loopBack;
+  private boolean rotate;
+  private float startRotationX;
+  private float startRotationY;
+  private float startRotationZ;
+  private float targetRotationX;
+  private float targetRotationY;
+  private float targetRotationZ;
   private transient double elapsedTimeSeconds;
   private transient boolean initialized;
 
@@ -65,7 +87,10 @@ public class HorizontalMovingPlatformComponent implements Component<EntityStore>
       double speed,
       double speedY,
       double speedZ,
-      boolean loopBack) {
+      boolean loopBack,
+      Rotation3f startRotation,
+      Rotation3f targetRotation,
+      boolean rotate) {
     this.baseX = baseX;
     this.baseY = baseY;
     this.baseZ = baseZ;
@@ -76,6 +101,13 @@ public class HorizontalMovingPlatformComponent implements Component<EntityStore>
     this.speedY = speedY;
     this.speedZ = speedZ;
     this.loopBack = loopBack;
+    this.rotate = rotate;
+    startRotationX = startRotation.x();
+    startRotationY = startRotation.y();
+    startRotationZ = startRotation.z();
+    targetRotationX = targetRotation.x();
+    targetRotationY = targetRotation.y();
+    targetRotationZ = targetRotation.z();
     initialized = true;
   }
 
@@ -88,7 +120,7 @@ public class HorizontalMovingPlatformComponent implements Component<EntityStore>
     }
   }
 
-  public Vector3d advanceAndGetCurrentPosition(float dt) {
+  public double advanceAndGetProgress(float dt) {
     elapsedTimeSeconds += dt;
     double durationX = duration(amplitude, speed);
     double durationY = duration(amplitudeY, speedY);
@@ -96,21 +128,32 @@ public class HorizontalMovingPlatformComponent implements Component<EntityStore>
     // One shared progress value keeps the movement on the straight line to the target.
     double forwardDuration = Math.max(durationX, Math.max(durationY, durationZ));
     if (!loopBack || forwardDuration == 0.0D) {
-      return positionAt(Math.min(elapsedTimeSeconds / forwardDuration, 1.0D));
+      return Math.min(elapsedTimeSeconds / forwardDuration, 1.0D);
     }
 
     double cycleTime = elapsedTimeSeconds % (forwardDuration * 2.0D);
     double progress = cycleTime <= forwardDuration
         ? cycleTime / forwardDuration
         : 2.0D - cycleTime / forwardDuration;
-    return positionAt(progress);
+    return progress;
   }
 
-  private Vector3d positionAt(double progress) {
+  public Vector3d positionAt(double progress) {
     return new Vector3d(
         baseX + amplitude * progress,
         baseY + amplitudeY * progress,
         baseZ + amplitudeZ * progress);
+  }
+
+  public boolean rotates() {
+    return rotate;
+  }
+
+  public Rotation3f rotationAt(double progress) {
+    return Rotation3f.lerpAngle(
+        new Rotation3f(startRotationX, startRotationY, startRotationZ),
+        new Rotation3f(targetRotationX, targetRotationY, targetRotationZ),
+        (float) progress);
   }
 
   private static double duration(double distance, double axisSpeed) {
@@ -120,6 +163,18 @@ public class HorizontalMovingPlatformComponent implements Component<EntityStore>
   @Override
   public HorizontalMovingPlatformComponent clone() {
     return new HorizontalMovingPlatformComponent(
-        baseX, baseY, baseZ, amplitude, amplitudeY, amplitudeZ, speed, speedY, speedZ, loopBack);
+        baseX,
+        baseY,
+        baseZ,
+        amplitude,
+        amplitudeY,
+        amplitudeZ,
+        speed,
+        speedY,
+        speedZ,
+        loopBack,
+        new Rotation3f(startRotationX, startRotationY, startRotationZ),
+        new Rotation3f(targetRotationX, targetRotationY, targetRotationZ),
+        rotate);
   }
 }

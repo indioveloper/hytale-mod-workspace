@@ -7,15 +7,26 @@ import com.hypixel.hytale.component.spatial.SpatialResource;
 import com.hypixel.hytale.codec.Codec;
 import com.hypixel.hytale.codec.KeyedCodec;
 import com.hypixel.hytale.codec.builder.BuilderCodec;
+import com.hypixel.hytale.codec.codecs.EnumCodec;
+import com.hypixel.hytale.math.vector.Rotation3f;
 import com.hypixel.hytale.server.core.modules.entity.EntityModule;
-import com.hypixel.hytale.server.core.modules.entity.component.NPCMarkerComponent;
-import com.hypixel.hytale.server.core.modules.entity.component.PropComponent;
 import com.hypixel.hytale.server.core.modules.entity.component.TransformComponent;
 import com.hypixel.hytale.server.core.universe.world.storage.EntityStore;
 import java.util.HashSet;
 import java.util.Set;
 
 public class ApplyHorizontalPlatformMotionEffect extends TriggerEffect {
+  public enum CoordinateMode {
+    ABSOLUTE,
+    RELATIVE
+  }
+
+  public enum TurnDirection {
+    NONE,
+    RIGHT,
+    LEFT
+  }
+
   public static final BuilderCodec<ApplyHorizontalPlatformMotionEffect> CODEC =
       BuilderCodec.builder(
               ApplyHorizontalPlatformMotionEffect.class,
@@ -37,6 +48,21 @@ public class ApplyHorizontalPlatformMotionEffect extends TriggerEffect {
               effect -> effect.targetZ)
           .add()
           .append(
+              new KeyedCodec<>("CoordinateMode", new EnumCodec<>(CoordinateMode.class), false),
+              (effect, value) -> effect.coordinateMode = value != null ? value : CoordinateMode.ABSOLUTE,
+              effect -> effect.coordinateMode)
+          .add()
+          .append(
+              new KeyedCodec<>("TurnDirection", new EnumCodec<>(TurnDirection.class), false),
+              (effect, value) -> effect.turnDirection = value != null ? value : TurnDirection.NONE,
+              effect -> effect.turnDirection)
+          .add()
+          .append(
+              new KeyedCodec<>("TurnAngle", Codec.FLOAT, false),
+              (effect, value) -> effect.turnAngle = value,
+              effect -> effect.turnAngle)
+          .add()
+          .append(
               new KeyedCodec<>("Speed", Codec.DOUBLE, false),
               (effect, value) -> effect.speed = value,
               effect -> effect.speed)
@@ -56,21 +82,18 @@ public class ApplyHorizontalPlatformMotionEffect extends TriggerEffect {
               (effect, value) -> effect.loopBack = value,
               effect -> effect.loopBack)
           .add()
-          .append(
-              new KeyedCodec<>("OnlyFirstMatch", Codec.BOOLEAN, false),
-              (effect, value) -> effect.onlyFirstMatch = value,
-              effect -> effect.onlyFirstMatch)
-          .add()
           .build();
 
   private Double targetX;
   private Double targetY;
   private Double targetZ;
+  private CoordinateMode coordinateMode = CoordinateMode.ABSOLUTE;
+  private TurnDirection turnDirection = TurnDirection.NONE;
+  private float turnAngle;
   private double speed = 1.0D;
   private double speedY;
   private double speedZ;
   private boolean loopBack;
-  private boolean onlyFirstMatch;
 
   @Override
   public void execute(TriggerContext context) {
@@ -96,24 +119,31 @@ public class ApplyHorizontalPlatformMotionEffect extends TriggerEffect {
         if (!candidate.isValid() || !seen.add(candidate)) {
           continue;
         }
-        if (!matchesTarget(store, candidate, origin, shape)) {
+        if (!MotionTargeting.matches(store, candidate, origin, shape)) {
           continue;
         }
 
         TransformComponent transform =
             store.getComponent(candidate, TransformComponent.getComponentType());
         var start = transform.getPosition();
-        double distanceX = targetX - start.x;
-        double distanceY = targetY - start.y;
-        double distanceZ = targetZ - start.z;
-        if (distanceX == 0.0D && distanceY == 0.0D && distanceZ == 0.0D) {
+        double distanceX = coordinateMode == CoordinateMode.RELATIVE ? targetX : targetX - start.x;
+        double distanceY = coordinateMode == CoordinateMode.RELATIVE ? targetY : targetY - start.y;
+        double distanceZ = coordinateMode == CoordinateMode.RELATIVE ? targetZ : targetZ - start.z;
+        // A zero speed means that axis is intentionally held at its current position.
+        double movementX = speed == 0.0D ? 0.0D : distanceX;
+        double movementY = speedY == 0.0D ? 0.0D : distanceY;
+        double movementZ = speedZ == 0.0D ? 0.0D : distanceZ;
+        if (movementX == 0.0D && movementY == 0.0D && movementZ == 0.0D) {
           continue;
         }
-        if (isUnreachable(distanceX, speed)
-            || isUnreachable(distanceY, speedY)
-            || isUnreachable(distanceZ, speedZ)) {
-          continue;
-        }
+        float yawTurn = switch (turnDirection) {
+          case RIGHT -> Math.min(Math.max(turnAngle, 0.0F), 180.0F);
+          case LEFT -> -Math.min(Math.max(turnAngle, 0.0F), 180.0F);
+          case NONE -> 0.0F;
+        };
+        Rotation3f startRotation = new Rotation3f(transform.getRotation());
+        Rotation3f targetRotation = new Rotation3f(startRotation);
+        targetRotation.addYaw(yawTurn);
         store.putComponent(
             candidate,
             HorizontalMovingPlatformComponent.getComponentType(),
@@ -121,40 +151,18 @@ public class ApplyHorizontalPlatformMotionEffect extends TriggerEffect {
                 start.x,
                 start.y,
                 start.z,
-                distanceX,
-                distanceY,
-                distanceZ,
+                movementX,
+                movementY,
+                movementZ,
                 speed,
                 speedY,
                 speedZ,
-                loopBack));
-
-        if (onlyFirstMatch) {
-          return;
-        }
+                loopBack,
+                startRotation,
+                targetRotation,
+                yawTurn != 0.0F));
       }
     }
   }
 
-  private static boolean isUnreachable(double distance, double axisSpeed) {
-    return distance != 0.0D && axisSpeed == 0.0D;
-  }
-
-  private boolean matchesTarget(
-      com.hypixel.hytale.component.Store<EntityStore> store,
-      Ref<EntityStore> candidate,
-      org.joml.Vector3d origin,
-      com.hypixel.hytale.builtin.triggervolumes.shape.TriggerVolumeShape shape) {
-    TransformComponent transform =
-        store.getComponent(candidate, TransformComponent.getComponentType());
-    if (transform == null || !shape.contains(origin, transform.getPosition())) {
-      return false;
-    }
-
-    if (store.getComponent(candidate, PropComponent.getComponentType()) == null
-        && store.getComponent(candidate, NPCMarkerComponent.getComponentType()) == null) {
-      return false;
-    }
-    return true;
-  }
 }

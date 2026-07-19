@@ -8,9 +8,6 @@ import com.hypixel.hytale.codec.Codec;
 import com.hypixel.hytale.codec.KeyedCodec;
 import com.hypixel.hytale.codec.builder.BuilderCodec;
 import com.hypixel.hytale.server.core.modules.entity.EntityModule;
-import com.hypixel.hytale.server.core.modules.entity.component.NPCMarkerComponent;
-import com.hypixel.hytale.server.core.modules.entity.component.PropComponent;
-import com.hypixel.hytale.server.core.modules.entity.component.TransformComponent;
 import com.hypixel.hytale.server.core.universe.world.storage.EntityStore;
 import java.util.HashSet;
 import java.util.Set;
@@ -50,7 +47,7 @@ public class StopHorizontalPlatformMotionEffect extends TriggerEffect {
         if (!candidate.isValid() || !seen.add(candidate)) {
           continue;
         }
-        if (!matchesTarget(store, candidate, origin, shape)) {
+        if (!MotionTargeting.matches(store, candidate, origin, shape)) {
           continue;
         }
 
@@ -62,21 +59,4 @@ public class StopHorizontalPlatformMotionEffect extends TriggerEffect {
     }
   }
 
-  private boolean matchesTarget(
-      com.hypixel.hytale.component.Store<EntityStore> store,
-      Ref<EntityStore> candidate,
-      org.joml.Vector3d origin,
-      com.hypixel.hytale.builtin.triggervolumes.shape.TriggerVolumeShape shape) {
-    TransformComponent transform =
-        store.getComponent(candidate, TransformComponent.getComponentType());
-    if (transform == null || !shape.contains(origin, transform.getPosition())) {
-      return false;
-    }
-
-    if (store.getComponent(candidate, PropComponent.getComponentType()) == null
-        && store.getComponent(candidate, NPCMarkerComponent.getComponentType()) == null) {
-      return false;
-    }
-    return true;
-  }
 }

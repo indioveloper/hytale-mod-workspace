@@ -10,6 +10,9 @@ Incluye:
 - `ApplyPlayerPlatformCollision`
 - `RemovePlayerPlatformCollision`
 
-Estado: funcional en fuente para pre-release 0.6.8. La revision 1.0.1 corrige
-el descarte erroneo de movimientos horizontales cuando los ejes Y/Z permanecen
-quietos. Requiere una prueba manual en juego para confirmar el resultado final.
+Estado: funcional en fuente para pre-release 0.6.8. La revision 1.0.8 admite
+destinos absolutos o desplazamientos relativos para cada entidad del volumen.
+El movimiento puede incluir un giro relativo a izquierda o derecha de 0 a 180
+grados, que se completa al llegar al destino. Los ejes con velocidad cero se
+mantienen en su posicion actual. Requiere una prueba manual en juego para
+confirmar el resultado final.

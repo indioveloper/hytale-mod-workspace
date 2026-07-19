@@ -8,16 +8,13 @@ import com.hypixel.hytale.codec.Codec;
 import com.hypixel.hytale.codec.KeyedCodec;
 import com.hypixel.hytale.codec.builder.BuilderCodec;
 import com.hypixel.hytale.server.core.modules.entity.EntityModule;
-import com.hypixel.hytale.server.core.modules.entity.component.NPCMarkerComponent;
-import com.hypixel.hytale.server.core.modules.entity.component.PropComponent;
-import com.hypixel.hytale.server.core.modules.entity.component.TransformComponent;
 import com.hypixel.hytale.server.core.modules.entity.hitboxcollision.HitboxCollision;
 import com.hypixel.hytale.server.core.modules.entity.hitboxcollision.HitboxCollisionConfig;
 import com.hypixel.hytale.server.core.universe.world.storage.EntityStore;
 import java.util.HashSet;
 import java.util.Set;
 
-/** Makes the props or NPC markers inside the executing volume solid to players. */
+/** Makes the entities inside the executing volume solid to players. */
 public class ApplyPlayerPlatformCollisionEffect extends TriggerEffect {
   public static final BuilderCodec<ApplyPlayerPlatformCollisionEffect> CODEC =
       BuilderCodec.builder(
@@ -60,7 +57,7 @@ public class ApplyPlayerPlatformCollisionEffect extends TriggerEffect {
       var origin = volume.getPosition();
       spatial.getSpatialStructure().collect(origin, shape.getMaxDistanceFromOrigin(), results);
       for (var candidate : results) {
-        if (!candidate.isValid() || !seen.add(candidate) || !matchesTarget(store, candidate, origin, shape)) {
+        if (!candidate.isValid() || !seen.add(candidate) || !MotionTargeting.matches(store, candidate, origin, shape)) {
           continue;
         }
 
@@ -77,15 +74,4 @@ public class ApplyPlayerPlatformCollisionEffect extends TriggerEffect {
     }
   }
 
-  private boolean matchesTarget(
-      com.hypixel.hytale.component.Store<EntityStore> store,
-      Ref<EntityStore> candidate,
-      org.joml.Vector3d origin,
-      com.hypixel.hytale.builtin.triggervolumes.shape.TriggerVolumeShape shape) {
-    TransformComponent transform = store.getComponent(candidate, TransformComponent.getComponentType());
-    return transform != null
-        && shape.contains(origin, transform.getPosition())
-        && (store.getComponent(candidate, PropComponent.getComponentType()) != null
-            || store.getComponent(candidate, NPCMarkerComponent.getComponentType()) != null);
-  }
 }
