@@ -1,8 +1,8 @@
 {
   "Group": "OrbGenesis",
   "Name": "OrbGenesis Blocks",
-  "Version": "1.0.1",
-  "Description": "Technical and preview blocks: visible barriers and ghost outline blocks.",
+  "Version": "1.1.3",
+  "Description": "Technical, preview, and decorative blocks for OrbGenesis maps.",
   "Authors": [
     {
       "Name": "OrbGenesis",

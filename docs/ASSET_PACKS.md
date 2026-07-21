@@ -13,6 +13,9 @@ Incluye:
 - Ghost outline rock stone: textura, icono e item
   `Ghost_Outline_Rock_Stone`.
 - Herramienta de generacion de textura `tools/make_outline_texture.py`.
+- Marcas de conteo murales: item `OrbGenesis_Tally_Marks`, estados visuales de
+  uno a cinco y hitbox plana de `0.05` bloques. Las texturas se generan con
+  `tools/make_tally_mark_textures.py`.
 
 Origen: `visible-barrier-block` y `ghost-outline-blocks`.
 
