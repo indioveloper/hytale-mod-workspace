@@ -37,3 +37,7 @@ desktop.ini
 *.lpf
 target-classpath.txt
 probe_ref.java
+
+# Explicitly version curated save snapshots and their editor metadata.
+!snapshots/**/*.zip
+!snapshots/**/*.lpf

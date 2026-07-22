@@ -16,12 +16,17 @@ backups, instalaciones del juego, el Hytale Shared Source ni mundos completos.
 | `mods/java/player-trigger-tags` | Activo, v1.5.6 | Tags de jugador, condiciones y efectos de Trigger Volumes, y conversion de bloques en entidades. |
 | `mods/java/entity-motion-triggers` | Activo/prototipo, v1.0.0 | Efectos de Trigger Volumes para mover entidades y aplicar/quitar colision de plataforma. |
 | `mods/java/trigger-execute-command` | Actualizado, v1.1.0 | Efecto `ExecuteCommand` para lanzar comandos desde Trigger Volumes en pre-release 0.6.x. |
+| `mods/java/more-triggers` | Activo, v1.1.0 | Efectos para pegar un prefab aleatorio, elegir tags aleatorios y ocultar titulos de evento. |
 | `mods/java/chest-labels` | Pendiente de UI, v0.1.0 | Nombres e iconos persistentes para cofres, con HUD y editor. Su editor usa `PageOverlay`, incompatible con la UI de pre-release 0.6.8. |
 | `mods/java/scoreboards` | Pendiente de UI, Hytale 0.5 | Editor y seguimiento de scoreboards mediante UI nativa. Absorbe la variante local; su `Common.ui` usa `PageOverlay`, incompatible con pre-release 0.6.8. |
 
 `games/nexus-siege` contiene el proyecto del minijuego, documentacion, pruebas
 y contratos de comportamiento. Los NPCs reutilizables viven en
 `mods/asset-packs/raynor-npcs`.
+
+Los snapshots restaurables de partidas se guardan en `snapshots/`. Estos son
+excepciones deliberadas a la regla general de no versionar saves y usan Git LFS
+para los ZIP grandes.
 
 ### Asset packs
 

@@ -1,0 +1,47 @@
+customUI.triggerVolumeEffectEditor.effectType.RemoveEventTitle = Hide event title
+customUI.triggerVolumeEffectEditor.effectType.RandomTagSelection = Choose random tag
+customUI.triggerVolumeEffectEditor.effectType.PasteRandomPrefab = Paste random prefab
+
+customUI.triggerVolumeEffectEditor.field.RemoveEventTitle.FadeOutDuration = Fade duration
+customUI.triggerVolumeEffectEditor.field.RemoveEventTitle.FadeOutDuration.tooltip = Seconds taken to hide the event title. Example: 1.5.
+
+customUI.triggerVolumeEffectEditor.field.RandomTagSelection.TagKey = Tag to change
+customUI.triggerVolumeEffectEditor.field.RandomTagSelection.TagKey.tooltip = Name of the tag that receives a random value. Example: Room.
+customUI.triggerVolumeEffectEditor.field.RandomTagSelection.TagKey.placeholder = e.g. Room
+customUI.triggerVolumeEffectEditor.field.RandomTagSelection.TagValues = Possible values
+customUI.triggerVolumeEffectEditor.field.RandomTagSelection.TagValues.tooltip = Values separated by commas, semicolons, or pipes. Example: North,South,East,West.
+customUI.triggerVolumeEffectEditor.field.RandomTagSelection.TagValues.placeholder = e.g. North, South, East, West
+customUI.triggerVolumeEffectEditor.field.RandomTagSelection.MatchKey = Filter tag
+customUI.triggerVolumeEffectEditor.field.RandomTagSelection.MatchKey.tooltip = Only changes volumes with this tag. Leave empty to change the current volume.
+customUI.triggerVolumeEffectEditor.field.RandomTagSelection.MatchValue = Required value
+customUI.triggerVolumeEffectEditor.field.RandomTagSelection.MatchValue.tooltip = Value required on the filter tag. Leave empty to accept any value.
+customUI.triggerVolumeEffectEditor.field.RandomTagSelection.Radius = Search radius
+customUI.triggerVolumeEffectEditor.field.RandomTagSelection.Radius.tooltip = Maximum search distance in blocks. Example: 50.
+customUI.triggerVolumeEffectEditor.field.RandomTagSelection.Center = Search center
+customUI.triggerVolumeEffectEditor.field.RandomTagSelection.Center.tooltip = Measure the radius from the Trigger Volume or the triggering entity.
+customUI.triggerVolumeEffectEditor.field.RandomTagSelection.Center.option.VOLUME = Trigger Volume
+customUI.triggerVolumeEffectEditor.field.RandomTagSelection.Center.option.ENTITY = Triggering entity
+
+customUI.triggerVolumeEffectEditor.field.PasteRandomPrefab.PrefabList = Prefab list
+customUI.triggerVolumeEffectEditor.field.PasteRandomPrefab.PrefabList.tooltip = Recommended: select a PrefabList and one entry will be pasted randomly. Used only when manual prefabs are empty.
+customUI.triggerVolumeEffectEditor.field.PasteRandomPrefab.Prefab1 = Prefab 1
+customUI.triggerVolumeEffectEditor.field.PasteRandomPrefab.Prefab1.tooltip = First manual prefab candidate. Use the picker to avoid path errors.
+customUI.triggerVolumeEffectEditor.field.PasteRandomPrefab.Weight1 = Weight 1
+customUI.triggerVolumeEffectEditor.field.PasteRandomPrefab.Weight1.tooltip = Relative weight for prefab 1 when Use weights is enabled. Example: 3 versus 1 is three times more likely.
+customUI.triggerVolumeEffectEditor.field.PasteRandomPrefab.Weight1.placeholder = e.g. 3
+customUI.triggerVolumeEffectEditor.field.PasteRandomPrefab.Prefab2 = Prefab 2
+customUI.triggerVolumeEffectEditor.field.PasteRandomPrefab.Prefab2.tooltip = Second manual prefab candidate. Use the picker to avoid path errors.
+customUI.triggerVolumeEffectEditor.field.PasteRandomPrefab.Weight2 = Weight 2
+customUI.triggerVolumeEffectEditor.field.PasteRandomPrefab.Weight2.tooltip = Relative weight for prefab 2 when Use weights is enabled. Example: 1.
+customUI.triggerVolumeEffectEditor.field.PasteRandomPrefab.Weight2.placeholder = e.g. 1
+customUI.triggerVolumeEffectEditor.field.PasteRandomPrefab.Prefabs = More prefabs
+customUI.triggerVolumeEffectEditor.field.PasteRandomPrefab.Prefabs.tooltip = Additional comma-separated paths. Add relative weights with =. Example: Rooms/A=3, Rooms/B=1.
+customUI.triggerVolumeEffectEditor.field.PasteRandomPrefab.Prefabs.placeholder = e.g. Rooms/A=3, Rooms/B=1
+customUI.triggerVolumeEffectEditor.field.PasteRandomPrefab.UseWeights = Use weights
+customUI.triggerVolumeEffectEditor.field.PasteRandomPrefab.UseWeights.tooltip = Enabled uses relative weights; disabled gives every manual prefab the same probability.
+customUI.triggerVolumeEffectEditor.field.PasteRandomPrefab.Position = Position
+customUI.triggerVolumeEffectEditor.field.PasteRandomPrefab.Position.tooltip = XYZ offset from the volume or absolute world coordinate, depending on the next checkbox. Example: 0, 0, 8.
+customUI.triggerVolumeEffectEditor.field.PasteRandomPrefab.AtVolumeOrigin = Relative to volume
+customUI.triggerVolumeEffectEditor.field.PasteRandomPrefab.AtVolumeOrigin.tooltip = Enabled adds Position to the Trigger Volume origin. Disabled treats Position as absolute world coordinates.
+customUI.triggerVolumeEffectEditor.field.PasteRandomPrefab.ShowParticles = Show particles
+customUI.triggerVolumeEffectEditor.field.PasteRandomPrefab.ShowParticles.tooltip = Shows block placement particles while pasting the prefab.
