@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>01 - Qu&eacute; son los Trigger Volumes</title>
+  <style>
+    :root {
+      --bg: #f5f1e8;
+      --panel: #fffdf8;
+      --text: #1f1a17;
+      --muted: #5e544b;
+      --accent: #7a4b2a;
+      --accent-soft: #e7d4c4;
+      --border: #d9c8b7;
+      --ink-soft: #f4efe7;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Georgia, "Times New Roman", serif;
+      background:
+        radial-gradient(circle at top, #fff7ea 0, #f5f1e8 45%, #efe7db 100%);
+      color: var(--text);
+      line-height: 1.7;
+    }
+
+    main {
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 48px 24px 72px;
+    }
+
+    nav,
+    section,
+    blockquote {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      box-shadow: 0 10px 30px rgba(70, 46, 24, 0.08);
+    }
+
+    nav,
+    section {
+      padding: 24px 28px;
+    }
+
+    nav + section,
+    section + section {
+      margin-top: 22px;
+    }
+
+    h1,
+    h2,
+    h3 {
+      line-height: 1.2;
+      margin: 0 0 16px;
+    }
+
+    p {
+      margin: 0 0 16px;
+    }
+
+    ul,
+    ol {
+      margin: 0 0 16px;
+      padding-left: 22px;
+    }
+
+    li + li {
+      margin-top: 8px;
+    }
+
+    a {
+      color: var(--accent);
+      text-decoration-thickness: 2px;
+      text-underline-offset: 3px;
+    }
+
+    .eyebrow {
+      margin: 0 0 10px;
+      font-size: 0.85rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent);
+    }
+
+    .lead {
+      font-size: 1.08rem;
+    }
+
+    .grid {
+      display: grid;
+      gap: 18px;
+    }
+
+    .callout {
+      padding: 18px 20px;
+      border-radius: 14px;
+      background: linear-gradient(135deg, #fffaf2, #f8efe5);
+      border: 1px solid var(--border);
+    }
+
+    .card {
+      padding: 18px 20px;
+      border-radius: 14px;
+      background: var(--ink-soft);
+      border: 1px solid var(--border);
+    }
+
+    .card h3 {
+      margin-bottom: 10px;
+    }
+
+    blockquote {
+      margin: 18px 0 0;
+      padding: 18px 20px;
+      font-style: italic;
+      color: var(--muted);
+      border-left: 6px solid var(--accent-soft);
+    }
+
+    figure {
+      margin: 22px 0 0;
+    }
+
+    img {
+      display: block;
+      width: 100%;
+      height: auto;
+      border-radius: 14px;
+      border: 1px solid var(--border);
+      background: #192334;
+    }
+
+    figcaption {
+      margin-top: 10px;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    .table-like {
+      display: grid;
+      gap: 14px;
+    }
+
+    .effect-item {
+      padding: 14px 16px;
+      border-radius: 14px;
+      border: 1px solid var(--border);
+      background: #fffaf2;
+    }
+
+    .effect-item strong {
+      display: inline-block;
+      min-width: 190px;
+    }
+
+    .note {
+      color: var(--muted);
+    }
+
+    @media (min-width: 760px) {
+      .grid.two {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <nav>
+      <a href="index.html">Volver al &iacute;ndice de la gu&iacute;a</a>
+    </nav>
+
+    <section>
+      <p class="eyebrow">P&aacute;gina 01</p>
+      <h1>Qu&eacute; son los Trigger Volumes</h1>
+      <p class="lead">
+        Un Trigger Volume (TV) es una entidad que se coloca en el mundo, recibe
+        instrucciones y ejecuta una serie de efectos si se cumplen las
+        condiciones especificadas.
+      </p>
+      <p>
+        Cuando programas un Trigger, en el fondo le est&aacute;s diciendo tres cosas:
+      </p>
+      <ol>
+        <li>Si ocurre este <strong>EVENTO</strong>.</li>
+        <li>Comprueba esta <strong>CONDICI&Oacute;N</strong>, si aplica.</li>
+        <li>Ejecuta este <strong>EFECTO</strong>.</li>
+      </ol>
+      <blockquote>
+        Si ocurre A, comprueba B y entonces ejecuta C.
+      </blockquote>
+    </section>
+
+    <section>
+      <h2>Las tres pesta&ntilde;as de un TV</h2>
+      <p>
+        Todos los Trigger Volumes tienen varias propiedades que se agrupan en
+        tres pesta&ntilde;as:
+      </p>
+      <div class="grid two">
+        <div class="card">
+          <h3>1. Volume</h3>
+          <p>
+            Re&uacute;ne la parte espacial y estructural del Trigger: su volumen,
+            alcance y comportamiento base dentro del mundo.
+          </p>
+        </div>
+        <div class="card">
+          <h3>2. Effects</h3>
+          <p>
+            Es la pesta&ntilde;a principal. Aqu&iacute; es donde se programa el evento a
+            escuchar, las condiciones de &eacute;xito y el efecto a realizar.
+          </p>
+        </div>
+        <div class="card">
+          <h3>3. Tags</h3>
+          <p>
+            Permite trabajar con etiquetas y l&oacute;gica m&aacute;s avanzada. Parece una
+            parte secundaria, pero es clave para mec&aacute;nicas complejas.
+          </p>
+        </div>
+      </div>
+      <p class="note">
+        Aunque la pesta&ntilde;a principal es <strong>Effects</strong>, las otras dos
+        son esenciales para hacer mec&aacute;nicas m&aacute;s avanzadas.
+      </p>
+    </section>
+
+    <section>
+      <h2>La pesta&ntilde;a Effects por dentro</h2>
+      <p>
+        En esta captura se ve la pesta&ntilde;a <strong>Effects</strong> de un Trigger
+        Volume ya configurado:
+      </p>
+      <figure>
+        <img src="assets/effects-tab.png" alt="Pesta&ntilde;a Effects del Trigger Volume Tool">
+        <figcaption>
+          Captura 1. Ejemplo de TV con un evento <em>On Enter</em>, condici&oacute;n
+          <em>Success Effects</em> y un efecto <em>Send Message</em>.
+        </figcaption>
+      </figure>
+      <div class="grid">
+        <div class="callout">
+          <strong>1. Campo de EVENTO</strong>
+          <p>
+            Es el tipo de suceso que el TV va a escuchar para empezar a evaluar
+            sus instrucciones.
+          </p>
+        </div>
+        <div class="callout">
+          <strong>2. Campo ENTRY</strong>
+          <p>
+            Lo dejamos para m&aacute;s adelante, porque entra en usos m&aacute;s avanzados.
+          </p>
+        </div>
+        <div class="callout">
+          <strong>3. Campo CONDICI&Oacute;N</strong>
+          <p>
+            Aqu&iacute; decides c&oacute;mo se interpreta el resultado del evento y cu&aacute;ndo
+            debe continuar la ejecuci&oacute;n.
+          </p>
+        </div>
+        <div class="callout">
+          <strong>4. Campo EFECTOS</strong>
+          <p>
+            Es la parte que ejecuta acciones reales dentro del juego. La lista
+            de opciones es grande y permite construir sistemas muy distintos.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>Campo de evento</h2>
+      <p>
+        El evento es lo que &quot;escucha&quot; el TV para progresar sus instrucciones.
+        Si el evento programado ocurre, el Trigger da el siguiente paso.
+      </p>
+      <figure>
+        <img src="assets/event-field.png" alt="Lista desplegable de eventos del Trigger Volume Tool">
+        <figcaption>
+          Captura 2. Desplegable de eventos disponibles en la pesta&ntilde;a
+          <strong>Effects</strong>.
+        </figcaption>
+      </figure>
+      <p>
+        El caso m&aacute;s f&aacute;cil de entender es <strong>On Enter</strong>: cuando el
+        jugador entra al volumen moviendo al personaje, el TV hace lo que tenga
+        programado. M&aacute;s adelante veremos el listado completo de eventos y para
+        qu&eacute; sirve cada uno.
+      </p>
+    </section>
+
+    <section>
+      <h2>Campo de condici&oacute;n</h2>
+      <p>
+        Aqu&iacute; especificas c&oacute;mo debe interpretarse el evento y qu&eacute; camino toma
+        el TV a partir de ah&iacute;.
+      </p>
+      <figure>
+        <img src="assets/condition-field.png" alt="Selector de condiciones del Trigger Volume Tool">
+        <figcaption>
+          Captura 3. Selector del campo de condici&oacute;n.
+        </figcaption>
+      </figure>
+      <ul>
+        <li>El evento <strong>s&iacute;</strong> se ha cumplido.</li>
+        <li>El evento <strong>no</strong> se ha cumplido.</li>
+        <li>El evento se cumple seg&uacute;n condiciones adicionales.</li>
+        <li>El evento est&aacute; <strong>siempre activo</strong>.</li>
+      </ul>
+      <p>
+        Lo m&aacute;s normal en este campo es dejar lo que viene por defecto:
+        <strong>Success Effects</strong>. Eso hace que, cuando se cumpla la
+        condici&oacute;n especificada, se ejecuten los efectos detallados a
+        continuaci&oacute;n, sin m&aacute;s. Es el caso cl&aacute;sico de <em>si A, entonces B</em>.
+      </p>
+      <p>
+        Aun as&iacute;, usar efectos condicionales m&aacute;s espec&iacute;ficos o
+        <strong>Rejection Effects</strong> abre la puerta a mec&aacute;nicas bastante
+        m&aacute;s avanzadas.
+      </p>
+    </section>
+
+    <section>
+      <h2>Tipos de eventos</h2>
+      <p>
+        Estas son algunas de las familias de eventos m&aacute;s &uacute;tiles para empezar:
+      </p>
+      <ol>
+        <li>
+          <strong>On Volume Create</strong>. Cuando un prefab se carga y contiene
+          un Trigger con este evento, se dispara al aparecer en el mundo.
+        </li>
+        <li>
+          <strong>On Enter</strong>. Se activa cuando una entidad entra en el
+          volumen.
+        </li>
+        <li>
+          <strong>On Exit</strong>. Se activa cuando una entidad sale del volumen.
+        </li>
+        <li>
+          <strong>On Tick</strong>. Se parece a <em>On Enter</em>, pero no lanza
+          los efectos una sola vez: se repite mientras lo que activa el TV siga
+          dentro. Como los ticks son muy r&aacute;pidos, se puede ralentizar con la
+          propiedad <strong>Interval</strong>, especificada en segundos.
+        </li>
+        <li>
+          <strong>On Tag Added / On Tag Removed</strong>. Lo veremos en otra
+          parte de la gu&iacute;a, porque conecta con l&oacute;gica basada en tags.
+        </li>
+        <li>
+          <strong>On Block Placed / On Block Broken</strong>. Puede escuchar la
+          colocaci&oacute;n o destrucci&oacute;n de cualquier bloque dentro de un volumen, o
+          servir para un solo bloque si el Trigger ocupa exactamente ese espacio.
+          Tambi&eacute;n se puede usar como se&ntilde;al de entrada para comprobar otras
+          condiciones que no dependan del bloque en s&iacute;.
+        </li>
+        <li>
+          <strong>On Block Used</strong>. Aplica a bloques interactuables. Si el
+          jugador interact&uacute;a con ellos, el Trigger se dispara.
+        </li>
+        <li>
+          <strong>On Signal Received</strong>. Se ejecuta cuando el TV recibe una
+          se&ntilde;al.
+        </li>
+        <li>
+          <strong>On Entity Died</strong>. Comprueba si una entidad o mob muere
+          dentro del volumen.
+        </li>
+        <li>
+          <strong>Always Active</strong>. No escucha un evento puntual, sino que
+          est&aacute; siempre activo.
+        </li>
+      </ol>
+    </section>
+
+    <section>
+      <h2>Tipos de efectos</h2>
+      <p>
+        Una vez se cumple el evento y la condici&oacute;n correspondiente, el TV
+        ejecuta uno o varios efectos. Esta es una primera lista de referencia:
+      </p>
+      <div class="table-like">
+        <div class="effect-item"><strong>Control Doors</strong> Abre, cierra o alterna puertas.</div>
+        <div class="effect-item"><strong>Damage Entity</strong> Inflige da&ntilde;o a entidades.</div>
+        <div class="effect-item"><strong>Delete Volume</strong> Elimina ese u otro TV especificado.</div>
+        <div class="effect-item"><strong>Disable Volume</strong> Desactiva el volumen.</div>
+        <div class="effect-item"><strong>Enable Volume</strong> Activa el volumen.</div>
+        <div class="effect-item"><strong>Entity Effect</strong> Aplica efectos de estado, buffs o debuffs.</div>
+        <div class="effect-item"><strong>Give Item</strong> Da objetos al inventario.</div>
+        <div class="effect-item"><strong>Modify Always Active Rules</strong> Cambia las condiciones de <em>Always Active</em>.</div>
+        <div class="effect-item"><strong>Modify Tags</strong> A&ntilde;ade, modifica o elimina etiquetas. Esta es una de las piezas clave de muchos sistemas.</div>
+        <div class="effect-item"><strong>Paste Prefab</strong> Coloca un prefab en el mundo.</div>
+        <div class="effect-item"><strong>Place Block</strong> Coloca un bloque concreto.</div>
+        <div class="effect-item"><strong>Play Animation</strong> Reproduce una animaci&oacute;n.</div>
+        <div class="effect-item"><strong>Play Sound</strong> Reproduce un sonido.</div>
+        <div class="effect-item"><strong>Play VFX</strong> Reproduce un efecto visual.</div>
+        <div class="effect-item"><strong>Replace Block Type</strong> Sustituye un tipo de bloque por otro.</div>
+        <div class="effect-item"><strong>Run Root Interaction</strong> Ejecuta una interacci&oacute;n definida. Conviene usarlo con cuidado.</div>
+        <div class="effect-item"><strong>Send Message</strong> Env&iacute;a un mensaje al jugador o al chat.</div>
+        <div class="effect-item"><strong>Set Game Mode</strong> Cambia el modo de juego.</div>
+        <div class="effect-item"><strong>Set Music</strong> Inicia o cambia la m&uacute;sica.</div>
+        <div class="effect-item"><strong>Set Velocity</strong> Aplica velocidad o impulso.</div>
+        <div class="effect-item"><strong>Set Weather</strong> Cambia el tiempo atmosf&eacute;rico.</div>
+        <div class="effect-item"><strong>Show Event Title</strong> Muestra un t&iacute;tulo en pantalla.</div>
+        <div class="effect-item"><strong>Spawn NPC</strong> Genera uno o varios NPCs en la posici&oacute;n indicada.</div>
+        <div class="effect-item"><strong>Teleport</strong> Teletransporta entidades o jugadores.</div>
+        <div class="effect-item"><strong>Trigger NPC Markers</strong> Activa marcadores o comportamientos de NPC. Est&aacute; en desuso.</div>
+      </div>
+    </section>
+
+    <section>
+      <h2>Entonces, &iquest;qu&eacute; se puede programar con esto?</h2>
+      <p>
+        Much&iacute;simo. Desde una puerta simple que se abre al entrar, hasta una
+        cadena de se&ntilde;ales, tags, comprobaciones y prefabs que montan una
+        mec&aacute;nica completa. La potencia real del sistema aparece cuando combinas
+        varios eventos y varios efectos entre s&iacute;.
+      </p>
+      <p>
+        La idea importante de esta primera p&aacute;gina es que entiendas el modelo
+        mental del Trigger Volume: escucha algo, eval&uacute;a algo y hace algo.
+      </p>
+    </section>
+  </main>
+</body>
+</html>

@@ -160,3 +160,8 @@ Los outputs `.build`, `build`, `dist`, `target`, JARs y ZIPs tambien se ignoran.
 Las releases de GitHub son el lugar adecuado para publicar binarios verificables.
 
 Consulta [AGENTS.md](AGENTS.md) antes de retomar cambios con otro agente.
+
+## Guias
+
+- [Guia de Trigger Volumes](docs/trigger-volumes/index.html): introduccion para
+  compartir con el equipo que son los TV y como pensarlos.

@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Guía de Trigger Volumes</title>
+  <style>
+    :root {
+      --bg: #f5f1e8;
+      --panel: #fffdf8;
+      --text: #1f1a17;
+      --muted: #5e544b;
+      --accent: #7a4b2a;
+      --accent-soft: #e7d4c4;
+      --border: #d9c8b7;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Georgia, "Times New Roman", serif;
+      background:
+        radial-gradient(circle at top, #fff7ea 0, #f5f1e8 45%, #efe7db 100%);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    main {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 48px 24px 72px;
+    }
+
+    .hero,
+    .section {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 28px;
+      box-shadow: 0 10px 30px rgba(70, 46, 24, 0.08);
+    }
+
+    .section {
+      margin-top: 24px;
+    }
+
+    .eyebrow {
+      margin: 0 0 10px;
+      font-size: 0.85rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent);
+    }
+
+    h1,
+    h2 {
+      line-height: 1.2;
+      margin: 0 0 16px;
+    }
+
+    p {
+      margin: 0 0 16px;
+    }
+
+    ul {
+      margin: 0;
+      padding-left: 22px;
+    }
+
+    li + li {
+      margin-top: 8px;
+    }
+
+    a {
+      color: var(--accent);
+      text-decoration-thickness: 2px;
+      text-underline-offset: 3px;
+    }
+
+    .card-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .card-list li + li {
+      margin-top: 14px;
+    }
+
+    .card-link {
+      display: block;
+      padding: 18px 20px;
+      border-radius: 14px;
+      background: linear-gradient(135deg, #fffaf2, #f8efe5);
+      border: 1px solid var(--border);
+      text-decoration: none;
+    }
+
+    .card-link strong {
+      display: block;
+      font-size: 1.05rem;
+      margin-bottom: 4px;
+    }
+
+    .card-link span {
+      color: var(--muted);
+    }
+
+    .note {
+      color: var(--muted);
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <section class="hero">
+      <p class="eyebrow">Documentación interna</p>
+      <h1>Guía de Trigger Volumes</h1>
+      <p>
+        Guía interna para compartir con el equipo una base común sobre Trigger
+        Volumes (TV) en Hytale, con foco práctico y lenguaje no técnico cuando
+        sea posible.
+      </p>
+    </section>
+
+    <section class="section">
+      <h2>Paginas</h2>
+      <ul class="card-list">
+        <li>
+          <a class="card-link" href="01-que-son.html">
+            <strong>01 - Qué son los Trigger Volumes</strong>
+            <span>Introducción general a la idea de TV, para qué sirven y cómo pensarlos.</span>
+          </a>
+        </li>
+      </ul>
+    </section>
+
+    <section class="section">
+      <h2>Objetivo</h2>
+      <ul>
+        <li>Explicar qué problema resuelven los TV.</li>
+        <li>Dar una forma común de pensar su uso antes de colocarlos en un mapa.</li>
+        <li>Aclarar su relación con eventos, condiciones y efectos.</li>
+        <li>Recoger patrones de trabajo útiles para los proyectos del equipo.</li>
+      </ul>
+    </section>
+
+    <section class="section">
+      <h2>Alcance actual</h2>
+      <p>
+        Por ahora solo existe la primera página introductoria. Las siguientes
+        pueden cubrir anatomía de un TV, eventos comunes, condiciones y filtros,
+        efectos vanilla y custom, y patrones de depuración.
+      </p>
+      <p class="note">
+        Esta estructura está pensada para que podamos ampliar la guía por
+        capítulos sin tocar demasiado las páginas ya publicadas.
+      </p>
+    </section>
+  </main>
+</body>
+</html>
