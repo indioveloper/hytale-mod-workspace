@@ -12,6 +12,6 @@
   "IncludesAssetPack": true,
   "Dependencies": {},
   "OptionalDependencies": {},
-  "ServerVersion": ">=0.5.0-pre.8",
+  "ServerVersion": ">=0.6.0-pre <0.7.0",
   "Main": "gg.orbgenesis.scoreboards.ScoreboardsPlugin"
 }

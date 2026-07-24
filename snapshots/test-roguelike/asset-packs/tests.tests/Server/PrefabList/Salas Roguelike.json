@@ -1,0 +1,9 @@
+{
+  "Prefabs": [
+    {
+      "RootDirectory": "Server",
+      "Path": "",
+      "Recursive": false
+    }
+  ]
+}

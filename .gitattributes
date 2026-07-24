@@ -11,3 +11,4 @@
 *.blockyanim text eol=lf
 *.prefab binary
 *.prefab.json text eol=lf
+snapshots/**/*.zip filter=lfs diff=lfs merge=lfs -text

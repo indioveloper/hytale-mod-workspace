@@ -95,6 +95,9 @@ con el numero de version nuevo en la misma carpeta.
   colision de plataforma extraidos de Player Trigger Tags.
 - `mods/java/trigger-execute-command`: efecto `ExecuteCommand` actualizado a
   rango 0.6.x; revisar en juego antes de usar comandos destructivos.
+- `mods/java/more-triggers`: contiene `PasteRandomPrefab`, `RandomTagSelection`
+  y `RemoveEventTitle`. `PasteRandomPrefab` conserva sus campos legacy y usa
+  preferentemente una `PrefabList` seleccionada desde el editor vanilla.
 - `games/nexus-siege`: workspace del minijuego. Los NPCs reutilizables y
   efectos de Trigger Volumes para NPCs viven en `mods/asset-packs/raynor-npcs`;
   la carpeta `npcs/vanilla` conserva contratos y notas de diseno del juego.
