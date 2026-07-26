@@ -14,7 +14,8 @@ backups, instalaciones del juego, el Hytale Shared Source ni mundos completos.
 | Proyecto | Estado | Descripcion |
 | --- | --- | --- |
 | `mods/java/player-trigger-tags` | Activo, v1.5.6 | Tags de jugador, condiciones y efectos de Trigger Volumes, y conversion de bloques en entidades. |
-| `mods/java/entity-motion-triggers` | Activo/prototipo, v1.0.0 | Efectos de Trigger Volumes para mover entidades y aplicar/quitar colision de plataforma. |
+| `mods/java/entity-motion-triggers` | Activo/prototipo, v1.1.1 | Efectos para crear y mover entidades, destruirlas al llegar y aplicar/quitar colision de plataforma. |
+| `mods/java/map-selector` | Prototipo, v0.1.1 | Selector cerrado de mapas con previews 3D de prefabs y teletransporte mediante `/mapas`. |
 | `mods/java/trigger-execute-command` | Actualizado, v1.1.0 | Efecto `ExecuteCommand` para lanzar comandos desde Trigger Volumes en pre-release 0.6.x. |
 | `mods/java/chest-labels` | Pendiente de UI, v0.1.0 | Nombres e iconos persistentes para cofres, con HUD y editor. Su editor usa `PageOverlay`, incompatible con la UI de pre-release 0.6.8. |
 | `mods/java/scoreboards` | Pendiente de UI, Hytale 0.5 | Editor y seguimiento de scoreboards mediante UI nativa. Absorbe la variante local; su `Common.ui` usa `PageOverlay`, incompatible con pre-release 0.6.8. |

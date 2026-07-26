@@ -2,6 +2,7 @@ package gg.orbgenesis.playertriggertags;
 
 import com.hypixel.hytale.component.ArchetypeChunk;
 import com.hypixel.hytale.component.CommandBuffer;
+import com.hypixel.hytale.component.RemoveReason;
 import com.hypixel.hytale.component.Store;
 import com.hypixel.hytale.component.query.Query;
 import com.hypixel.hytale.component.system.tick.EntityTickingSystem;
@@ -46,6 +47,9 @@ public class HorizontalMovingPlatformSystem extends EntityTickingSystem<EntitySt
       if (headRotation != null) {
         headRotation.setRotation(rotation);
       }
+    }
+    if (platform.shouldDestroyAtDestination()) {
+      commandBuffer.removeEntity(archetypeChunk.getReferenceTo(index), RemoveReason.REMOVE);
     }
   }
 }

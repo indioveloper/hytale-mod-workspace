@@ -1,0 +1,19 @@
+{
+  "Group": "OrbGenesis",
+  "Name": "Map Selector",
+  "Version": "0.1.1",
+  "Description": "Opens a curated prefab map selector with native 3D previews.",
+  "Authors": [
+    {
+      "Name": "OrbGenesis"
+    }
+  ],
+  "ServerVersion": ">=0.6.8",
+  "Dependencies": {},
+  "OptionalDependencies": {
+    "tests:tests": "*"
+  },
+  "DisabledByDefault": false,
+  "Main": "gg.orbgenesis.mapselector.MapSelectorPlugin",
+  "IncludesAssetPack": true
+}

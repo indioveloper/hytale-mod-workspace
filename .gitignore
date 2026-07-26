@@ -10,6 +10,7 @@
 # Packaged artifacts
 *.jar
 *.zip
+*.rar
 *.class
 
 # Runtime and extracted dependencies
@@ -37,3 +38,5 @@ desktop.ini
 *.lpf
 target-classpath.txt
 probe_ref.java
+/DumpMoreTriggers.java
+/.tmp_DumpMoreTriggers.java

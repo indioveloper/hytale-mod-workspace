@@ -93,6 +93,9 @@ con el numero de version nuevo en la misma carpeta.
   en componentes de bloques y usa UI custom.
 - `mods/java/entity-motion-triggers`: efectos de movimiento de entidades y
   colision de plataforma extraidos de Player Trigger Tags.
+- `mods/java/map-selector`: prototipo `0.1.1` con comando `/mapas`, previews
+  nativas de prefabs y destinos configurados en `MapDefinition`. Sus mapas
+  iniciales dependen opcionalmente del asset pack local `tests:tests`.
 - `mods/java/trigger-execute-command`: efecto `ExecuteCommand` actualizado a
   rango 0.6.x; revisar en juego antes de usar comandos destructivos.
 - `games/nexus-siege`: workspace del minijuego. Los NPCs reutilizables y

@@ -1,0 +1,8 @@
+customUI.mapSelector.title = MAPS
+customUI.mapSelector.description = Choose a minigame level to preview.
+customUI.mapSelector.map1 = Map 1
+customUI.mapSelector.map2 = Map 2
+customUI.mapSelector.selected = Selected:
+customUI.mapSelector.go = GO TO MAP
+customUI.mapSelector.close = CLOSE
+customUI.mapSelector.preview = PREVIEW

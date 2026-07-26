@@ -82,6 +82,11 @@ public class ApplyHorizontalPlatformMotionEffect extends TriggerEffect {
               (effect, value) -> effect.loopBack = value,
               effect -> effect.loopBack)
           .add()
+          .append(
+              new KeyedCodec<>("DestroyAtDestination", Codec.BOOLEAN, false),
+              (effect, value) -> effect.destroyAtDestination = value,
+              effect -> effect.destroyAtDestination)
+          .add()
           .build();
 
   private Double targetX;
@@ -94,6 +99,7 @@ public class ApplyHorizontalPlatformMotionEffect extends TriggerEffect {
   private double speedY;
   private double speedZ;
   private boolean loopBack;
+  private boolean destroyAtDestination;
 
   @Override
   public void execute(TriggerContext context) {
@@ -158,6 +164,7 @@ public class ApplyHorizontalPlatformMotionEffect extends TriggerEffect {
                 speedY,
                 speedZ,
                 loopBack,
+                destroyAtDestination,
                 startRotation,
                 targetRotation,
                 yawTurn != 0.0F));

@@ -11,6 +11,8 @@ public class EntityMotionTriggersPlugin extends JavaPlugin {
 
   private ComponentType<EntityStore, HorizontalMovingPlatformComponent>
       horizontalMovingPlatformComponentType;
+  private ComponentType<EntityStore, PendingSpawnItemCollisionComponent>
+      pendingSpawnItemCollisionComponentType;
 
   public EntityMotionTriggersPlugin(JavaPluginInit init) {
     super(init);
@@ -26,6 +28,11 @@ public class EntityMotionTriggersPlugin extends JavaPlugin {
     return horizontalMovingPlatformComponentType;
   }
 
+  public ComponentType<EntityStore, PendingSpawnItemCollisionComponent>
+      getPendingSpawnItemCollisionComponentType() {
+    return pendingSpawnItemCollisionComponentType;
+  }
+
   @Override
   protected void setup() {
     super.setup();
@@ -37,6 +44,13 @@ public class EntityMotionTriggersPlugin extends JavaPlugin {
                 "OrbGenesis_HorizontalMovingPlatform",
                 HorizontalMovingPlatformComponent.CODEC);
     getEntityStoreRegistry().registerSystem(new HorizontalMovingPlatformSystem());
+    pendingSpawnItemCollisionComponentType =
+        getEntityStoreRegistry()
+            .registerComponent(
+                PendingSpawnItemCollisionComponent.class,
+                "OrbGenesis_PendingSpawnItemCollision",
+                PendingSpawnItemCollisionComponent.CODEC);
+    getEntityStoreRegistry().registerSystem(new PendingSpawnItemCollisionSystem());
 
     TriggerVolumesPlugin triggerVolumes = TriggerVolumesPlugin.get();
     triggerVolumes.registerEffectType(
@@ -55,5 +69,8 @@ public class EntityMotionTriggersPlugin extends JavaPlugin {
         "RemovePlayerPlatformCollision",
         RemovePlayerPlatformCollisionEffect.class,
         RemovePlayerPlatformCollisionEffect.CODEC);
+    triggerVolumes.registerEffectType(
+        "SpawnItems", SpawnItemsEffect.class, SpawnItemsEffect.CODEC);
+    triggerVolumes.registerAssetField("SpawnItems", "Item", "Item");
   }
 }

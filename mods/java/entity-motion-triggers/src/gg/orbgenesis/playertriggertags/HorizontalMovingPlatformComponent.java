@@ -35,6 +35,8 @@ public class HorizontalMovingPlatformComponent implements Component<EntityStore>
           .add()
           .append(new KeyedCodec<>("LoopBack", Codec.BOOLEAN, false), (c, v) -> c.loopBack = v, c -> c.loopBack)
           .add()
+          .append(new KeyedCodec<>("DestroyAtDestination", Codec.BOOLEAN, false), (c, v) -> c.destroyAtDestination = v, c -> c.destroyAtDestination)
+          .add()
           .append(new KeyedCodec<>("Rotate", Codec.BOOLEAN, false), (c, v) -> c.rotate = v, c -> c.rotate)
           .add()
           .append(new KeyedCodec<>("StartRotationX", Codec.FLOAT, false), (c, v) -> c.startRotationX = v, c -> c.startRotationX)
@@ -61,6 +63,7 @@ public class HorizontalMovingPlatformComponent implements Component<EntityStore>
   private double speedY;
   private double speedZ;
   private boolean loopBack;
+  private boolean destroyAtDestination;
   private boolean rotate;
   private float startRotationX;
   private float startRotationY;
@@ -69,6 +72,7 @@ public class HorizontalMovingPlatformComponent implements Component<EntityStore>
   private float targetRotationY;
   private float targetRotationZ;
   private transient double elapsedTimeSeconds;
+  private transient boolean reachedDestination;
   private transient boolean initialized;
 
   public static ComponentType<EntityStore, HorizontalMovingPlatformComponent> getComponentType() {
@@ -88,6 +92,7 @@ public class HorizontalMovingPlatformComponent implements Component<EntityStore>
       double speedY,
       double speedZ,
       boolean loopBack,
+      boolean destroyAtDestination,
       Rotation3f startRotation,
       Rotation3f targetRotation,
       boolean rotate) {
@@ -101,6 +106,7 @@ public class HorizontalMovingPlatformComponent implements Component<EntityStore>
     this.speedY = speedY;
     this.speedZ = speedZ;
     this.loopBack = loopBack;
+    this.destroyAtDestination = destroyAtDestination;
     this.rotate = rotate;
     startRotationX = startRotation.x();
     startRotationY = startRotation.y();
@@ -127,6 +133,7 @@ public class HorizontalMovingPlatformComponent implements Component<EntityStore>
     double durationZ = duration(amplitudeZ, speedZ);
     // One shared progress value keeps the movement on the straight line to the target.
     double forwardDuration = Math.max(durationX, Math.max(durationY, durationZ));
+    reachedDestination = forwardDuration > 0.0D && elapsedTimeSeconds >= forwardDuration;
     if (!loopBack || forwardDuration == 0.0D) {
       return Math.min(elapsedTimeSeconds / forwardDuration, 1.0D);
     }
@@ -147,6 +154,10 @@ public class HorizontalMovingPlatformComponent implements Component<EntityStore>
 
   public boolean rotates() {
     return rotate;
+  }
+
+  public boolean shouldDestroyAtDestination() {
+    return destroyAtDestination && reachedDestination;
   }
 
   public Rotation3f rotationAt(double progress) {
@@ -173,6 +184,7 @@ public class HorizontalMovingPlatformComponent implements Component<EntityStore>
         speedY,
         speedZ,
         loopBack,
+        destroyAtDestination,
         new Rotation3f(startRotationX, startRotationY, startRotationZ),
         new Rotation3f(targetRotationX, targetRotationY, targetRotationZ),
         rotate);
