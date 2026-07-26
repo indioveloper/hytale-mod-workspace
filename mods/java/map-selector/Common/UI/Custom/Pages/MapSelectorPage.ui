@@ -1,0 +1,139 @@
+$C = "../Common.ui";
+
+@MapEntryStyle = ButtonStyle(
+  Default: (Background: (Color: #172639)),
+  Hovered: (Background: (Color: #29445f)),
+  Pressed: (Background: (Color: #3b6285)),
+  Sounds: $C.@ButtonSounds
+);
+
+@MapEntry = Button {
+  Anchor: (Height: 66, Bottom: 8);
+  Style: @MapEntryStyle;
+};
+
+$C.@PageOverlay {
+  Anchor: (Top: 130);
+  Background: #000000(0.15);
+}
+
+Group #MapSelectorGroup {
+  Anchor: (Height: 700);
+  LayoutMode: Center;
+
+  $C.@Container {
+    Anchor: (Width: 470, Height: 700);
+
+    #Title {
+      $C.@Title {
+        @Text = %server.customUI.mapSelector.title;
+      }
+    }
+
+    #Content {
+      LayoutMode: Top;
+      Padding: (Full: 16);
+
+      Label {
+        Anchor: (Bottom: 16);
+        Text: %server.customUI.mapSelector.description;
+        Style: (...$C.@DefaultLabelStyle, FontSize: 14);
+      }
+
+      Group {
+        LayoutMode: Top;
+        FlexWeight: 1;
+
+        @MapEntry #Map1Button {
+          Group {
+            LayoutMode: Left;
+            Padding: (Horizontal: 16);
+
+            Label #Map1Marker {
+              Anchor: (Width: 26);
+              Text: ">";
+              Style: (...$C.@SubtitleStyle, FontSize: 20, VerticalAlignment: Center);
+            }
+
+            Label {
+              FlexWeight: 1;
+              Text: %server.customUI.mapSelector.map1;
+              Style: (...$C.@DefaultLabelStyle, FontSize: 18, VerticalAlignment: Center);
+            }
+          }
+        }
+
+        @MapEntry #Map2Button {
+          Group {
+            LayoutMode: Left;
+            Padding: (Horizontal: 16);
+
+            Label #Map2Marker {
+              Anchor: (Width: 26);
+              Text: "";
+              Style: (...$C.@SubtitleStyle, FontSize: 20, VerticalAlignment: Center);
+            }
+
+            Label {
+              FlexWeight: 1;
+              Text: %server.customUI.mapSelector.map2;
+              Style: (...$C.@DefaultLabelStyle, FontSize: 18, VerticalAlignment: Center);
+            }
+          }
+        }
+      }
+
+      Group {
+        Anchor: (Top: 12, Bottom: 12);
+        LayoutMode: Left;
+
+        Label {
+          Anchor: (Right: 8);
+          Text: %server.customUI.mapSelector.selected;
+          Style: (...$C.@DefaultLabelStyle, FontSize: 13, VerticalAlignment: Center);
+        }
+
+        Label #SelectedMap {
+          Text: "mapa 1";
+          Style: (...$C.@SubtitleStyle, FontSize: 14, VerticalAlignment: Center);
+        }
+      }
+
+      Group {
+        LayoutMode: Left;
+
+        $C.@TextButton #GoButton {
+          @Anchor = (Width: 285, Right: 5, Height: 38);
+          @Text = %server.customUI.mapSelector.go;
+        }
+
+        $C.@CancelTextButton #CloseButton {
+          @Anchor = (Width: 145, Left: 5, Height: 38);
+          @Text = %server.customUI.mapSelector.close;
+        }
+      }
+    }
+  }
+
+  $C.@Container #PreviewBackdrop {
+    Anchor: (Left: 10, Width: 700, Height: 700);
+
+    #Title {
+      $C.@Title {
+        @Text = %server.customUI.mapSelector.preview;
+      }
+    }
+
+    #Content {
+      LayoutMode: Full;
+
+      PrefabPreviewComponent #PrefabPreview {
+        AllowDragYaw: true;
+        AllowDragPitch: true;
+        AllowZoom: true;
+        AllowPan: true;
+        ShowAnchor: false;
+      }
+    }
+  }
+}
