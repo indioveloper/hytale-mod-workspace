@@ -1,0 +1,365 @@
+{
+  "version": 8,
+  "blockIdVersion": 11,
+  "anchorX": 0,
+  "anchorY": 0,
+  "anchorZ": 0,
+  "blocks": [
+    {
+      "x": 0,
+      "y": 0,
+      "z": -1,
+      "name": "Metal_Copper_Fence",
+      "rotation": 1
+    },
+    {
+      "x": 0,
+      "y": 1,
+      "z": -1,
+      "name": "Metal_Copper_Fence",
+      "rotation": 1
+    },
+    {
+      "x": 0,
+      "y": 2,
+      "z": -1,
+      "name": "Metal_Copper_Fence",
+      "rotation": 1
+    },
+    {
+      "x": 0,
+      "y": 0,
+      "z": 0,
+      "name": "Metal_Copper_Fence",
+      "rotation": 1
+    },
+    {
+      "x": 0,
+      "y": 1,
+      "z": 0,
+      "name": "Metal_Copper_Fence",
+      "rotation": 1
+    },
+    {
+      "x": 0,
+      "y": 2,
+      "z": 0,
+      "name": "Metal_Copper_Fence",
+      "rotation": 1
+    },
+    {
+      "x": 0,
+      "y": 0,
+      "z": 1,
+      "name": "Metal_Copper_Fence",
+      "rotation": 1
+    },
+    {
+      "x": 0,
+      "y": 1,
+      "z": 1,
+      "name": "Metal_Copper_Fence",
+      "rotation": 1
+    },
+    {
+      "x": 0,
+      "y": 2,
+      "z": 1,
+      "name": "Metal_Copper_Fence",
+      "rotation": 1
+    }
+  ],
+  "fluids": [
+    {
+      "x": 0,
+      "y": 0,
+      "z": -1,
+      "name": "Empty",
+      "level": 0
+    },
+    {
+      "x": 0,
+      "y": 1,
+      "z": -1,
+      "name": "Empty",
+      "level": 0
+    },
+    {
+      "x": 0,
+      "y": 2,
+      "z": -1,
+      "name": "Empty",
+      "level": 0
+    },
+    {
+      "x": 0,
+      "y": 0,
+      "z": 0,
+      "name": "Empty",
+      "level": 0
+    },
+    {
+      "x": 0,
+      "y": 1,
+      "z": 0,
+      "name": "Empty",
+      "level": 0
+    },
+    {
+      "x": 0,
+      "y": 2,
+      "z": 0,
+      "name": "Empty",
+      "level": 0
+    },
+    {
+      "x": 0,
+      "y": 0,
+      "z": 1,
+      "name": "Empty",
+      "level": 0
+    },
+    {
+      "x": 0,
+      "y": 1,
+      "z": 1,
+      "name": "Empty",
+      "level": 0
+    },
+    {
+      "x": 0,
+      "y": 2,
+      "z": 1,
+      "name": "Empty",
+      "level": 0
+    }
+  ],
+  "entities": [
+    {
+      "Components": {
+        "Transform": {
+          "Position": {
+            "X": 0.5,
+            "Y": -2.5,
+            "Z": 0.5
+          },
+          "Rotation": {
+            "Pitch": 0.0,
+            "Yaw": 0.0,
+            "Roll": 0.0
+          }
+        },
+        "TriggerVolume": {
+          "Shape": {
+            "Type": "Box",
+            "Min": {
+              "X": -0.5,
+              "Y": -2.5,
+              "Z": -1.5
+            },
+            "Max": {
+              "X": 0.5,
+              "Y": 2.5,
+              "Z": 1.5
+            }
+          },
+          "Effects": [
+            {
+              "Type": "ApplyHorizontalPlatformMotion",
+              "Event": "TAG_ADDED",
+              "Interval": 0.0,
+              "Delay": 0.0,
+              "TargetX": 0.0,
+              "TargetY": 5.0,
+              "TargetZ": 0.0,
+              "CoordinateMode": "Relative",
+              "TurnDirection": "None",
+              "TurnAngle": 0.0,
+              "Speed": 0.0,
+              "SpeedY": 1.0,
+              "SpeedZ": 0.0,
+              "LoopBack": false,
+              "DestroyAtDestination": false
+            },
+            {
+              "Type": "PlaySound",
+              "Event": "TAG_ADDED",
+              "Interval": 0.0,
+              "Delay": 0.0,
+              "SoundEvent": "SFX_Drag_Weapons_Shield_Metal",
+              "Volume": 1.0,
+              "Pitch": 1.0,
+              "Location": "VolumeCenter",
+              "Offset": {
+                "X": 0.0,
+                "Y": 0.0,
+                "Z": 0.0
+              }
+            },
+            {
+              "Type": "PlaySound",
+              "Event": "TAG_ADDED",
+              "Interval": 0.0,
+              "Delay": 0.5,
+              "SoundEvent": "SFX_Drag_Weapons_Shield_Metal",
+              "Volume": 1.0,
+              "Pitch": 1.0,
+              "Location": "VolumeCenter",
+              "Offset": {
+                "X": 0.0,
+                "Y": 0.0,
+                "Z": 0.0
+              }
+            },
+            {
+              "Type": "PlaySound",
+              "Event": "TAG_ADDED",
+              "Interval": 0.0,
+              "Delay": 1.0,
+              "SoundEvent": "SFX_Drag_Weapons_Shield_Metal",
+              "Volume": 1.0,
+              "Pitch": 1.0,
+              "Location": "VolumeCenter",
+              "Offset": {
+                "X": 0.0,
+                "Y": 0.0,
+                "Z": 0.0
+              }
+            },
+            {
+              "Type": "PlaySound",
+              "Event": "TAG_ADDED",
+              "Interval": 0.0,
+              "Delay": 1.5,
+              "SoundEvent": "SFX_Drag_Weapons_Shield_Metal",
+              "Volume": 1.0,
+              "Pitch": 1.0,
+              "Location": "VolumeCenter",
+              "Offset": {
+                "X": 0.0,
+                "Y": 0.0,
+                "Z": 0.0
+              }
+            },
+            {
+              "Type": "PlaySound",
+              "Event": "TAG_ADDED",
+              "Interval": 0.0,
+              "Delay": 2.0,
+              "SoundEvent": "SFX_Drag_Weapons_Shield_Metal",
+              "Volume": 1.0,
+              "Pitch": 1.0,
+              "Location": "VolumeCenter",
+              "Offset": {
+                "X": 0.0,
+                "Y": 0.0,
+                "Z": 0.0
+              }
+            },
+            {
+              "Type": "PlaySound",
+              "Event": "TAG_ADDED",
+              "Interval": 0.0,
+              "Delay": 2.5,
+              "SoundEvent": "SFX_Drag_Weapons_Shield_Metal",
+              "Volume": 1.0,
+              "Pitch": 1.0,
+              "Location": "VolumeCenter",
+              "Offset": {
+                "X": 0.0,
+                "Y": 0.0,
+                "Z": 0.0
+              }
+            },
+            {
+              "Type": "PlaySound",
+              "Event": "TAG_ADDED",
+              "Interval": 0.0,
+              "Delay": 3.0,
+              "SoundEvent": "SFX_Drag_Weapons_Shield_Metal",
+              "Volume": 1.0,
+              "Pitch": 1.0,
+              "Location": "VolumeCenter",
+              "Offset": {
+                "X": 0.0,
+                "Y": 0.0,
+                "Z": 0.0
+              }
+            },
+            {
+              "Type": "PlaySound",
+              "Event": "TAG_ADDED",
+              "Interval": 0.0,
+              "Delay": 3.5,
+              "SoundEvent": "SFX_Drag_Weapons_Shield_Metal",
+              "Volume": 1.0,
+              "Pitch": 1.0,
+              "Location": "VolumeCenter",
+              "Offset": {
+                "X": 0.0,
+                "Y": 0.0,
+                "Z": 0.0
+              }
+            },
+            {
+              "Type": "PlaySound",
+              "Event": "TAG_ADDED",
+              "Interval": 0.0,
+              "Delay": 4.0,
+              "SoundEvent": "SFX_Drag_Weapons_Shield_Metal",
+              "Volume": 1.0,
+              "Pitch": 1.0,
+              "Location": "VolumeCenter",
+              "Offset": {
+                "X": 0.0,
+                "Y": 0.0,
+                "Z": 0.0
+              }
+            },
+            {
+              "Type": "PlaySound",
+              "Event": "TAG_ADDED",
+              "Interval": 0.0,
+              "Delay": 4.5,
+              "SoundEvent": "SFX_Drag_Weapons_Shield_Metal",
+              "Volume": 1.0,
+              "Pitch": 1.0,
+              "Location": "VolumeCenter",
+              "Offset": {
+                "X": 0.0,
+                "Y": 0.0,
+                "Z": 0.0
+              }
+            }
+          ],
+          "Conditions": [
+            {
+              "Type": "TagCondition",
+              "Event": "TAG_ADDED",
+              "Source": "Self",
+              "TagKey": "mobs_killed",
+              "TagValue": "15",
+              "Comparison": "Exactly",
+              "Inverted": false,
+              "MatchKey": "",
+              "MatchValue": "",
+              "Radius": 50.0,
+              "Center": "Volume"
+            }
+          ],
+          "Enabled": true,
+          "TargetTypes": [
+            "Player"
+          ],
+          "Tags": {
+            "barrera": "Empty",
+            "mobs_killed": "0"
+          },
+          "KeepLoaded": false,
+          "PrefabIndex": 0,
+          "Name": "barrera movil"
+        }
+      }
+    }
+  ]
+}

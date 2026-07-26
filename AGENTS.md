@@ -104,12 +104,16 @@ con el numero de version nuevo en la misma carpeta.
 - `mods/java/scoreboards`: codigo de 0.5.x. Revisar APIs, manifest y UI antes de
   intentar instalarlo en 0.6.x.
 - `mods/asset-packs`: packs independientes relativamente limpios.
+- `mods/asset-packs/roguelike-prefabs`: pack `tests:tests` con los mapas y
+  prefabs usados por `test roguelike` y por Map Selector.
 - `experiments/asset-packs`: material de laboratorio. Puede sobreescribir IDs
   vanilla y combinar varias pruebas incompatibles; inspeccionar antes de usar.
 
 ## Higiene del repositorio
 
-- No versionar JARs, ZIPs, clases, outputs, logs, backups o saves.
+- No versionar JARs, ZIPs, clases, outputs, logs, backups o saves directamente
+  en Git. Publicar los snapshots de saves y binarios como GitHub Release
+  artifacts y documentarlos bajo `snapshots/`.
 - No versionar `HytaleServer.jar`, assets extraidos ni el Shared Source.
 - No borrar fuentes legacy solo porque esten duplicadas; primero confirma que la
   version activa contiene todas sus funciones.

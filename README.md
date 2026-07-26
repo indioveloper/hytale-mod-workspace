@@ -32,6 +32,7 @@ y contratos de comportamiento. Los NPCs reutilizables viven en
 - `mechanisms`
 - `raynor-npcs`
 - `nexus-siege-props`
+- `roguelike-prefabs` (`tests:tests`, usado por `test roguelike`)
 
 `experiments/asset-packs` conserva prototipos y material de investigacion:
 flechas con `SpawnTriggerVolume`, outlines, ventanas, prefabs, archery game,
@@ -146,11 +147,10 @@ archivo no determina la version, el `manifest.json` interior si.
 
 ## Mundos y builds
 
-Los mundos no se versionan aqui porque sus regiones binarias son grandes y no
-generan diffs utiles. En el PC de origen siguen bajo
-`%APPDATA%\Hytale\data\pre-release\Saves`. Para transportar un mapa, comprime
-un snapshot sin `logs`, `backup` ni `mods`, y guardalo como release artifact o
-en almacenamiento externo.
+Los mundos no se guardan directamente en el historial Git porque sus regiones
+binarias son grandes y no generan diffs utiles. Los snapshots restaurables se
+documentan bajo `snapshots/` y sus ZIPs se publican como GitHub Release
+artifacts, sin `logs`, `backup`, `telemetry` ni `mods`.
 
 Los outputs `.build`, `build`, `dist`, `target`, JARs y ZIPs tambien se ignoran.
 Las releases de GitHub son el lugar adecuado para publicar binarios verificables.
