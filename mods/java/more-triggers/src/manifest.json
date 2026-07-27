@@ -1,0 +1,18 @@
+{
+    "Group": "OrbGenesis",
+    "Name": "More Triggers",
+    "Version": "1.0.3",
+    "Description": "Adds extra Trigger Volume effects: Remove Event Title, Random Tag Selection, and Paste Random Prefab.",
+    "Authors": [
+        {
+            "Name": "OrbGenesis",
+            "Url": "https://orbgenesis.gg"
+        }
+    ],
+    "DisabledByDefault": false,
+    "IncludesAssetPack": true,
+    "Dependencies": {},
+    "OptionalDependencies": {},
+    "ServerVersion": "2026.05.07-5efa15f6d",
+    "Main": "gg.orbgenesis.moretriggers.MoreTriggersPlugin"
+}
