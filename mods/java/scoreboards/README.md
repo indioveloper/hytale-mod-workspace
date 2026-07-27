@@ -1,13 +1,20 @@
 # Scoreboards Mod
 
-Carpeta canonica unificada para el mod de scoreboards.
+Mod de Hytale para crear y editar scoreboards/objectives desde una UI nativa.
 
-Este proyecto conserva la variante mas completa, con editor UI, tracker de
-scoreboards y sistema de muerte. La carpeta local `scoreboards-mod-local` fue
-eliminada como copia separada.
+Esta es la carpeta canonica para seguir desarrollandolo dentro del workspace:
 
-Estado: legacy de Hytale 0.5.x. Antes de usarlo en pre-release 0.6.8 hay que
-revisar API, manifest, UI nativa y eventos de muerte/scoreboard. En concreto,
-`Common/UI/Custom/Common.ui` usa `PageOverlay`, un nodo que pre-release 0.6.8
-no reconoce; el JAR no debe instalarse hasta sustituirlo por la estructura de
-UI vigente y validar todos los documentos.
+- `mods/java/scoreboards`
+
+Estado actual:
+
+- comandos disponibles: `/scoreboard` y `/scoreboards`
+- crea el objective nativo y tambien el HUD lateral
+- la primera linea escucha kills de skeleton como prueba funcional
+- la UI usa paginas estaticas `ScoreboardEditor1.ui` a `ScoreboardEditor5.ui`
+
+Notas:
+
+- el contexto historico de debugging esta en `CONTEXTO_SCOREBOARDS.md`
+- el siguiente paso natural es generalizar triggers mas alla de `SKELETON_KILL`
+- sigue siendo una rama legacy basada en Hytale 0.5.x; antes de usarlo en pre-release 0.6.x hay que volver a validar API y UI

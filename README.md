@@ -18,7 +18,7 @@ backups, instalaciones del juego, el Hytale Shared Source ni mundos completos.
 | `mods/java/map-selector` | Prototipo, v0.1.1 | Selector cerrado de mapas con previews 3D de prefabs y teletransporte mediante `/mapas`. |
 | `mods/java/trigger-execute-command` | Actualizado, v1.1.0 | Efecto `ExecuteCommand` para lanzar comandos desde Trigger Volumes en pre-release 0.6.x. |
 | `mods/java/chest-labels` | Pendiente de UI, v0.1.0 | Nombres e iconos persistentes para cofres, con HUD y editor. Su editor usa `PageOverlay`, incompatible con la UI de pre-release 0.6.8. |
-| `mods/java/scoreboards` | Pendiente de UI, Hytale 0.5 | Editor y seguimiento de scoreboards mediante UI nativa. Absorbe la variante local; su `Common.ui` usa `PageOverlay`, incompatible con pre-release 0.6.8. |
+| `mods/java/scoreboards` | Legacy Hytale 0.5, integrado | Editor y seguimiento de scoreboards mediante UI nativa. Incluye HUD lateral, registro en objectives nativos y trigger inicial de kills de skeleton; pendiente de adaptar y revalidar para pre-release 0.6.x. |
 
 `games/nexus-siege` contiene el proyecto del minijuego, documentacion, pruebas
 y contratos de comportamiento. Los NPCs reutilizables viven en
