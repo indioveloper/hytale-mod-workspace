@@ -89,6 +89,13 @@ con el numero de version nuevo en la misma carpeta.
 
 ## Otros proyectos
 
+- `mods/java/build-battle`: prototipo `0.2.2`. `SuggestBuildTheme` abre una UI
+  de una palabra y guarda en el propio volumen `theme_<palabra>=empty` y
+  `points=0`. La regla `RestrictBuildBattleCreativeTools`, usada bajo
+  `Always Active`, aplica una whitelist de Builder Tools por permisos e IDs de
+  items y conserva el acceso a los Technical Block Sets. Desde 0.2.2 solo se
+  registra como regla; el save `Trigger Volumes` se migro de `Effects` a
+  `Rules`.
 - `mods/java/chest-labels`: mod funcional en fase de prototipo; conserva datos
   en componentes de bloques y usa UI custom.
 - `mods/java/entity-motion-triggers`: efectos de movimiento de entidades y

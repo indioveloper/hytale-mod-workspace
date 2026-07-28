@@ -1,0 +1,122 @@
+@TitleStyle = LabelStyle(
+  FontSize: 24,
+  RenderBold: true,
+  RenderUppercase: true,
+  HorizontalAlignment: Center,
+  VerticalAlignment: Center,
+  TextColor: #dcecff
+);
+
+@BodyStyle = LabelStyle(
+  FontSize: 16,
+  Wrap: true,
+  HorizontalAlignment: Center,
+  VerticalAlignment: Center,
+  TextColor: #b8c9da
+);
+
+@ButtonLabelStyle = LabelStyle(
+  FontSize: 16,
+  RenderBold: true,
+  RenderUppercase: true,
+  HorizontalAlignment: Center,
+  VerticalAlignment: Center,
+  TextColor: #eaf4ff
+);
+
+@PrimaryButtonStyle = TextButtonStyle(
+  Default: (
+    Background: (Color: #315f8f),
+    LabelStyle: @ButtonLabelStyle
+  ),
+  Hovered: (
+    Background: (Color: #427bb5),
+    LabelStyle: @ButtonLabelStyle
+  ),
+  Pressed: (
+    Background: (Color: #24496e),
+    LabelStyle: @ButtonLabelStyle
+  )
+);
+
+@SecondaryButtonStyle = TextButtonStyle(
+  Default: (
+    Background: (Color: #354251),
+    LabelStyle: @ButtonLabelStyle
+  ),
+  Hovered: (
+    Background: (Color: #4b5d70),
+    LabelStyle: @ButtonLabelStyle
+  ),
+  Pressed: (
+    Background: (Color: #28333f),
+    LabelStyle: @ButtonLabelStyle
+  )
+);
+
+Group #BuildBattleOverlay {
+  Background: (Color: #000000(0.82));
+  LayoutMode: Middle;
+
+  Group #ThemeSuggestionContainer {
+    Anchor: (Width: 480, Height: 310);
+    Background: (Color: #172331);
+    LayoutMode: Top;
+    Padding: (Full: 24);
+
+    Label {
+      Anchor: (Height: 44, Bottom: 16);
+      Text: %server.customUI.buildBattle.theme.title;
+      Style: @TitleStyle;
+    }
+
+    Label {
+      Anchor: (Height: 48, Bottom: 14);
+      Text: %server.customUI.buildBattle.theme.prompt;
+      Style: @BodyStyle;
+    }
+
+    Label #ErrorMessage {
+      Anchor: (Height: 44, Bottom: 10);
+      Text: %server.customUI.buildBattle.theme.error;
+      Style: (
+        ...@BodyStyle,
+        FontSize: 13,
+        RenderBold: true,
+        TextColor: #f2c4c4
+      );
+      Background: (Color: #813131);
+      Padding: (Full: 8);
+      Visible: false;
+    }
+
+    TextField #ThemeInput {
+      Anchor: (Height: 40);
+      Style: InputFieldStyle(TextColor: #eaf4ff);
+      PlaceholderStyle: InputFieldStyle(TextColor: #71869b);
+      Background: (Color: #0d151e);
+      Padding: (Horizontal: 10);
+      PlaceholderText: %server.customUI.buildBattle.theme.placeholder;
+      MaxLength: 32;
+    }
+
+    Group {
+      Anchor: (Top: 22, Height: 44);
+      LayoutMode: Left;
+
+      TextButton #SuggestButton {
+        Anchor: (Right: 5, Height: 44);
+        FlexWeight: 1;
+        Text: %server.customUI.buildBattle.theme.suggest;
+        Style: @PrimaryButtonStyle;
+      }
+
+      TextButton #CancelButton {
+        Anchor: (Left: 5, Height: 44);
+        FlexWeight: 1;
+        Text: %server.customUI.buildBattle.theme.cancel;
+        Style: @SecondaryButtonStyle;
+      }
+    }
+  }
+}
