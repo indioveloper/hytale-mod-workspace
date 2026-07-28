@@ -1,0 +1,21 @@
+{
+  "Group": "OrbGenesis",
+  "Name": "Build Battle",
+  "Version": "0.2.2",
+  "Description": "Adds Build Battle theme suggestions and plot-safe creative tool restrictions.",
+  "Authors": [
+    {
+      "Name": "OrbGenesis",
+      "Url": "https://orbgenesis.gg"
+    }
+  ],
+  "DisabledByDefault": false,
+  "IncludesAssetPack": true,
+  "Dependencies": {
+    "Hytale:TriggerVolumes": "*",
+    "Hytale:BuilderTools": "*"
+  },
+  "OptionalDependencies": {},
+  "ServerVersion": ">=0.6.0-pre <0.7.0",
+  "Main": "gg.orbgenesis.buildbattle.BuildBattlePlugin"
+}

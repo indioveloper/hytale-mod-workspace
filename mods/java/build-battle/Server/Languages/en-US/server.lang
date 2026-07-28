@@ -1,0 +1,9 @@
+customUI.triggerVolumeEffectEditor.effectType.SuggestBuildTheme = Suggest Build Battle theme
+customUI.triggerVolumeEffectEditor.ruleType.RestrictBuildBattleCreativeTools = Restrict creative tools (Build Battle)
+
+customUI.buildBattle.theme.title = BUILD BATTLE
+customUI.buildBattle.theme.prompt = Suggest one word as the theme to build:
+customUI.buildBattle.theme.placeholder = e.g. castle
+customUI.buildBattle.theme.error = Enter one word of up to 32 letters or numbers. Hyphens and underscores are allowed.
+customUI.buildBattle.theme.suggest = SUGGEST
+customUI.buildBattle.theme.cancel = CANCEL
