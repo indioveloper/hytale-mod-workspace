@@ -12,6 +12,8 @@ Incluye:
   sutil.
 - Ghost outline rock stone: textura, icono e item
   `Ghost_Outline_Rock_Stone`.
+- Marcas de conteo murales `OrbGenesis_Tally_Marks`, con cinco estados,
+  interaccion ciclica y hitbox fina.
 - Herramienta de generacion de textura `tools/make_outline_texture.py`.
 
 Origen: `visible-barrier-block` y `ghost-outline-blocks`.
@@ -56,8 +58,15 @@ Estado: actualizado a rango de pre-release 0.6.x; compilar y smoke testear en
 
 ### `mods/asset-packs/nexus-siege-props`
 
-Pack minimo de props para Nexus Siege. Ahora mismo contiene el prefab
-`sword_stand.prefab.json`.
+Pack de props para Nexus Siege. Contiene soportes de espada, braseros
+encendidos/apagados, un mecanismo de braseros y una plataforma 1x5.
+
+### Packs independientes conservados
+
+- `ghost-outline-blocks`: distribucion independiente del bloque de contorno,
+  ya integrado tambien en `blocks`.
+- `visible-barrier-block`: distribucion independiente de la barrera visible,
+  ya integrada tambien en `blocks`.
 
 ## Experiments
 
@@ -78,6 +87,15 @@ con IDs y overrides potencialmente incompatibles entre si.
   `timer30sec`, prefabs de parkour/ores/secuencia de palancas y trigger effect.
 - `tests-0.6.7`: prefabs de filas de roca/aqua para pruebas recientes.
 - `trigger-assets`: dos efectos de Trigger Volumes (`a`, `b`) de laboratorio.
+- `connect4`: assets editables del minijuego de FoxyCCA. No incluye la
+  instancia, regiones, BSON ni backups que venian dentro del ZIP original.
+- `infinity-pillars`: prefab `octogono` usado por la prueba de pilares.
+- `legacy-essence-buttons`: distribucion independiente antigua de los botones
+  de esencia, ya integrada en `mods/asset-packs/mechanisms`.
+- `legacy-real-lever-animation`: distribucion independiente antigua de la
+  palanca animada, ya integrada en `mods/asset-packs/mechanisms`.
+- `legacy-nexus-siege-npcs`: primer pack de NPCs de Nexus Siege, reemplazado
+  por `mods/asset-packs/raynor-npcs`.
 
 Antes de promover algo desde `experiments`, copiar solo el asset concreto a un
 pack canonico y revisar IDs, dependencias y overrides vanilla.

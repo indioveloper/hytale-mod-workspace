@@ -1,0 +1,639 @@
+{
+  "version": 8,
+  "blockIdVersion": 11,
+  "anchorX": 0,
+  "anchorY": 0,
+  "anchorZ": 0,
+  "blocks": [
+    {
+      "x": -3,
+      "y": 0,
+      "z": -1,
+      "name": "Rock_Stone_Brick_Smooth"
+    },
+    {
+      "x": -3,
+      "y": 0,
+      "z": 0,
+      "name": "Empty"
+    },
+    {
+      "x": -3,
+      "y": 0,
+      "z": 1,
+      "name": "Empty"
+    },
+    {
+      "x": -2,
+      "y": 0,
+      "z": -1,
+      "name": "Rock_Stone_Brick_Smooth"
+    },
+    {
+      "x": -2,
+      "y": 0,
+      "z": 0,
+      "name": "Empty"
+    },
+    {
+      "x": -2,
+      "y": 0,
+      "z": 1,
+      "name": "Empty"
+    },
+    {
+      "x": -1,
+      "y": 0,
+      "z": -1,
+      "name": "Rock_Stone_Brick_Smooth"
+    },
+    {
+      "x": -1,
+      "y": 0,
+      "z": 0,
+      "name": "Empty"
+    },
+    {
+      "x": -1,
+      "y": 0,
+      "z": 1,
+      "name": "Empty"
+    },
+    {
+      "x": 0,
+      "y": 0,
+      "z": -1,
+      "name": "Rock_Stone_Brick_Smooth"
+    },
+    {
+      "x": 0,
+      "y": 0,
+      "z": 0,
+      "name": "Empty"
+    },
+    {
+      "x": 0,
+      "y": 0,
+      "z": 1,
+      "name": "Empty"
+    },
+    {
+      "x": 1,
+      "y": 0,
+      "z": -1,
+      "name": "Rock_Stone_Brick_Smooth"
+    },
+    {
+      "x": 1,
+      "y": 0,
+      "z": 0,
+      "name": "Empty"
+    },
+    {
+      "x": 1,
+      "y": 0,
+      "z": 1,
+      "name": "Empty"
+    },
+    {
+      "x": 2,
+      "y": 0,
+      "z": -1,
+      "name": "Rock_Stone_Brick_Smooth"
+    },
+    {
+      "x": 2,
+      "y": 0,
+      "z": 0,
+      "name": "Empty"
+    },
+    {
+      "x": 2,
+      "y": 0,
+      "z": 1,
+      "name": "Empty"
+    },
+    {
+      "x": 3,
+      "y": 0,
+      "z": -1,
+      "name": "Rock_Stone_Brick_Smooth"
+    },
+    {
+      "x": 3,
+      "y": 0,
+      "z": 0,
+      "name": "Empty"
+    },
+    {
+      "x": 3,
+      "y": 0,
+      "z": 1,
+      "name": "Empty"
+    },
+    {
+      "x": 4,
+      "y": 0,
+      "z": -1,
+      "name": "Rock_Stone_Brick_Smooth"
+    },
+    {
+      "x": 4,
+      "y": 0,
+      "z": 0,
+      "name": "Empty"
+    },
+    {
+      "x": 4,
+      "y": 0,
+      "z": 1,
+      "name": "Empty"
+    }
+  ],
+  "fluids": [
+    {
+      "x": -3,
+      "y": 0,
+      "z": -1,
+      "name": "Empty",
+      "level": 0
+    },
+    {
+      "x": -3,
+      "y": 0,
+      "z": 0,
+      "name": "Empty",
+      "level": 0
+    },
+    {
+      "x": -3,
+      "y": 0,
+      "z": 1,
+      "name": "Empty",
+      "level": 0
+    },
+    {
+      "x": -2,
+      "y": 0,
+      "z": -1,
+      "name": "Empty",
+      "level": 0
+    },
+    {
+      "x": -2,
+      "y": 0,
+      "z": 0,
+      "name": "Empty",
+      "level": 0
+    },
+    {
+      "x": -2,
+      "y": 0,
+      "z": 1,
+      "name": "Empty",
+      "level": 0
+    },
+    {
+      "x": -1,
+      "y": 0,
+      "z": -1,
+      "name": "Empty",
+      "level": 0
+    },
+    {
+      "x": -1,
+      "y": 0,
+      "z": 0,
+      "name": "Empty",
+      "level": 0
+    },
+    {
+      "x": -1,
+      "y": 0,
+      "z": 1,
+      "name": "Empty",
+      "level": 0
+    },
+    {
+      "x": 0,
+      "y": 0,
+      "z": -1,
+      "name": "Empty",
+      "level": 0
+    },
+    {
+      "x": 0,
+      "y": 0,
+      "z": 0,
+      "name": "Empty",
+      "level": 0
+    },
+    {
+      "x": 0,
+      "y": 0,
+      "z": 1,
+      "name": "Empty",
+      "level": 0
+    },
+    {
+      "x": 1,
+      "y": 0,
+      "z": -1,
+      "name": "Empty",
+      "level": 0
+    },
+    {
+      "x": 1,
+      "y": 0,
+      "z": 0,
+      "name": "Empty",
+      "level": 0
+    },
+    {
+      "x": 1,
+      "y": 0,
+      "z": 1,
+      "name": "Empty",
+      "level": 0
+    },
+    {
+      "x": 2,
+      "y": 0,
+      "z": -1,
+      "name": "Empty",
+      "level": 0
+    },
+    {
+      "x": 2,
+      "y": 0,
+      "z": 0,
+      "name": "Empty",
+      "level": 0
+    },
+    {
+      "x": 2,
+      "y": 0,
+      "z": 1,
+      "name": "Empty",
+      "level": 0
+    },
+    {
+      "x": 3,
+      "y": 0,
+      "z": -1,
+      "name": "Empty",
+      "level": 0
+    },
+    {
+      "x": 3,
+      "y": 0,
+      "z": 0,
+      "name": "Empty",
+      "level": 0
+    },
+    {
+      "x": 3,
+      "y": 0,
+      "z": 1,
+      "name": "Empty",
+      "level": 0
+    },
+    {
+      "x": 4,
+      "y": 0,
+      "z": -1,
+      "name": "Empty",
+      "level": 0
+    },
+    {
+      "x": 4,
+      "y": 0,
+      "z": 0,
+      "name": "Empty",
+      "level": 0
+    },
+    {
+      "x": 4,
+      "y": 0,
+      "z": 1,
+      "name": "Empty",
+      "level": 0
+    }
+  ],
+  "entities": [
+    {
+      "Components": {
+        "PreventItemMerging": {},
+        "HitboxCollision": {
+          "Version": 1,
+          "HitboxCollisionConfigId": "HardCollision"
+        },
+        "Prop": {},
+        "BlockEntity": {
+          "Version": 1,
+          "BlockTypeKey": "Wood_Softwood_Planks_Half"
+        },
+        "Transform": {
+          "Position": {
+            "X": -2.004779815673828,
+            "Y": 0.9724578857421875,
+            "Z": 0.8019051551818848
+          },
+          "Rotation": {
+            "Pitch": 0.0,
+            "Yaw": -0.012325290590524673,
+            "Roll": 0.0
+          }
+        },
+        "UUID": {
+          "UUID": {
+            "$binary": "J/5syrKiNYidaTxmAWBQ+A==",
+            "$type": "04"
+          }
+        },
+        "PreventPickup": {},
+        "EntityScale": {
+          "Scale": 1.5
+        },
+        "Item": {
+          "Item": {
+            "Id": "Wood_Softwood_Planks_Half",
+            "Quantity": 1,
+            "Durability": 0.0,
+            "MaxDurability": 0.0,
+            "Quality": 0,
+            "OverrideDroppedItemAnimation": true
+          },
+          "StackDelay": 1.5,
+          "PickupDelay": 0.5,
+          "PickupThrottle": 0.0,
+          "RemovedByPlayerPickup": false
+        },
+        "PrefabCopyable": {}
+      }
+    },
+    {
+      "Components": {
+        "PreventItemMerging": {},
+        "HitboxCollision": {
+          "Version": 1,
+          "HitboxCollisionConfigId": "HardCollision"
+        },
+        "Prop": {},
+        "BlockEntity": {
+          "Version": 1,
+          "BlockTypeKey": "Wood_Softwood_Planks_Half"
+        },
+        "Transform": {
+          "Position": {
+            "X": 3.9803085327148438,
+            "Y": 0.9724578857421875,
+            "Z": 0.8019051551818848
+          },
+          "Rotation": {
+            "Pitch": 0.0,
+            "Yaw": -0.012325290590524673,
+            "Roll": 0.0
+          }
+        },
+        "UUID": {
+          "UUID": {
+            "$binary": "JqrcJt90RNGPeEZYz+v++A==",
+            "$type": "04"
+          }
+        },
+        "PreventPickup": {},
+        "EntityScale": {
+          "Scale": 1.5
+        },
+        "Item": {
+          "Item": {
+            "Id": "Wood_Softwood_Planks_Half",
+            "Quantity": 1,
+            "Durability": 0.0,
+            "MaxDurability": 0.0,
+            "Quality": 0,
+            "OverrideDroppedItemAnimation": true
+          },
+          "StackDelay": 1.5,
+          "PickupDelay": 0.5,
+          "PickupThrottle": 0.0,
+          "RemovedByPlayerPickup": false
+        },
+        "PrefabCopyable": {}
+      }
+    },
+    {
+      "Components": {
+        "PreventItemMerging": {},
+        "HitboxCollision": {
+          "Version": 1,
+          "HitboxCollisionConfigId": "HardCollision"
+        },
+        "Prop": {},
+        "BlockEntity": {
+          "Version": 1,
+          "BlockTypeKey": "Wood_Softwood_Planks_Half"
+        },
+        "Transform": {
+          "Position": {
+            "X": 0.9749526977539062,
+            "Y": 0.94403076171875,
+            "Z": 0.8017981052398682
+          },
+          "Rotation": {
+            "Pitch": 0.0,
+            "Yaw": -0.012325290590524673,
+            "Roll": 0.0
+          }
+        },
+        "UUID": {
+          "UUID": {
+            "$binary": "JM3tAHsoQQCLycu7Js7nxg==",
+            "$type": "04"
+          }
+        },
+        "PreventPickup": {},
+        "EntityScale": {
+          "Scale": 1.5
+        },
+        "Item": {
+          "Item": {
+            "Id": "Wood_Softwood_Planks_Half",
+            "Quantity": 1,
+            "Durability": 0.0,
+            "MaxDurability": 0.0,
+            "Quality": 0,
+            "OverrideDroppedItemAnimation": true
+          },
+          "StackDelay": 1.5,
+          "PickupDelay": 0.5,
+          "PickupThrottle": 0.0,
+          "RemovedByPlayerPickup": false
+        },
+        "PrefabCopyable": {}
+      }
+    },
+    {
+      "Components": {
+        "PreventItemMerging": {},
+        "HitboxCollision": {
+          "Version": 1,
+          "HitboxCollisionConfigId": "HardCollision"
+        },
+        "Prop": {},
+        "BlockEntity": {
+          "Version": 1,
+          "BlockTypeKey": "Wood_Softwood_Planks_Half"
+        },
+        "Transform": {
+          "Position": {
+            "X": 2.4785308837890625,
+            "Y": 0.9724578857421875,
+            "Z": 0.8017830848693848
+          },
+          "Rotation": {
+            "Pitch": 0.0,
+            "Yaw": -0.012325290590524673,
+            "Roll": 0.0
+          }
+        },
+        "UUID": {
+          "UUID": {
+            "$binary": "zgoJIEahTzCmlVx2f1vDZg==",
+            "$type": "04"
+          }
+        },
+        "PreventPickup": {},
+        "EntityScale": {
+          "Scale": 1.5
+        },
+        "Item": {
+          "Item": {
+            "Id": "Wood_Softwood_Planks_Half",
+            "Quantity": 1,
+            "Durability": 0.0,
+            "MaxDurability": 0.0,
+            "Quality": 0,
+            "OverrideDroppedItemAnimation": true
+          },
+          "StackDelay": 1.5,
+          "PickupDelay": 0.5,
+          "PickupThrottle": 0.0,
+          "RemovedByPlayerPickup": false
+        },
+        "PrefabCopyable": {}
+      }
+    },
+    {
+      "Components": {
+        "PreventItemMerging": {},
+        "HitboxCollision": {
+          "Version": 1,
+          "HitboxCollisionConfigId": "HardCollision"
+        },
+        "Prop": {},
+        "BlockEntity": {
+          "Version": 1,
+          "BlockTypeKey": "Wood_Softwood_Planks_Half"
+        },
+        "Transform": {
+          "Position": {
+            "X": -0.5082511901855469,
+            "Y": 0.9724578857421875,
+            "Z": 0.8017981052398682
+          },
+          "Rotation": {
+            "Pitch": 0.0,
+            "Yaw": -0.012325290590524673,
+            "Roll": 0.0
+          }
+        },
+        "UUID": {
+          "UUID": {
+            "$binary": "MEukcwPARYmV0RR9BHU1TQ==",
+            "$type": "04"
+          }
+        },
+        "PreventPickup": {},
+        "EntityScale": {
+          "Scale": 1.5
+        },
+        "Item": {
+          "Item": {
+            "Id": "Wood_Softwood_Planks_Half",
+            "Quantity": 1,
+            "Durability": 0.0,
+            "MaxDurability": 0.0,
+            "Quality": 0,
+            "OverrideDroppedItemAnimation": true
+          },
+          "StackDelay": 1.5,
+          "PickupDelay": 0.5,
+          "PickupThrottle": 0.0,
+          "RemovedByPlayerPickup": false
+        },
+        "PrefabCopyable": {}
+      }
+    },
+    {
+      "Components": {
+        "Transform": {
+          "Position": {
+            "X": 1.0,
+            "Y": 0.625,
+            "Z": 1.0
+          },
+          "Rotation": {
+            "Pitch": 0.0,
+            "Yaw": 0.0,
+            "Roll": 0.0
+          }
+        },
+        "TriggerVolume": {
+          "Shape": {
+            "Type": "Box",
+            "Min": {
+              "X": -4.0,
+              "Y": -0.625,
+              "Z": -1.0
+            },
+            "Max": {
+              "X": 4.0,
+              "Y": 0.625,
+              "Z": 1.0
+            }
+          },
+          "Effects": [
+            {
+              "Type": "ApplyHorizontalPlatformMotion",
+              "Event": "SIGNAL_RECEIVED",
+              "Interval": 0.0,
+              "Delay": 0.0,
+              "TargetX": 0.0,
+              "TargetY": 0.0,
+              "TargetZ": 5.0,
+              "CoordinateMode": "Relative",
+              "TurnDirection": "None",
+              "TurnAngle": 0.0,
+              "Speed": 0.0,
+              "SpeedY": 0.0,
+              "SpeedZ": 1.0,
+              "LoopBack": false
+            }
+          ],
+          "Enabled": true,
+          "TargetTypes": [
+            "Player"
+          ],
+          "Tags": {
+            "plataforma_1": "Empty"
+          },
+          "KeepLoaded": false,
+          "PrefabIndex": 0,
+          "Name": "plataforma 1"
+        }
+      }
+    }
+  ]
+}

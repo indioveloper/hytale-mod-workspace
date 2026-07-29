@@ -1,0 +1,11 @@
+{
+  "Group": "juego pilares",
+  "Name": "juego pilares",
+  "Authors": [],
+  "Dependencies": {},
+  "OptionalDependencies": {},
+  "LoadBefore": {},
+  "DisabledByDefault": false,
+  "IncludesAssetPack": false,
+  "SubPlugins": []
+}

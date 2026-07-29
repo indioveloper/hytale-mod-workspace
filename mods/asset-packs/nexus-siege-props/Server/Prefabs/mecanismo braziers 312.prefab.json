@@ -1,0 +1,1223 @@
+{
+  "version": 8,
+  "blockIdVersion": 11,
+  "anchorX": 0,
+  "anchorY": 0,
+  "anchorZ": 0,
+  "blocks": [
+    {
+      "x": -2,
+      "y": 0,
+      "z": -3,
+      "name": "Rock_Stone_Brick_Decorative"
+    },
+    {
+      "x": -2,
+      "y": 0,
+      "z": -2,
+      "name": "Rock_Stone_Brick_Decorative"
+    },
+    {
+      "x": -2,
+      "y": 0,
+      "z": -1,
+      "name": "*Furniture_Village_Brazier_State_Definitions_Off"
+    },
+    {
+      "x": -2,
+      "y": 0,
+      "z": 0,
+      "name": "Rock_Stone_Brick_Decorative"
+    },
+    {
+      "x": -2,
+      "y": 0,
+      "z": 1,
+      "name": "*Furniture_Village_Brazier_State_Definitions_Off"
+    },
+    {
+      "x": -2,
+      "y": 0,
+      "z": 2,
+      "name": "Rock_Stone_Brick_Decorative"
+    },
+    {
+      "x": -2,
+      "y": 0,
+      "z": 3,
+      "name": "*Furniture_Village_Brazier_State_Definitions_Off"
+    },
+    {
+      "x": -1,
+      "y": 0,
+      "z": -3,
+      "name": "Empty"
+    },
+    {
+      "x": -1,
+      "y": 0,
+      "z": -2,
+      "name": "Empty"
+    },
+    {
+      "x": -1,
+      "y": 0,
+      "z": -1,
+      "name": "Empty"
+    },
+    {
+      "x": -1,
+      "y": 0,
+      "z": 0,
+      "name": "Empty"
+    },
+    {
+      "x": -1,
+      "y": 0,
+      "z": 1,
+      "name": "Empty"
+    },
+    {
+      "x": -1,
+      "y": 0,
+      "z": 2,
+      "name": "Empty"
+    },
+    {
+      "x": -1,
+      "y": 0,
+      "z": 3,
+      "name": "Empty"
+    },
+    {
+      "x": 0,
+      "y": 0,
+      "z": -3,
+      "name": "Teleporter",
+      "filler": 31
+    },
+    {
+      "x": 0,
+      "y": 0,
+      "z": -2,
+      "name": "Empty"
+    },
+    {
+      "x": 0,
+      "y": 0,
+      "z": -1,
+      "name": "Empty"
+    },
+    {
+      "x": 0,
+      "y": 0,
+      "z": 0,
+      "name": "Empty"
+    },
+    {
+      "x": 0,
+      "y": 0,
+      "z": 1,
+      "name": "Empty"
+    },
+    {
+      "x": 0,
+      "y": 0,
+      "z": 2,
+      "name": "Empty"
+    },
+    {
+      "x": 0,
+      "y": 0,
+      "z": 3,
+      "name": "Empty"
+    },
+    {
+      "x": 1,
+      "y": 0,
+      "z": -3,
+      "name": "Teleporter",
+      "components": {
+        "Components": {
+          "Teleporter": {
+            "Relative": 0,
+            "OwnedWarp": "Zunjo",
+            "IsCustomName": false,
+            "WarpNameWordList": "Runes"
+          },
+          "TrackedPlacement": {
+            "BlockName": "Teleporter"
+          },
+          "PlacedByInteraction": {
+            "WhoPlacedUuid": {
+              "$binary": "PMpQT7H8Q4ul5h5KAPv2Cg==",
+              "$type": "04"
+            }
+          }
+        }
+      }
+    },
+    {
+      "x": 1,
+      "y": 0,
+      "z": -2,
+      "name": "Empty"
+    },
+    {
+      "x": 1,
+      "y": 0,
+      "z": -1,
+      "name": "Empty"
+    },
+    {
+      "x": 1,
+      "y": 0,
+      "z": 0,
+      "name": "Empty"
+    },
+    {
+      "x": 1,
+      "y": 0,
+      "z": 1,
+      "name": "Empty"
+    },
+    {
+      "x": 1,
+      "y": 0,
+      "z": 2,
+      "name": "Empty"
+    },
+    {
+      "x": 1,
+      "y": 0,
+      "z": 3,
+      "name": "Empty"
+    },
+    {
+      "x": 2,
+      "y": 0,
+      "z": -3,
+      "name": "Teleporter",
+      "filler": 1
+    },
+    {
+      "x": 2,
+      "y": 0,
+      "z": -2,
+      "name": "Empty"
+    },
+    {
+      "x": 2,
+      "y": 0,
+      "z": -1,
+      "name": "Empty"
+    },
+    {
+      "x": 2,
+      "y": 0,
+      "z": 0,
+      "name": "Empty"
+    },
+    {
+      "x": 2,
+      "y": 0,
+      "z": 1,
+      "name": "Empty"
+    },
+    {
+      "x": 2,
+      "y": 0,
+      "z": 2,
+      "name": "Empty"
+    },
+    {
+      "x": 2,
+      "y": 0,
+      "z": 3,
+      "name": "Empty"
+    },
+    {
+      "x": 3,
+      "y": 0,
+      "z": -3,
+      "name": "*Furniture_Village_Brazier_State_Definitions_Off"
+    },
+    {
+      "x": 3,
+      "y": 0,
+      "z": -2,
+      "name": "Empty"
+    },
+    {
+      "x": 3,
+      "y": 0,
+      "z": -1,
+      "name": "Empty"
+    },
+    {
+      "x": 3,
+      "y": 0,
+      "z": 0,
+      "name": "Empty"
+    },
+    {
+      "x": 3,
+      "y": 0,
+      "z": 1,
+      "name": "Empty"
+    },
+    {
+      "x": 3,
+      "y": 0,
+      "z": 2,
+      "name": "Empty"
+    },
+    {
+      "x": 3,
+      "y": 0,
+      "z": 3,
+      "name": "Empty"
+    }
+  ],
+  "fluids": [
+    {
+      "x": -2,
+      "y": 0,
+      "z": -3,
+      "name": "Empty",
+      "level": 0
+    },
+    {
+      "x": -2,
+      "y": 0,
+      "z": -2,
+      "name": "Empty",
+      "level": 0
+    },
+    {
+      "x": -2,
+      "y": 0,
+      "z": -1,
+      "name": "Empty",
+      "level": 0
+    },
+    {
+      "x": -2,
+      "y": 0,
+      "z": 0,
+      "name": "Empty",
+      "level": 0
+    },
+    {
+      "x": -2,
+      "y": 0,
+      "z": 1,
+      "name": "Empty",
+      "level": 0
+    },
+    {
+      "x": -2,
+      "y": 0,
+      "z": 2,
+      "name": "Empty",
+      "level": 0
+    },
+    {
+      "x": -2,
+      "y": 0,
+      "z": 3,
+      "name": "Empty",
+      "level": 0
+    },
+    {
+      "x": -1,
+      "y": 0,
+      "z": -3,
+      "name": "Empty",
+      "level": 0
+    },
+    {
+      "x": -1,
+      "y": 0,
+      "z": -2,
+      "name": "Empty",
+      "level": 0
+    },
+    {
+      "x": -1,
+      "y": 0,
+      "z": -1,
+      "name": "Empty",
+      "level": 0
+    },
+    {
+      "x": -1,
+      "y": 0,
+      "z": 0,
+      "name": "Empty",
+      "level": 0
+    },
+    {
+      "x": -1,
+      "y": 0,
+      "z": 1,
+      "name": "Empty",
+      "level": 0
+    },
+    {
+      "x": -1,
+      "y": 0,
+      "z": 2,
+      "name": "Empty",
+      "level": 0
+    },
+    {
+      "x": -1,
+      "y": 0,
+      "z": 3,
+      "name": "Empty",
+      "level": 0
+    },
+    {
+      "x": 0,
+      "y": 0,
+      "z": -3,
+      "name": "Empty",
+      "level": 0
+    },
+    {
+      "x": 0,
+      "y": 0,
+      "z": -2,
+      "name": "Empty",
+      "level": 0
+    },
+    {
+      "x": 0,
+      "y": 0,
+      "z": -1,
+      "name": "Empty",
+      "level": 0
+    },
+    {
+      "x": 0,
+      "y": 0,
+      "z": 0,
+      "name": "Empty",
+      "level": 0
+    },
+    {
+      "x": 0,
+      "y": 0,
+      "z": 1,
+      "name": "Empty",
+      "level": 0
+    },
+    {
+      "x": 0,
+      "y": 0,
+      "z": 2,
+      "name": "Empty",
+      "level": 0
+    },
+    {
+      "x": 0,
+      "y": 0,
+      "z": 3,
+      "name": "Empty",
+      "level": 0
+    },
+    {
+      "x": 1,
+      "y": 0,
+      "z": -3,
+      "name": "Empty",
+      "level": 0
+    },
+    {
+      "x": 1,
+      "y": 0,
+      "z": -2,
+      "name": "Empty",
+      "level": 0
+    },
+    {
+      "x": 1,
+      "y": 0,
+      "z": -1,
+      "name": "Empty",
+      "level": 0
+    },
+    {
+      "x": 1,
+      "y": 0,
+      "z": 0,
+      "name": "Empty",
+      "level": 0
+    },
+    {
+      "x": 1,
+      "y": 0,
+      "z": 1,
+      "name": "Empty",
+      "level": 0
+    },
+    {
+      "x": 1,
+      "y": 0,
+      "z": 2,
+      "name": "Empty",
+      "level": 0
+    },
+    {
+      "x": 1,
+      "y": 0,
+      "z": 3,
+      "name": "Empty",
+      "level": 0
+    },
+    {
+      "x": 2,
+      "y": 0,
+      "z": -3,
+      "name": "Empty",
+      "level": 0
+    },
+    {
+      "x": 2,
+      "y": 0,
+      "z": -2,
+      "name": "Empty",
+      "level": 0
+    },
+    {
+      "x": 2,
+      "y": 0,
+      "z": -1,
+      "name": "Empty",
+      "level": 0
+    },
+    {
+      "x": 2,
+      "y": 0,
+      "z": 0,
+      "name": "Empty",
+      "level": 0
+    },
+    {
+      "x": 2,
+      "y": 0,
+      "z": 1,
+      "name": "Empty",
+      "level": 0
+    },
+    {
+      "x": 2,
+      "y": 0,
+      "z": 2,
+      "name": "Empty",
+      "level": 0
+    },
+    {
+      "x": 2,
+      "y": 0,
+      "z": 3,
+      "name": "Empty",
+      "level": 0
+    },
+    {
+      "x": 3,
+      "y": 0,
+      "z": -3,
+      "name": "Empty",
+      "level": 0
+    },
+    {
+      "x": 3,
+      "y": 0,
+      "z": -2,
+      "name": "Empty",
+      "level": 0
+    },
+    {
+      "x": 3,
+      "y": 0,
+      "z": -1,
+      "name": "Empty",
+      "level": 0
+    },
+    {
+      "x": 3,
+      "y": 0,
+      "z": 0,
+      "name": "Empty",
+      "level": 0
+    },
+    {
+      "x": 3,
+      "y": 0,
+      "z": 1,
+      "name": "Empty",
+      "level": 0
+    },
+    {
+      "x": 3,
+      "y": 0,
+      "z": 2,
+      "name": "Empty",
+      "level": 0
+    },
+    {
+      "x": 3,
+      "y": 0,
+      "z": 3,
+      "name": "Empty",
+      "level": 0
+    }
+  ],
+  "entities": [
+    {
+      "Components": {
+        "Transform": {
+          "Position": {
+            "X": 3.5,
+            "Y": 0.5,
+            "Z": -2.5
+          },
+          "Rotation": {
+            "Pitch": 0.0,
+            "Yaw": 0.0,
+            "Roll": 0.0
+          }
+        },
+        "TriggerVolume": {
+          "Shape": {
+            "Type": "Box",
+            "Min": {
+              "X": -0.5,
+              "Y": -0.5,
+              "Z": -0.5
+            },
+            "Max": {
+              "X": 0.5,
+              "Y": 0.5,
+              "Z": 0.5
+            }
+          },
+          "Effects": [
+            {
+              "Type": "ModifyTags",
+              "Event": "BLOCK_USED",
+              "Interval": 0.0,
+              "Delay": 0.0,
+              "Operation": "Set",
+              "TagKey": "puntos",
+              "TagValue": "0",
+              "MatchKey": "mecanismo_braziers",
+              "MatchValue": "",
+              "Radius": 0.0,
+              "Center": "Volume"
+            },
+            {
+              "Type": "DisableVolume",
+              "Event": "BLOCK_USED",
+              "Interval": 0.0,
+              "Delay": 0.0,
+              "MatchKey": "no_use_braziers",
+              "MatchValue": "",
+              "Radius": 0.0,
+              "Center": "Volume"
+            },
+            {
+              "Type": "EnableVolume",
+              "Event": "BLOCK_USED",
+              "Interval": 0.0,
+              "Delay": 0.0,
+              "MatchKey": "braziers",
+              "MatchValue": "",
+              "Radius": 50.0,
+              "Center": "Volume"
+            },
+            {
+              "Type": "PastePrefab",
+              "Event": "BLOCK_USED",
+              "Interval": 0.0,
+              "Delay": 0.0,
+              "PrefabList": "",
+              "Prefab": "brazier_off",
+              "Position": {
+                "X": -5.0,
+                "Y": 0.0,
+                "Z": 2.0
+              },
+              "Origin": "VolumeOrigin",
+              "ShowParticles": false
+            },
+            {
+              "Type": "PastePrefab",
+              "Event": "BLOCK_USED",
+              "Interval": 0.0,
+              "Delay": 0.0,
+              "PrefabList": "",
+              "Prefab": "brazier_off",
+              "Position": {
+                "X": -5.0,
+                "Y": 0.0,
+                "Z": 4.0
+              },
+              "Origin": "VolumeOrigin",
+              "ShowParticles": false
+            },
+            {
+              "Type": "PastePrefab",
+              "Event": "BLOCK_USED",
+              "Interval": 0.0,
+              "Delay": 0.0,
+              "PrefabList": "",
+              "Prefab": "brazier_off",
+              "Position": {
+                "X": -5.0,
+                "Y": 0.0,
+                "Z": 6.0
+              },
+              "Origin": "VolumeOrigin",
+              "ShowParticles": false
+            }
+          ],
+          "Enabled": true,
+          "TargetTypes": [
+            "Player"
+          ],
+          "KeepLoaded": false,
+          "PrefabIndex": 0,
+          "Name": "reset"
+        }
+      }
+    },
+    {
+      "Components": {
+        "Transform": {
+          "Position": {
+            "X": -1.5,
+            "Y": 0.5,
+            "Z": 1.5
+          },
+          "Rotation": {
+            "Pitch": 0.0,
+            "Yaw": 0.0,
+            "Roll": 0.0
+          }
+        },
+        "TriggerVolume": {
+          "Shape": {
+            "Type": "Box",
+            "Min": {
+              "X": -0.5,
+              "Y": -0.5,
+              "Z": -0.5
+            },
+            "Max": {
+              "X": 0.5,
+              "Y": 0.5,
+              "Z": 0.5
+            }
+          },
+          "Effects": [
+            {
+              "Type": "ModifyTags",
+              "Event": "BLOCK_USED",
+              "Interval": 0.0,
+              "Delay": 0.0,
+              "Operation": "Set",
+              "TagKey": "puntos",
+              "TagValue": "3",
+              "MatchKey": "mecanismo_braziers",
+              "MatchValue": "",
+              "Radius": 0.0,
+              "Center": "Volume"
+            }
+          ],
+          "Conditions": [
+            {
+              "Type": "TagCondition",
+              "Event": "BLOCK_USED",
+              "Source": "Radius",
+              "TagKey": "puntos",
+              "TagValue": "2",
+              "Comparison": "Exactly",
+              "Inverted": false,
+              "MatchKey": "mecanismo_braziers",
+              "MatchValue": "",
+              "Radius": 0.0,
+              "Center": "Volume"
+            }
+          ],
+          "RejectionEffects": [
+            {
+              "Type": "ModifyTags",
+              "Event": "BLOCK_USED",
+              "Interval": 0.0,
+              "Delay": 0.0,
+              "Operation": "Set",
+              "TagKey": "puntos",
+              "TagValue": "0",
+              "MatchKey": "mecanismo_braziers",
+              "MatchValue": "",
+              "Radius": 50.0,
+              "Center": "Volume"
+            },
+            {
+              "Type": "PastePrefab",
+              "Event": "BLOCK_USED",
+              "Interval": 0.0,
+              "Delay": 0.4000000059604645,
+              "PrefabList": "",
+              "Prefab": "brazier_off",
+              "Position": {
+                "X": 0.0,
+                "Y": 0.0,
+                "Z": 0.0
+              },
+              "Origin": "VolumeOrigin",
+              "ShowParticles": false
+            },
+            {
+              "Type": "PastePrefab",
+              "Event": "BLOCK_USED",
+              "Interval": 0.0,
+              "Delay": 0.6000000238418579,
+              "PrefabList": "",
+              "Prefab": "brazier_off",
+              "Position": {
+                "X": 0.0,
+                "Y": 0.0,
+                "Z": 2.0
+              },
+              "Origin": "VolumeOrigin",
+              "ShowParticles": false
+            },
+            {
+              "Type": "PastePrefab",
+              "Event": "BLOCK_USED",
+              "Interval": 0.0,
+              "Delay": 0.800000011920929,
+              "PrefabList": "",
+              "Prefab": "brazier_off",
+              "Position": {
+                "X": 0.0,
+                "Y": 0.0,
+                "Z": -2.0
+              },
+              "Origin": "VolumeOrigin",
+              "ShowParticles": false
+            }
+          ],
+          "Enabled": true,
+          "TargetTypes": [
+            "Player"
+          ],
+          "Tags": {
+            "brazier3": "Empty",
+            "braziers": "Empty"
+          },
+          "KeepLoaded": false,
+          "PrefabIndex": 1,
+          "Name": "brazier3"
+        }
+      }
+    },
+    {
+      "Components": {
+        "Transform": {
+          "Position": {
+            "X": -1.5,
+            "Y": 0.5,
+            "Z": -0.5
+          },
+          "Rotation": {
+            "Pitch": 0.0,
+            "Yaw": 0.0,
+            "Roll": 0.0
+          }
+        },
+        "TriggerVolume": {
+          "Shape": {
+            "Type": "Box",
+            "Min": {
+              "X": -0.5,
+              "Y": -0.5,
+              "Z": -0.5
+            },
+            "Max": {
+              "X": 0.5,
+              "Y": 0.5,
+              "Z": 0.5
+            }
+          },
+          "Effects": [
+            {
+              "Type": "ModifyTags",
+              "Event": "BLOCK_USED",
+              "Interval": 0.0,
+              "Delay": 0.0,
+              "Operation": "Set",
+              "TagKey": "puntos",
+              "TagValue": "1",
+              "MatchKey": "mecanismo_braziers",
+              "MatchValue": "",
+              "Radius": 50.0,
+              "Center": "Volume"
+            }
+          ],
+          "Conditions": [
+            {
+              "Type": "TagCondition",
+              "Event": "BLOCK_USED",
+              "Source": "Radius",
+              "TagKey": "puntos",
+              "TagValue": "1",
+              "Comparison": "LessThan",
+              "Inverted": false,
+              "MatchKey": "mecanismo_braziers",
+              "MatchValue": "",
+              "Radius": 0.0,
+              "Center": "Volume"
+            }
+          ],
+          "RejectionEffects": [
+            {
+              "Type": "ModifyTags",
+              "Event": "BLOCK_USED",
+              "Interval": 0.0,
+              "Delay": 0.0,
+              "Operation": "Set",
+              "TagKey": "puntos",
+              "TagValue": "0",
+              "MatchKey": "mecanismo_braziers",
+              "MatchValue": "",
+              "Radius": 50.0,
+              "Center": "Volume"
+            },
+            {
+              "Type": "PastePrefab",
+              "Event": "BLOCK_USED",
+              "Interval": 0.0,
+              "Delay": 0.4000000059604645,
+              "PrefabList": "",
+              "Prefab": "brazier_off",
+              "Position": {
+                "X": 0.0,
+                "Y": 0.0,
+                "Z": 0.0
+              },
+              "Origin": "VolumeOrigin",
+              "ShowParticles": false
+            },
+            {
+              "Type": "PastePrefab",
+              "Event": "BLOCK_USED",
+              "Interval": 0.0,
+              "Delay": 0.6000000238418579,
+              "PrefabList": "",
+              "Prefab": "brazier_off",
+              "Position": {
+                "X": 0.0,
+                "Y": 0.0,
+                "Z": 2.0
+              },
+              "Origin": "VolumeOrigin",
+              "ShowParticles": false
+            },
+            {
+              "Type": "PastePrefab",
+              "Event": "BLOCK_USED",
+              "Interval": 0.0,
+              "Delay": 0.800000011920929,
+              "PrefabList": "",
+              "Prefab": "brazier_off",
+              "Position": {
+                "X": 0.0,
+                "Y": 0.0,
+                "Z": 4.0
+              },
+              "Origin": "VolumeOrigin",
+              "ShowParticles": false
+            }
+          ],
+          "Enabled": true,
+          "TargetTypes": [
+            "Player"
+          ],
+          "Tags": {
+            "brazier3": "Empty",
+            "braziers": "Empty"
+          },
+          "KeepLoaded": false,
+          "PrefabIndex": 2,
+          "Name": "brazier1"
+        }
+      }
+    },
+    {
+      "Components": {
+        "Transform": {
+          "Position": {
+            "X": -0.5,
+            "Y": 0.5,
+            "Z": -2.5
+          },
+          "Rotation": {
+            "Pitch": 0.0,
+            "Yaw": 0.0,
+            "Roll": 0.0
+          }
+        },
+        "TriggerVolume": {
+          "Shape": {
+            "Type": "Box",
+            "Min": {
+              "X": -0.5,
+              "Y": -0.5,
+              "Z": -0.5
+            },
+            "Max": {
+              "X": 0.5,
+              "Y": 0.5,
+              "Z": 0.5
+            }
+          },
+          "Effects": [
+            {
+              "Type": "DisableVolume",
+              "Event": "TAG_ADDED",
+              "Interval": 0.0,
+              "Delay": 0.0,
+              "MatchKey": "braziers",
+              "MatchValue": "",
+              "Radius": 50.0,
+              "Center": "Volume"
+            },
+            {
+              "Type": "EnableVolume",
+              "Event": "TAG_ADDED",
+              "Interval": 0.0,
+              "Delay": 0.0,
+              "MatchKey": "no_use_braziers",
+              "MatchValue": "",
+              "Radius": 0.0,
+              "Center": "Volume"
+            }
+          ],
+          "Conditions": [
+            {
+              "Type": "TagCondition",
+              "Event": "TAG_ADDED",
+              "Source": "Self",
+              "TagKey": "puntos",
+              "TagValue": "3",
+              "Comparison": "Exactly",
+              "Inverted": false,
+              "MatchKey": "",
+              "MatchValue": "",
+              "Radius": 50.0,
+              "Center": "Volume"
+            }
+          ],
+          "Enabled": true,
+          "TargetTypes": [
+            "Player"
+          ],
+          "Tags": {
+            "puntos": "0",
+            "mecanismo_braziers": "Empty"
+          },
+          "KeepLoaded": false,
+          "PrefabIndex": 3,
+          "Name": "mecanismo braziers"
+        }
+      }
+    },
+    {
+      "Components": {
+        "Transform": {
+          "Position": {
+            "X": -1.5,
+            "Y": 0.5,
+            "Z": 1.5
+          },
+          "Rotation": {
+            "Pitch": 0.0,
+            "Yaw": 0.0,
+            "Roll": 0.0
+          }
+        },
+        "TriggerVolume": {
+          "Shape": {
+            "Type": "Box",
+            "Min": {
+              "X": -0.5,
+              "Y": -0.5,
+              "Z": -2.5
+            },
+            "Max": {
+              "X": 0.5,
+              "Y": 0.5,
+              "Z": 2.5
+            }
+          },
+          "Rules": [
+            {
+              "Type": "NoUse",
+              "Target": "Self",
+              "MatchKey": "",
+              "MatchValue": "",
+              "Radius": 50.0
+            }
+          ],
+          "Enabled": false,
+          "TargetTypes": [
+            "Player"
+          ],
+          "Tags": {
+            "no_use_braziers": "Empty"
+          },
+          "KeepLoaded": false,
+          "PrefabIndex": 4,
+          "Name": "No Use Braziers"
+        }
+      }
+    },
+    {
+      "Components": {
+        "Transform": {
+          "Position": {
+            "X": -1.5,
+            "Y": 0.5,
+            "Z": 3.5
+          },
+          "Rotation": {
+            "Pitch": 0.0,
+            "Yaw": 0.0,
+            "Roll": 0.0
+          }
+        },
+        "TriggerVolume": {
+          "Shape": {
+            "Type": "Box",
+            "Min": {
+              "X": -0.5,
+              "Y": -0.5,
+              "Z": -0.5
+            },
+            "Max": {
+              "X": 0.5,
+              "Y": 0.5,
+              "Z": 0.5
+            }
+          },
+          "Effects": [
+            {
+              "Type": "ModifyTags",
+              "Event": "BLOCK_USED",
+              "Interval": 0.0,
+              "Delay": 0.0,
+              "Operation": "Set",
+              "TagKey": "puntos",
+              "TagValue": "2",
+              "MatchKey": "mecanismo_braziers",
+              "MatchValue": "",
+              "Radius": 0.0,
+              "Center": "Volume"
+            }
+          ],
+          "Conditions": [
+            {
+              "Type": "TagCondition",
+              "Event": "BLOCK_USED",
+              "Source": "Radius",
+              "TagKey": "puntos",
+              "TagValue": "1",
+              "Comparison": "Exactly",
+              "Inverted": false,
+              "MatchKey": "mecanismo_braziers",
+              "MatchValue": "",
+              "Radius": 0.0,
+              "Center": "Volume"
+            }
+          ],
+          "RejectionEffects": [
+            {
+              "Type": "ModifyTags",
+              "Event": "BLOCK_USED",
+              "Interval": 0.0,
+              "Delay": 0.0,
+              "Operation": "Set",
+              "TagKey": "puntos",
+              "TagValue": "0",
+              "MatchKey": "mecanismo_braziers",
+              "MatchValue": "",
+              "Radius": 50.0,
+              "Center": "Volume"
+            },
+            {
+              "Type": "PastePrefab",
+              "Event": "BLOCK_USED",
+              "Interval": 0.0,
+              "Delay": 0.4000000059604645,
+              "PrefabList": "",
+              "Prefab": "brazier_off",
+              "Position": {
+                "X": 0.0,
+                "Y": 0.0,
+                "Z": 0.0
+              },
+              "Origin": "VolumeOrigin",
+              "ShowParticles": false
+            },
+            {
+              "Type": "PastePrefab",
+              "Event": "BLOCK_USED",
+              "Interval": 0.0,
+              "Delay": 0.6000000238418579,
+              "PrefabList": "",
+              "Prefab": "brazier_off",
+              "Position": {
+                "X": 0.0,
+                "Y": 0.0,
+                "Z": -2.0
+              },
+              "Origin": "VolumeOrigin",
+              "ShowParticles": false
+            },
+            {
+              "Type": "PastePrefab",
+              "Event": "BLOCK_USED",
+              "Interval": 0.0,
+              "Delay": 0.800000011920929,
+              "PrefabList": "",
+              "Prefab": "brazier_off",
+              "Position": {
+                "X": 0.0,
+                "Y": 0.0,
+                "Z": -4.0
+              },
+              "Origin": "VolumeOrigin",
+              "ShowParticles": false
+            }
+          ],
+          "Enabled": true,
+          "TargetTypes": [
+            "Player"
+          ],
+          "Tags": {
+            "brazier3": "Empty",
+            "braziers": "Empty"
+          },
+          "KeepLoaded": false,
+          "PrefabIndex": 5,
+          "Name": "brazier2"
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,640 @@
+{
+  "version": 8,
+  "blockIdVersion": 11,
+  "anchorX": 0,
+  "anchorY": 0,
+  "anchorZ": 0,
+  "blocks": [
+    {
+      "x": -3,
+      "y": 2,
+      "z": 0,
+      "name": "Soil_Clay_Smooth_Red2_Half",
+      "rotation": 7
+    },
+    {
+      "x": -3,
+      "y": 3,
+      "z": 0,
+      "name": "Soil_Clay_Smooth_Red2_Half",
+      "rotation": 7
+    },
+    {
+      "x": -3,
+      "y": 4,
+      "z": 0,
+      "name": "Soil_Clay_Smooth_Red2_Half",
+      "rotation": 7
+    },
+    {
+      "x": -3,
+      "y": 5,
+      "z": 0,
+      "name": "Empty"
+    },
+    {
+      "x": -2,
+      "y": 1,
+      "z": 0,
+      "name": "Soil_Clay_Smooth_Red2_Stairs",
+      "rotation": 9
+    },
+    {
+      "x": -2,
+      "y": 2,
+      "z": 0,
+      "name": "Soil_Clay_Smooth_Red2"
+    },
+    {
+      "x": -2,
+      "y": 3,
+      "z": 0,
+      "name": "Soil_Clay_Smooth_Red2"
+    },
+    {
+      "x": -2,
+      "y": 4,
+      "z": 0,
+      "name": "Soil_Clay_Smooth_Red2"
+    },
+    {
+      "x": -2,
+      "y": 5,
+      "z": 0,
+      "name": "Soil_Clay_Smooth_Red2_Stairs",
+      "rotation": 3
+    },
+    {
+      "x": -2,
+      "y": 6,
+      "z": 0,
+      "name": "Empty"
+    },
+    {
+      "x": -1,
+      "y": 0,
+      "z": 0,
+      "name": "Soil_Clay_Smooth_Red2_Half",
+      "rotation": 8
+    },
+    {
+      "x": -1,
+      "y": 1,
+      "z": 0,
+      "name": "Soil_Clay_Smooth_Red2"
+    },
+    {
+      "x": -1,
+      "y": 2,
+      "z": 0,
+      "name": "Soil_Clay_Smooth_Red2"
+    },
+    {
+      "x": -1,
+      "y": 3,
+      "z": 0,
+      "name": "Soil_Clay_Smooth_Red2"
+    },
+    {
+      "x": -1,
+      "y": 4,
+      "z": 0,
+      "name": "Soil_Clay_Smooth_Red2"
+    },
+    {
+      "x": -1,
+      "y": 5,
+      "z": 0,
+      "name": "Soil_Clay_Smooth_Red2"
+    },
+    {
+      "x": -1,
+      "y": 6,
+      "z": 0,
+      "name": "Soil_Clay_Smooth_Red2_Half"
+    },
+    {
+      "x": -1,
+      "y": 7,
+      "z": 0,
+      "name": "Empty"
+    },
+    {
+      "x": 0,
+      "y": 0,
+      "z": 0,
+      "name": "Soil_Clay_Smooth_Red2_Half",
+      "rotation": 8
+    },
+    {
+      "x": 0,
+      "y": 1,
+      "z": 0,
+      "name": "Soil_Clay_Smooth_Red2"
+    },
+    {
+      "x": 0,
+      "y": 2,
+      "z": 0,
+      "name": "Soil_Clay_Smooth_Red2"
+    },
+    {
+      "x": 0,
+      "y": 3,
+      "z": 0,
+      "name": "Soil_Clay_Smooth_Red2"
+    },
+    {
+      "x": 0,
+      "y": 4,
+      "z": 0,
+      "name": "Soil_Clay_Smooth_Red2"
+    },
+    {
+      "x": 0,
+      "y": 5,
+      "z": 0,
+      "name": "Soil_Clay_Smooth_Red2"
+    },
+    {
+      "x": 0,
+      "y": 6,
+      "z": 0,
+      "name": "Soil_Clay_Smooth_Red2_Half"
+    },
+    {
+      "x": 0,
+      "y": 7,
+      "z": 0,
+      "name": "Empty"
+    },
+    {
+      "x": 1,
+      "y": 0,
+      "z": 0,
+      "name": "Soil_Clay_Smooth_Red2_Half",
+      "rotation": 8
+    },
+    {
+      "x": 1,
+      "y": 1,
+      "z": 0,
+      "name": "Soil_Clay_Smooth_Red2"
+    },
+    {
+      "x": 1,
+      "y": 2,
+      "z": 0,
+      "name": "Soil_Clay_Smooth_Red2"
+    },
+    {
+      "x": 1,
+      "y": 3,
+      "z": 0,
+      "name": "Soil_Clay_Smooth_Red2"
+    },
+    {
+      "x": 1,
+      "y": 4,
+      "z": 0,
+      "name": "Soil_Clay_Smooth_Red2"
+    },
+    {
+      "x": 1,
+      "y": 5,
+      "z": 0,
+      "name": "Soil_Clay_Smooth_Red2"
+    },
+    {
+      "x": 1,
+      "y": 6,
+      "z": 0,
+      "name": "Soil_Clay_Smooth_Red2_Half"
+    },
+    {
+      "x": 1,
+      "y": 7,
+      "z": 0,
+      "name": "Empty"
+    },
+    {
+      "x": 2,
+      "y": 1,
+      "z": 0,
+      "name": "Soil_Clay_Smooth_Red2_Stairs",
+      "rotation": 11
+    },
+    {
+      "x": 2,
+      "y": 2,
+      "z": 0,
+      "name": "Soil_Clay_Smooth_Red2"
+    },
+    {
+      "x": 2,
+      "y": 3,
+      "z": 0,
+      "name": "Soil_Clay_Smooth_Red2"
+    },
+    {
+      "x": 2,
+      "y": 4,
+      "z": 0,
+      "name": "Soil_Clay_Smooth_Red2"
+    },
+    {
+      "x": 2,
+      "y": 5,
+      "z": 0,
+      "name": "Soil_Clay_Smooth_Red2_Stairs",
+      "rotation": 1
+    },
+    {
+      "x": 2,
+      "y": 6,
+      "z": 0,
+      "name": "Empty"
+    },
+    {
+      "x": 3,
+      "y": 2,
+      "z": 0,
+      "name": "Soil_Clay_Smooth_Red2_Half",
+      "rotation": 5
+    },
+    {
+      "x": 3,
+      "y": 3,
+      "z": 0,
+      "name": "Soil_Clay_Smooth_Red2_Half",
+      "rotation": 5
+    },
+    {
+      "x": 3,
+      "y": 4,
+      "z": 0,
+      "name": "Soil_Clay_Smooth_Red2_Half",
+      "rotation": 5
+    },
+    {
+      "x": 3,
+      "y": 5,
+      "z": 0,
+      "name": "Empty"
+    }
+  ],
+  "fluids": [
+    {
+      "x": -3,
+      "y": 2,
+      "z": 0,
+      "name": "Empty",
+      "level": 0
+    },
+    {
+      "x": -3,
+      "y": 3,
+      "z": 0,
+      "name": "Empty",
+      "level": 0
+    },
+    {
+      "x": -3,
+      "y": 4,
+      "z": 0,
+      "name": "Empty",
+      "level": 0
+    },
+    {
+      "x": -2,
+      "y": 1,
+      "z": 0,
+      "name": "Empty",
+      "level": 0
+    },
+    {
+      "x": -2,
+      "y": 2,
+      "z": 0,
+      "name": "Empty",
+      "level": 0
+    },
+    {
+      "x": -2,
+      "y": 3,
+      "z": 0,
+      "name": "Empty",
+      "level": 0
+    },
+    {
+      "x": -2,
+      "y": 4,
+      "z": 0,
+      "name": "Empty",
+      "level": 0
+    },
+    {
+      "x": -2,
+      "y": 5,
+      "z": 0,
+      "name": "Empty",
+      "level": 0
+    },
+    {
+      "x": -1,
+      "y": 0,
+      "z": 0,
+      "name": "Empty",
+      "level": 0
+    },
+    {
+      "x": -1,
+      "y": 1,
+      "z": 0,
+      "name": "Empty",
+      "level": 0
+    },
+    {
+      "x": -1,
+      "y": 2,
+      "z": 0,
+      "name": "Empty",
+      "level": 0
+    },
+    {
+      "x": -1,
+      "y": 3,
+      "z": 0,
+      "name": "Empty",
+      "level": 0
+    },
+    {
+      "x": -1,
+      "y": 4,
+      "z": 0,
+      "name": "Empty",
+      "level": 0
+    },
+    {
+      "x": -1,
+      "y": 5,
+      "z": 0,
+      "name": "Empty",
+      "level": 0
+    },
+    {
+      "x": -1,
+      "y": 6,
+      "z": 0,
+      "name": "Empty",
+      "level": 0
+    },
+    {
+      "x": 0,
+      "y": 0,
+      "z": 0,
+      "name": "Empty",
+      "level": 0
+    },
+    {
+      "x": 0,
+      "y": 1,
+      "z": 0,
+      "name": "Empty",
+      "level": 0
+    },
+    {
+      "x": 0,
+      "y": 2,
+      "z": 0,
+      "name": "Empty",
+      "level": 0
+    },
+    {
+      "x": 0,
+      "y": 3,
+      "z": 0,
+      "name": "Empty",
+      "level": 0
+    },
+    {
+      "x": 0,
+      "y": 4,
+      "z": 0,
+      "name": "Empty",
+      "level": 0
+    },
+    {
+      "x": 0,
+      "y": 5,
+      "z": 0,
+      "name": "Empty",
+      "level": 0
+    },
+    {
+      "x": 0,
+      "y": 6,
+      "z": 0,
+      "name": "Empty",
+      "level": 0
+    },
+    {
+      "x": 1,
+      "y": 0,
+      "z": 0,
+      "name": "Empty",
+      "level": 0
+    },
+    {
+      "x": 1,
+      "y": 1,
+      "z": 0,
+      "name": "Empty",
+      "level": 0
+    },
+    {
+      "x": 1,
+      "y": 2,
+      "z": 0,
+      "name": "Empty",
+      "level": 0
+    },
+    {
+      "x": 1,
+      "y": 3,
+      "z": 0,
+      "name": "Empty",
+      "level": 0
+    },
+    {
+      "x": 1,
+      "y": 4,
+      "z": 0,
+      "name": "Empty",
+      "level": 0
+    },
+    {
+      "x": 1,
+      "y": 5,
+      "z": 0,
+      "name": "Empty",
+      "level": 0
+    },
+    {
+      "x": 1,
+      "y": 6,
+      "z": 0,
+      "name": "Empty",
+      "level": 0
+    },
+    {
+      "x": 2,
+      "y": 1,
+      "z": 0,
+      "name": "Empty",
+      "level": 0
+    },
+    {
+      "x": 2,
+      "y": 2,
+      "z": 0,
+      "name": "Empty",
+      "level": 0
+    },
+    {
+      "x": 2,
+      "y": 3,
+      "z": 0,
+      "name": "Empty",
+      "level": 0
+    },
+    {
+      "x": 2,
+      "y": 4,
+      "z": 0,
+      "name": "Empty",
+      "level": 0
+    },
+    {
+      "x": 2,
+      "y": 5,
+      "z": 0,
+      "name": "Empty",
+      "level": 0
+    },
+    {
+      "x": 3,
+      "y": 2,
+      "z": 0,
+      "name": "Empty",
+      "level": 0
+    },
+    {
+      "x": 3,
+      "y": 3,
+      "z": 0,
+      "name": "Empty",
+      "level": 0
+    },
+    {
+      "x": 3,
+      "y": 4,
+      "z": 0,
+      "name": "Empty",
+      "level": 0
+    }
+  ],
+  "entities": [
+    {
+      "Components": {
+        "Transform": {
+          "Position": {
+            "X": 0.5,
+            "Y": 3.5,
+            "Z": 0.5
+          },
+          "Rotation": {
+            "Pitch": 0.0,
+            "Yaw": 0.0,
+            "Roll": 0.0
+          }
+        },
+        "TriggerVolume": {
+          "Shape": {
+            "Type": "Box",
+            "Min": {
+              "X": -0.5,
+              "Y": -0.5,
+              "Z": -0.5
+            },
+            "Max": {
+              "X": 0.5,
+              "Y": 0.5,
+              "Z": 0.5
+            }
+          },
+          "Effects": [
+            {
+              "Type": "SendSignal",
+              "Event": "VOLUME_CREATE",
+              "Interval": 0.0,
+              "Delay": 0.0,
+              "MatchKey": "placed",
+              "MatchValue": "",
+              "Radius": 0.0,
+              "Center": "Volume"
+            }
+          ],
+          "Conditions": [
+            {
+              "Type": "BlockTypeCondition",
+              "Event": "VOLUME_CREATE",
+              "PositionSource": "VolumeOrigin",
+              "PositionOffset": {
+                "X": 0.0,
+                "Y": -4.0,
+                "Z": 0.0
+              }
+            }
+          ],
+          "RejectionEffects": [
+            {
+              "Type": "PastePrefab",
+              "Event": "VOLUME_CREATE",
+              "Interval": 0.0,
+              "Delay": 0.009999999776482582,
+              "PrefabList": "",
+              "Prefab": "Chips/Red_Down",
+              "Position": {
+                "X": 0.0,
+                "Y": -4.0,
+                "Z": 0.0
+              },
+              "Origin": "VolumeOrigin",
+              "ShowParticles": false
+            },
+            {
+              "Type": "DeleteVolume",
+              "Event": "VOLUME_CREATE",
+              "Interval": 0.0,
+              "Delay": 0.05000000074505806,
+              "MatchKey": "",
+              "MatchValue": "",
+              "Radius": 50.0,
+              "Center": "Volume"
+            }
+          ],
+          "Enabled": true,
+          "TargetTypes": [
+            "Player"
+          ],
+          "Tags": {
+            "chip": "Empty"
+          },
+          "KeepLoaded": false,
+          "PrefabIndex": 0
+        }
+      }
+    }
+  ]
+}

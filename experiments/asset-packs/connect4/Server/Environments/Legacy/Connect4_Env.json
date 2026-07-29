@@ -1,0 +1,150 @@
+{
+  "WaterTint": "#158ecd",
+  "SpawnDensity": 0,
+  "WeatherForecasts": {
+    "0": [
+      {
+        "WeatherId": "Connect4_Weather",
+        "Weight": 100
+      }
+    ],
+    "1": [
+      {
+        "WeatherId": "Connect4_Weather",
+        "Weight": 100
+      }
+    ],
+    "2": [
+      {
+        "WeatherId": "Connect4_Weather",
+        "Weight": 100
+      }
+    ],
+    "3": [
+      {
+        "WeatherId": "Connect4_Weather",
+        "Weight": 100
+      }
+    ],
+    "4": [
+      {
+        "WeatherId": "Connect4_Weather",
+        "Weight": 100
+      }
+    ],
+    "5": [
+      {
+        "WeatherId": "Connect4_Weather",
+        "Weight": 100
+      }
+    ],
+    "6": [
+      {
+        "WeatherId": "Connect4_Weather",
+        "Weight": 100
+      }
+    ],
+    "7": [
+      {
+        "WeatherId": "Connect4_Weather",
+        "Weight": 100
+      }
+    ],
+    "8": [
+      {
+        "WeatherId": "Connect4_Weather",
+        "Weight": 100
+      }
+    ],
+    "9": [
+      {
+        "WeatherId": "Connect4_Weather",
+        "Weight": 100
+      }
+    ],
+    "10": [
+      {
+        "WeatherId": "Connect4_Weather",
+        "Weight": 100
+      }
+    ],
+    "11": [
+      {
+        "WeatherId": "Connect4_Weather",
+        "Weight": 100
+      }
+    ],
+    "12": [
+      {
+        "WeatherId": "Connect4_Weather",
+        "Weight": 100
+      }
+    ],
+    "13": [
+      {
+        "WeatherId": "Connect4_Weather",
+        "Weight": 100
+      }
+    ],
+    "14": [
+      {
+        "WeatherId": "Connect4_Weather",
+        "Weight": 100
+      }
+    ],
+    "15": [
+      {
+        "WeatherId": "Connect4_Weather",
+        "Weight": 100
+      }
+    ],
+    "16": [
+      {
+        "WeatherId": "Connect4_Weather",
+        "Weight": 100
+      }
+    ],
+    "17": [
+      {
+        "WeatherId": "Connect4_Weather",
+        "Weight": 100
+      }
+    ],
+    "18": [
+      {
+        "WeatherId": "Connect4_Weather",
+        "Weight": 100
+      }
+    ],
+    "19": [
+      {
+        "WeatherId": "Connect4_Weather",
+        "Weight": 100
+      }
+    ],
+    "20": [
+      {
+        "WeatherId": "Connect4_Weather",
+        "Weight": 100
+      }
+    ],
+    "21": [
+      {
+        "WeatherId": "Connect4_Weather",
+        "Weight": 100
+      }
+    ],
+    "22": [
+      {
+        "WeatherId": "Connect4_Weather",
+        "Weight": 100
+      }
+    ],
+    "23": [
+      {
+        "WeatherId": "Connect4_Weather",
+        "Weight": 100
+      }
+    ]
+  }
+}

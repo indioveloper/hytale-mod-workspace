@@ -1,0 +1,10 @@
+server.items.OrbGenesis_Real_Lever.name = Real Lever
+server.items.OrbGenesis_Real_Lever.description = Toggleable animated lever.
+server.items.Real_Lever.name = Real Lever
+server.items.Real_Lever.description = Toggleable animated lever.
+items.OrbGenesis_Real_Lever.name = Real Lever
+items.OrbGenesis_Real_Lever.description = Toggleable animated lever.
+items.Real_Lever.name = Real Lever
+items.Real_Lever.description = Toggleable animated lever.
+server.messages.palanca.on = palanca:on
+server.messages.palanca.off = palanca:off
