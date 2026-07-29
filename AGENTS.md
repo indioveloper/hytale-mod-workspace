@@ -98,8 +98,14 @@ con el numero de version nuevo en la misma carpeta.
   `Rules`.
 - `mods/java/chest-labels`: mod funcional en fase de prototipo; conserva datos
   en componentes de bloques y usa UI custom.
-- `mods/java/entity-motion-triggers`: efectos de movimiento de entidades y
-  colision de plataforma extraidos de Player Trigger Tags.
+- `mods/java/entity-motion-triggers`: v1.2.3. Efectos de movimiento de
+  entidades, particulas ancladas y colision de plataforma extraidos de Player
+  Trigger Tags. `AttachMovingParticles` usa particulas de modelo ligadas al
+  `NetworkId`; `DetachEmittedParticles` debe quedar desactivado para que el
+  sistema siga la entidad. Sus offsets de rotacion se envian en grados; no
+  comparten la convencion en radianes de los paquetes de particulas de mundo.
+  La clave legacy `OnlyFirstMatch` selecciona la entidad mas cercana al centro,
+  no la primera devuelta por el indice espacial.
 - `mods/java/map-selector`: prototipo `0.1.1` con comando `/mapas`, previews
   nativas de prefabs y destinos configurados en `MapDefinition`. Sus mapas
   iniciales dependen opcionalmente del asset pack local `tests:tests`.

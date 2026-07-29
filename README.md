@@ -15,7 +15,7 @@ backups, instalaciones del juego, el Hytale Shared Source ni mundos completos.
 | --- | --- | --- |
 | `mods/java/player-trigger-tags` | Activo, v1.5.6 | Tags de jugador, condiciones y efectos de Trigger Volumes, y conversion de bloques en entidades. |
 | `mods/java/build-battle` | Prototipo, v0.2.2 | Sugerencias de temas y regla Always Active para restringir herramientas creativas por plot. |
-| `mods/java/entity-motion-triggers` | Activo/prototipo, v1.1.1 | Efectos para crear y mover entidades, destruirlas al llegar y aplicar/quitar colision de plataforma. |
+| `mods/java/entity-motion-triggers` | Activo/prototipo, v1.2.3 | Efectos para crear y mover entidades, anclar estelas de particulas y aplicar/quitar colision de plataforma. |
 | `mods/java/map-selector` | Prototipo, v0.1.1 | Selector cerrado de mapas con previews 3D de prefabs y teletransporte mediante `/mapas`. |
 | `mods/java/more-triggers` | Legacy recuperado, v1.0.3 | Efectos extra de Trigger Volumes: `RemoveEventTitle`, `RandomTagSelection` y `PasteRandomPrefab`. Recuperado desde carpetas legacy; pendiente de recompilar y validar en runtime moderno. |
 | `mods/java/trigger-execute-command` | Actualizado, v1.1.0 | Efecto `ExecuteCommand` para lanzar comandos desde Trigger Volumes en pre-release 0.6.x. |
@@ -89,7 +89,7 @@ Ejemplo para Entity Motion Triggers:
   -ProjectPath .\mods\java\entity-motion-triggers `
   -SourceRoot src `
   -PackageRoot src `
-  -ArtifactName Entity_Motion_Triggers-1_0_0.jar
+  -ArtifactName Entity_Motion_Triggers-1_2_3.jar
 ```
 
 Ejemplo para Trigger Execute Command:
