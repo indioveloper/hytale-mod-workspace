@@ -42,6 +42,10 @@ pruebas Raynor y packs usados durante las migraciones 0.6.x. Pueden contener
 overrides vanilla y no deben instalarse todos a la vez sin revisar sus IDs.
 Consulta `docs/ASSET_PACKS.md` para el detalle de cada pack.
 
+El inventario de los mods, packs y configuraciones encontrados en las 27
+partidas de la instalacion local pre-release esta documentado en
+`docs/PRE_RELEASE_INSTALLATION_INVENTORY_2026-07-29.md`.
+
 ## Preparar otro PC
 
 Requisitos:

@@ -1,0 +1,91 @@
+{
+  "TranslationProperties": {
+    "Name": "server.items.OrbGenesis_Tally_Marks.name",
+    "Description": "server.items.OrbGenesis_Tally_Marks.description"
+  },
+  "ItemLevel": 10,
+  "MaxStack": 100,
+  "Icon": "Icons/ItemsGenerated/OrbGenesis_Tally_Marks.png",
+  "Categories": [
+    "Blocks.Deco"
+  ],
+  "Interactions": {
+    "Primary": "Block_Primary",
+    "Secondary": "Block_Secondary"
+  },
+  "BlockType": {
+    "Material": "Solid",
+    "DrawType": "Model",
+    "Opacity": "Transparent",
+    "RequiresAlphaBlending": true,
+    "CustomModel": "Blocks/OrbGenesis/TallyMarks/Tally_Marks_1.blockymodel",
+    "CustomModelTexture": [
+      {
+        "Texture": "Blocks/OrbGenesis/TallyMarks/Tally_Marks_Scratch.png",
+        "Weight": 1
+      }
+    ],
+    "HitboxType": "OrbGenesis_Tally_Marks_Thin",
+    "InteractionHitboxType": "OrbGenesis_Tally_Marks_Thin",
+    "VariantRotation": "NESW",
+    "Gathering": {
+      "Soft": {},
+      "UseDefaultDropWhenPlaced": true
+    },
+    "Support": {
+      "North": [
+        {
+          "FaceType": "Full"
+        }
+      ]
+    },
+    "State": {
+      "Definitions": {
+        "Two": {
+          "CustomModel": "Blocks/OrbGenesis/TallyMarks/Tally_Marks_2.blockymodel"
+        },
+        "Three": {
+          "CustomModel": "Blocks/OrbGenesis/TallyMarks/Tally_Marks_3.blockymodel"
+        },
+        "Four": {
+          "CustomModel": "Blocks/OrbGenesis/TallyMarks/Tally_Marks_4.blockymodel"
+        },
+        "Five": {
+          "CustomModel": "Blocks/OrbGenesis/TallyMarks/Tally_Marks_5.blockymodel"
+        }
+      }
+    },
+    "Interactions": {
+      "Use": {
+        "Interactions": [
+          {
+            "Type": "ChangeState",
+            "Changes": {
+              "default": "Two",
+              "Two": "Three",
+              "Three": "Four",
+              "Four": "Five",
+              "Five": "default"
+            }
+          }
+        ]
+      }
+    },
+    "InteractionHint": "server.interactionHints.addTallyMark",
+    "BlockParticleSetId": "Stone",
+    "BlockSoundSetId": "Stone",
+    "PhysicalMaterialId": "Stone",
+    "ParticleColor": "#655F52",
+    "TextureComputedColor": "#655F52",
+    "PlacementSettings": {
+      "RotationMode": "BlockNormal"
+    }
+  },
+  "PlayerAnimationsId": "Block",
+  "Tags": {
+    "Type": [
+      "Deco"
+    ]
+  },
+  "ItemSoundSetId": "ISS_Blocks_Stone"
+}

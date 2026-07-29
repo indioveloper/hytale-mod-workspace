@@ -1,0 +1,106 @@
+{
+    "TranslationProperties":  {
+                                  "Name":  "server.items.Essence_Button_Ice.name",
+                                  "Description":  "server.items.Essence_Button_Ice.description"
+                              },
+    "ItemLevel":  1,
+    "MaxStack":  100,
+    "Icon":  "Icons/ItemsGenerated/Essence_Button_Ice.png",
+    "Categories":  [
+                       "Blocks.Deco",
+                       "Tool.TechnicalBlocks"
+                   ],
+    "Interactions":  {
+                         "Primary":  "Block_Primary",
+                         "Secondary":  "Block_Secondary"
+                     },
+    "BlockType":  {
+                      "DrawType":  "Model",
+                      "BlockSoundSetId":  "Metal",
+                      "PhysicalMaterialId":  "Metal",
+                      "Opacity":  "Transparent",
+                      "CustomModel":  "Resources/OrbGenesis/Essence_Button.blockymodel",
+                      "CustomModelTexture":  [
+                                                 {
+                                                     "Texture":  "Resources/OrbGenesis/Essence_Textures/Ice_Essence_Texture.png",
+                                                     "Weight":  1
+                                                 }
+                                             ],
+                      "CustomModelAnimation":  "Blocks/Animations/OrbGenesis/Essence_Button_Idle.blockyanim",
+                      "Looping":  true,
+                      "HitboxType":  "Plant_Large",
+                      "VariantRotation":  "NESW",
+                      "Flags":  {
+                                    "IsUsable":  true
+                                },
+                      "Gathering":  {
+                                        "Soft":  {
+
+                                                 }
+                                    },
+                      "Support":  {
+                                      "Down":  [
+                                                   {
+                                                       "FaceType":  "Full"
+                                                   }
+                                               ]
+                                  },
+                      "Interactions":  {
+                                           "Use":  {
+                                                       "Effects":  {
+                                                                       "ItemAnimationId":  "Interact"
+                                                                   },
+                                                       "Interactions":  [
+                                                                            {
+                                                                                "Type":  "ChangeState",
+                                                                                "Changes":  {
+                                                                                                "default":  "Idle",
+                                                                                                "Idle":  "Idle"
+                                                                                            }
+                                                                            }
+                                                                        ]
+                                                   }
+                                       },
+                      "InteractionHint":  "server.interactionHints.press",
+                      "BlockParticleSetId":  "Dust",
+                      "TextureComputedColor":  "#57C7FF",
+                      "Light":  {
+                                    "Color":  "#023",
+                                    "Radius":  2
+                                },
+                      "State":  {
+                                    "Definitions":  {
+                                                        "Idle":  {
+                                                                     "InteractionHint":  "server.interactionHints.press",
+                                                                     "CustomModelAnimation":  "Blocks/Animations/OrbGenesis/Essence_Button_Idle.blockyanim"
+                                                                 }
+                                                    }
+                                }
+                  },
+    "PlayerAnimationsId":  "Block",
+    "Tags":  {
+                 "Type":  [
+                              "Deco",
+                              "EssenceButton"
+                          ]
+             },
+    "ItemSoundSetId":  "ISS_Items_Gems",
+    "Model":  "Resources/OrbGenesis/Essence_Button.blockymodel",
+    "Texture":  "Resources/OrbGenesis/Essence_Textures/Ice_Essence_Texture.png",
+    "Scale":  0.8,
+    "IconProperties":  {
+                           "Scale":  0.6,
+                           "Rotation":  [
+                                            0,
+                                            0,
+                                            0
+                                        ],
+                           "Translation":  [
+                                               0,
+                                               -13
+                                           ]
+                       },
+    "ItemEntity":  {
+                       "ParticleSystemId":  null
+                   }
+}
