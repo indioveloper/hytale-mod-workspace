@@ -10,8 +10,6 @@ public class PlayerTriggerTagsPlugin extends JavaPlugin {
   private static PlayerTriggerTagsPlugin instance;
 
   private ComponentType<EntityStore, PlayerTagsComponent> playerTagsComponentType;
-  private ComponentType<EntityStore, PendingPlatformCollisionComponent>
-      pendingPlatformCollisionComponentType;
 
   public PlayerTriggerTagsPlugin(JavaPluginInit init) {
     super(init);
@@ -26,11 +24,6 @@ public class PlayerTriggerTagsPlugin extends JavaPlugin {
     return playerTagsComponentType;
   }
 
-  public ComponentType<EntityStore, PendingPlatformCollisionComponent>
-      getPendingPlatformCollisionComponentType() {
-    return pendingPlatformCollisionComponentType;
-  }
-
   @Override
   protected void setup() {
     super.setup();
@@ -41,22 +34,9 @@ public class PlayerTriggerTagsPlugin extends JavaPlugin {
                 PlayerTagsComponent.class,
                 "OrbGenesis_PlayerTriggerTags",
                 PlayerTagsComponent.CODEC);
-    pendingPlatformCollisionComponentType =
-        getEntityStoreRegistry()
-            .registerComponent(
-                PendingPlatformCollisionComponent.class,
-                "OrbGenesis_PendingPlatformCollision",
-                PendingPlatformCollisionComponent.CODEC);
-    getEntityStoreRegistry().registerSystem(new PendingPlatformCollisionSystem());
-
     TriggerVolumesPlugin triggerVolumes = TriggerVolumesPlugin.get();
     triggerVolumes.registerEffectType(
         "ModifyPlayerTag", ModifyPlayerTagEffect.class, ModifyPlayerTagEffect.CODEC);
-    triggerVolumes.registerAssetField("ConvertBlocksToEntities", "Item", "Item");
-    triggerVolumes.registerEffectType(
-        "ConvertBlocksToEntities",
-        ConvertBlocksToEntitiesEffect.class,
-        ConvertBlocksToEntitiesEffect.CODEC);
     triggerVolumes.registerConditionType(
         "PlayerTagCondition", PlayerTagCondition.class, PlayerTagCondition.CODEC);
   }

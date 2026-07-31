@@ -1,12 +1,7 @@
-customUI.triggerVolumeEffectEditor.effectType.RemoveEventTitle = Ocultar titulo de evento
 customUI.triggerVolumeEffectEditor.effectType.GiveRandomItem = Entregar objeto al azar
-customUI.triggerVolumeEffectEditor.effectType.RandomTagSelection = Elegir valor de tag al azar
 customUI.triggerVolumeEffectEditor.effectType.PasteRandomPrefab = Pegar prefab al azar
 customUI.triggerVolumeEffectEditor.effectType.SendTagMessage = Enviar mensaje con tags
 customUI.triggerVolumeEffectEditor.effectType.ShowTagEventTitle = Mostrar titulo de evento con tags
-
-customUI.triggerVolumeEffectEditor.field.RemoveEventTitle.FadeOutDuration = Duracion del fundido
-customUI.triggerVolumeEffectEditor.field.RemoveEventTitle.FadeOutDuration.tooltip = Segundos usados para ocultar gradualmente el titulo actual. Ejemplo: 1.5.
 
 customUI.triggerVolumeEffectEditor.field.GiveRandomItem.Quantity = Cantidad
 customUI.triggerVolumeEffectEditor.field.GiveRandomItem.Quantity.tooltip = Numero de copias del objeto elegido al azar que se entregan. Ejemplo: 1.
@@ -16,25 +11,6 @@ customUI.triggerVolumeEffectEditor.field.GiveRandomItem.OverflowBehavior.tooltip
 customUI.triggerVolumeEffectEditor.field.GiveRandomItem.OverflowBehavior.option.DROP_REMAINDER = Soltar lo que no quepa
 customUI.triggerVolumeEffectEditor.field.GiveRandomItem.OverflowBehavior.option.IGNORE_REMAINDER = Ignorar lo que no quepa
 customUI.triggerVolumeEffectEditor.field.GiveRandomItem.OverflowBehavior.option.REQUIRE_FULL_STACK = Exigir espacio para todo
-
-customUI.triggerVolumeEffectEditor.field.RandomTagSelection.TagKey = Tag que cambiar
-customUI.triggerVolumeEffectEditor.field.RandomTagSelection.TagKey.tooltip = Tag del Trigger Volume que recibe el valor elegido al azar.
-customUI.triggerVolumeEffectEditor.field.RandomTagSelection.TagKey.placeholder = p. ej. sala_elegida
-customUI.triggerVolumeEffectEditor.field.RandomTagSelection.TagValues = Valores posibles
-customUI.triggerVolumeEffectEditor.field.RandomTagSelection.TagValues.tooltip = Valores separados por comas, punto y coma, barras verticales o lineas.
-customUI.triggerVolumeEffectEditor.field.RandomTagSelection.TagValues.placeholder = p. ej. lava, hielo, bosque
-customUI.triggerVolumeEffectEditor.field.RandomTagSelection.MatchKey = Tag objetivo
-customUI.triggerVolumeEffectEditor.field.RandomTagSelection.MatchKey.tooltip = Tag opcional usado para buscar otros Trigger Volumes.
-customUI.triggerVolumeEffectEditor.field.RandomTagSelection.MatchKey.placeholder = p. ej. receptor_sala
-customUI.triggerVolumeEffectEditor.field.RandomTagSelection.MatchValue = Valor objetivo
-customUI.triggerVolumeEffectEditor.field.RandomTagSelection.MatchValue.tooltip = Valor opcional requerido en el tag objetivo.
-customUI.triggerVolumeEffectEditor.field.RandomTagSelection.MatchValue.placeholder = p. ej. activo
-customUI.triggerVolumeEffectEditor.field.RandomTagSelection.Radius = Radio de busqueda
-customUI.triggerVolumeEffectEditor.field.RandomTagSelection.Radius.tooltip = Distancia maxima de busqueda en bloques. Ejemplo: 50.
-customUI.triggerVolumeEffectEditor.field.RandomTagSelection.Center = Buscar desde
-customUI.triggerVolumeEffectEditor.field.RandomTagSelection.Center.tooltip = Origen usado para buscar volumenes objetivo.
-customUI.triggerVolumeEffectEditor.field.RandomTagSelection.Center.option.VOLUME = Trigger Volume
-customUI.triggerVolumeEffectEditor.field.RandomTagSelection.Center.option.ENTITY = Entidad activadora
 
 customUI.triggerVolumeEffectEditor.field.PasteRandomPrefab.Prefab1 = Primer prefab
 customUI.triggerVolumeEffectEditor.field.PasteRandomPrefab.Prefab1.tooltip = Prefab usado por la primera opcion aleatoria.
@@ -114,3 +90,12 @@ customUI.triggerVolumeEffectEditor.field.ControlTimer.Recipient.option.TRIGGERIN
 customUI.triggerVolumeEffectEditor.field.ControlTimer.Recipient.option.NEAREST_PLAYER = Jugador mas cercano
 customUI.triggerVolumeEffectEditor.field.ControlTimer.Recipient.option.PLAYERS_IN_VOLUME = Jugadores en el volumen
 customUI.triggerVolumeEffectEditor.field.ControlTimer.Recipient.option.ALL_PLAYERS = Todos los jugadores
+
+customUI.triggerVolumeEffectEditor.effectType.ExecuteCommand = Ejecutar comando
+customUI.triggerVolumeEffectEditor.field.ExecuteCommand.Command = Comando
+customUI.triggerVolumeEffectEditor.field.ExecuteCommand.Command.tooltip = Comando que se ejecuta cuando se activa el Trigger Volume. Marcadores: {player}, {uuid}, {x}, {y}, {z}.
+customUI.triggerVolumeEffectEditor.field.ExecuteCommand.Command.placeholder = ej. say Hola {player}
+customUI.triggerVolumeEffectEditor.field.ExecuteCommand.Executor = Ejecutar como
+customUI.triggerVolumeEffectEditor.field.ExecuteCommand.Executor.tooltip = Elige si el comando se lanza desde la consola del servidor o desde el jugador que activa el volumen.
+customUI.triggerVolumeEffectEditor.field.ExecuteCommand.Executor.option.SERVER = Consola del servidor
+customUI.triggerVolumeEffectEditor.field.ExecuteCommand.Executor.option.PLAYER = Jugador activador

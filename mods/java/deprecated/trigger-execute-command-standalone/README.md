@@ -1,5 +1,9 @@
 # Trigger Execute Command
 
+> **DEPRECATED:** desde More Triggers 1.6.0, `ExecuteCommand` vive en
+> `mods/java/more-triggers`. No instales este mod junto a More Triggers porque
+> ambos registrarian el mismo ID de efecto.
+
 Mod para Trigger Volumes que registra el efecto `ExecuteCommand`.
 
 El efecto ejecuta un comando desde la consola del servidor o desde el jugador

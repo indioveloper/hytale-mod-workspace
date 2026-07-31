@@ -36,7 +36,7 @@ public class PendingPlatformCollisionComponent implements Component<EntityStore>
   }
 
   public static ComponentType<EntityStore, PendingPlatformCollisionComponent> getComponentType() {
-    return PlayerTriggerTagsPlugin.get().getPendingPlatformCollisionComponentType();
+    return EntityMotionTriggersPlugin.get().getPendingPlatformCollisionComponentType();
   }
 
   public String getConfigId() {

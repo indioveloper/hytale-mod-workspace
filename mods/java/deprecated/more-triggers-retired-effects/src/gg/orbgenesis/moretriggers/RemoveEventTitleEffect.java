@@ -11,6 +11,7 @@ import com.hypixel.hytale.server.core.universe.PlayerRef;
 import com.hypixel.hytale.server.core.universe.world.storage.EntityStore;
 import com.hypixel.hytale.server.core.util.EventTitleUtil;
 
+/** Deprecated source retained after the effect was removed from More Triggers 1.6.0. */
 public class RemoveEventTitleEffect extends TriggerEffect {
   public static final BuilderCodec<RemoveEventTitleEffect> CODEC =
       BuilderCodec.builder(

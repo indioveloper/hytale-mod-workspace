@@ -69,6 +69,12 @@ $required = @(
   "customUI.triggerVolumeEffectEditor.field.ControlTimer.DurationSeconds.placeholder"
   "customUI.triggerVolumeEffectEditor.field.ControlTimer.Recipient"
   "customUI.triggerVolumeEffectEditor.field.ControlTimer.Recipient.tooltip"
+  "customUI.triggerVolumeEffectEditor.effectType.ExecuteCommand"
+  "customUI.triggerVolumeEffectEditor.field.ExecuteCommand.Command"
+  "customUI.triggerVolumeEffectEditor.field.ExecuteCommand.Command.tooltip"
+  "customUI.triggerVolumeEffectEditor.field.ExecuteCommand.Command.placeholder"
+  "customUI.triggerVolumeEffectEditor.field.ExecuteCommand.Executor"
+  "customUI.triggerVolumeEffectEditor.field.ExecuteCommand.Executor.tooltip"
 )
 
 foreach ($key in $required) {
@@ -111,6 +117,13 @@ foreach ($recipient in @("TRIGGERING_PLAYER", "NEAREST_PLAYER", "PLAYERS_IN_VOLU
   $key = "customUI.triggerVolumeEffectEditor.field.ControlTimer.Recipient.option.$recipient"
   if (-not $english.ContainsKey($key) -or -not $spanish.ContainsKey($key)) {
     throw "Missing timer recipient option localization: $key"
+  }
+}
+
+foreach ($executor in @("SERVER", "PLAYER")) {
+  $key = "customUI.triggerVolumeEffectEditor.field.ExecuteCommand.Executor.option.$executor"
+  if (-not $english.ContainsKey($key) -or -not $spanish.ContainsKey($key)) {
+    throw "Missing ExecuteCommand executor option localization: $key"
   }
 }
 

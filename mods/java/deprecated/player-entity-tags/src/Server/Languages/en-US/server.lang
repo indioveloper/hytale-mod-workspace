@@ -1,5 +1,4 @@
 customUI.triggerVolumeEffectEditor.effectType.ModifyPlayerTag = Modify player tag
-customUI.triggerVolumeEffectEditor.effectType.ConvertBlocksToEntities = Convert blocks to entities
 customUI.triggerVolumeEffectEditor.conditionType.PlayerTagCondition = Player tag check
 
 customUI.triggerVolumeEffectEditor.field.ModifyPlayerTag.Operation = Action
@@ -51,11 +50,3 @@ customUI.triggerVolumeEffectEditor.field.PlayerTagCondition.TagValue.tooltip = V
 customUI.triggerVolumeEffectEditor.field.PlayerTagCondition.TagValue.placeholder = e.g. runner
 customUI.triggerVolumeEffectEditor.field.PlayerTagCondition.CaseSensitive = Match case
 customUI.triggerVolumeEffectEditor.field.PlayerTagCondition.CaseSensitive.tooltip = Require uppercase and lowercase letters to match exactly.
-
-customUI.triggerVolumeEffectEditor.field.ConvertBlocksToEntities.Item = Item
-customUI.triggerVolumeEffectEditor.field.ConvertBlocksToEntities.Item.tooltip = Item used to represent every converted block. Items and blocks are supported. The entity keeps the original block's center position and rotation.
-customUI.triggerVolumeEffectEditor.field.ConvertBlocksToEntities.Collision = Player collision
-customUI.triggerVolumeEffectEditor.field.ConvertBlocksToEntities.Collision.tooltip = Select how players interact with each created entity. Hard lets players stand on it; soft lets them pass through.
-customUI.triggerVolumeEffectEditor.field.ConvertBlocksToEntities.Collision.option.NONE = No collision
-customUI.triggerVolumeEffectEditor.field.ConvertBlocksToEntities.Collision.option.HARD = Hard collision
-customUI.triggerVolumeEffectEditor.field.ConvertBlocksToEntities.Collision.option.SOFT = Soft collision

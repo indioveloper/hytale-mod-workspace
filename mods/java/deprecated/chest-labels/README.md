@@ -1,5 +1,8 @@
 # Chest Labels Mod
 
+> **DEPRECATED:** se conserva como codigo historico y no forma parte de los mods
+> distribuibles. Su UI sigue siendo incompatible con pre-release 0.6.8.
+
 Mod base para Hytale que permite poner nombre e icono a cofres o contenedores y mostrarlo encima del texto normal de interaccion al apuntarlos.
 
 Estado: pendiente de migrar la UI a pre-release 0.6.8. El editor usa
