@@ -72,5 +72,11 @@ public class EntityMotionTriggersPlugin extends JavaPlugin {
     triggerVolumes.registerEffectType(
         "SpawnItems", SpawnItemsEffect.class, SpawnItemsEffect.CODEC);
     triggerVolumes.registerAssetField("SpawnItems", "Item", "Item");
+    triggerVolumes.registerEffectType(
+        "AttachMovingParticles",
+        AttachMovingParticlesEffect.class,
+        AttachMovingParticlesEffect.CODEC);
+    triggerVolumes.registerAssetField(
+        "AttachMovingParticles", "ParticleSystem", "ParticleSystem");
   }
 }
