@@ -1,93 +1,123 @@
 $C = "../../Common.ui";
 
-$C.@Container {
-  Anchor: (Left: 80, Top: 120, Width: 680, Height: 650);
+@EditorButtonLabelStyle = LabelStyle(
+  FontSize: 15,
+  RenderBold: true,
+  RenderUppercase: true,
+  HorizontalAlignment: Center,
+  VerticalAlignment: Center,
+  TextColor: #eaf4ff
+);
 
-  #Title {
-    Group {
-      LayoutMode: Left;
+@EditorPrimaryButtonStyle = TextButtonStyle(
+  Default: (Background: (Color: #315f8f), LabelStyle: @EditorButtonLabelStyle),
+  Hovered: (Background: (Color: #427bb5), LabelStyle: @EditorButtonLabelStyle),
+  Pressed: (Background: (Color: #24496e), LabelStyle: @EditorButtonLabelStyle)
+);
 
+@EditorSecondaryButtonStyle = TextButtonStyle(
+  Default: (Background: (Color: #354251), LabelStyle: @EditorButtonLabelStyle),
+  Hovered: (Background: (Color: #4b5d70), LabelStyle: @EditorButtonLabelStyle),
+  Pressed: (Background: (Color: #27323e), LabelStyle: @EditorButtonLabelStyle)
+);
+
+@EditorDangerButtonStyle = TextButtonStyle(
+  Default: (Background: (Color: #8c2944), LabelStyle: @EditorButtonLabelStyle),
+  Hovered: (Background: (Color: #b23959), LabelStyle: @EditorButtonLabelStyle),
+  Pressed: (Background: (Color: #681d31), LabelStyle: @EditorButtonLabelStyle)
+);
+
+$C.@PageOverlay {
+  LayoutMode: Middle;
+
+  $C.@DecoratedContainer {
+    @CloseButton = false;
+    Anchor: (Width: 820, Height: 720);
+
+    #Title {
       $C.@Title {
-        @Text = "Scoreboards Editor";
+        @Text = %server.customUI.scoreboards.editor.title;
       }
     }
-  }
 
-  #Content {
-    Group {
+    #Content {
       LayoutMode: Top;
-      Anchor: (Bottom: 14);
+      Padding: (Full: 16, Top: 12);
 
-      Group #TopButtons {
-        LayoutMode: Center;
-        Anchor: (Bottom: 14, Height: 44);
+      Group {
+        LayoutMode: Left;
+        Anchor: (Bottom: 10, Height: 62);
 
-        $C.@CancelTextButton #HideTopButton {
-          @Anchor = (Right: 4);
-          Text: "Hide";
-          FlexWeight: 1;
+        Group {
+          LayoutMode: Top;
+          Anchor: (Width: 245, Right: 8);
+
+          $C.@Subtitle {
+            @Text = %server.customUI.scoreboards.field.id;
+          }
+
+          $C.@TextField #DefinitionIdInput {
+            PlaceholderText: %server.customUI.scoreboards.field.id.placeholder;
+          }
         }
 
-        $C.@SecondaryTextButton #AddLineButton {
-          @Anchor = (Left: 4, Right: 4);
-          Text: "Add line";
+        Group {
+          LayoutMode: Top;
           FlexWeight: 1;
-        }
+          Anchor: (Left: 8);
 
-        $C.@SecondaryTextButton #ResetTopButton {
-          @Anchor = (Left: 4, Right: 4);
-          Text: "Reset";
-          FlexWeight: 1;
-        }
+          $C.@Subtitle {
+            @Text = %server.customUI.scoreboards.field.title;
+          }
 
-        $C.@TextButton #ApplyTopButton {
-          @Anchor = (Left: 4);
-          Text: "Apply";
-          FlexWeight: 1;
+          $C.@TextField #TitleInput {
+            PlaceholderText: %server.customUI.scoreboards.field.title.placeholder;
+          }
         }
       }
 
-      Label {
-        Text: "Title";
-        Anchor: (Bottom: 6);
-        Style: (...$C.@DefaultLabelStyle, RenderUppercase: true);
-      }
-
-      $C.@TextField #TitleInput {
-        @Anchor = (Bottom: 12);
-        Value: "";
-      }
-
-      Label {
-        Text: "Description";
-        Anchor: (Bottom: 6);
-        Style: (...$C.@DefaultLabelStyle, RenderUppercase: true);
+      $C.@Subtitle {
+        @Text = %server.customUI.scoreboards.field.description;
       }
 
       $C.@TextField #DescriptionInput {
-        @Anchor = (Bottom: 12);
-        Value: "";
-      }
-
-      Label {
-        Text: "Objective Line ID";
-        Anchor: (Bottom: 6);
-        Style: (...$C.@DefaultLabelStyle, RenderUppercase: true);
-      }
-
-      $C.@TextField #LineIdInput {
-        @Anchor = (Bottom: 18);
-        Value: "";
+        @Anchor = (Bottom: 14);
+        PlaceholderText: %server.customUI.scoreboards.field.description.placeholder;
       }
 
       $C.@PanelSeparatorFancy {
-        @Anchor = (Bottom: 14);
+        @Anchor = (Bottom: 12);
       }
 
       Label {
-        Text: "Scoreboard Lines";
-        Anchor: (Bottom: 10);
-        Style: (...$C.@DefaultLabelStyle, RenderUppercase: true, RenderBold: true);
+        Anchor: (Bottom: 8);
+        Text: %server.customUI.scoreboards.tasks.help;
+        Style: (...$C.@DefaultLabelStyle, FontSize: 13);
+      }
+
+      Group {
+        LayoutMode: Left;
+        Anchor: (Bottom: 8, Height: 38);
+
+        TextButton #PreviousTaskButton {
+          Anchor: (Right: 10, Height: 38);
+          FlexWeight: 1;
+          Text: %server.customUI.scoreboards.action.previous;
+          Style: @EditorSecondaryButtonStyle;
+        }
+
+        Label #TaskPosition {
+          Anchor: (Width: 208);
+          Text: "1 / 5";
+          Style: (...$C.@SubtitleStyle, HorizontalAlignment: Center);
+        }
+
+        TextButton #NextTaskButton {
+          Anchor: (Left: 10, Height: 38);
+          FlexWeight: 1;
+          Text: %server.customUI.scoreboards.action.next;
+          Style: @EditorSecondaryButtonStyle;
+        }
       }
 
       Group {
@@ -95,27 +125,71 @@ $C.@Container {
         Anchor: (Bottom: 6, Height: 22);
 
         Label {
-          Text: "Text";
-          Anchor: (Width: 350);
-          Style: (...$C.@DefaultLabelStyle, FontSize: 13, RenderUppercase: true);
+          Anchor: (Width: 150);
+          Text: %server.customUI.scoreboards.task.id;
+          Style: (...$C.@DefaultLabelStyle, RenderUppercase: true, FontSize: 12);
         }
 
         Label {
-          Text: "Current";
-          Anchor: (Left: 10, Width: 100);
-          Style: (...$C.@DefaultLabelStyle, FontSize: 13, RenderUppercase: true);
+          Anchor: (Left: 8, Width: 320);
+          Text: %server.customUI.scoreboards.task.label;
+          Style: (...$C.@DefaultLabelStyle, RenderUppercase: true, FontSize: 12);
         }
 
         Label {
-          Text: "Needed";
-          Anchor: (Left: 10, Width: 100);
-          Style: (...$C.@DefaultLabelStyle, FontSize: 13, RenderUppercase: true);
+          Anchor: (Left: 8, Width: 105);
+          Text: %server.customUI.scoreboards.task.initial;
+          Style: (...$C.@DefaultLabelStyle, RenderUppercase: true, FontSize: 12);
+        }
+
+        Label {
+          Anchor: (Left: 8, Width: 105);
+          Text: %server.customUI.scoreboards.task.goal;
+          Style: (...$C.@DefaultLabelStyle, RenderUppercase: true, FontSize: 12);
         }
       }
 
-      Group #LineRows {
-        LayoutMode: Top;
-        Anchor: (Bottom: 20, Height: 230);
+      Group {
+        LayoutMode: Left;
+        Anchor: (Bottom: 18, Height: 42);
+
+        $C.@TextField #TaskIdInput { @Anchor = (Width: 150); }
+        $C.@TextField #TaskLabelInput { @Anchor = (Left: 8, Width: 320); }
+        $C.@TextField #TaskInitialInput { @Anchor = (Left: 8, Width: 105); }
+        $C.@TextField #TaskGoalInput { @Anchor = (Left: 8, Width: 105); }
+      }
+
+      Group #BottomButtons {
+        LayoutMode: Left;
+        Anchor: (Top: 12, Height: 42);
+
+        TextButton #BackButton {
+          Anchor: (Right: 5, Height: 42);
+          FlexWeight: 1;
+          Text: %server.customUI.scoreboards.action.back;
+          Style: @EditorDangerButtonStyle;
+        }
+
+        TextButton #DeleteButton {
+          Anchor: (Horizontal: 5, Height: 42);
+          FlexWeight: 1;
+          Text: %server.customUI.scoreboards.action.delete;
+          Style: @EditorDangerButtonStyle;
+        }
+
+        TextButton #SaveButton {
+          Anchor: (Horizontal: 5, Height: 42);
+          FlexWeight: 2;
+          Text: %server.customUI.scoreboards.action.save;
+          Style: @EditorSecondaryButtonStyle;
+        }
+
+        TextButton #StartButton {
+          Anchor: (Left: 5, Height: 42);
+          FlexWeight: 2;
+          Text: %server.customUI.scoreboards.action.saveStart;
+          Style: @EditorPrimaryButtonStyle;
+        }
       }
 
     }

@@ -5,7 +5,6 @@ import com.hypixel.hytale.codec.KeyedCodec;
 import com.hypixel.hytale.codec.builder.BuilderCodec;
 import com.hypixel.hytale.component.Ref;
 import com.hypixel.hytale.component.Store;
-import com.hypixel.hytale.protocol.packets.assets.UntrackObjective;
 import com.hypixel.hytale.protocol.packets.interface_.CustomPageLifetime;
 import com.hypixel.hytale.protocol.packets.interface_.CustomUIEventBindingType;
 import com.hypixel.hytale.server.core.Message;
@@ -15,27 +14,52 @@ import com.hypixel.hytale.server.core.ui.builder.EventData;
 import com.hypixel.hytale.server.core.ui.builder.UICommandBuilder;
 import com.hypixel.hytale.server.core.ui.builder.UIEventBuilder;
 import com.hypixel.hytale.server.core.universe.PlayerRef;
+import com.hypixel.hytale.server.core.universe.world.World;
 import com.hypixel.hytale.server.core.universe.world.storage.EntityStore;
-import java.util.UUID;
+import com.hypixel.hytale.logger.HytaleLogger;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.concurrent.CompletableFuture;
+import java.util.logging.Level;
 
-public class ScoreboardEditorPage extends InteractiveCustomUIPage<ScoreboardEditorPage.PageEventData> {
-  private static final int TASK_COUNT = 5;
+public class ScoreboardEditorPage
+    extends InteractiveCustomUIPage<ScoreboardEditorPage.EditorEventData> {
+  private static final HytaleLogger LOGGER = HytaleLogger.forEnclosingClass();
 
-  private final UUID objectiveUuid = UUID.nameUUIDFromBytes("orbgenesis-scoreboard-ui".getBytes());
-  private final ScoreboardTracker tracker;
-  private String title = "Skeleton Hunter";
-  private String description = "Counts skeleton kills.";
-  private String lineId = "skeleton_kills";
-  private int taskCount = 1;
-  private final String[] taskText = {
-    "Skeletons killed", "Line 2", "Line 3", "Line 4", "Line 5"
-  };
-  private final int[] current = {0, 0, 0, 0, 0};
-  private final int[] needed = {1, 1, 1, 1, 1};
+  private final ScoreboardsPlugin plugin;
+  private final String originalId;
+  private String id;
+  private String title;
+  private String description;
+  private final String[] taskIds = new String[ScoreboardConfig.MAX_TASKS];
+  private final String[] taskLabels = new String[ScoreboardConfig.MAX_TASKS];
+  private final int[] initialValues = new int[ScoreboardConfig.MAX_TASKS];
+  private final int[] goals = new int[ScoreboardConfig.MAX_TASKS];
+  private int currentTaskIndex;
 
-  public ScoreboardEditorPage(PlayerRef playerRef, ScoreboardTracker tracker) {
-    super(playerRef, CustomPageLifetime.CanDismiss, PageEventData.CODEC);
-    this.tracker = tracker;
+  public ScoreboardEditorPage(
+      PlayerRef playerRef, ScoreboardsPlugin plugin, ScoreboardDefinition definition) {
+    super(playerRef, CustomPageLifetime.CanDismiss, EditorEventData.CODEC);
+    this.plugin = plugin;
+    this.originalId = definition == null ? null : definition.getId();
+    this.id = definition == null ? "new_scoreboard" : definition.getId();
+    this.title = definition == null ? "New scoreboard" : definition.getTitle();
+    this.description = definition == null ? "" : definition.getDescription();
+    for (int i = 0; i < ScoreboardConfig.MAX_TASKS; i++) {
+      goals[i] = 100;
+    }
+    if (definition != null) {
+      ScoreboardTaskDefinition[] tasks = definition.getTasks();
+      for (int i = 0; i < Math.min(tasks.length, ScoreboardConfig.MAX_TASKS); i++) {
+        taskIds[i] = tasks[i].getId();
+        taskLabels[i] = tasks[i].getLabel();
+        initialValues[i] = tasks[i].getInitialValue();
+        goals[i] = tasks[i].getGoal();
+      }
+    } else {
+      taskIds[0] = "score";
+      taskLabels[0] = "Score";
+    }
   }
 
   @Override
@@ -43,204 +67,284 @@ public class ScoreboardEditorPage extends InteractiveCustomUIPage<ScoreboardEdit
       Ref<EntityStore> ref,
       UICommandBuilder commands,
       UIEventBuilder events,
-      Store<EntityStore> store) {
-    commands.append("Pages/Scoreboards/ScoreboardEditor" + taskCount + ".ui");
-    bind(events);
+    Store<EntityStore> store) {
+    commands.append("Pages/Scoreboards/ScoreboardEditor.ui");
     fill(commands);
+    bindAction(events, "#PreviousTaskButton", "PreviousTask");
+    bindAction(events, "#NextTaskButton", "NextTask");
+    bindAction(events, "#SaveButton", "Save");
+    bindAction(events, "#StartButton", "Start");
+    bindAction(events, "#DeleteButton", "Delete");
+    bindAction(events, "#BackButton", "Back");
+    bindValue(events, "#DefinitionIdInput", "@DefinitionId");
+    bindValue(events, "#TitleInput", "@Title");
+    bindValue(events, "#DescriptionInput", "@Description");
+    bindValue(events, "#TaskIdInput", "@TaskId");
+    bindValue(events, "#TaskLabelInput", "@TaskLabel");
+    bindValue(events, "#TaskInitialInput", "@TaskInitial");
+    bindValue(events, "#TaskGoalInput", "@TaskGoal");
   }
 
   @Override
-  public void handleDataEvent(Ref<EntityStore> ref, Store<EntityStore> store, PageEventData data) {
-    readValues(data);
-
-    if ("Apply".equals(data.action) || data.apply != null) {
-      tracker.apply(playerRef, store, buildDefinition());
-      playerRef.sendMessage(Message.raw("Scoreboard applied."));
-      close();
-    } else if ("Hide".equals(data.action) || data.hide != null) {
-      tracker.hide(playerRef, store);
-      playerRef.getPacketHandler().write(new UntrackObjective(objectiveUuid));
-      playerRef.sendMessage(Message.raw("Scoreboard hidden."));
-      close();
-    } else if ("Reset".equals(data.action) || data.reset != null) {
-      reset();
-      reopen(store, ref);
-    } else if ("AddLine".equals(data.action)) {
-      if (taskCount < TASK_COUNT) {
-        taskCount++;
+  public void handleDataEvent(
+      Ref<EntityStore> ref, Store<EntityStore> store, EditorEventData data) {
+    if (data == null) {
+      return;
+    }
+    if (data.action != null) {
+      LOGGER
+          .at(Level.INFO)
+          .log(
+              "Objective editor event: action=%s, definition=%s",
+              data.action,
+              originalId == null ? "<new>" : originalId);
+    }
+    if (data.action == null) {
+      read(data);
+      return;
+    }
+    if ("Back".equals(data.action)) {
+      openList(ref, store);
+      return;
+    }
+    if ("Delete".equals(data.action)) {
+      if (originalId != null) {
+        plugin.getManager().deleteDefinition(originalId, store);
+        playerRef.sendMessage(Message.raw("Scoreboard deleted: " + originalId));
       }
-      reopen(store, ref);
-    }
-  }
-
-  private void bind(UIEventBuilder events) {
-    events.addEventBinding(CustomUIEventBindingType.ValueChanged, "#TitleInput", EventData.of("@Title", "#TitleInput.Value"), false);
-    events.addEventBinding(CustomUIEventBindingType.ValueChanged, "#DescriptionInput", EventData.of("@Description", "#DescriptionInput.Value"), false);
-    events.addEventBinding(CustomUIEventBindingType.ValueChanged, "#LineIdInput", EventData.of("@LineId", "#LineIdInput.Value"), false);
-
-    for (int i = 0; i < taskCount; i++) {
-      events.addEventBinding(CustomUIEventBindingType.ValueChanged, "#TaskInput" + i, EventData.of("@Task" + i, "#TaskInput" + i + ".Value"), false);
-      events.addEventBinding(CustomUIEventBindingType.ValueChanged, "#CurrentInput" + i, EventData.of("@Current" + i, "#CurrentInput" + i + ".Value"), false);
-      events.addEventBinding(CustomUIEventBindingType.ValueChanged, "#NeededInput" + i, EventData.of("@Needed" + i, "#NeededInput" + i + ".Value"), false);
-    }
-
-    bindSnapshot(events, "#ApplyTopButton", "Apply");
-    events.addEventBinding(CustomUIEventBindingType.Activating, "#HideTopButton", EventData.of("Action", "Hide"), false);
-    events.addEventBinding(CustomUIEventBindingType.Activating, "#ResetTopButton", EventData.of("Action", "Reset"), false);
-    bindSnapshot(events, "#AddLineButton", "AddLine");
-  }
-
-  private void fill(UICommandBuilder commands) {
-    commands.set("#TitleInput.Value", title);
-    commands.set("#DescriptionInput.Value", description);
-    commands.set("#LineIdInput.Value", lineId);
-
-    for (int i = 0; i < taskCount; i++) {
-      commands.set("#TaskInput" + i + ".Value", taskText[i]);
-      commands.set("#CurrentInput" + i + ".Value", String.valueOf(current[i]));
-      commands.set("#NeededInput" + i + ".Value", String.valueOf(needed[i]));
-    }
-  }
-
-  private void readValues(PageEventData data) {
-    title = coalesce(data.title, title);
-    description = coalesce(data.description, description);
-    lineId = cleanLineId(coalesce(data.lineId, lineId));
-
-    for (int i = 0; i < TASK_COUNT; i++) {
-      taskText[i] = coalesce(data.tasks[i], taskText[i]);
-      current[i] = parseInt(coalesce(data.current[i], null), current[i]);
-      needed[i] = Math.max(1, parseInt(coalesce(data.needed[i], null), needed[i]));
-    }
-  }
-
-  private ScoreboardTracker.ScoreboardDefinition buildDefinition() {
-    ScoreboardTracker.ScoreboardDefinition.TriggerType[] triggers =
-        new ScoreboardTracker.ScoreboardDefinition.TriggerType[TASK_COUNT];
-    for (int i = 0; i < TASK_COUNT; i++) {
-      triggers[i] =
-          i == 0
-              ? ScoreboardTracker.ScoreboardDefinition.TriggerType.SKELETON_KILL
-              : ScoreboardTracker.ScoreboardDefinition.TriggerType.NONE;
-    }
-
-    return new ScoreboardTracker.ScoreboardDefinition(
-        objectiveUuid,
-        title,
-        description,
-        lineId,
-        taskText,
-        current,
-        needed,
-        taskCount,
-        triggers);
-  }
-
-  private void reset() {
-    title = "Skeleton Hunter";
-    description = "Counts skeleton kills.";
-    lineId = "skeleton_kills";
-    taskCount = 1;
-    for (int i = 0; i < TASK_COUNT; i++) {
-      taskText[i] = i == 0 ? "Skeletons killed" : "Line " + (i + 1);
-      current[i] = 0;
-      needed[i] = 1;
-    }
-  }
-
-  private String coalesce(String value, String fallback) {
-    return value == null ? fallback : value;
-  }
-
-  private int parseInt(String value, int fallback) {
-    if (value == null || value.isBlank()) {
-      return fallback;
-    }
-
-    try {
-      return Integer.parseInt(value.trim());
-    } catch (NumberFormatException ignored) {
-      return fallback;
-    }
-  }
-
-  private String cleanLineId(String value) {
-    String cleaned = value == null ? "scoreboard" : value.trim();
-    return cleaned.isEmpty() ? "scoreboard" : cleaned;
-  }
-
-  private void bindSnapshot(UIEventBuilder events, String selector, String action) {
-    events.addEventBinding(CustomUIEventBindingType.Activating, selector, EventData.of("Action", action), false);
-    events.addEventBinding(CustomUIEventBindingType.Activating, selector, EventData.of("@Title", "#TitleInput.Value"), false);
-    events.addEventBinding(CustomUIEventBindingType.Activating, selector, EventData.of("@Description", "#DescriptionInput.Value"), false);
-    events.addEventBinding(CustomUIEventBindingType.Activating, selector, EventData.of("@LineId", "#LineIdInput.Value"), false);
-
-    for (int i = 0; i < taskCount; i++) {
-      events.addEventBinding(CustomUIEventBindingType.Activating, selector, EventData.of("@Task" + i, "#TaskInput" + i + ".Value"), false);
-      events.addEventBinding(CustomUIEventBindingType.Activating, selector, EventData.of("@Current" + i, "#CurrentInput" + i + ".Value"), false);
-      events.addEventBinding(CustomUIEventBindingType.Activating, selector, EventData.of("@Needed" + i, "#NeededInput" + i + ".Value"), false);
-    }
-  }
-
-  private void reopen(Store<EntityStore> store, Ref<EntityStore> playerEntityRef) {
-    Player player = store.getComponent(playerEntityRef, Player.getComponentType());
-    if (player == null) {
-      close();
+      openList(ref, store);
       return;
     }
 
-    ScoreboardEditorPage page = new ScoreboardEditorPage(playerRef, tracker);
-    page.copyStateFrom(this);
-    close();
-    player.getPageManager().openCustomPage(playerEntityRef, store, page);
+    read(data);
+    if ("PreviousTask".equals(data.action)) {
+      currentTaskIndex = Math.max(0, currentTaskIndex - 1);
+      rebuild();
+      return;
+    }
+    if ("NextTask".equals(data.action)) {
+      currentTaskIndex =
+          Math.min(ScoreboardConfig.MAX_TASKS - 1, currentTaskIndex + 1);
+      rebuild();
+      return;
+    }
+
+    ScoreboardDefinition definition = buildDefinition();
+    if (definition == null) {
+      playerRef.sendMessage(Message.raw("At least one task with an ID is required."));
+      return;
+    }
+    if (originalId != null && !originalId.equals(definition.getId())) {
+      plugin.getManager().deleteDefinition(originalId, store);
+    }
+    CompletableFuture<Boolean> saveFuture =
+        plugin.getManager().upsertDefinition(definition);
+    World world = store.getExternalData().getWorld();
+    boolean startAfterSave = "Start".equals(data.action);
+
+    saveFuture.whenComplete(
+        (saved, error) ->
+            finishSaveOnWorldThread(world, definition, startAfterSave, saved, error));
+
+    if (startAfterSave) {
+      close();
+    } else {
+      openList(ref, store);
+    }
   }
 
-  private void copyStateFrom(ScoreboardEditorPage source) {
-    title = source.title;
-    description = source.description;
-    lineId = source.lineId;
-    taskCount = source.taskCount;
-    System.arraycopy(source.taskText, 0, taskText, 0, TASK_COUNT);
-    System.arraycopy(source.current, 0, current, 0, TASK_COUNT);
-    System.arraycopy(source.needed, 0, needed, 0, TASK_COUNT);
+  private void finishSaveOnWorldThread(
+      World world,
+      ScoreboardDefinition definition,
+      boolean startAfterSave,
+      Boolean saved,
+      Throwable error) {
+    if (world == null || !world.isAlive()) {
+      return;
+    }
+    world.execute(
+        () -> {
+          if (error != null || !Boolean.TRUE.equals(saved)) {
+            LOGGER
+                .at(Level.SEVERE)
+                .log("Failed to save scoreboard '%s'", definition.getId(), error);
+            playerRef.sendMessage(
+                Message.raw("Could not save scoreboard: " + definition.getId()));
+            return;
+          }
+
+          plugin.getManager().refreshActiveObjectives(definition.getId());
+          playerRef.sendMessage(Message.raw("Scoreboard saved: " + definition.getId()));
+          if (!startAfterSave || !playerRef.isValid()) {
+            return;
+          }
+
+          Store<EntityStore> currentStore = world.getEntityStore().getStore();
+          boolean started =
+              !plugin
+                  .getManager()
+                  .start(
+                      definition.getId(),
+                      List.of(playerRef),
+                      ObjectiveInstanceScope.INDIVIDUAL,
+                      null,
+                      currentStore)
+                  .isEmpty();
+          playerRef.sendMessage(
+              Message.raw(
+                  started
+                      ? "Objective started: " + definition.getId()
+                      : "Could not start Objective: " + definition.getId()));
+        });
   }
 
-  public static class PageEventData {
-    public static final BuilderCodec<PageEventData> CODEC =
-        BuilderCodec.builder(PageEventData.class, PageEventData::new)
-            .addField(new KeyedCodec<>("Action", Codec.STRING), (data, value) -> data.action = value, data -> data.action)
-            .addField(new KeyedCodec<>("Apply", Codec.STRING), (data, value) -> data.apply = value, data -> data.apply)
-            .addField(new KeyedCodec<>("Hide", Codec.STRING), (data, value) -> data.hide = value, data -> data.hide)
-            .addField(new KeyedCodec<>("Reset", Codec.STRING), (data, value) -> data.reset = value, data -> data.reset)
-            .addField(new KeyedCodec<>("@Title", Codec.STRING), (data, value) -> data.title = value, data -> data.title)
-            .addField(new KeyedCodec<>("@Description", Codec.STRING), (data, value) -> data.description = value, data -> data.description)
-            .addField(new KeyedCodec<>("@LineId", Codec.STRING), (data, value) -> data.lineId = value, data -> data.lineId)
-            .addField(new KeyedCodec<>("@Task0", Codec.STRING), (data, value) -> data.tasks[0] = value, data -> data.tasks[0])
-            .addField(new KeyedCodec<>("@Task1", Codec.STRING), (data, value) -> data.tasks[1] = value, data -> data.tasks[1])
-            .addField(new KeyedCodec<>("@Task2", Codec.STRING), (data, value) -> data.tasks[2] = value, data -> data.tasks[2])
-            .addField(new KeyedCodec<>("@Task3", Codec.STRING), (data, value) -> data.tasks[3] = value, data -> data.tasks[3])
-            .addField(new KeyedCodec<>("@Task4", Codec.STRING), (data, value) -> data.tasks[4] = value, data -> data.tasks[4])
-            .addField(new KeyedCodec<>("@Current0", Codec.STRING), (data, value) -> data.current[0] = value, data -> data.current[0])
-            .addField(new KeyedCodec<>("@Current1", Codec.STRING), (data, value) -> data.current[1] = value, data -> data.current[1])
-            .addField(new KeyedCodec<>("@Current2", Codec.STRING), (data, value) -> data.current[2] = value, data -> data.current[2])
-            .addField(new KeyedCodec<>("@Current3", Codec.STRING), (data, value) -> data.current[3] = value, data -> data.current[3])
-            .addField(new KeyedCodec<>("@Current4", Codec.STRING), (data, value) -> data.current[4] = value, data -> data.current[4])
-            .addField(new KeyedCodec<>("@Needed0", Codec.STRING), (data, value) -> data.needed[0] = value, data -> data.needed[0])
-            .addField(new KeyedCodec<>("@Needed1", Codec.STRING), (data, value) -> data.needed[1] = value, data -> data.needed[1])
-            .addField(new KeyedCodec<>("@Needed2", Codec.STRING), (data, value) -> data.needed[2] = value, data -> data.needed[2])
-            .addField(new KeyedCodec<>("@Needed3", Codec.STRING), (data, value) -> data.needed[3] = value, data -> data.needed[3])
-            .addField(new KeyedCodec<>("@Needed4", Codec.STRING), (data, value) -> data.needed[4] = value, data -> data.needed[4])
-            .build();
+  private void fill(UICommandBuilder commands) {
+    commands.set("#DefinitionIdInput.Value", id);
+    commands.set("#TitleInput.Value", title);
+    commands.set("#DescriptionInput.Value", description);
+    commands.set(
+        "#TaskPosition.Text",
+        (currentTaskIndex + 1) + " / " + ScoreboardConfig.MAX_TASKS);
+    commands.set("#TaskIdInput.Value", safe(taskIds[currentTaskIndex]));
+    commands.set("#TaskLabelInput.Value", safe(taskLabels[currentTaskIndex]));
+    commands.set(
+        "#TaskInitialInput.Value", String.valueOf(initialValues[currentTaskIndex]));
+    commands.set("#TaskGoalInput.Value", String.valueOf(goals[currentTaskIndex]));
+  }
+
+  private void bindAction(UIEventBuilder events, String selector, String action) {
+    events.addEventBinding(
+        CustomUIEventBindingType.Activating,
+        selector,
+        EventData.of("Action", action),
+        false);
+  }
+
+  private void bindValue(UIEventBuilder events, String selector, String key) {
+    events.addEventBinding(
+        CustomUIEventBindingType.ValueChanged,
+        selector,
+        EventData.of(key, selector + ".Value"),
+        false);
+  }
+
+  private void read(EditorEventData data) {
+    id = fallback(data.definitionId, id);
+    title = fallback(data.title, title);
+    description = fallback(data.description, description);
+    taskIds[currentTaskIndex] =
+        fallback(data.taskId, taskIds[currentTaskIndex]);
+    taskLabels[currentTaskIndex] =
+        fallback(data.taskLabel, taskLabels[currentTaskIndex]);
+    initialValues[currentTaskIndex] =
+        parseInt(data.taskInitial, initialValues[currentTaskIndex], 0);
+    goals[currentTaskIndex] =
+        parseInt(data.taskGoal, goals[currentTaskIndex], 1);
+  }
+
+  private ScoreboardDefinition buildDefinition() {
+    List<ScoreboardTaskDefinition> tasks = new ArrayList<>();
+    for (int i = 0; i < ScoreboardConfig.MAX_TASKS; i++) {
+      if (taskIds[i] == null || taskIds[i].isBlank()) {
+        continue;
+      }
+      tasks.add(
+          new ScoreboardTaskDefinition(
+              taskIds[i], fallback(taskLabels[i], taskIds[i]), initialValues[i], goals[i]));
+    }
+    if (tasks.isEmpty()) {
+      return null;
+    }
+    return new ScoreboardDefinition(
+        id, title, description, tasks.toArray(ScoreboardTaskDefinition[]::new));
+  }
+
+  private void openList(Ref<EntityStore> ref, Store<EntityStore> store) {
+    Player player = store.getComponent(ref, Player.getComponentType());
+    if (player != null) {
+      player.getPageManager().clearCustomPageAcknowledgements();
+      player
+          .getPageManager()
+          .openCustomPage(ref, store, new ScoreboardListPage(playerRef, plugin));
+    }
+  }
+
+  private static String fallback(String value, String fallback) {
+    return value == null ? fallback : value.trim();
+  }
+
+  private static String safe(String value) {
+    return value == null ? "" : value;
+  }
+
+  private static int parseInt(String value, int fallback, int minimum) {
+    if (value == null || value.isBlank()) {
+      return Math.max(minimum, fallback);
+    }
+    try {
+      return Math.max(minimum, Integer.parseInt(value.trim()));
+    } catch (NumberFormatException ignored) {
+      return Math.max(minimum, fallback);
+    }
+  }
+
+  public static class EditorEventData {
+    public static final BuilderCodec<EditorEventData> CODEC =
+        buildCodec();
+
+    private static BuilderCodec<EditorEventData> buildCodec() {
+      BuilderCodec.Builder<EditorEventData> builder =
+          BuilderCodec.builder(EditorEventData.class, EditorEventData::new)
+              .append(
+                  new KeyedCodec<>("Action", Codec.STRING, false),
+                  (data, value) -> data.action = value,
+                  data -> data.action)
+              .add()
+              .append(
+                  new KeyedCodec<>("@DefinitionId", Codec.STRING, false),
+                  (data, value) -> data.definitionId = value,
+                  data -> data.definitionId)
+              .add()
+              .append(
+                  new KeyedCodec<>("@Title", Codec.STRING, false),
+                  (data, value) -> data.title = value,
+                  data -> data.title)
+              .add()
+              .append(
+                  new KeyedCodec<>("@Description", Codec.STRING, false),
+                  (data, value) -> data.description = value,
+                  data -> data.description)
+              .add()
+              .append(
+                  new KeyedCodec<>("@TaskId", Codec.STRING, false),
+                  (data, value) -> data.taskId = value,
+                  data -> data.taskId)
+              .add()
+              .append(
+                  new KeyedCodec<>("@TaskLabel", Codec.STRING, false),
+                  (data, value) -> data.taskLabel = value,
+                  data -> data.taskLabel)
+              .add()
+              .append(
+                  new KeyedCodec<>("@TaskInitial", Codec.STRING, false),
+                  (data, value) -> data.taskInitial = value,
+                  data -> data.taskInitial)
+              .add()
+              .append(
+                  new KeyedCodec<>("@TaskGoal", Codec.STRING, false),
+                  (data, value) -> data.taskGoal = value,
+                  data -> data.taskGoal)
+              .add();
+      return builder.build();
+    }
 
     public String action;
-    public String apply;
-    public String hide;
-    public String reset;
+    public String definitionId;
     public String title;
     public String description;
-    public String lineId;
-    public String[] tasks = new String[TASK_COUNT];
-    public String[] current = new String[TASK_COUNT];
-    public String[] needed = new String[TASK_COUNT];
+    public String taskId;
+    public String taskLabel;
+    public String taskInitial;
+    public String taskGoal;
   }
 }

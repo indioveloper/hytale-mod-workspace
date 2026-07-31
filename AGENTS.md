@@ -103,13 +103,27 @@ con el numero de version nuevo en la misma carpeta.
 - `mods/java/map-selector`: prototipo `0.1.1` con comando `/mapas`, previews
   nativas de prefabs y destinos configurados en `MapDefinition`. Sus mapas
   iniciales dependen opcionalmente del asset pack local `tests:tests`.
+- `mods/java/more-triggers`: version `1.4.0`. `GiveRandomItem` entrega al
+  jugador activador un asset `Item` elegido uniformemente al azar. `SendTagMessage` y
+  `ShowTagEventTitle` sustituyen `{tag}` desde una fuente elegible:
+  `SELF`, `EVENT` o `RADIUS`; no cambian los IDs de los efectos vanilla.
+  Tambien incluye el HUD circular `/timer` y el efecto `ControlTimer`; el
+  contorno radial usa 61 frames PNG y su estado solo vive durante la sesion.
 - `mods/java/trigger-execute-command`: efecto `ExecuteCommand` actualizado a
   rango 0.6.x; revisar en juego antes de usar comandos destructivos.
 - `games/nexus-siege`: workspace del minijuego. Los NPCs reutilizables y
   efectos de Trigger Volumes para NPCs viven en `mods/asset-packs/raynor-npcs`;
   la carpeta `npcs/vanilla` conserva contratos y notas de diseno del juego.
-- `mods/java/scoreboards`: codigo de 0.5.x. Revisar APIs, manifest y UI antes de
-  intentar instalarlo en 0.6.x.
+- `mods/java/scoreboards`: prototipo `2.0.10` reconstruido para 0.6.8. Usa
+  `ObjectiveDataStore`, assets dinamicos y la tarea `OrbGenesisManualCount`;
+  permite editar definiciones mediante `/scoreboard`, controlar instancias con
+  comandos y usar `ControlScoreboard`, `ModifyScoreboardTask`,
+  `ScoreboardState` y `ScoreboardTaskValue` en Trigger Volumes. Compila y pasa
+  las pruebas estaticas, pero aun requiere smoke test dentro del juego. Las
+  mutaciones del asset store se encolan fuera del hilo del mundo para no
+  bloquear el `ASSET_LOCK` durante eventos de UI. Los titulos y descripciones
+  editables se publican al cliente como traducciones dinamicas antes de enviar
+  los paquetes nativos de Objective.
 - `mods/asset-packs`: packs independientes relativamente limpios.
 - `mods/asset-packs/roguelike-prefabs`: pack `tests:tests` con los mapas y
   prefabs usados por `test roguelike` y por Map Selector.

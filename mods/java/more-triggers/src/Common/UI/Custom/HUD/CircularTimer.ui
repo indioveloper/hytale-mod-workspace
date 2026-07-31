@@ -1,0 +1,329 @@
+Group #CircularTimerRoot {
+  Anchor: (Right: 36, Top: 36, Width: 128, Height: 128);
+
+  Panel #TimerBackdrop {
+    Anchor: (Width: 128, Height: 128);
+    Background: (TexturePath: "CircularTimer/CenterBackdrop.png");
+  }
+
+  Group #RingStack {
+    Anchor: (Width: 128, Height: 128);
+    Panel #Ring00 {
+      Anchor: (Width: 128, Height: 128);
+      Background: (TexturePath: "CircularTimer/Frames/Ring00.png");
+      Visible: false;
+    }
+    Panel #Ring01 {
+      Anchor: (Width: 128, Height: 128);
+      Background: (TexturePath: "CircularTimer/Frames/Ring01.png");
+      Visible: false;
+    }
+    Panel #Ring02 {
+      Anchor: (Width: 128, Height: 128);
+      Background: (TexturePath: "CircularTimer/Frames/Ring02.png");
+      Visible: false;
+    }
+    Panel #Ring03 {
+      Anchor: (Width: 128, Height: 128);
+      Background: (TexturePath: "CircularTimer/Frames/Ring03.png");
+      Visible: false;
+    }
+    Panel #Ring04 {
+      Anchor: (Width: 128, Height: 128);
+      Background: (TexturePath: "CircularTimer/Frames/Ring04.png");
+      Visible: false;
+    }
+    Panel #Ring05 {
+      Anchor: (Width: 128, Height: 128);
+      Background: (TexturePath: "CircularTimer/Frames/Ring05.png");
+      Visible: false;
+    }
+    Panel #Ring06 {
+      Anchor: (Width: 128, Height: 128);
+      Background: (TexturePath: "CircularTimer/Frames/Ring06.png");
+      Visible: false;
+    }
+    Panel #Ring07 {
+      Anchor: (Width: 128, Height: 128);
+      Background: (TexturePath: "CircularTimer/Frames/Ring07.png");
+      Visible: false;
+    }
+    Panel #Ring08 {
+      Anchor: (Width: 128, Height: 128);
+      Background: (TexturePath: "CircularTimer/Frames/Ring08.png");
+      Visible: false;
+    }
+    Panel #Ring09 {
+      Anchor: (Width: 128, Height: 128);
+      Background: (TexturePath: "CircularTimer/Frames/Ring09.png");
+      Visible: false;
+    }
+    Panel #Ring10 {
+      Anchor: (Width: 128, Height: 128);
+      Background: (TexturePath: "CircularTimer/Frames/Ring10.png");
+      Visible: false;
+    }
+    Panel #Ring11 {
+      Anchor: (Width: 128, Height: 128);
+      Background: (TexturePath: "CircularTimer/Frames/Ring11.png");
+      Visible: false;
+    }
+    Panel #Ring12 {
+      Anchor: (Width: 128, Height: 128);
+      Background: (TexturePath: "CircularTimer/Frames/Ring12.png");
+      Visible: false;
+    }
+    Panel #Ring13 {
+      Anchor: (Width: 128, Height: 128);
+      Background: (TexturePath: "CircularTimer/Frames/Ring13.png");
+      Visible: false;
+    }
+    Panel #Ring14 {
+      Anchor: (Width: 128, Height: 128);
+      Background: (TexturePath: "CircularTimer/Frames/Ring14.png");
+      Visible: false;
+    }
+    Panel #Ring15 {
+      Anchor: (Width: 128, Height: 128);
+      Background: (TexturePath: "CircularTimer/Frames/Ring15.png");
+      Visible: false;
+    }
+    Panel #Ring16 {
+      Anchor: (Width: 128, Height: 128);
+      Background: (TexturePath: "CircularTimer/Frames/Ring16.png");
+      Visible: false;
+    }
+    Panel #Ring17 {
+      Anchor: (Width: 128, Height: 128);
+      Background: (TexturePath: "CircularTimer/Frames/Ring17.png");
+      Visible: false;
+    }
+    Panel #Ring18 {
+      Anchor: (Width: 128, Height: 128);
+      Background: (TexturePath: "CircularTimer/Frames/Ring18.png");
+      Visible: false;
+    }
+    Panel #Ring19 {
+      Anchor: (Width: 128, Height: 128);
+      Background: (TexturePath: "CircularTimer/Frames/Ring19.png");
+      Visible: false;
+    }
+    Panel #Ring20 {
+      Anchor: (Width: 128, Height: 128);
+      Background: (TexturePath: "CircularTimer/Frames/Ring20.png");
+      Visible: false;
+    }
+    Panel #Ring21 {
+      Anchor: (Width: 128, Height: 128);
+      Background: (TexturePath: "CircularTimer/Frames/Ring21.png");
+      Visible: false;
+    }
+    Panel #Ring22 {
+      Anchor: (Width: 128, Height: 128);
+      Background: (TexturePath: "CircularTimer/Frames/Ring22.png");
+      Visible: false;
+    }
+    Panel #Ring23 {
+      Anchor: (Width: 128, Height: 128);
+      Background: (TexturePath: "CircularTimer/Frames/Ring23.png");
+      Visible: false;
+    }
+    Panel #Ring24 {
+      Anchor: (Width: 128, Height: 128);
+      Background: (TexturePath: "CircularTimer/Frames/Ring24.png");
+      Visible: false;
+    }
+    Panel #Ring25 {
+      Anchor: (Width: 128, Height: 128);
+      Background: (TexturePath: "CircularTimer/Frames/Ring25.png");
+      Visible: false;
+    }
+    Panel #Ring26 {
+      Anchor: (Width: 128, Height: 128);
+      Background: (TexturePath: "CircularTimer/Frames/Ring26.png");
+      Visible: false;
+    }
+    Panel #Ring27 {
+      Anchor: (Width: 128, Height: 128);
+      Background: (TexturePath: "CircularTimer/Frames/Ring27.png");
+      Visible: false;
+    }
+    Panel #Ring28 {
+      Anchor: (Width: 128, Height: 128);
+      Background: (TexturePath: "CircularTimer/Frames/Ring28.png");
+      Visible: false;
+    }
+    Panel #Ring29 {
+      Anchor: (Width: 128, Height: 128);
+      Background: (TexturePath: "CircularTimer/Frames/Ring29.png");
+      Visible: false;
+    }
+    Panel #Ring30 {
+      Anchor: (Width: 128, Height: 128);
+      Background: (TexturePath: "CircularTimer/Frames/Ring30.png");
+      Visible: false;
+    }
+    Panel #Ring31 {
+      Anchor: (Width: 128, Height: 128);
+      Background: (TexturePath: "CircularTimer/Frames/Ring31.png");
+      Visible: false;
+    }
+    Panel #Ring32 {
+      Anchor: (Width: 128, Height: 128);
+      Background: (TexturePath: "CircularTimer/Frames/Ring32.png");
+      Visible: false;
+    }
+    Panel #Ring33 {
+      Anchor: (Width: 128, Height: 128);
+      Background: (TexturePath: "CircularTimer/Frames/Ring33.png");
+      Visible: false;
+    }
+    Panel #Ring34 {
+      Anchor: (Width: 128, Height: 128);
+      Background: (TexturePath: "CircularTimer/Frames/Ring34.png");
+      Visible: false;
+    }
+    Panel #Ring35 {
+      Anchor: (Width: 128, Height: 128);
+      Background: (TexturePath: "CircularTimer/Frames/Ring35.png");
+      Visible: false;
+    }
+    Panel #Ring36 {
+      Anchor: (Width: 128, Height: 128);
+      Background: (TexturePath: "CircularTimer/Frames/Ring36.png");
+      Visible: false;
+    }
+    Panel #Ring37 {
+      Anchor: (Width: 128, Height: 128);
+      Background: (TexturePath: "CircularTimer/Frames/Ring37.png");
+      Visible: false;
+    }
+    Panel #Ring38 {
+      Anchor: (Width: 128, Height: 128);
+      Background: (TexturePath: "CircularTimer/Frames/Ring38.png");
+      Visible: false;
+    }
+    Panel #Ring39 {
+      Anchor: (Width: 128, Height: 128);
+      Background: (TexturePath: "CircularTimer/Frames/Ring39.png");
+      Visible: false;
+    }
+    Panel #Ring40 {
+      Anchor: (Width: 128, Height: 128);
+      Background: (TexturePath: "CircularTimer/Frames/Ring40.png");
+      Visible: false;
+    }
+    Panel #Ring41 {
+      Anchor: (Width: 128, Height: 128);
+      Background: (TexturePath: "CircularTimer/Frames/Ring41.png");
+      Visible: false;
+    }
+    Panel #Ring42 {
+      Anchor: (Width: 128, Height: 128);
+      Background: (TexturePath: "CircularTimer/Frames/Ring42.png");
+      Visible: false;
+    }
+    Panel #Ring43 {
+      Anchor: (Width: 128, Height: 128);
+      Background: (TexturePath: "CircularTimer/Frames/Ring43.png");
+      Visible: false;
+    }
+    Panel #Ring44 {
+      Anchor: (Width: 128, Height: 128);
+      Background: (TexturePath: "CircularTimer/Frames/Ring44.png");
+      Visible: false;
+    }
+    Panel #Ring45 {
+      Anchor: (Width: 128, Height: 128);
+      Background: (TexturePath: "CircularTimer/Frames/Ring45.png");
+      Visible: false;
+    }
+    Panel #Ring46 {
+      Anchor: (Width: 128, Height: 128);
+      Background: (TexturePath: "CircularTimer/Frames/Ring46.png");
+      Visible: false;
+    }
+    Panel #Ring47 {
+      Anchor: (Width: 128, Height: 128);
+      Background: (TexturePath: "CircularTimer/Frames/Ring47.png");
+      Visible: false;
+    }
+    Panel #Ring48 {
+      Anchor: (Width: 128, Height: 128);
+      Background: (TexturePath: "CircularTimer/Frames/Ring48.png");
+      Visible: false;
+    }
+    Panel #Ring49 {
+      Anchor: (Width: 128, Height: 128);
+      Background: (TexturePath: "CircularTimer/Frames/Ring49.png");
+      Visible: false;
+    }
+    Panel #Ring50 {
+      Anchor: (Width: 128, Height: 128);
+      Background: (TexturePath: "CircularTimer/Frames/Ring50.png");
+      Visible: false;
+    }
+    Panel #Ring51 {
+      Anchor: (Width: 128, Height: 128);
+      Background: (TexturePath: "CircularTimer/Frames/Ring51.png");
+      Visible: false;
+    }
+    Panel #Ring52 {
+      Anchor: (Width: 128, Height: 128);
+      Background: (TexturePath: "CircularTimer/Frames/Ring52.png");
+      Visible: false;
+    }
+    Panel #Ring53 {
+      Anchor: (Width: 128, Height: 128);
+      Background: (TexturePath: "CircularTimer/Frames/Ring53.png");
+      Visible: false;
+    }
+    Panel #Ring54 {
+      Anchor: (Width: 128, Height: 128);
+      Background: (TexturePath: "CircularTimer/Frames/Ring54.png");
+      Visible: false;
+    }
+    Panel #Ring55 {
+      Anchor: (Width: 128, Height: 128);
+      Background: (TexturePath: "CircularTimer/Frames/Ring55.png");
+      Visible: false;
+    }
+    Panel #Ring56 {
+      Anchor: (Width: 128, Height: 128);
+      Background: (TexturePath: "CircularTimer/Frames/Ring56.png");
+      Visible: false;
+    }
+    Panel #Ring57 {
+      Anchor: (Width: 128, Height: 128);
+      Background: (TexturePath: "CircularTimer/Frames/Ring57.png");
+      Visible: false;
+    }
+    Panel #Ring58 {
+      Anchor: (Width: 128, Height: 128);
+      Background: (TexturePath: "CircularTimer/Frames/Ring58.png");
+      Visible: false;
+    }
+    Panel #Ring59 {
+      Anchor: (Width: 128, Height: 128);
+      Background: (TexturePath: "CircularTimer/Frames/Ring59.png");
+      Visible: false;
+    }
+    Panel #Ring60 {
+      Anchor: (Width: 128, Height: 128);
+      Background: (TexturePath: "CircularTimer/Frames/Ring60.png");
+      Visible: true;
+    }
+  }
+
+  Label #TimerText {
+    Anchor: (Width: 128, Height: 128);
+    Text: "01:00";
+    Style: (
+      FontSize: 25,
+      RenderBold: true,
+      HorizontalAlignment: Center,
+      VerticalAlignment: Center,
+      TextColor: #f2f5f5
+    );
+  }
+}

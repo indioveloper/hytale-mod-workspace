@@ -136,25 +136,6 @@ $C.@Container {
           Value: "";
         }
       }
-      Group {
-        LayoutMode: Left;
-        Anchor: (Bottom: 8, Height: 38);
-
-        $C.@TextField #TaskInput1 {
-          @Anchor = (Width: 350);
-          Value: "";
-        }
-
-        $C.@TextField #CurrentInput1 {
-          @Anchor = (Left: 10, Width: 100);
-          Value: "";
-        }
-
-        $C.@TextField #NeededInput1 {
-          @Anchor = (Left: 10, Width: 100);
-          Value: "";
-        }
-      }
       }
     }
   }

@@ -1,8 +1,8 @@
 {
     "Group": "OrbGenesis",
     "Name": "More Triggers",
-    "Version": "1.0.3",
-    "Description": "Adds extra Trigger Volume effects: Remove Event Title, Random Tag Selection, and Paste Random Prefab.",
+    "Version": "1.4.0",
+    "Description": "Adds extra Trigger Volume effects, including random items, tag-aware messages, and a circular timer HUD.",
     "Authors": [
         {
             "Name": "OrbGenesis",
@@ -11,8 +11,11 @@
     ],
     "DisabledByDefault": false,
     "IncludesAssetPack": true,
-    "Dependencies": {},
+    "Dependencies": {
+        "Hytale:EntityModule": "*",
+        "Hytale:TriggerVolumes": "*"
+    },
     "OptionalDependencies": {},
-    "ServerVersion": "2026.05.07-5efa15f6d",
+    "ServerVersion": ">=0.6.0-pre <0.7.0",
     "Main": "gg.orbgenesis.moretriggers.MoreTriggersPlugin"
 }

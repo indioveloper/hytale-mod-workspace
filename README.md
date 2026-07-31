@@ -17,10 +17,10 @@ backups, instalaciones del juego, el Hytale Shared Source ni mundos completos.
 | `mods/java/build-battle` | Prototipo, v0.2.2 | Sugerencias de temas y regla Always Active para restringir herramientas creativas por plot. |
 | `mods/java/entity-motion-triggers` | Activo/prototipo, v1.1.1 | Efectos para crear y mover entidades, destruirlas al llegar y aplicar/quitar colision de plataforma. |
 | `mods/java/map-selector` | Prototipo, v0.1.1 | Selector cerrado de mapas con previews 3D de prefabs y teletransporte mediante `/mapas`. |
-| `mods/java/more-triggers` | Legacy recuperado, v1.0.3 | Efectos extra de Trigger Volumes: `RemoveEventTitle`, `RandomTagSelection` y `PasteRandomPrefab`. Recuperado desde carpetas legacy; pendiente de recompilar y validar en runtime moderno. |
+| `mods/java/more-triggers` | Activo/prototipo, v1.4.0 | Efectos extra, objetos aleatorios, mensajes y Event Titles con tags `{tag}`, y timer circular controlable por comando o Trigger Volumes. |
 | `mods/java/trigger-execute-command` | Actualizado, v1.1.0 | Efecto `ExecuteCommand` para lanzar comandos desde Trigger Volumes en pre-release 0.6.x. |
 | `mods/java/chest-labels` | Pendiente de UI, v0.1.0 | Nombres e iconos persistentes para cofres, con HUD y editor. Su editor usa `PageOverlay`, incompatible con la UI de pre-release 0.6.8. |
-| `mods/java/scoreboards` | Legacy Hytale 0.5, integrado | Editor y seguimiento de scoreboards mediante UI nativa. Incluye HUD lateral, registro en objectives nativos y trigger inicial de kills de skeleton; pendiente de adaptar y revalidar para pre-release 0.6.x. |
+| `mods/java/scoreboards` | Prototipo, v2.0.10 | Objectives editables y persistentes con comandos, UI nativa y control desde Trigger Volumes; compila en 0.6.8 y requiere smoke test en juego. |
 
 `games/nexus-siege` contiene el proyecto del minijuego, documentacion, pruebas
 y contratos de comportamiento. Los NPCs reutilizables viven en
@@ -41,6 +41,9 @@ flechas con `SpawnTriggerVolume`, outlines, ventanas, prefabs, archery game,
 pruebas Raynor y packs usados durante las migraciones 0.6.x. Pueden contener
 overrides vanilla y no deben instalarse todos a la vez sin revisar sus IDs.
 Consulta `docs/ASSET_PACKS.md` para el detalle de cada pack.
+
+La evaluacion para consolidar los mods Java de Trigger Volumes en un unico
+paquete esta en `docs/MORE_TRIGGERS_CONSOLIDATION.md`.
 
 ## Preparar otro PC
 
@@ -120,12 +123,8 @@ Para Scoreboards, los assets estan en una raiz distinta:
   -SourceRoot src `
   -PackageRoot . `
   -AssetsRoot assets `
-  -ArtifactName Scoreboards-1_0_0.jar
+  -ArtifactName Scoreboards-2_0_10.jar
 ```
-
-Los mods legacy pueden necesitar cambios de API antes de compilar contra una
-pre-release moderna. Sus manifests y rangos de servidor documentan el punto de
-partida historico.
 
 ## Instalar y probar
 
