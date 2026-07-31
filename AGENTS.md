@@ -7,7 +7,7 @@ de verdad.
 
 ## Estado de referencia
 
-- Fecha del handoff: 2026-07-18.
+- Fecha del handoff: 2026-07-31.
 - Runtime de trabajo: Hytale pre-release 0.6.8.
 - Referencia de API: `HypixelStudios/hytale-shared-source`, rama `pre-release`.
 - JDK usado en los builds recientes: Java 25.
@@ -15,34 +15,31 @@ de verdad.
 - El Shared Source, el servidor y los assets vanilla son dependencias externas y
   nunca deben copiarse al repo.
 
-## Proyecto activo: Player Trigger Tags
+## Proyectos activos tras la consolidacion
 
-Ruta: `mods/java/player-trigger-tags`.
+- `mods/java/more-triggers`, version `1.6.0`: utilidades generales de Trigger
+  Volumes. Integra `ExecuteCommand`; el antiguo mod standalone esta deprecated.
+- `mods/java/entity-motion-triggers`, version `1.3.0`: crea, convierte y mueve
+  entidades, gestiona colision de plataforma y ancla particulas moviles.
+- `mods/java/scoreboards`, version `2.0.10`: sistema independiente de
+  Objectives y scoreboards.
+- `mods/java/build-battle`, version `0.2.2`: logica independiente del modo de
+  juego.
 
-Manifest actual: `OrbGenesis:Player Trigger Tags`, version `1.5.6`.
+`Player Entity Tags`, `Chest Labels` y el antiguo `Trigger Execute Command`
+standalone se conservan bajo `mods/java/deprecated` y no deben distribuirse.
 
-Funciones principales:
+Reglas importantes:
 
-- Tags string persistentes en jugadores.
-- Efecto `ModifyPlayerTag` y condicion `PlayerTagCondition`.
-- `ConvertBlocksToEntities` convierte bloques dentro del Trigger Volume usando
-  un item elegido. Los items con modelo usan `ModelComponent`; los items-bloque
-  normales usan `BlockEntity`; otros items usan `ItemComponent`.
+- No cambies IDs internos de efectos, condiciones, reglas o componentes solo
+  para renombrar su etiqueta; romperias Trigger Volumes o datos guardados.
+- `ConvertBlocksToEntities` vive en Entity Motion Triggers. Los items con modelo
+  usan `ModelComponent`; los items-bloque normales usan `BlockEntity`; otros
+  items usan `ItemComponent`.
 - La escala de `BlockEntity` debe ser `1.0` para conservar el tamano del bloque.
 - La colision creada por la conversion se aplica dos ticks mas tarde mediante
   `PendingPlatformCollisionComponent/System`, porque el cliente debe recibir
   primero la geometria y el `NetworkId`.
-
-La correccion de colision de v1.5.6 compila y esta desplegada, pero al crear este
-handoff aun necesita confirmacion manual dentro del juego.
-
-Los efectos de movimiento y colision de plataformas se han separado a
-`mods/java/entity-motion-triggers`.
-
-Reglas importantes de este mod:
-
-- No cambies IDs internos de efectos existentes solo para renombrar su etiqueta;
-  romperias Trigger Volumes guardados.
 - El selector de items debe usar la fuente vanilla `Item`; filtrar por
   `Item.getModel()` deja fuera los items-bloque.
 
@@ -78,14 +75,9 @@ Antes de sustituir un mod instalado:
 5. Reinicia o recarga la partida; sobrescribir el archivo no recarga las clases
    de un plugin ya iniciado.
 
-En el PC original, Player Trigger Tags se desplegaba sobre:
-
-```text
-%APPDATA%\Hytale\data\pre-release\Saves\0.6.8\mods\Player_Trigger_Tags-1_1_1.jar
-```
-
-Se conserva ese nombre para evitar dejar un segundo JAR. No crees otro archivo
-con el numero de version nuevo en la misma carpeta.
+Durante la migracion, retira los JARs antiguos de Player Trigger Tags y Trigger
+Execute Command antes de instalar los mods consolidados. No dejes dos plugins
+que registren los mismos IDs.
 
 ## Otros proyectos
 
@@ -96,21 +88,22 @@ con el numero de version nuevo en la misma carpeta.
   items y conserva el acceso a los Technical Block Sets. Desde 0.2.2 solo se
   registra como regla; el save `Trigger Volumes` se migro de `Effects` a
   `Rules`.
-- `mods/java/chest-labels`: mod funcional en fase de prototipo; conserva datos
-  en componentes de bloques y usa UI custom.
-- `mods/java/entity-motion-triggers`: efectos de movimiento de entidades y
-  colision de plataforma extraidos de Player Trigger Tags.
+- `mods/java/entity-motion-triggers`: efectos de creacion, conversion y
+  movimiento de entidades, colision de plataforma y particulas ancladas.
 - `mods/java/map-selector`: prototipo `0.1.1` con comando `/mapas`, previews
   nativas de prefabs y destinos configurados en `MapDefinition`. Sus mapas
   iniciales dependen opcionalmente del asset pack local `tests:tests`.
-- `mods/java/more-triggers`: version `1.4.0`. `GiveRandomItem` entrega al
+- `mods/java/more-triggers`: version `1.6.0`. `GiveRandomItem` entrega al
   jugador activador un asset `Item` elegido uniformemente al azar. `SendTagMessage` y
   `ShowTagEventTitle` sustituyen `{tag}` desde una fuente elegible:
   `SELF`, `EVENT` o `RADIUS`; no cambian los IDs de los efectos vanilla.
   Tambien incluye el HUD circular `/timer` y el efecto `ControlTimer`; el
   contorno radial usa 61 frames PNG y su estado solo vive durante la sesion.
-- `mods/java/trigger-execute-command`: efecto `ExecuteCommand` actualizado a
-  rango 0.6.x; revisar en juego antes de usar comandos destructivos.
+  Tambien registra `ExecuteCommand` con los IDs y campos del antiguo mod
+  standalone.
+- `mods/java/deprecated`: codigo historico no distribuible de Player Entity
+  Tags, Chest Labels, Trigger Execute Command standalone y `RemoveEventTitle`.
+  `RandomTagSelection` fue eliminado completamente y no debe reintroducirse.
 - `games/nexus-siege`: workspace del minijuego. Los NPCs reutilizables y
   efectos de Trigger Volumes para NPCs viven en `mods/asset-packs/raynor-npcs`;
   la carpeta `npcs/vanilla` conserva contratos y notas de diseno del juego.

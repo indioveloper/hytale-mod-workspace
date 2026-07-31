@@ -31,11 +31,7 @@ public class MoreTriggersPlugin extends JavaPlugin {
     super.setup();
     TriggerVolumesPlugin triggerVolumes = TriggerVolumesPlugin.get();
     triggerVolumes.registerEffectType(
-        "RemoveEventTitle", RemoveEventTitleEffect.class, RemoveEventTitleEffect.CODEC);
-    triggerVolumes.registerEffectType(
         "GiveRandomItem", GiveRandomItemEffect.class, GiveRandomItemEffect.CODEC);
-    triggerVolumes.registerEffectType(
-        "RandomTagSelection", RandomTagSelectionEffect.class, RandomTagSelectionEffect.CODEC);
     triggerVolumes.registerEffectType(
         "PasteRandomPrefab", PasteRandomPrefabEffect.class, PasteRandomPrefabEffect.CODEC);
     triggerVolumes.registerEffectType(
@@ -44,6 +40,8 @@ public class MoreTriggersPlugin extends JavaPlugin {
         "ShowTagEventTitle", ShowTagEventTitleEffect.class, ShowTagEventTitleEffect.CODEC);
     triggerVolumes.registerEffectType(
         "ControlTimer", ControlTimerEffect.class, ControlTimerEffect.CODEC);
+    triggerVolumes.registerEffectType(
+        "ExecuteCommand", ExecuteCommandEffect.class, ExecuteCommandEffect.CODEC);
     triggerVolumes.registerAssetField("PasteRandomPrefab", "Prefab1", "Prefab");
     triggerVolumes.registerAssetField("PasteRandomPrefab", "Prefab2", "Prefab");
     triggerVolumes.registerAssetField("PasteRandomPrefab", "Prefabs", "Prefab");

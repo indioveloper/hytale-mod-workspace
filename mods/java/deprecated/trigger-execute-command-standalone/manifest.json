@@ -2,14 +2,14 @@
     "Group": "OrbGenesis",
     "Name": "Trigger Execute Command",
     "Version": "1.1.0",
-    "Description": "Adds Execute Command effect to Trigger Volumes.",
+    "Description": "DEPRECATED: standalone ExecuteCommand implementation, replaced by OrbGenesis:More Triggers 1.6.0.",
     "Authors": [
         {
             "Name": "OrbGenesis",
             "Url": "https://orbgenesis.gg"
         }
     ],
-    "DisabledByDefault": false,
+    "DisabledByDefault": true,
     "IncludesAssetPack": false,
     "Dependencies": {
         "Hytale:TriggerVolumes": "*"

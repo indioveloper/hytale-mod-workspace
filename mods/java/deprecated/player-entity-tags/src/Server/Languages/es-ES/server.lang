@@ -1,5 +1,4 @@
 customUI.triggerVolumeEffectEditor.effectType.ModifyPlayerTag = Modificar tag del jugador
-customUI.triggerVolumeEffectEditor.effectType.ConvertBlocksToEntities = Convertir bloques en entidades
 customUI.triggerVolumeEffectEditor.conditionType.PlayerTagCondition = Comprobar tag del jugador
 
 customUI.triggerVolumeEffectEditor.field.ModifyPlayerTag.Operation = Accion
@@ -51,11 +50,3 @@ customUI.triggerVolumeEffectEditor.field.PlayerTagCondition.TagValue.tooltip = V
 customUI.triggerVolumeEffectEditor.field.PlayerTagCondition.TagValue.placeholder = ej. runner
 customUI.triggerVolumeEffectEditor.field.PlayerTagCondition.CaseSensitive = Distinguir mayusculas
 customUI.triggerVolumeEffectEditor.field.PlayerTagCondition.CaseSensitive.tooltip = Requiere que mayusculas y minusculas coincidan exactamente.
-
-customUI.triggerVolumeEffectEditor.field.ConvertBlocksToEntities.Item = Item
-customUI.triggerVolumeEffectEditor.field.ConvertBlocksToEntities.Item.tooltip = Item que representara cada bloque convertido. Admite objetos y bloques. La entidad conserva el centro y la rotacion del bloque original.
-customUI.triggerVolumeEffectEditor.field.ConvertBlocksToEntities.Collision = Colision con el jugador
-customUI.triggerVolumeEffectEditor.field.ConvertBlocksToEntities.Collision.tooltip = Elige como interactua el jugador con cada entidad creada. Dura permite subirse; suave permite atravesarla.
-customUI.triggerVolumeEffectEditor.field.ConvertBlocksToEntities.Collision.option.NONE = Sin colision
-customUI.triggerVolumeEffectEditor.field.ConvertBlocksToEntities.Collision.option.HARD = Colision dura
-customUI.triggerVolumeEffectEditor.field.ConvertBlocksToEntities.Collision.option.SOFT = Colision suave

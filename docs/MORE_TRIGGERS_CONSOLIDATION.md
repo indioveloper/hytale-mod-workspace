@@ -1,174 +1,60 @@
-# Propuesta de consolidacion de More Triggers
+# Consolidacion de More Triggers
 
-Revision realizada sobre los proyectos Java del workspace para decidir cuales
-pueden distribuirse como un unico `OrbGenesis:More Triggers`.
+Estado final de la reorganizacion aplicada sobre Hytale pre-release 0.6.8.
 
-## Conclusion
+## Resultado
 
-Todos los proyectos pueden compartir fisicamente un JAR, pero no conviene
-fusionarlos todos en un unico plugin obligatorio. La opcion mas segura es
-convertir `More Triggers` en el paquete general de utilidades de Trigger
-Volumes y conservar como mods separados los sistemas de juego completos.
+- `Trigger Execute Command` se fusiona con `OrbGenesis:More Triggers`.
+- `Player Entity Tags` se aparta bajo `mods/java/deprecated/player-entity-tags`.
+- `Chest Labels` se aparta bajo `mods/java/deprecated/chest-labels`.
+- El antiguo mod standalone de Execute Command se conserva bajo
+  `mods/java/deprecated/trigger-execute-command-standalone` solo como historial.
+- `ConvertBlocksToEntities` pasa de Player Trigger Tags a Entity Motion
+  Triggers, junto con su sistema de colision diferida.
+- Entity Motion Triggers, Scoreboards y Build Battle permanecen como mods
+  independientes.
+- Map Selector permanece independiente porque es una aplicacion UI y no aporta
+  efectos de Trigger Volumes.
+- `RemoveEventTitle` se retira a codigo deprecated y deja de registrarse.
+- `RandomTagSelection` se elimina completamente.
 
-Los IDs publicos de efectos, condiciones y reglas deben conservarse. Los saves
-guardan esos IDs; cambiar un nombre solo para reorganizar el codigo romperia
-los Trigger Volumes existentes.
+No se ha cambiado ningun ID publico de efecto, condicion, regla o componente.
+Los saves guardan esos IDs y un renombrado romperia Trigger Volumes existentes.
 
-## Clasificacion
+## Catalogo final por mod activo
 
-| Proyecto | Fusion | Recomendacion | Motivo principal |
-| --- | --- | --- | --- |
-| Circular Timer | Completada | Dentro de More Triggers | Es una utilidad de triggers y comandos sin datos persistentes. |
-| Trigger Execute Command | Directa, riesgo bajo | Fusionar | Un solo efecto y la misma dependencia principal. |
-| Player Trigger Tags | Viable, riesgo medio | Fusionar con migracion probada | Sus IDs de componente son explicitos y pueden conservarse, pero hay que validar tags ya guardadas. |
-| Entity Motion Triggers | Viable, riesgo medio | Fusionar | Son cinco efectos de Trigger Volumes y dos sistemas ECS; encajan en el paquete general. |
-| Scoreboards | Viable, riesgo alto | Mantener separado | Es un subsistema persistente de Objectives, con configuracion, assets dinamicos, comandos y UI propia. |
-| Build Battle | Viable, riesgo alto | Mantener separado | Es logica de un modo de juego y obliga a depender de Builder Tools y de permisos especiales. |
-| Map Selector | Viable tecnicamente | Mantener separado | No aporta efectos; es una aplicacion UI con mapas y asset packs externos. |
-| Chest Labels | No integrar ahora | Mantener separado | No aporta efectos y su UI todavia es incompatible con pre-release 0.6.8. |
+### More Triggers 1.6.0
 
-La fuente activa y empaquetada del timer esta dentro de
-`mods/java/more-triggers`; el antiguo proyecto standalone no forma parte del
-repositorio canonico.
+Efectos:
 
-## Paquete general recomendado
+- `GiveRandomItem`: entrega un item cargado elegido al azar.
+- `PasteRandomPrefab`: pega un prefab elegido al azar, con pesos opcionales.
+- `SendTagMessage`: envia texto resolviendo marcadores `{tag}`.
+- `ShowTagEventTitle`: muestra titulos resolviendo marcadores `{tag}`.
+- `ControlTimer`: inicia, pausa, muestra, oculta o cancela el timer circular.
+- `ExecuteCommand`: ejecuta un comando como servidor o jugador activador.
 
-Una futura version mayor de More Triggers podria reunir:
+No registra condiciones ni reglas. Tambien aporta el comando `/timer`.
 
-- los siete efectos actuales;
-- `ExecuteCommand`;
-- `ModifyPlayerTag`, `ConvertBlocksToEntities` y `PlayerTagCondition`;
-- los cinco efectos de Entity Motion Triggers.
+### Entity Motion Triggers 1.3.0
 
-El resultado seria un unico JAR de utilidades con 15 efectos, una condicion,
-el comando `/timer` y los sistemas internos necesarios. Scoreboards, Build
-Battle, Map Selector y Chest Labels seguirian siendo descargas independientes.
+Efectos:
 
-## Catalogo propuesto de utilidades
+- `SpawnItems`: crea props persistentes a partir de items.
+- `ConvertBlocksToEntities`: convierte los bloques del volumen en entidades.
+- `ApplyHorizontalPlatformMotion`: mueve entidades a un destino absoluto o
+  relativo.
+- `StopHorizontalPlatformMotion`: detiene las entidades moviles del volumen.
+- `ApplyPlayerPlatformCollision`: aplica colision de plataforma.
+- `RemovePlayerPlatformCollision`: retira la colision de plataforma.
+- `AttachMovingParticles`: ancla particulas que siguen el movimiento y giro de
+  una entidad.
 
-Los siete efectos que ya estan incluidos se documentan en
-`mods/java/more-triggers/README.md`. Los siguientes son los candidatos a
-integrar.
+No registra condiciones ni reglas. Conserva los componentes persistentes y
+temporales necesarios para movimiento y colision, incluido
+`OrbGenesis_PendingPlatformCollision`.
 
-### ExecuteCommand
-
-Ejecuta un comando cuando se dispara el Trigger Volume.
-
-- `Command`: comando sin necesidad de `/` inicial.
-- `Executor`: `SERVER` para consola o `PLAYER` para el jugador activador.
-- Marcadores disponibles: `{player}`, `{uuid}`, `{x}`, `{y}` y `{z}`.
-
-Ejemplo:
-
-```text
-give {player} Ingredient_Life_Essence 1
-```
-
-Debe reservarse a editores de confianza: con `SERVER` puede ejecutar cualquier
-comando permitido a la consola.
-
-### ModifyPlayerTag
-
-Guarda una tag string persistente en el jugador activador.
-
-- `Operation`: `SET`, `REMOVE`, `INCREMENT`, `TOGGLE` o `APPEND`.
-- `TagKey`: nombre estable de la tag. Ejemplo: `arena_points`.
-- `TagValue`: valor usado por `SET`, `INCREMENT` y `APPEND`.
-- `DispatchMode`:
-  - `NONE`: cambia el dato sin lanzar otro evento.
-  - `CURRENT_VOLUME`: notifica el cambio al volumen actual.
-  - `TAGGED_VOLUMES`: notifica a volumenes encontrados por tag y radio.
-- `MatchKey`, `MatchValue`, `Radius` y `Center`: seleccionan los volumenes que
-  reciben el evento cuando se usa `TAGGED_VOLUMES`.
-
-Ejemplo: `INCREMENT`, `TagKey=arena_points`, `TagValue=1` suma un punto al
-jugador.
-
-### PlayerTagCondition
-
-Condicion para decidir si un Trigger Volume continua segun una tag del jugador.
-
-- `TagKey`: tag que se consulta.
-- `Comparison`: `EQUALS`, `NOT_EQUALS`, `EXISTS`, `MISSING`, `GREATER_THAN`,
-  `GREATER_OR_EQUAL`, `LESS_THAN` o `LESS_OR_EQUAL`.
-- `TagValue`: valor esperado.
-- `CaseSensitive`: exige coincidencia exacta de mayusculas y minusculas para
-  comparaciones de texto.
-
-Las comparaciones numericas solo pasan cuando ambos valores son numeros
-validos.
-
-### ConvertBlocksToEntities
-
-Reemplaza cada bloque ordinario dentro del Trigger Volume por una entidad prop
-con el item elegido.
-
-- `Item`: item o item-bloque usado como modelo.
-- `Collision`: `NONE`, `HARD` o `SOFT`.
-
-Con `HARD`, las entidades pueden convertirse en superficies sobre las que el
-jugador se mantiene. El efecto elimina los bloques originales y crea entidades
-persistentes, por lo que debe probarse sobre una copia del mapa.
-
-### ApplyHorizontalPlatformMotion
-
-Aplica movimiento a las entidades compatibles que se encuentren dentro del
-volumen.
-
-- `TargetX`, `TargetY`, `TargetZ`: destino o desplazamiento.
-- `CoordinateMode`: `ABSOLUTE` usa coordenadas del mundo; `RELATIVE` desplaza
-  cada entidad desde su posicion actual.
-- `Speed`, `SpeedY`, `SpeedZ`: bloques por segundo en cada eje. Cero mantiene
-  quieto ese eje.
-- `LoopBack`: viaja al destino y vuelve continuamente.
-- `DestroyAtDestination`: elimina la entidad al llegar por primera vez.
-- `TurnDirection`: `NONE`, `LEFT` o `RIGHT`.
-- `TurnAngle`: giro relativo de 0 a 180 grados completado durante el trayecto.
-
-### StopHorizontalPlatformMotion
-
-Detiene las entidades moviles dentro del volumen retirando su componente de
-movimiento.
-
-- `OnlyFirstMatch`: actua solo sobre la primera entidad compatible encontrada.
-
-La entidad se queda en la posicion alcanzada al detenerla.
-
-### ApplyPlayerPlatformCollision
-
-Hace solidas para los jugadores las entidades compatibles dentro del volumen.
-
-- `CollisionConfig`: normalmente `HardCollision`; puede usarse otro asset de
-  `HitboxCollisionConfig`.
-- `OnlyFirstMatch`: modifica solo la primera coincidencia.
-
-Se usa antes o junto a `ApplyHorizontalPlatformMotion` para que una entidad
-funcione como plataforma transportadora.
-
-### RemovePlayerPlatformCollision
-
-Retira la colision de jugador de las entidades compatibles dentro del volumen.
-
-- `OnlyFirstMatch`: modifica solo la primera coincidencia.
-
-### SpawnItems
-
-Crea un item como prop persistente, no recogible y con escala, rotacion y
-colision configurables.
-
-- `Item`: asset `Item` que se mostrara.
-- `X`, `Y`, `Z`: coordenadas o desplazamiento.
-- `CoordinateMode`: `ABSOLUTE` o `RELATIVE_TO_VOLUME`.
-- `RotationX`, `RotationY`, `RotationZ`: grados de rotacion.
-- `Scale`: multiplicador de tamano; `1` es el tamano normal.
-- `Collision`: `NONE`, `HARD` o `SOFT`.
-
-La colision se aplica dos ticks despues del spawn para que el cliente reciba
-primero la geometria y el `NetworkId`.
-
-## Funciones que deben seguir separadas
-
-### Scoreboards / Objectives
+### Scoreboards 2.0.10
 
 Efectos:
 
@@ -178,49 +64,72 @@ Efectos:
 
 Condiciones:
 
-- `ScoreboardState`: comprueba estado activo, inactivo o completado.
+- `ScoreboardState`: comprueba si la Objective esta activa, inactiva o
+  completada.
 - `ScoreboardTaskValue`: compara el valor actual de una tarea.
 
-Tambien aporta `/scoreboard`, `/scoreboards`, un editor UI, definiciones
-persistentes, tareas nativas y assets dinamicos. Fusionarlo exigiria migrar su
-configuracion al directorio de More Triggers y haria obligatoria la dependencia
-`Hytale:Objectives` para todo el paquete.
+Sigue separado porque mantiene Objectives persistentes, assets dinamicos,
+comandos y UI propia.
 
-### Build Battle
+### Build Battle 0.2.2
 
-- Efecto `SuggestBuildTheme`: abre una UI, valida una palabra y guarda
-  `theme_<palabra>=empty` y `points=0` en el volumen.
-- Regla `RestrictBuildBattleCreativeTools`: bajo `Always Active`, limita las
-  Builder Tools permitidas dentro del plot y restaura permisos al salir.
+Efectos:
 
-Depende de `Hytale:BuilderTools`, manipula permisos e inventarios y conserva un
-fichero de recuperacion. Es logica especifica de un modo de juego.
+- `SuggestBuildTheme`: solicita una palabra y guarda las tags del tema y los
+  puntos en el volumen.
 
-### Map Selector
+Reglas:
 
-No registra efectos. Aporta `/mapas`, una UI con previews nativas de prefabs,
-seleccion en memoria y teletransporte a destinos configurados. Puede depender
-de un asset pack de mapas externo.
+- `RestrictBuildBattleCreativeTools`: limita las Builder Tools permitidas en el
+  plot y restaura permisos al salir.
 
-### Chest Labels
+Sigue separado porque es logica especifica de un modo de juego y depende de
+Builder Tools y permisos especiales.
 
-No registra efectos. Aporta `/chestlabel`, datos persistentes en bloques, HUD
-al apuntar a un contenedor y editor de nombre/icono. Su UI usa actualmente un
-nodo no soportado por 0.6.8 y no debe distribuirse hasta portarla.
+### Map Selector 0.1.1
 
-## Requisitos para una fusion segura
+No registra efectos, condiciones ni reglas. Aporta `/mapas`, previews de
+prefabs y teletransporte a destinos configurados.
 
-1. Mantener exactamente los IDs actuales de efectos, condiciones, reglas,
-   tareas y componentes persistentes.
-2. Convertir cada antiguo `JavaPlugin` en un modulo registrado por el main de
-   More Triggers; un JAR con un manifest no inicia automaticamente varios mains.
-3. Unificar las carpetas `Common` y `Server` sin sobrescribir assets vanilla.
-4. Fusionar las claves `server.lang` de `en-US` y `es-ES` y ejecutar las pruebas
-   de localizacion.
-5. Migrar configuraciones y datos que dependan del directorio del plugin.
-6. Hacer opcionales los modulos con dependencias especializadas o mantenerlos
-   como JAR separado.
-7. Retirar los JAR antiguos antes del primer arranque para evitar registros
-   duplicados.
-8. Probar un save existente con tags, plataformas y Trigger Volumes guardados,
-   ademas de una instalacion limpia.
+## Codigo deprecated
+
+### Efectos retirados de More Triggers
+
+`RemoveEventTitle` se conserva como fuente historica bajo
+`mods/java/deprecated/more-triggers-retired-effects`, pero no se registra ni se
+distribuye. `RandomTagSelection` no se conserva y fue eliminado del codigo,
+traducciones y documentacion activa.
+
+### Player Entity Tags 1.5.6
+
+Conserva como fuente historica, pero no se distribuye:
+
+- efecto `ModifyPlayerTag`;
+- condicion `PlayerTagCondition`;
+- componente persistente `OrbGenesis_PlayerTriggerTags`.
+
+`ConvertBlocksToEntities` ya no forma parte de este mod deprecated: su fuente
+activa esta en Entity Motion Triggers.
+
+### Chest Labels 0.1.0
+
+No registra efectos de Trigger Volumes. Conserva el prototipo de `/chestlabel`,
+datos persistentes de bloques, HUD y editor de nombre/icono. Su UI no esta
+portada a pre-release 0.6.8.
+
+### Trigger Execute Command standalone 1.1.0
+
+Conserva el antiguo efecto `ExecuteCommand` solo como referencia. No debe
+instalarse junto a More Triggers porque ambos registrarian el mismo ID.
+
+## Reglas de instalacion y migracion
+
+1. Instalar un unico JAR por cada `Group:Name`.
+2. Retirar `Trigger Execute Command` antes de instalar More Triggers 1.6.0.
+3. Retirar `Player Trigger Tags` antes de instalar Entity Motion Triggers 1.3.0
+   si el save usa `ConvertBlocksToEntities`.
+4. No instalar proyectos de `mods/java/deprecated`.
+5. Reiniciar o recargar la partida despues de sustituir JARs; copiar el archivo
+   no recarga clases ya iniciadas.
+6. Probar sobre una copia del save los Trigger Volumes existentes y confirmar
+   que no aparece ningun registro duplicado.

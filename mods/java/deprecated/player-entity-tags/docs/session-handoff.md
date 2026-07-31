@@ -1,5 +1,9 @@
 # Player Trigger Tags Handoff
 
+> Handoff historico anterior a la consolidacion del 2026-07-31. La fuente
+> actual de conversion de bloques esta en Entity Motion Triggers; este proyecto
+> deprecated conserva solamente el sistema de tags.
+
 Last updated: 2026-07-18
 
 ## Current State

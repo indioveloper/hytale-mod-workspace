@@ -13,6 +13,8 @@ public class EntityMotionTriggersPlugin extends JavaPlugin {
       horizontalMovingPlatformComponentType;
   private ComponentType<EntityStore, PendingSpawnItemCollisionComponent>
       pendingSpawnItemCollisionComponentType;
+  private ComponentType<EntityStore, PendingPlatformCollisionComponent>
+      pendingPlatformCollisionComponentType;
 
   public EntityMotionTriggersPlugin(JavaPluginInit init) {
     super(init);
@@ -33,6 +35,11 @@ public class EntityMotionTriggersPlugin extends JavaPlugin {
     return pendingSpawnItemCollisionComponentType;
   }
 
+  public ComponentType<EntityStore, PendingPlatformCollisionComponent>
+      getPendingPlatformCollisionComponentType() {
+    return pendingPlatformCollisionComponentType;
+  }
+
   @Override
   protected void setup() {
     super.setup();
@@ -51,6 +58,13 @@ public class EntityMotionTriggersPlugin extends JavaPlugin {
                 "OrbGenesis_PendingSpawnItemCollision",
                 PendingSpawnItemCollisionComponent.CODEC);
     getEntityStoreRegistry().registerSystem(new PendingSpawnItemCollisionSystem());
+    pendingPlatformCollisionComponentType =
+        getEntityStoreRegistry()
+            .registerComponent(
+                PendingPlatformCollisionComponent.class,
+                "OrbGenesis_PendingPlatformCollision",
+                PendingPlatformCollisionComponent.CODEC);
+    getEntityStoreRegistry().registerSystem(new PendingPlatformCollisionSystem());
 
     TriggerVolumesPlugin triggerVolumes = TriggerVolumesPlugin.get();
     triggerVolumes.registerEffectType(
@@ -72,5 +86,16 @@ public class EntityMotionTriggersPlugin extends JavaPlugin {
     triggerVolumes.registerEffectType(
         "SpawnItems", SpawnItemsEffect.class, SpawnItemsEffect.CODEC);
     triggerVolumes.registerAssetField("SpawnItems", "Item", "Item");
+    triggerVolumes.registerEffectType(
+        "ConvertBlocksToEntities",
+        ConvertBlocksToEntitiesEffect.class,
+        ConvertBlocksToEntitiesEffect.CODEC);
+    triggerVolumes.registerAssetField("ConvertBlocksToEntities", "Item", "Item");
+    triggerVolumes.registerEffectType(
+        "AttachMovingParticles",
+        AttachMovingParticlesEffect.class,
+        AttachMovingParticlesEffect.CODEC);
+    triggerVolumes.registerAssetField(
+        "AttachMovingParticles", "ParticleSystem", "ParticleSystem");
   }
 }

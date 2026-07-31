@@ -14,6 +14,7 @@ $required = @(
   "manifest.json"
   "gg/orbgenesis/moretriggers/MoreTriggersPlugin.class"
   "gg/orbgenesis/moretriggers/GiveRandomItemEffect.class"
+  "gg/orbgenesis/moretriggers/ExecuteCommandEffect.class"
   "gg/orbgenesis/moretriggers/SendTagMessageEffect.class"
   "gg/orbgenesis/moretriggers/ShowTagEventTitleEffect.class"
   "gg/orbgenesis/moretriggers/timer/ControlTimerEffect.class"
@@ -38,5 +39,14 @@ if ($frames.Count -ne 61) {
 }
 if ($entries -contains "Common/UI/Custom/Common.ui") {
   throw "Dangerous vanilla Common.ui override found in archive."
+}
+$retiredClasses = @(
+  "gg/orbgenesis/moretriggers/RemoveEventTitleEffect.class"
+  "gg/orbgenesis/moretriggers/RandomTagSelectionEffect.class"
+)
+foreach ($entry in $retiredClasses) {
+  if ($entries -contains $entry) {
+    throw "Retired effect class must not be packaged: $entry"
+  }
 }
 Write-Output "More Triggers package check passed: $archive"

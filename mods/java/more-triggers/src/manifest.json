@@ -1,8 +1,8 @@
 {
     "Group": "OrbGenesis",
     "Name": "More Triggers",
-    "Version": "1.4.0",
-    "Description": "Adds extra Trigger Volume effects, including random items, tag-aware messages, and a circular timer HUD.",
+    "Version": "1.6.0",
+    "Description": "Adds general-purpose Trigger Volume effects, including command execution, random items, tag-aware messages, and a circular timer HUD.",
     "Authors": [
         {
             "Name": "OrbGenesis",

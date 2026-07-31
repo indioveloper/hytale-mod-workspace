@@ -1,5 +1,8 @@
 # Player Trigger Tags Index
 
+> Indice historico. Las rutas y responsabilidades descritas debajo son previas
+> a la consolidacion; consulta el README del directorio deprecated.
+
 `mods/java/player-trigger-tags` es la fuente canonica para tags persistentes de
 jugador y efectos relacionados con Trigger Volumes.
 

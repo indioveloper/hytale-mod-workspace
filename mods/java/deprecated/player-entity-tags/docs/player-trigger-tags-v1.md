@@ -1,5 +1,8 @@
 # Player Trigger Tags v1
 
+> Documento historico. El proyecto esta deprecated y
+> `ConvertBlocksToEntities` vive ahora en Entity Motion Triggers.
+
 ## Goal
 
 `Player Trigger Tags` gives players persistent string tags and lets Trigger Volumes react when
