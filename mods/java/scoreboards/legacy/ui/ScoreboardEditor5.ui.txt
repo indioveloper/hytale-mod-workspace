@@ -136,6 +136,82 @@ $C.@Container {
           Value: "";
         }
       }
+      Group {
+        LayoutMode: Left;
+        Anchor: (Bottom: 8, Height: 38);
+
+        $C.@TextField #TaskInput1 {
+          @Anchor = (Width: 350);
+          Value: "";
+        }
+
+        $C.@TextField #CurrentInput1 {
+          @Anchor = (Left: 10, Width: 100);
+          Value: "";
+        }
+
+        $C.@TextField #NeededInput1 {
+          @Anchor = (Left: 10, Width: 100);
+          Value: "";
+        }
+      }
+      Group {
+        LayoutMode: Left;
+        Anchor: (Bottom: 8, Height: 38);
+
+        $C.@TextField #TaskInput2 {
+          @Anchor = (Width: 350);
+          Value: "";
+        }
+
+        $C.@TextField #CurrentInput2 {
+          @Anchor = (Left: 10, Width: 100);
+          Value: "";
+        }
+
+        $C.@TextField #NeededInput2 {
+          @Anchor = (Left: 10, Width: 100);
+          Value: "";
+        }
+      }
+      Group {
+        LayoutMode: Left;
+        Anchor: (Bottom: 8, Height: 38);
+
+        $C.@TextField #TaskInput3 {
+          @Anchor = (Width: 350);
+          Value: "";
+        }
+
+        $C.@TextField #CurrentInput3 {
+          @Anchor = (Left: 10, Width: 100);
+          Value: "";
+        }
+
+        $C.@TextField #NeededInput3 {
+          @Anchor = (Left: 10, Width: 100);
+          Value: "";
+        }
+      }
+      Group {
+        LayoutMode: Left;
+        Anchor: (Bottom: 8, Height: 38);
+
+        $C.@TextField #TaskInput4 {
+          @Anchor = (Width: 350);
+          Value: "";
+        }
+
+        $C.@TextField #CurrentInput4 {
+          @Anchor = (Left: 10, Width: 100);
+          Value: "";
+        }
+
+        $C.@TextField #NeededInput4 {
+          @Anchor = (Left: 10, Width: 100);
+          Value: "";
+        }
+      }
       }
     }
   }

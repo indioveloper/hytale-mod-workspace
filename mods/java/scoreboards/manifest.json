@@ -1,8 +1,8 @@
 {
   "Group": "OrbGenesis",
   "Name": "scoreboards",
-  "Version": "1.0.0",
-  "Description": "Create and edit objective scoreboards from a native custom UI.",
+  "Version": "2.0.10",
+  "Description": "Create, edit, persist, and control native Objectives from commands, UI, and Trigger Volumes.",
   "Authors": [
     {
       "Name": "OrbGenesis"
@@ -10,8 +10,11 @@
   ],
   "DisabledByDefault": false,
   "IncludesAssetPack": true,
-  "Dependencies": {},
+  "Dependencies": {
+    "Hytale:Objectives": "*",
+    "Hytale:TriggerVolumes": "*"
+  },
   "OptionalDependencies": {},
-  "ServerVersion": ">=0.5.0-pre.8",
+  "ServerVersion": ">=0.6.0-pre <0.7.0",
   "Main": "gg.orbgenesis.scoreboards.ScoreboardsPlugin"
 }

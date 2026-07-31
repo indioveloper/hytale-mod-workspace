@@ -1,0 +1,48 @@
+$C = "../../Common.ui";
+
+Group {
+  LayoutMode: Left;
+  Anchor: (Bottom: 8, Height: 112);
+  Background: (Color: #101b29(0.82));
+  Padding: (Horizontal: 12, Vertical: 8);
+
+  Group {
+    LayoutMode: Top;
+    FlexWeight: 1;
+
+    Label #DefinitionTitle {
+      Text: "Scoreboard";
+      Style: (...$C.@SubtitleStyle, FontSize: 17);
+    }
+
+    Label #DefinitionId {
+      Text: "main";
+      Style: (...$C.@DefaultLabelStyle, FontSize: 11);
+    }
+
+    Label #DefinitionDescription {
+      Text: "-";
+      Style: (...$C.@DefaultLabelStyle, FontSize: 12);
+    }
+
+    Label #DefinitionTasks {
+      Text: "score: Score (0 -> 100)";
+      Style: (...$C.@DefaultLabelStyle, FontSize: 11);
+    }
+
+    Label #DefinitionScoring {
+      Text: "/scoreboards add main score <valor>";
+      Style: (...$C.@DefaultLabelStyle, FontSize: 10);
+    }
+  }
+
+  $C.@SecondaryTextButton #EditButton {
+    @Anchor = (Width: 100, Right: 4);
+    @Text = %server.customUI.scoreboards.action.edit;
+  }
+
+  $C.@TextButton #StartButton {
+    @Anchor = (Width: 100, Left: 4);
+    @Text = %server.customUI.scoreboards.action.start;
+  }
+}
