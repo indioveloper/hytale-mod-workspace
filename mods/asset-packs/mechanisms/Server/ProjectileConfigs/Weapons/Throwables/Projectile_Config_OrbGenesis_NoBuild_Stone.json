@@ -1,0 +1,65 @@
+{
+  "Parent": "Projectile_Config_Rubble",
+  "Interactions": {
+    "ProjectileHit": {
+      "Cooldown": {
+        "Cooldown": 0
+      },
+      "Interactions": [
+        {
+          "Type": "SpawnTriggerVolume",
+          "EffectAsset": "OrbGenesis_NoBuild_5x5x5_10s",
+          "Shape": {
+            "Type": "Box",
+            "Min": {
+              "X": -2.5,
+              "Y": -2.5,
+              "Z": -2.5
+            },
+            "Max": {
+              "X": 2.5,
+              "Y": 2.5,
+              "Z": 2.5
+            }
+          },
+          "LifetimeS": 10.0,
+          "RequireHitLocation": true
+        },
+        {
+          "Type": "RemoveEntity",
+          "Entity": "User"
+        }
+      ]
+    },
+    "ProjectileMiss": {
+      "Cooldown": {
+        "Cooldown": 0
+      },
+      "Interactions": [
+        {
+          "Type": "SpawnTriggerVolume",
+          "EffectAsset": "OrbGenesis_NoBuild_5x5x5_10s",
+          "Shape": {
+            "Type": "Box",
+            "Min": {
+              "X": -2.5,
+              "Y": -2.5,
+              "Z": -2.5
+            },
+            "Max": {
+              "X": 2.5,
+              "Y": 2.5,
+              "Z": 2.5
+            }
+          },
+          "LifetimeS": 10.0,
+          "RequireHitLocation": true
+        },
+        {
+          "Type": "RemoveEntity",
+          "Entity": "User"
+        }
+      ]
+    }
+  }
+}

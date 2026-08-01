@@ -1,0 +1,150 @@
+{
+  "Effects": [
+    {
+      "Type": "ModifyRules",
+      "Event": "VOLUME_CREATE",
+      "Operation": "Set",
+      "Rule": {
+        "Type": "NoBuild"
+      },
+      "Radius": 0.0,
+      "Center": "Volume"
+    },
+    {
+      "Type": "PlayVfx",
+      "Event": "VOLUME_CREATE",
+      "ParticleSystem": "Beam_Heal_Red3",
+      "Offset": {
+        "X": -2.5,
+        "Y": -2.5,
+        "Z": -2.5
+      },
+      "Anchor": "Volume",
+      "Scale": 5.0,
+      "Rotation": {
+        "X": 0.0,
+        "Y": 90.0,
+        "Z": 0.0
+      },
+      "Duration": 10.0
+    },
+    {
+      "Type": "PlayVfx",
+      "Event": "VOLUME_CREATE",
+      "ParticleSystem": "Beam_Heal_Red3",
+      "Offset": { "X": -2.5, "Y": -2.5, "Z": 2.5 },
+      "Anchor": "Volume",
+      "Scale": 5.0,
+      "Rotation": { "X": 0.0, "Y": 90.0, "Z": 0.0 },
+      "Duration": 10.0
+    },
+    {
+      "Type": "PlayVfx",
+      "Event": "VOLUME_CREATE",
+      "ParticleSystem": "Beam_Heal_Red3",
+      "Offset": { "X": -2.5, "Y": 2.5, "Z": -2.5 },
+      "Anchor": "Volume",
+      "Scale": 5.0,
+      "Rotation": { "X": 0.0, "Y": 90.0, "Z": 0.0 },
+      "Duration": 10.0
+    },
+    {
+      "Type": "PlayVfx",
+      "Event": "VOLUME_CREATE",
+      "ParticleSystem": "Beam_Heal_Red3",
+      "Offset": { "X": -2.5, "Y": 2.5, "Z": 2.5 },
+      "Anchor": "Volume",
+      "Scale": 5.0,
+      "Rotation": { "X": 0.0, "Y": 90.0, "Z": 0.0 },
+      "Duration": 10.0
+    },
+    {
+      "Type": "PlayVfx",
+      "Event": "VOLUME_CREATE",
+      "ParticleSystem": "Beam_Heal_Red3",
+      "Offset": { "X": -2.5, "Y": -2.5, "Z": -2.5 },
+      "Anchor": "Volume",
+      "Scale": 5.0,
+      "Rotation": { "X": -90.0, "Y": 0.0, "Z": 0.0 },
+      "Duration": 10.0
+    },
+    {
+      "Type": "PlayVfx",
+      "Event": "VOLUME_CREATE",
+      "ParticleSystem": "Beam_Heal_Red3",
+      "Offset": { "X": -2.5, "Y": -2.5, "Z": 2.5 },
+      "Anchor": "Volume",
+      "Scale": 5.0,
+      "Rotation": { "X": -90.0, "Y": 0.0, "Z": 0.0 },
+      "Duration": 10.0
+    },
+    {
+      "Type": "PlayVfx",
+      "Event": "VOLUME_CREATE",
+      "ParticleSystem": "Beam_Heal_Red3",
+      "Offset": { "X": 2.5, "Y": -2.5, "Z": -2.5 },
+      "Anchor": "Volume",
+      "Scale": 5.0,
+      "Rotation": { "X": -90.0, "Y": 0.0, "Z": 0.0 },
+      "Duration": 10.0
+    },
+    {
+      "Type": "PlayVfx",
+      "Event": "VOLUME_CREATE",
+      "ParticleSystem": "Beam_Heal_Red3",
+      "Offset": { "X": 2.5, "Y": -2.5, "Z": 2.5 },
+      "Anchor": "Volume",
+      "Scale": 5.0,
+      "Rotation": { "X": -90.0, "Y": 0.0, "Z": 0.0 },
+      "Duration": 10.0
+    },
+    {
+      "Type": "PlayVfx",
+      "Event": "VOLUME_CREATE",
+      "ParticleSystem": "Beam_Heal_Red3",
+      "Offset": { "X": -2.5, "Y": -2.5, "Z": -2.5 },
+      "Anchor": "Volume",
+      "Scale": 5.0,
+      "Rotation": { "X": 0.0, "Y": 0.0, "Z": 0.0 },
+      "Duration": 10.0
+    },
+    {
+      "Type": "PlayVfx",
+      "Event": "VOLUME_CREATE",
+      "ParticleSystem": "Beam_Heal_Red3",
+      "Offset": { "X": -2.5, "Y": 2.5, "Z": -2.5 },
+      "Anchor": "Volume",
+      "Scale": 5.0,
+      "Rotation": { "X": 0.0, "Y": 0.0, "Z": 0.0 },
+      "Duration": 10.0
+    },
+    {
+      "Type": "PlayVfx",
+      "Event": "VOLUME_CREATE",
+      "ParticleSystem": "Beam_Heal_Red3",
+      "Offset": { "X": 2.5, "Y": -2.5, "Z": -2.5 },
+      "Anchor": "Volume",
+      "Scale": 5.0,
+      "Rotation": { "X": 0.0, "Y": 0.0, "Z": 0.0 },
+      "Duration": 10.0
+    },
+    {
+      "Type": "PlayVfx",
+      "Event": "VOLUME_CREATE",
+      "ParticleSystem": "Beam_Heal_Red3",
+      "Offset": { "X": 2.5, "Y": 2.5, "Z": -2.5 },
+      "Anchor": "Volume",
+      "Scale": 5.0,
+      "Rotation": { "X": 0.0, "Y": 0.0, "Z": 0.0 },
+      "Duration": 10.0
+    }
+  ],
+  "Rules": [
+    {
+      "Type": "NoBuild"
+    }
+  ],
+  "TargetTypes": [
+    "Player"
+  ]
+}

@@ -1,8 +1,8 @@
 {
   "Group": "OrbGenesis",
   "Name": "OrbGenesis Mechanisms",
-  "Version": "1.0.3",
-  "Description": "Animated interaction props: real lever variants and floating essence buttons.",
+  "Version": "1.0.5",
+  "Description": "Animated mechanisms, essence buttons, and a throwable stone that creates a temporary no-build zone.",
   "Authors": [
     {
       "Name": "OrbGenesis",

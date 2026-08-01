@@ -24,7 +24,8 @@ que usar una entidad marcada `HiddenFromAdventurePlayers`, no un bloque.
 
 ### `mods/asset-packs/mechanisms`
 
-Pack fusionado de props accionables/animados.
+Pack `OrbGenesis:OrbGenesis Mechanisms`, version `1.0.5`, con props
+accionables/animados y mecanismos jugables.
 
 Incluye:
 
@@ -32,8 +33,13 @@ Incluye:
   `Real_Lever_Wall_On/Off`.
 - Botones de esencia: `Essence_Button_Ice`, `Life`, `Lightning` y `Void`, con
   iconos, texturas y modelo comun `Essence_Button.blockymodel`.
+- Piedra de no construccion: `OrbGenesis_NoBuild_Stone` crea al impactar un
+  Trigger Volume de `5 x 5 x 5` durante 10 segundos. El evento
+  `VOLUME_CREATE` inserta `NoBuild` mediante `ModifyRules SET` y ejecuta 12
+  `PlayVfx` con el sistema vanilla `Beam_Heal_Red3`, uno por arista.
 
-Origen: `real-lever-animation` y `essence-buttons`.
+Origen: `real-lever-animation`, `essence-buttons` y desarrollo propio del
+proyectil temporal.
 
 ### `mods/asset-packs/raynor-npcs`
 
