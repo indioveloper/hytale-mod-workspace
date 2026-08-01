@@ -118,6 +118,12 @@ que registren los mismos IDs.
   editables se publican al cliente como traducciones dinamicas antes de enviar
   los paquetes nativos de Objective.
 - `mods/asset-packs`: packs independientes relativamente limpios.
+- `mods/asset-packs/mechanisms`, version `1.0.5`: props accionables y la piedra
+  `OrbGenesis_NoBuild_Stone`. Su volumen temporal usa `ModifyRules` con
+  operacion `SET` en `VOLUME_CREATE` para insertar `NoBuild`, porque
+  `SpawnTriggerVolume` 0.6.8 no copia directamente las reglas del asset. Doce
+  efectos `PlayVfx` de 10 segundos dibujan las aristas de la caja de 5x5x5 con el
+  sistema vanilla `Beam_Heal_Red3`; el pack no incluye particulas propias.
 - `mods/asset-packs/roguelike-prefabs`: pack `tests:tests` con los mapas y
   prefabs usados por `test roguelike` y por Map Selector.
 - `experiments/asset-packs`: material de laboratorio. Puede sobreescribir IDs

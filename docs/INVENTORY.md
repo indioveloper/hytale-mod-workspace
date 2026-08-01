@@ -16,7 +16,7 @@ Actualizado el 2026-07-31 tras la consolidacion de Trigger Volumes.
 | `mods/java/scoreboards` | `mod-interfaces/Mod interfaces/scoreboards_fixed` + `Desktop/mods/scoreboards mod` | Legacy 0.5.x unificado; la carpeta local separada fue absorbida/eliminada. Pendiente de migrar `Common.ui`: usa `PageOverlay`, nodo no reconocido por pre-release 0.6.8. |
 | `games/nexus-siege` | `workspace/nexus-siege` | Activo; los assets/plugins NPC reutilizables se movieron a `mods/asset-packs/raynor-npcs`. |
 | `mods/asset-packs/blocks` | `Barrier_Block_Texture` + pack global `ghost-outline-blocks` | Pack fusionado de barrera visible y ghost outline blocks. |
-| `mods/asset-packs/mechanisms` | `essence-pulsadores-stage` + `lever-real-stage` | Pack fusionado de botones de esencia y palancas animadas. |
+| `mods/asset-packs/mechanisms` | `essence-pulsadores-stage` + `lever-real-stage` | Activo/prototipo; v1.0.5; botones, palancas y piedra que crea una zona NoBuild temporal delimitada por 12 VFX vanilla. |
 | `mods/asset-packs/raynor-npcs` | pack global `raynor-npcs` + `Triggers_NPCs` + `Nexus Siege NPCs` | Mod/asset pack unificado de NPCs reutilizables. |
 | `mods/asset-packs/nexus-siege-props` | pack global `Raynor.Nexus Siege Props` | Props Nexus Siege. |
 | `experiments/asset-packs/tests-0.6.3` | pack global `0.6.3.tests` | Snapshot experimental. |

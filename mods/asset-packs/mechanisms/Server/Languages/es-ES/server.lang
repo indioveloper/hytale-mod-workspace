@@ -25,3 +25,6 @@ server.items.Essence_Button_Void.name = Pulsador de esencia de vacio
 server.items.Essence_Button_Void.description = Un pulsador flotante de esencia de vacio.
 items.Essence_Button_Void.name = Pulsador de esencia de vacio
 items.Essence_Button_Void.description = Un pulsador flotante de esencia de vacio.
+
+items.OrbGenesis_NoBuild_Stone.name = Piedra de no construccion
+items.OrbGenesis_NoBuild_Stone.description = Lanzala para impedir construir durante 10 segundos en un area de 5 x 5 x 5 marcada con particulas.

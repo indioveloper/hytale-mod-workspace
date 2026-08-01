@@ -1,0 +1,37 @@
+{
+  "Parent": "Rubble_Stone",
+  "TranslationProperties": {
+    "Name": "server.items.OrbGenesis_NoBuild_Stone.name",
+    "Description": "server.items.OrbGenesis_NoBuild_Stone.description"
+  },
+  "Categories": [
+    "Items.Weapons"
+  ],
+  "Interactions": {
+    "Secondary": {
+      "Interactions": [
+        "Item_Throw"
+      ]
+    }
+  },
+  "InteractionVars": {
+    "Item_Throw_Projectile": {
+      "Interactions": [
+        {
+          "Parent": "OrbGenesis_NoBuild_Stone_Throw"
+        }
+      ]
+    }
+  },
+  "BlockType": {
+    "Gathering": {
+      "Soft": {
+        "ItemId": "OrbGenesis_NoBuild_Stone"
+      },
+      "Harvest": {
+        "ItemId": "OrbGenesis_NoBuild_Stone"
+      },
+      "UseDefaultDropWhenPlaced": true
+    }
+  }
+}

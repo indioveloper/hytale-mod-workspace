@@ -35,7 +35,8 @@ y contratos de comportamiento. Los NPCs reutilizables viven en
 `mods/asset-packs` contiene los packs independientes que siguen siendo utiles:
 
 - `blocks`
-- `mechanisms`
+- `mechanisms` (`OrbGenesis:OrbGenesis Mechanisms`, v1.0.5; incluye la piedra
+  arrojadiza que crea una zona `NoBuild` temporal con perimetro de particulas)
 - `raynor-npcs`
 - `nexus-siege-props`
 - `roguelike-prefabs` (`tests:tests`, usado por `test roguelike`)
