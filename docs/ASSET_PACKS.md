@@ -24,7 +24,7 @@ que usar una entidad marcada `HiddenFromAdventurePlayers`, no un bloque.
 
 ### `mods/asset-packs/mechanisms`
 
-Pack `OrbGenesis:OrbGenesis Mechanisms`, version `1.0.5`, con props
+Pack `OrbGenesis:OrbGenesis Mechanisms`, version `1.1.0`, con props
 accionables/animados y mecanismos jugables.
 
 Incluye:
@@ -34,9 +34,14 @@ Incluye:
 - Botones de esencia: `Essence_Button_Ice`, `Life`, `Lightning` y `Void`, con
   iconos, texturas y modelo comun `Essence_Button.blockymodel`.
 - Piedra de no construccion: `OrbGenesis_NoBuild_Stone` crea al impactar un
-  Trigger Volume de `5 x 5 x 5` durante 10 segundos. El evento
-  `VOLUME_CREATE` inserta `NoBuild` mediante `ModifyRules SET` y ejecuta 12
-  `PlayVfx` con el sistema vanilla `Beam_Heal_Red3`, uno por arista.
+  Trigger Volume de `10 x 10 x 10`. El evento `VOLUME_CREATE` inserta
+  `NoBuild` mediante `ModifyRules SET` y lo retira a los 6 segundos. Una esfera
+  de particulas pasa de roja (0-6 s) a amarillo-naranja (6-9 s) y verde
+  (9-10 s). Reproduce `SFX_PORTAL_NEUTRAL_OPEN` al crearse y en el segundo 10.
+  El objeto arrojadizo usa el modelo e icono vanilla de
+  `Ingredient_Void_Essence`.
+
+Dependencia: `OrbGenesis:Particle Shape VFX` 0.1.0 o posterior.
 
 Origen: `real-lever-animation`, `essence-buttons` y desarrollo propio del
 proyectil temporal.

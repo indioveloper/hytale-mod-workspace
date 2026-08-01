@@ -5,6 +5,9 @@ param(
 
 $ErrorActionPreference = "Stop"
 $archive = (Resolve-Path -LiteralPath $ArchivePath).Path
+if ((Split-Path -Leaf $archive) -ne "More_Triggers-1_9_0.jar") {
+  throw "Artifact name must match version 1.9.0: $archive"
+}
 $entries = @(jar tf $archive)
 if ($LASTEXITCODE -ne 0) {
   throw "Could not inspect archive: $archive"
@@ -12,9 +15,13 @@ if ($LASTEXITCODE -ne 0) {
 
 $required = @(
   "manifest.json"
+  "icon-256.png"
   "gg/orbgenesis/moretriggers/MoreTriggersPlugin.class"
   "gg/orbgenesis/moretriggers/GiveRandomItemEffect.class"
   "gg/orbgenesis/moretriggers/ExecuteCommandEffect.class"
+  "gg/orbgenesis/moretriggers/NoMoveRule.class"
+  "gg/orbgenesis/moretriggers/NoMoveRuleSystem.class"
+  "gg/orbgenesis/moretriggers/NoMoveExceptionFilter.class"
   "gg/orbgenesis/moretriggers/SendTagMessageEffect.class"
   "gg/orbgenesis/moretriggers/ShowTagEventTitleEffect.class"
   "gg/orbgenesis/moretriggers/timer/ControlTimerEffect.class"
@@ -33,6 +40,26 @@ foreach ($entry in $required) {
   }
 }
 
+Add-Type -AssemblyName System.IO.Compression.FileSystem
+$zip = [System.IO.Compression.ZipFile]::OpenRead($archive)
+try {
+  $manifestEntry = $zip.GetEntry("manifest.json")
+  $reader = New-Object System.IO.StreamReader($manifestEntry.Open())
+  try {
+    $manifest = $reader.ReadToEnd() | ConvertFrom-Json
+  } finally {
+    $reader.Dispose()
+  }
+} finally {
+  $zip.Dispose()
+}
+if ($manifest.Group -ne "OrbGenesis" -or $manifest.Name -ne "More Triggers") {
+  throw "Unexpected plugin identity in manifest.json."
+}
+if ($manifest.Version -ne "1.9.0") {
+  throw "Manifest version must be 1.9.0, found $($manifest.Version)."
+}
+
 $frames = @($entries | Where-Object { $_ -match '^Common/UI/Custom/HUD/CircularTimer/Frames/Ring\d{2}\.png$' })
 if ($frames.Count -ne 61) {
   throw "Expected 61 timer ring frames, found $($frames.Count)."
@@ -43,6 +70,11 @@ if ($entries -contains "Common/UI/Custom/Common.ui") {
 $retiredClasses = @(
   "gg/orbgenesis/moretriggers/RemoveEventTitleEffect.class"
   "gg/orbgenesis/moretriggers/RandomTagSelectionEffect.class"
+  "gg/orbgenesis/moretriggers/NoMoveEffect.class"
+  "gg/orbgenesis/moretriggers/SetPlayerGravityViewEffect.class"
+  "gg/orbgenesis/moretriggers/GravityViewController.class"
+  "gg/orbgenesis/moretriggers/GravityViewCommand.class"
+  "gg/orbgenesis/moretriggers/GravityMovementCompensationSystem.class"
 )
 foreach ($entry in $retiredClasses) {
   if ($entries -contains $entry) {

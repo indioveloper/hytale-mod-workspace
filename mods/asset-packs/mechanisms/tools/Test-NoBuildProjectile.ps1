@@ -14,6 +14,13 @@ $effect = Get-Content -Raw -LiteralPath $effectPath | ConvertFrom-Json
 if ($item.Parent -ne "Rubble_Stone") {
   throw "No-build stone must inherit the vanilla Rubble_Stone item."
 }
+if ($item.Icon -ne "Icons/ItemsGenerated/Ingredient_Void_Essence.png" -or
+    $item.Model -ne "Resources/Ingredients/Essence.blockymodel" -or
+    $item.Texture -ne "Resources/Ingredients/Essence_Textures/Void_Essence_Texture.png" -or
+    [double]$item.Scale -ne 0.8 -or
+    [double]$item.IconProperties.Scale -ne 0.6) {
+  throw "No-build stone must use the vanilla Ingredient_Void_Essence model and icon."
+}
 if ($interaction.Parent -ne "Rubble_Throw" -or
     $interaction.Config -ne "Projectile_Config_OrbGenesis_NoBuild_Stone") {
   throw "No-build throw interaction is not wired to its projectile config."
@@ -25,69 +32,75 @@ if ($rules.Count -ne 1 -or $rules[0].Type -ne "NoBuild") {
 }
 
 $modifyRules = @($effect.Effects | Where-Object { $_.Type -eq "ModifyRules" })
-if ($modifyRules.Count -ne 1 -or
-    $modifyRules[0].Event -ne "VOLUME_CREATE" -or
-    $modifyRules[0].Operation -ne "Set" -or
-    $modifyRules[0].Rule.Type -ne "NoBuild") {
-  throw "VOLUME_CREATE must SET the NoBuild rule to work around the 0.6.8 spawn bug."
+if ($modifyRules.Count -ne 2) {
+  throw "VOLUME_CREATE must contain one rule activation and one delayed removal."
+}
+$setRule = @($modifyRules | Where-Object { $_.Operation -eq "Set" })
+$removeRule = @($modifyRules | Where-Object { $_.Operation -eq "Remove" })
+if ($setRule.Count -ne 1 -or
+    $setRule[0].Event -ne "VOLUME_CREATE" -or
+    [double]$setRule[0].Delay -ne 0.0 -or
+    $setRule[0].Rule.Type -ne "NoBuild") {
+  throw "VOLUME_CREATE must immediately SET the NoBuild rule."
+}
+if ($removeRule.Count -ne 1 -or
+    $removeRule[0].Event -ne "VOLUME_CREATE" -or
+    [double]$removeRule[0].Delay -ne 6.0 -or
+    $removeRule[0].Rule.Type -ne "NoBuild") {
+  throw "VOLUME_CREATE must REMOVE the NoBuild rule after 6 seconds."
 }
 
-$vfx = @($effect.Effects | Where-Object { $_.Type -eq "PlayVfx" })
-if ($vfx.Count -ne 12) {
-  throw "VOLUME_CREATE must contain one vanilla PlayVfx effect per cube edge."
+$shapes = @($effect.Effects | Where-Object { $_.Type -eq "SpawnParticleShape" })
+if ($shapes.Count -ne 3) {
+  throw "VOLUME_CREATE must contain red, yellow-orange, and green particle spheres."
 }
-foreach ($edge in $vfx) {
-  if ($edge.Event -ne "VOLUME_CREATE" -or
-      $edge.ParticleSystem -ne "Beam_Heal_Red3" -or
-      $edge.Anchor -ne "Volume" -or
-      [double]$edge.Scale -ne 5.0 -or
-      [double]$edge.Duration -ne 10.0) {
-    throw "Every edge must use the vanilla Beam_Heal_Red3 VFX at scale 5 for 10 seconds."
+
+function Assert-ParticleSphere(
+  [object]$Shape,
+  [string]$ParticleSystem,
+  [double]$Delay,
+  [double]$Duration
+) {
+  if ($Shape.Event -ne "VOLUME_CREATE" -or
+      $Shape.Shape -ne "SphereSurface" -or
+      $Shape.ParticleSystem -ne $ParticleSystem -or
+      $Shape.CoordinateMode -ne "RelativeToVolume" -or
+      [double]$Shape.Center.X -ne 0.0 -or
+      [double]$Shape.Center.Y -ne 0.0 -or
+      [double]$Shape.Center.Z -ne 0.0 -or
+      [double]$Shape.Size -ne 10.0 -or
+      [double]$Shape.Spacing -ne 1.0 -or
+      [double]$Shape.ParticleScale -ne 2.0 -or
+      [double]$Shape.Delay -ne $Delay -or
+      [double]$Shape.Duration -ne $Duration -or
+      [int]$Shape.MaxPoints -ne 1500) {
+    throw "Invalid particle sphere stage for $ParticleSystem."
   }
 }
 
-$xEdges = @($vfx | Where-Object {
-    [double]$_.Rotation.X -eq 0.0 -and
-    [double]$_.Rotation.Y -eq 90.0 -and
-    [double]$_.Rotation.Z -eq 0.0
-  })
-$yEdges = @($vfx | Where-Object {
-    [double]$_.Rotation.X -eq -90.0 -and
-    [double]$_.Rotation.Y -eq 0.0 -and
-    [double]$_.Rotation.Z -eq 0.0
-  })
-$zEdges = @($vfx | Where-Object {
-    [double]$_.Rotation.X -eq 0.0 -and
-    [double]$_.Rotation.Y -eq 0.0 -and
-    [double]$_.Rotation.Z -eq 0.0
-  })
-if ($xEdges.Count -ne 4 -or $yEdges.Count -ne 4 -or $zEdges.Count -ne 4) {
-  throw "Perimeter must contain four correctly rotated effects for each axis."
+Assert-ParticleSphere ($shapes | Where-Object { $_.ParticleSystem -eq "OrbGenesis_Shape_Point_Red" }) "OrbGenesis_Shape_Point_Red" 0.0 6.0
+Assert-ParticleSphere ($shapes | Where-Object { $_.ParticleSystem -eq "OrbGenesis_Shape_Point_YellowOrange" }) "OrbGenesis_Shape_Point_YellowOrange" 6.0 3.0
+Assert-ParticleSphere ($shapes | Where-Object { $_.ParticleSystem -eq "OrbGenesis_Shape_Point_Green" }) "OrbGenesis_Shape_Point_Green" 9.0 1.0
+if (@($effect.Effects | Where-Object { $_.Type -eq "PlayVfx" }).Count -ne 0) {
+  throw "Legacy offset PlayVfx emitters must not remain in the no-build effect."
 }
 
-foreach ($fixedA in @(-2.5, 2.5)) {
-  foreach ($fixedB in @(-2.5, 2.5)) {
-    if (@($xEdges | Where-Object {
-          [double]$_.Offset.X -eq -2.5 -and
-          [double]$_.Offset.Y -eq $fixedA -and
-          [double]$_.Offset.Z -eq $fixedB
-        }).Count -ne 1) {
-      throw "Missing X edge starting at (-2.5, $fixedA, $fixedB)."
-    }
-    if (@($yEdges | Where-Object {
-          [double]$_.Offset.X -eq $fixedA -and
-          [double]$_.Offset.Y -eq -2.5 -and
-          [double]$_.Offset.Z -eq $fixedB
-        }).Count -ne 1) {
-      throw "Missing Y edge starting at ($fixedA, -2.5, $fixedB)."
-    }
-    if (@($zEdges | Where-Object {
-          [double]$_.Offset.X -eq $fixedA -and
-          [double]$_.Offset.Y -eq $fixedB -and
-          [double]$_.Offset.Z -eq -2.5
-        }).Count -ne 1) {
-      throw "Missing Z edge starting at ($fixedA, $fixedB, -2.5)."
-    }
+$sounds = @($effect.Effects | Where-Object { $_.Type -eq "PlaySound" })
+if ($sounds.Count -ne 2) {
+  throw "VOLUME_CREATE must play the portal sound at seconds 0 and 10."
+}
+foreach ($delay in @(0.0, 10.0)) {
+  $sound = @($sounds | Where-Object { [double]$_.Delay -eq $delay })
+  if ($sound.Count -ne 1 -or
+      $sound[0].Event -ne "VOLUME_CREATE" -or
+      $sound[0].SoundEvent -ne "SFX_PORTAL_NEUTRAL_OPEN" -or
+      [double]$sound[0].Volume -ne 1.0 -or
+      [double]$sound[0].Pitch -ne 1.0 -or
+      $sound[0].Location -ne "VolumeCenter" -or
+      [double]$sound[0].Offset.X -ne 0.0 -or
+      [double]$sound[0].Offset.Y -ne 0.0 -or
+      [double]$sound[0].Offset.Z -ne 0.0) {
+    throw "Portal sound stage at second $delay is invalid."
   }
 }
 
@@ -102,8 +115,8 @@ foreach ($eventName in @("ProjectileHit", "ProjectileMiss")) {
   if ($spawn.EffectAsset -ne "OrbGenesis_NoBuild_5x5x5_10s") {
     throw "$eventName references the wrong Trigger Volume effect asset."
   }
-  if ([double]$spawn.LifetimeS -ne 10.0 -or $spawn.RequireHitLocation -ne $true) {
-    throw "$eventName must require a hit location and expire after 10 seconds."
+  if ([double]$spawn.LifetimeS -ne 10.25 -or $spawn.RequireHitLocation -ne $true) {
+    throw "$eventName must survive slightly past the final sound at second 10."
   }
   if ($spawn.Shape.Type -ne "Box") {
     throw "$eventName must spawn a box-shaped volume."
@@ -111,8 +124,8 @@ foreach ($eventName in @("ProjectileHit", "ProjectileMiss")) {
 
   foreach ($axis in @("X", "Y", "Z")) {
     $size = [double]$spawn.Shape.Max.$axis - [double]$spawn.Shape.Min.$axis
-    if ($size -ne 5.0) {
-      throw "$eventName volume size on $axis is $size instead of 5."
+    if ($size -ne 10.0) {
+      throw "$eventName volume size on $axis is $size instead of 10."
     }
   }
 

@@ -1,6 +1,6 @@
 # More Triggers
 
-Coleccion de utilidades generales para Trigger Volumes. La version `1.6.0`
+Coleccion de utilidades generales para Trigger Volumes. La version `1.9.0`
 esta preparada para Hytale pre-release `0.6.x` e integra el antiguo mod Trigger
 Execute Command.
 
@@ -14,6 +14,12 @@ Execute Command.
 | Mostrar titulo de evento con tags | `ShowTagEventTitle` | Muestra Event Titles sustituyendo marcadores `{tag}`. |
 | Controlar timer circular | `ControlTimer` | Inicia, pausa, muestra, oculta o cancela el timer circular. |
 | Ejecutar comando | `ExecuteCommand` | Ejecuta un comando como consola o jugador activador. |
+
+## Reglas incluidas
+
+| Nombre in-game (es-ES) | ID interno | Funcion |
+| --- | --- | --- |
+| No Move | `NoMove` | Cancela continuamente el movimiento dentro del volumen, con excepciones para jugadores y roles NPC. |
 
 `RemoveEventTitle` ya no se registra: su codigo se conserva en
 `mods/java/deprecated/more-triggers-retired-effects`.
@@ -72,21 +78,37 @@ Comandos equivalentes:
 
 No instales el antiguo Trigger Execute Command junto a More Triggers.
 
+## No Move
+
+`NoMove` es una regla y aparece en la seccion `Always Active` del Trigger
+Volume. En cada tick asigna velocidad cero a las entidades situadas dentro del
+volumen; al salir recuperan su movimiento normal sin necesitar otro efecto.
+
+- `ExcludePlayers`: permite que los jugadores sigan moviendose.
+- `ExcludedNpcRoles`: lista de assets `NpcRole` que conservaran su movimiento.
+Las excepciones se comprueban por el ID estable del role NPC, no por el nombre
+visible de la criatura.
+
+El prototipo retirado `SetPlayerGravityView` y el diagnostico completo de sus
+controles se conservan en `experiments/java/inverted-gravity-camera`; no se
+registran ni se empaquetan con More Triggers.
+
 ## Build y validacion
 
 ```powershell
 .\mods\java\more-triggers\tools\Test-PluginLocalization.ps1
 .\mods\java\more-triggers\tools\Test-TagTemplateResolver.ps1
+.\mods\java\more-triggers\tools\Test-NoMoveExceptionFilter.ps1
 
 .\scripts\Build-JavaMod.ps1 `
   -ProjectPath .\mods\java\more-triggers `
   -SourceRoot src `
   -PackageRoot src `
-  -ArtifactName More_Triggers-1_6_0.jar
+  -ArtifactName More_Triggers-1_9_0.jar
 
 .\mods\java\more-triggers\tools\Test-TimerMath.ps1
 .\mods\java\more-triggers\tools\Test-Package.ps1 `
-  -ArchivePath .\mods\java\more-triggers\.build\dist\More_Triggers-1_6_0.jar
+  -ArchivePath .\mods\java\more-triggers\.build\dist\More_Triggers-1_9_0.jar
 ```
 
 El contorno del timer usa 61 frames PNG porque la UI 0.6.x no expone un

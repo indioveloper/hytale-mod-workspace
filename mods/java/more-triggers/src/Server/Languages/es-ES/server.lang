@@ -99,3 +99,10 @@ customUI.triggerVolumeEffectEditor.field.ExecuteCommand.Executor = Ejecutar como
 customUI.triggerVolumeEffectEditor.field.ExecuteCommand.Executor.tooltip = Elige si el comando se lanza desde la consola del servidor o desde el jugador que activa el volumen.
 customUI.triggerVolumeEffectEditor.field.ExecuteCommand.Executor.option.SERVER = Consola del servidor
 customUI.triggerVolumeEffectEditor.field.ExecuteCommand.Executor.option.PLAYER = Jugador activador
+
+customUI.triggerVolumeEffectEditor.ruleType.NoMove = No Move
+customUI.triggerVolumeEffectEditor.ruleType.NoMove.tooltip = Cancela continuamente el movimiento de las entidades dentro del volumen. Anade esta regla en Siempre activo y configura debajo las excepciones.
+customUI.triggerVolumeEffectEditor.field.NoMove.ExcludePlayers = Excluir jugadores
+customUI.triggerVolumeEffectEditor.field.NoMove.ExcludePlayers.tooltip = Al activarlo, los jugadores dentro del volumen pueden seguir moviendose. Desactivalo para detener tambien a los jugadores.
+customUI.triggerVolumeEffectEditor.field.NoMove.ExcludedNpcRoles = Roles NPC excluidos
+customUI.triggerVolumeEffectEditor.field.NoMove.ExcludedNpcRoles.tooltip = Assets de roles NPC que podran seguir moviendose. Deja la lista vacia para detener todos los NPC objetivo. Ejemplo: Nexus_Avatar_Sword_Runner.

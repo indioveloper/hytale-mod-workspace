@@ -1,0 +1,21 @@
+{
+  "Group": "OrbGenesis",
+  "Name": "Particle Shape VFX",
+  "Version": "0.1.0",
+  "Description": "Adds a Trigger Volume effect for exact particle cubes, spheres, and lines.",
+  "Authors": [
+    {
+      "Name": "OrbGenesis",
+      "Url": "https://orbgenesis.gg"
+    }
+  ],
+  "DisabledByDefault": false,
+  "IncludesAssetPack": true,
+  "Dependencies": {
+    "Hytale:EntityModule": "*",
+    "Hytale:TriggerVolumes": "*"
+  },
+  "OptionalDependencies": {},
+  "ServerVersion": ">=0.6.0-pre <0.7.0",
+  "Main": "gg.orbgenesis.particleshapevfx.ParticleShapeVfxPlugin"
+}

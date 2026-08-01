@@ -14,6 +14,28 @@ param(
 
 $ErrorActionPreference = "Stop"
 
+function Assert-ModIcon([string]$IconPath) {
+  $bytes = [System.IO.File]::ReadAllBytes($IconPath)
+  $signature = [byte[]](137, 80, 78, 71, 13, 10, 26, 10)
+  $signatureMatches = $bytes.Length -ge 8
+  for ($index = 0; $signatureMatches -and $index -lt $signature.Length; $index++) {
+    $signatureMatches = $bytes[$index] -eq $signature[$index]
+  }
+  if ($bytes.Length -lt 24 -or -not $signatureMatches) {
+    throw "Mod icon must be a valid PNG: $IconPath"
+  }
+
+  $widthBytes = [byte[]]$bytes[16..19]
+  $heightBytes = [byte[]]$bytes[20..23]
+  [Array]::Reverse($widthBytes)
+  [Array]::Reverse($heightBytes)
+  $width = [BitConverter]::ToUInt32($widthBytes, 0)
+  $height = [BitConverter]::ToUInt32($heightBytes, 0)
+  if ($width -ne 256 -or $height -ne 256) {
+    throw "Mod icon must be 256x256 pixels, found ${width}x${height}: $IconPath"
+  }
+}
+
 $project = (Resolve-Path -LiteralPath $ProjectPath).Path
 $source = (Resolve-Path -LiteralPath (Join-Path $project $SourceRoot)).Path
 $package = (Resolve-Path -LiteralPath (Join-Path $project $PackageRoot)).Path
@@ -57,6 +79,12 @@ if (-not (Test-Path -LiteralPath $manifest -PathType Leaf)) {
   throw "manifest.json not found under package root: $package"
 }
 Copy-Item -LiteralPath $manifest -Destination $stage -Force
+
+$iconSource = Join-Path $package "icon-256.png"
+if (Test-Path -LiteralPath $iconSource -PathType Leaf) {
+  Assert-ModIcon $iconSource
+  Copy-Item -LiteralPath $iconSource -Destination $stage -Force
+}
 
 foreach ($assetDirectory in @("Common", "Server")) {
   $candidate = Join-Path $package $assetDirectory

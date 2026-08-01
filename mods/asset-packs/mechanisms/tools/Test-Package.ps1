@@ -9,9 +9,14 @@ $archive = (Resolve-Path -LiteralPath $ArchivePath).Path
 Add-Type -AssemblyName System.IO.Compression.FileSystem
 $zip = [System.IO.Compression.ZipFile]::OpenRead($archive)
 try {
-  $entries = @($zip.Entries | ForEach-Object { $_.FullName.Replace("\", "/") })
+  $rawEntries = @($zip.Entries | ForEach-Object { $_.FullName })
+  if (@($rawEntries | Where-Object { $_ -match "\\" }).Count -gt 0) {
+    throw "Archive contains Windows-style paths that Hytale cannot resolve."
+  }
+  $entries = @($rawEntries | ForEach-Object { $_.Replace("\", "/") })
   $required = @(
     "manifest.json"
+    "icon-256.png"
     "Server/Item/Items/OrbGenesis/NoBuildStone/OrbGenesis_NoBuild_Stone.json"
     "Server/Item/Interactions/OrbGenesis/NoBuildStone/OrbGenesis_NoBuild_Stone_Throw.json"
     "Server/ProjectileConfigs/Weapons/Throwables/Projectile_Config_OrbGenesis_NoBuild_Stone.json"
@@ -36,9 +41,12 @@ try {
 
   if ($manifest.Group -ne "OrbGenesis" -or
       $manifest.Name -ne "OrbGenesis Mechanisms" -or
-      $manifest.Version -ne "1.0.5" -or
+      $manifest.Version -ne "1.1.0" -or
       $manifest.IncludesAssetPack -ne $true) {
-    throw "Archive manifest does not identify OrbGenesis Mechanisms 1.0.5."
+    throw "Archive manifest does not identify OrbGenesis Mechanisms 1.1.0."
+  }
+  if ($manifest.Dependencies.'OrbGenesis:Particle Shape VFX' -ne ">=0.1.0") {
+    throw "Archive manifest does not require Particle Shape VFX 0.1.0."
   }
 } finally {
   $zip.Dispose()

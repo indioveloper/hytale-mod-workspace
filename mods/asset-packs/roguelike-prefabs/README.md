@@ -17,4 +17,5 @@ Para instalarlo, copia esta carpeta a:
 ```
 
 El identificador `tests:tests` se conserva porque la configuracion de la
-partida y Map Selector ya hacen referencia a el.
+partida ya hace referencia a el. El prototipo auxiliar Map Selector tambien
+puede usarlo, pero no es necesario instalar ese proyecto.

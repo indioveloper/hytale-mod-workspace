@@ -42,11 +42,14 @@ public class MoreTriggersPlugin extends JavaPlugin {
         "ControlTimer", ControlTimerEffect.class, ControlTimerEffect.CODEC);
     triggerVolumes.registerEffectType(
         "ExecuteCommand", ExecuteCommandEffect.class, ExecuteCommandEffect.CODEC);
+    triggerVolumes.registerRuleType("NoMove", NoMoveRule.class, NoMoveRule.CODEC);
     triggerVolumes.registerAssetField("PasteRandomPrefab", "Prefab1", "Prefab");
     triggerVolumes.registerAssetField("PasteRandomPrefab", "Prefab2", "Prefab");
     triggerVolumes.registerAssetField("PasteRandomPrefab", "Prefabs", "Prefab");
+    triggerVolumes.registerAssetField("NoMove", "ExcludedNpcRoles", "NpcRole");
     getCommandRegistry().registerCommand(new TimerCommand(this));
     getEntityStoreRegistry().registerSystem(new TimerTickingSystem(timerManager));
+    getEntityStoreRegistry().registerSystem(new NoMoveRuleSystem());
   }
 
   @Override

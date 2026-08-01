@@ -1,7 +1,7 @@
 {
   "Group": "OrbGenesis",
   "Name": "OrbGenesis Mechanisms",
-  "Version": "1.0.5",
+  "Version": "1.1.0",
   "Description": "Animated mechanisms, essence buttons, and a throwable stone that creates a temporary no-build zone.",
   "Authors": [
     {
@@ -11,7 +11,9 @@
   ],
   "Website": "",
   "ServerVersion": ">=0.6.0-pre <0.7.0",
-  "Dependencies": {},
+  "Dependencies": {
+    "OrbGenesis:Particle Shape VFX": ">=0.1.0"
+  },
   "OptionalDependencies": {},
   "LoadBefore": {},
   "DisabledByDefault": false,

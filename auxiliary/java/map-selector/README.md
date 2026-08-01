@@ -1,6 +1,10 @@
 # Map Selector
 
-Mod Java para Hytale pre-release 0.6.8 que abre con `/mapas` una lista cerrada
+Proyecto auxiliar creado para ayudar a otro desarrollador. No forma parte de
+los mods activos ni de las releases de OrbGenesis y no debe instalarse en los
+mapas de desarrollo.
+
+El mod para Hytale pre-release 0.6.x abre con `/mapas` una lista cerrada
 de mapas y reutiliza el componente nativo `PrefabPreviewComponent`.
 
 ## Mapas iniciales
@@ -27,7 +31,7 @@ Destinos placeholder actuales:
 
 ```powershell
 .\scripts\Build-JavaMod.ps1 `
-  -ProjectPath .\mods\java\map-selector `
+  -ProjectPath .\auxiliary\java\map-selector `
   -SourceRoot src `
   -PackageRoot . `
   -ArtifactName Map_Selector-0_1_1.jar

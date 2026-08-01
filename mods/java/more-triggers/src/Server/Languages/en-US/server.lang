@@ -99,3 +99,10 @@ customUI.triggerVolumeEffectEditor.field.ExecuteCommand.Executor = Run as
 customUI.triggerVolumeEffectEditor.field.ExecuteCommand.Executor.tooltip = Choose whether to dispatch the command from the server console or the triggering player.
 customUI.triggerVolumeEffectEditor.field.ExecuteCommand.Executor.option.SERVER = Server console
 customUI.triggerVolumeEffectEditor.field.ExecuteCommand.Executor.option.PLAYER = Triggering player
+
+customUI.triggerVolumeEffectEditor.ruleType.NoMove = No Move
+customUI.triggerVolumeEffectEditor.ruleType.NoMove.tooltip = Continuously cancels movement for entities inside the volume. Add this rule under Always Active and configure the exceptions below.
+customUI.triggerVolumeEffectEditor.field.NoMove.ExcludePlayers = Exclude players
+customUI.triggerVolumeEffectEditor.field.NoMove.ExcludePlayers.tooltip = When enabled, players inside the volume remain able to move. Disable it to stop players too.
+customUI.triggerVolumeEffectEditor.field.NoMove.ExcludedNpcRoles = Excluded NPC roles
+customUI.triggerVolumeEffectEditor.field.NoMove.ExcludedNpcRoles.tooltip = NPC role assets that remain able to move. Leave the list empty to stop every targeted NPC. Example: Nexus_Avatar_Sword_Runner.

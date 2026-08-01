@@ -1,6 +1,6 @@
 # OrbGenesis Mechanisms
 
-Pack fusionado de props accionables/animados. La version actual es `1.0.5`.
+Pack fusionado de props accionables/animados. La version actual es `1.1.0`.
 
 Incluye:
 
@@ -12,16 +12,20 @@ Incluye:
   bloque sin requisito de cara completa, usan el aviso nativo de activacion y
   tienen el modelo colocado al 75% de escala.
 - No-build stone: el item `OrbGenesis_NoBuild_Stone` hereda el lanzamiento de
-  `Rubble_Stone`. Al impactar crea un Trigger Volume centrado en el impacto, de
-  `5 x 5 x 5` bloques y con una vida de 10 segundos. En `VOLUME_CREATE`, un
+  `Rubble_Stone`, pero usa el modelo, textura e icono vanilla de
+  `Ingredient_Void_Essence`. Al impactar crea un Trigger Volume centrado en el
+  impacto, de `10 x 10 x 10` bloques. En `VOLUME_CREATE`, un
   efecto `ModifyRules` con operacion `SET` inserta la regla vanilla `NoBuild`;
   este paso evita el bug de 0.6.8 por el que `SpawnTriggerVolume` no copia las
-  reglas del asset al volumen recien creado.
-- El mismo evento ejecuta 12 efectos `PlayVfx`, uno por cada arista, durante 10
-  segundos. Todos reutilizan el sistema de particulas vanilla
-  `Beam_Heal_Red3`: escala `5`, offsets en las esquinas negativas de cada eje y
-  rotaciones de 90 grados para alinear los beams con `X`, `Y` y `Z`. El pack no
-  define sistemas ni spawners de particulas propios.
+  reglas del asset al volumen recien creado. Un segundo `ModifyRules` retira
+  `NoBuild` a los 6 segundos.
+- `SpawnParticleShape` muestra una esfera de 10 bloques con separacion 1,
+  escala 2 y limite 1500. Es roja de 0 a 6 segundos, amarillo-naranja de 6 a 9
+  y verde de 9 a 10.
+- Reproduce `SFX_PORTAL_NEUTRAL_OPEN` en el centro al impactar y de nuevo en el
+  segundo 10.
+
+Requiere el mod `OrbGenesis:Particle Shape VFX` 0.1.0 o posterior.
 
 ## Prueba de la piedra
 
@@ -29,17 +33,22 @@ Incluye:
 /give OrbGenesis_NoBuild_Stone 1
 ```
 
-Lanza la piedra, intenta colocar un bloque dentro de la zona marcada y repite
-la accion tras 10 segundos. Durante la vida del volumen la colocacion debe ser
-rechazada; despues de expirar debe volver a funcionar.
+Lanza la piedra e intenta colocar un bloque dentro de la esfera. La colocacion
+debe rechazarse durante la fase roja y volver a funcionar al comenzar la fase
+amarillo-naranja en el segundo 6. Confirma el cambio a verde en el segundo 9 y
+el segundo sonido en el 10.
 
 Validacion estatica:
 
 ```powershell
 .\mods\asset-packs\mechanisms\tools\Test-NoBuildProjectile.ps1
 
+.\scripts\Build-AssetPack.ps1 `
+  -ProjectPath .\mods\asset-packs\mechanisms `
+  -ArtifactName OrbGenesis_Mechanisms-1_1_0.zip
+
 .\mods\asset-packs\mechanisms\tools\Test-Package.ps1 `
-  -ArchivePath .\mods\asset-packs\mechanisms\.build\dist\OrbGenesis_Mechanisms-1_0_5.zip
+  -ArchivePath .\mods\asset-packs\mechanisms\.build\dist\OrbGenesis_Mechanisms-1_1_0.zip
 ```
 
 Origen:
@@ -47,5 +56,5 @@ Origen:
 - `mods/asset-packs/real-lever-animation`
 - `mods/asset-packs/essence-buttons`
 
-Estado: pack orientado a pre-release 0.6.x. La piedra requiere smoke test visual
-en 0.6.8 para ajustar densidad, color y visibilidad del perimetro de particulas.
+Estado: pack orientado a pre-release 0.6.x. La integracion con
+`SpawnParticleShape` requiere smoke test visual dentro del juego.

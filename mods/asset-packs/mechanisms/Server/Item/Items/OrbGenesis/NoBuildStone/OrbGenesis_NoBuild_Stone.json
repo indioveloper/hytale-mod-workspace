@@ -7,6 +7,23 @@
   "Categories": [
     "Items.Weapons"
   ],
+  "Icon": "Icons/ItemsGenerated/Ingredient_Void_Essence.png",
+  "Model": "Resources/Ingredients/Essence.blockymodel",
+  "Texture": "Resources/Ingredients/Essence_Textures/Void_Essence_Texture.png",
+  "PlayerAnimationsId": "Item",
+  "Scale": 0.8,
+  "IconProperties": {
+    "Scale": 0.6,
+    "Rotation": [
+      0,
+      0,
+      0
+    ],
+    "Translation": [
+      0,
+      -13
+    ]
+  },
   "Interactions": {
     "Secondary": {
       "Interactions": [

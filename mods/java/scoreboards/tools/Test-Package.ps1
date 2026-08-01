@@ -12,6 +12,7 @@ if ($LASTEXITCODE -ne 0) {
 
 $required = @(
   "manifest.json"
+  "icon-256.png"
   "gg/orbgenesis/scoreboards/ScoreboardsPlugin.class"
   "gg/orbgenesis/scoreboards/ManualCountObjectiveTask.class"
   "gg/orbgenesis/scoreboards/ControlScoreboardEffect.class"
