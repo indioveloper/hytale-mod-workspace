@@ -1,0 +1,10 @@
+{
+  "Spawners": [
+    {
+      "SpawnerId": "OrbGenesis_NoBuild_Edge_Line",
+      "FixedRotation": false
+    }
+  ],
+  "CullDistance": 40.0,
+  "IsImportant": true
+}

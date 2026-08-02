@@ -75,6 +75,12 @@ $required = @(
   "customUI.triggerVolumeEffectEditor.field.ExecuteCommand.Command.placeholder"
   "customUI.triggerVolumeEffectEditor.field.ExecuteCommand.Executor"
   "customUI.triggerVolumeEffectEditor.field.ExecuteCommand.Executor.tooltip"
+  "customUI.triggerVolumeEffectEditor.ruleType.NoMove"
+  "customUI.triggerVolumeEffectEditor.ruleType.NoMove.tooltip"
+  "customUI.triggerVolumeEffectEditor.field.NoMove.ExcludePlayers"
+  "customUI.triggerVolumeEffectEditor.field.NoMove.ExcludePlayers.tooltip"
+  "customUI.triggerVolumeEffectEditor.field.NoMove.ExcludedNpcRoles"
+  "customUI.triggerVolumeEffectEditor.field.NoMove.ExcludedNpcRoles.tooltip"
 )
 
 foreach ($key in $required) {

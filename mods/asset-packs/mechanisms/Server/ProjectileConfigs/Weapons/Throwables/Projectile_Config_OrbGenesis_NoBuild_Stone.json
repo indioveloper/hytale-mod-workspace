@@ -12,17 +12,17 @@
           "Shape": {
             "Type": "Box",
             "Min": {
-              "X": -2.5,
-              "Y": -2.5,
-              "Z": -2.5
+              "X": -5.0,
+              "Y": -5.0,
+              "Z": -5.0
             },
             "Max": {
-              "X": 2.5,
-              "Y": 2.5,
-              "Z": 2.5
+              "X": 5.0,
+              "Y": 5.0,
+              "Z": 5.0
             }
           },
-          "LifetimeS": 10.0,
+          "LifetimeS": 10.25,
           "RequireHitLocation": true
         },
         {
@@ -42,17 +42,17 @@
           "Shape": {
             "Type": "Box",
             "Min": {
-              "X": -2.5,
-              "Y": -2.5,
-              "Z": -2.5
+              "X": -5.0,
+              "Y": -5.0,
+              "Z": -5.0
             },
             "Max": {
-              "X": 2.5,
-              "Y": 2.5,
-              "Z": 2.5
+              "X": 5.0,
+              "Y": 5.0,
+              "Z": 5.0
             }
           },
-          "LifetimeS": 10.0,
+          "LifetimeS": 10.25,
           "RequireHitLocation": true
         },
         {

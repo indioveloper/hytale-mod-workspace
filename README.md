@@ -15,13 +15,20 @@ backups, instalaciones del juego, el Hytale Shared Source ni mundos completos.
 | --- | --- | --- |
 | `mods/java/build-battle` | Prototipo, v0.2.2 | Sugerencias de temas y regla Always Active para restringir herramientas creativas por plot. |
 | `mods/java/entity-motion-triggers` | Activo/prototipo, v1.3.0 | Efectos para crear, convertir y mover entidades, aplicar colision de plataforma y anclar particulas moviles. |
-| `mods/java/map-selector` | Prototipo, v0.1.1 | Selector cerrado de mapas con previews 3D de prefabs y teletransporte mediante `/mapas`. |
-| `mods/java/more-triggers` | Activo/prototipo, v1.6.0 | Utilidades generales de Trigger Volumes, incluido `ExecuteCommand`, objetos aleatorios, mensajes con tags y timer circular. |
+| `mods/java/more-triggers` | Activo/prototipo, v1.9.0 | Utilidades generales de Trigger Volumes, incluida la regla `NoMove`, `ExecuteCommand`, objetos aleatorios, mensajes con tags y timer circular. |
+| `mods/java/particle-shape-vfx` | Activo/prototipo, v0.1.0 | Efecto `SpawnParticleShape` para dibujar cubos, superficies esfericas y lineas de particulas con coordenadas exactas. |
 | `mods/java/scoreboards` | Prototipo, v2.0.10 | Objectives editables y persistentes con comandos, UI nativa y control desde Trigger Volumes; compila en 0.6.8 y requiere smoke test en juego. |
 
 `mods/java/deprecated` conserva Player Entity Tags, Chest Labels y el antiguo
 Trigger Execute Command standalone. Son fuentes historicas desactivadas por
 defecto y no deben incluirse en la distribucion activa.
+
+### Codigo auxiliar
+
+`auxiliary/java/map-selector` conserva Map Selector 0.1.1, creado como ayuda
+para el proyecto de otro desarrollador. No forma parte de los mods activos, no
+se incluye en las releases de OrbGenesis y no debe instalarse en los mapas de
+desarrollo.
 
 El [catalogo consolidado de efectos](docs/MORE_TRIGGERS_CONSOLIDATION.md)
 detalla que registra cada mod despues de la reorganizacion.
@@ -35,8 +42,8 @@ y contratos de comportamiento. Los NPCs reutilizables viven en
 `mods/asset-packs` contiene los packs independientes que siguen siendo utiles:
 
 - `blocks`
-- `mechanisms` (`OrbGenesis:OrbGenesis Mechanisms`, v1.0.5; incluye la piedra
-  arrojadiza que crea una zona `NoBuild` temporal con perimetro de particulas)
+- `mechanisms` (`OrbGenesis:OrbGenesis Mechanisms`, v1.1.0; incluye la piedra
+  arrojadiza que crea una zona `NoBuild` temporal y requiere Particle Shape VFX)
 - `raynor-npcs`
 - `nexus-siege-props`
 - `roguelike-prefabs` (`tests:tests`, usado por `test roguelike`)
@@ -46,6 +53,9 @@ flechas con `SpawnTriggerVolume`, outlines, ventanas, prefabs, archery game,
 pruebas Raynor y packs usados durante las migraciones 0.6.x. Pueden contener
 overrides vanilla y no deben instalarse todos a la vez sin revisar sus IDs.
 Consulta `docs/ASSET_PACKS.md` para el detalle de cada pack.
+
+`experiments/java/inverted-gravity-camera` conserva el prototipo retirado de
+camara/gravedad invertida y el handoff de sus problemas pendientes de control.
 
 El resultado de la consolidacion de los mods Java de Trigger Volumes esta en
 `docs/MORE_TRIGGERS_CONSOLIDATION.md`.
@@ -77,8 +87,10 @@ El JAR del servidor suele estar en:
 
 ## Compilar un mod Java
 
-El script comun compila todos los `.java`, copia `manifest.json`, `Common` y
-`Server`, y genera el JAR bajo `.build/dist`.
+El script comun compila todos los `.java`, copia `manifest.json`, el icono
+opcional `icon-256.png`, `Common` y `Server`, y genera el JAR bajo `.build/dist`.
+El cliente de Hytale exige ese nombre exacto y una imagen PNG de 256x256; el
+icono no se declara en el manifest.
 
 Ejemplo para More Triggers:
 
@@ -87,7 +99,7 @@ Ejemplo para More Triggers:
   -ProjectPath .\mods\java\more-triggers `
   -SourceRoot src `
   -PackageRoot src `
-  -ArtifactName More_Triggers-1_6_0.jar
+  -ArtifactName More_Triggers-1_9_0.jar
 ```
 
 Ejemplo para Entity Motion Triggers:
@@ -111,6 +123,14 @@ Para Scoreboards, los assets estan en una raiz distinta:
   -ArtifactName Scoreboards-2_0_10.jar
 ```
 
+Los asset packs puros se empaquetan con rutas ZIP portables mediante:
+
+```powershell
+.\scripts\Build-AssetPack.ps1 `
+  -ProjectPath .\mods\asset-packs\mechanisms `
+  -ArtifactName OrbGenesis_Mechanisms-1_1_0.zip
+```
+
 ## Instalar y probar
 
 Los mods pueden instalarse globalmente en `...\pre-release\mods` o solo en una
@@ -122,6 +142,7 @@ Para More Triggers, ejecuta siempre antes del despliegue:
 ```powershell
 .\mods\java\more-triggers\tools\Test-PluginLocalization.ps1
 .\mods\java\more-triggers\tools\Test-TagTemplateResolver.ps1
+.\mods\java\more-triggers\tools\Test-NoMoveExceptionFilter.ps1
 .\mods\java\more-triggers\tools\Test-TimerMath.ps1
 ```
 

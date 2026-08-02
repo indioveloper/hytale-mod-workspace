@@ -1,0 +1,10 @@
+{
+  "Spawners": [
+    {
+      "SpawnerId": "OrbGenesis_Shape_Point_YellowOrange",
+      "FixedRotation": true
+    }
+  ],
+  "CullDistance": 80.0,
+  "IsImportant": true
+}

@@ -17,10 +17,14 @@ de verdad.
 
 ## Proyectos activos tras la consolidacion
 
-- `mods/java/more-triggers`, version `1.6.0`: utilidades generales de Trigger
-  Volumes. Integra `ExecuteCommand`; el antiguo mod standalone esta deprecated.
+- `mods/java/more-triggers`, version `1.9.0`: utilidades generales de Trigger
+  Volumes. Integra `ExecuteCommand` y la regla `NoMove`; el antiguo mod
+  standalone esta deprecated.
 - `mods/java/entity-motion-triggers`, version `1.3.0`: crea, convierte y mueve
   entidades, gestiona colision de plataforma y ancla particulas moviles.
+- `mods/java/particle-shape-vfx`, version `0.1.0`: registra
+  `SpawnParticleShape` para cubos, superficies esfericas y lineas de
+  particulas calculadas en coordenadas exactas.
 - `mods/java/scoreboards`, version `2.0.10`: sistema independiente de
   Objectives y scoreboards.
 - `mods/java/build-battle`, version `0.2.2`: logica independiente del modo de
@@ -75,6 +79,10 @@ Antes de sustituir un mod instalado:
 5. Reinicia o recarga la partida; sobrescribir el archivo no recarga las clases
    de un plugin ya iniciado.
 
+Los iconos del menu de mods no se declaran en `manifest.json`. El cliente
+pre-release actual busca automaticamente `icon-256.png` en la raiz del JAR o
+ZIP y exige que sea un PNG de 256x256 pixeles.
+
 Durante la migracion, retira los JARs antiguos de Player Trigger Tags y Trigger
 Execute Command antes de instalar los mods consolidados. No dejes dos plugins
 que registren los mismos IDs.
@@ -90,17 +98,24 @@ que registren los mismos IDs.
   `Rules`.
 - `mods/java/entity-motion-triggers`: efectos de creacion, conversion y
   movimiento de entidades, colision de plataforma y particulas ancladas.
-- `mods/java/map-selector`: prototipo `0.1.1` con comando `/mapas`, previews
-  nativas de prefabs y destinos configurados en `MapDefinition`. Sus mapas
-  iniciales dependen opcionalmente del asset pack local `tests:tests`.
-- `mods/java/more-triggers`: version `1.6.0`. `GiveRandomItem` entrega al
+- `auxiliary/java/map-selector`: codigo auxiliar `0.1.1` creado para ayudar a
+  otro desarrollador. Conserva `/mapas`, previews nativas de prefabs y destinos
+  configurados en `MapDefinition`, pero no forma parte de las releases ni debe
+  instalarse en los mapas de desarrollo de OrbGenesis.
+- `mods/java/more-triggers`: version `1.9.0`. `GiveRandomItem` entrega al
   jugador activador un asset `Item` elegido uniformemente al azar. `SendTagMessage` y
   `ShowTagEventTitle` sustituyen `{tag}` desde una fuente elegible:
   `SELF`, `EVENT` o `RADIUS`; no cambian los IDs de los efectos vanilla.
   Tambien incluye el HUD circular `/timer` y el efecto `ControlTimer`; el
   contorno radial usa 61 frames PNG y su estado solo vive durante la sesion.
   Tambien registra `ExecuteCommand` con los IDs y campos del antiguo mod
-  standalone.
+  standalone. `NoMove` se registra como regla (no como efecto) para aparecer
+  bajo `Always Active`; cancela la velocidad dentro del volumen y permite
+  excluir jugadores y una lista de assets `NpcRole`.
+- `experiments/java/inverted-gravity-camera`: conserva el codigo retirado de
+  `SetPlayerGravityView`, `/gravityview` y la compensacion de movimiento de
+  More Triggers 1.8.x. El handoff documenta los intentos y el bloqueo de control
+  relativo a camara en Hytale 0.6.8. No forma parte del build activo.
 - `mods/java/deprecated`: codigo historico no distribuible de Player Entity
   Tags, Chest Labels, Trigger Execute Command standalone y `RemoveEventTitle`.
   `RandomTagSelection` fue eliminado completamente y no debe reintroducirse.
@@ -118,14 +133,16 @@ que registren los mismos IDs.
   editables se publican al cliente como traducciones dinamicas antes de enviar
   los paquetes nativos de Objective.
 - `mods/asset-packs`: packs independientes relativamente limpios.
-- `mods/asset-packs/mechanisms`, version `1.0.5`: props accionables y la piedra
+- `mods/asset-packs/mechanisms`, version `1.1.0`: props accionables y la piedra
   `OrbGenesis_NoBuild_Stone`. Su volumen temporal usa `ModifyRules` con
   operacion `SET` en `VOLUME_CREATE` para insertar `NoBuild`, porque
-  `SpawnTriggerVolume` 0.6.8 no copia directamente las reglas del asset. Doce
-  efectos `PlayVfx` de 10 segundos dibujan las aristas de la caja de 5x5x5 con el
-  sistema vanilla `Beam_Heal_Red3`; el pack no incluye particulas propias.
+  `SpawnTriggerVolume` 0.6.8 no copia directamente las reglas del asset. El
+  volumen mide 10x10x10, retira `NoBuild` a los 6 segundos y usa
+  `SpawnParticleShape` para mostrar fases roja, amarillo-naranja y verde hasta
+  el segundo 10. Depende de Particle Shape VFX 0.1.0.
 - `mods/asset-packs/roguelike-prefabs`: pack `tests:tests` con los mapas y
-  prefabs usados por `test roguelike` y por Map Selector.
+  prefabs usados por `test roguelike` y, de forma opcional, por el prototipo
+  auxiliar Map Selector.
 - `experiments/asset-packs`: material de laboratorio. Puede sobreescribir IDs
   vanilla y combinar varias pruebas incompatibles; inspeccionar antes de usar.
 

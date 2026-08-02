@@ -13,8 +13,9 @@ Estado final de la reorganizacion aplicada sobre Hytale pre-release 0.6.8.
   Triggers, junto con su sistema de colision diferida.
 - Entity Motion Triggers, Scoreboards y Build Battle permanecen como mods
   independientes.
-- Map Selector permanece independiente porque es una aplicacion UI y no aporta
-  efectos de Trigger Volumes.
+- Map Selector se conserva bajo `auxiliary/java/map-selector` como codigo de
+  apoyo para un proyecto externo; no forma parte del catalogo activo ni de la
+  instalacion de desarrollo.
 - `RemoveEventTitle` se retira a codigo deprecated y deja de registrarse.
 - `RandomTagSelection` se elimina completamente.
 
@@ -23,7 +24,7 @@ Los saves guardan esos IDs y un renombrado romperia Trigger Volumes existentes.
 
 ## Catalogo final por mod activo
 
-### More Triggers 1.6.0
+### More Triggers 1.9.0
 
 Efectos:
 
@@ -33,8 +34,14 @@ Efectos:
 - `ShowTagEventTitle`: muestra titulos resolviendo marcadores `{tag}`.
 - `ControlTimer`: inicia, pausa, muestra, oculta o cancela el timer circular.
 - `ExecuteCommand`: ejecuta un comando como servidor o jugador activador.
+Reglas:
 
-No registra condiciones ni reglas. Tambien aporta el comando `/timer`.
+- `NoMove`: aparece bajo `Always Active` y cancela el movimiento dentro del
+  volumen, con excepciones opcionales para jugadores y una lista de roles NPC.
+
+No registra condiciones. Tambien aporta el comando `/timer`.
+`SetPlayerGravityView` y `/gravityview` se retiraron del mod activo; el
+prototipo 1.8.x se conserva bajo `experiments/java/inverted-gravity-camera`.
 
 ### Entity Motion Triggers 1.3.0
 
@@ -53,6 +60,18 @@ Efectos:
 No registra condiciones ni reglas. Conserva los componentes persistentes y
 temporales necesarios para movimiento y colision, incluido
 `OrbGenesis_PendingPlatformCollision`.
+
+### Particle Shape VFX 0.1.0
+
+Efectos:
+
+- `SpawnParticleShape`: dibuja las 12 aristas de un cubo, la superficie de una
+  esfera o una linea entre dos puntos XYZ. Admite coordenadas absolutas o
+  relativas al centro del Trigger Volume, densidad, escala, duracion y limite
+  de puntos configurables.
+
+No registra condiciones ni reglas. Sigue separado porque es una extension
+generica de VFX y no depende de la logica de movimiento de entidades.
 
 ### Scoreboards 2.0.10
 
@@ -86,10 +105,13 @@ Reglas:
 Sigue separado porque es logica especifica de un modo de juego y depende de
 Builder Tools y permisos especiales.
 
+## Codigo auxiliar
+
 ### Map Selector 0.1.1
 
 No registra efectos, condiciones ni reglas. Aporta `/mapas`, previews de
-prefabs y teletransporte a destinos configurados.
+prefabs y teletransporte a destinos configurados. Se conserva para consulta en
+`auxiliary/java/map-selector`, pero no se distribuye con los mods activos.
 
 ## Codigo deprecated
 
@@ -125,11 +147,13 @@ instalarse junto a More Triggers porque ambos registrarian el mismo ID.
 ## Reglas de instalacion y migracion
 
 1. Instalar un unico JAR por cada `Group:Name`.
-2. Retirar `Trigger Execute Command` antes de instalar More Triggers 1.6.0.
+2. Retirar `Trigger Execute Command` antes de instalar More Triggers 1.9.0.
 3. Retirar `Player Trigger Tags` antes de instalar Entity Motion Triggers 1.3.0
    si el save usa `ConvertBlocksToEntities`.
 4. No instalar proyectos de `mods/java/deprecated`.
-5. Reiniciar o recargar la partida despues de sustituir JARs; copiar el archivo
+5. No instalar proyectos de `auxiliary` salvo para reproducir expresamente el
+   proyecto externo al que pertenecen.
+6. Reiniciar o recargar la partida despues de sustituir JARs; copiar el archivo
    no recarga clases ya iniciadas.
-6. Probar sobre una copia del save los Trigger Volumes existentes y confirmar
+7. Probar sobre una copia del save los Trigger Volumes existentes y confirmar
    que no aparece ningun registro duplicado.

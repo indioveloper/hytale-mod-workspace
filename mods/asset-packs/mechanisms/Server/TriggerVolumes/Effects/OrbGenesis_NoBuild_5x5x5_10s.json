@@ -11,132 +11,95 @@
       "Center": "Volume"
     },
     {
-      "Type": "PlayVfx",
+      "Type": "SpawnParticleShape",
       "Event": "VOLUME_CREATE",
-      "ParticleSystem": "Beam_Heal_Red3",
-      "Offset": {
-        "X": -2.5,
-        "Y": -2.5,
-        "Z": -2.5
-      },
-      "Anchor": "Volume",
-      "Scale": 5.0,
-      "Rotation": {
+      "Shape": "SphereSurface",
+      "ParticleSystem": "OrbGenesis_Shape_Point_Red",
+      "CoordinateMode": "RelativeToVolume",
+      "Center": {
         "X": 0.0,
-        "Y": 90.0,
+        "Y": 0.0,
         "Z": 0.0
       },
-      "Duration": 10.0
+      "Size": 10.0,
+      "Spacing": 1.0,
+      "ParticleScale": 2.0,
+      "Duration": 6.0,
+      "MaxPoints": 1500
     },
     {
-      "Type": "PlayVfx",
+      "Type": "ModifyRules",
       "Event": "VOLUME_CREATE",
-      "ParticleSystem": "Beam_Heal_Red3",
-      "Offset": { "X": -2.5, "Y": -2.5, "Z": 2.5 },
-      "Anchor": "Volume",
-      "Scale": 5.0,
-      "Rotation": { "X": 0.0, "Y": 90.0, "Z": 0.0 },
-      "Duration": 10.0
+      "Delay": 6.0,
+      "Operation": "Remove",
+      "Rule": {
+        "Type": "NoBuild"
+      },
+      "Radius": 0.0,
+      "Center": "Volume"
     },
     {
-      "Type": "PlayVfx",
+      "Type": "SpawnParticleShape",
       "Event": "VOLUME_CREATE",
-      "ParticleSystem": "Beam_Heal_Red3",
-      "Offset": { "X": -2.5, "Y": 2.5, "Z": -2.5 },
-      "Anchor": "Volume",
-      "Scale": 5.0,
-      "Rotation": { "X": 0.0, "Y": 90.0, "Z": 0.0 },
-      "Duration": 10.0
+      "Delay": 6.0,
+      "Shape": "SphereSurface",
+      "ParticleSystem": "OrbGenesis_Shape_Point_YellowOrange",
+      "CoordinateMode": "RelativeToVolume",
+      "Center": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Size": 10.0,
+      "Spacing": 1.0,
+      "ParticleScale": 2.0,
+      "Duration": 3.0,
+      "MaxPoints": 1500
     },
     {
-      "Type": "PlayVfx",
+      "Type": "SpawnParticleShape",
       "Event": "VOLUME_CREATE",
-      "ParticleSystem": "Beam_Heal_Red3",
-      "Offset": { "X": -2.5, "Y": 2.5, "Z": 2.5 },
-      "Anchor": "Volume",
-      "Scale": 5.0,
-      "Rotation": { "X": 0.0, "Y": 90.0, "Z": 0.0 },
-      "Duration": 10.0
+      "Delay": 9.0,
+      "Shape": "SphereSurface",
+      "ParticleSystem": "OrbGenesis_Shape_Point_Green",
+      "CoordinateMode": "RelativeToVolume",
+      "Center": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      },
+      "Size": 10.0,
+      "Spacing": 1.0,
+      "ParticleScale": 2.0,
+      "Duration": 1.0,
+      "MaxPoints": 1500
     },
     {
-      "Type": "PlayVfx",
+      "Type": "PlaySound",
       "Event": "VOLUME_CREATE",
-      "ParticleSystem": "Beam_Heal_Red3",
-      "Offset": { "X": -2.5, "Y": -2.5, "Z": -2.5 },
-      "Anchor": "Volume",
-      "Scale": 5.0,
-      "Rotation": { "X": -90.0, "Y": 0.0, "Z": 0.0 },
-      "Duration": 10.0
+      "SoundEvent": "SFX_PORTAL_NEUTRAL_OPEN",
+      "Volume": 1.0,
+      "Pitch": 1.0,
+      "Location": "VolumeCenter",
+      "Offset": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      }
     },
     {
-      "Type": "PlayVfx",
+      "Type": "PlaySound",
       "Event": "VOLUME_CREATE",
-      "ParticleSystem": "Beam_Heal_Red3",
-      "Offset": { "X": -2.5, "Y": -2.5, "Z": 2.5 },
-      "Anchor": "Volume",
-      "Scale": 5.0,
-      "Rotation": { "X": -90.0, "Y": 0.0, "Z": 0.0 },
-      "Duration": 10.0
-    },
-    {
-      "Type": "PlayVfx",
-      "Event": "VOLUME_CREATE",
-      "ParticleSystem": "Beam_Heal_Red3",
-      "Offset": { "X": 2.5, "Y": -2.5, "Z": -2.5 },
-      "Anchor": "Volume",
-      "Scale": 5.0,
-      "Rotation": { "X": -90.0, "Y": 0.0, "Z": 0.0 },
-      "Duration": 10.0
-    },
-    {
-      "Type": "PlayVfx",
-      "Event": "VOLUME_CREATE",
-      "ParticleSystem": "Beam_Heal_Red3",
-      "Offset": { "X": 2.5, "Y": -2.5, "Z": 2.5 },
-      "Anchor": "Volume",
-      "Scale": 5.0,
-      "Rotation": { "X": -90.0, "Y": 0.0, "Z": 0.0 },
-      "Duration": 10.0
-    },
-    {
-      "Type": "PlayVfx",
-      "Event": "VOLUME_CREATE",
-      "ParticleSystem": "Beam_Heal_Red3",
-      "Offset": { "X": -2.5, "Y": -2.5, "Z": -2.5 },
-      "Anchor": "Volume",
-      "Scale": 5.0,
-      "Rotation": { "X": 0.0, "Y": 0.0, "Z": 0.0 },
-      "Duration": 10.0
-    },
-    {
-      "Type": "PlayVfx",
-      "Event": "VOLUME_CREATE",
-      "ParticleSystem": "Beam_Heal_Red3",
-      "Offset": { "X": -2.5, "Y": 2.5, "Z": -2.5 },
-      "Anchor": "Volume",
-      "Scale": 5.0,
-      "Rotation": { "X": 0.0, "Y": 0.0, "Z": 0.0 },
-      "Duration": 10.0
-    },
-    {
-      "Type": "PlayVfx",
-      "Event": "VOLUME_CREATE",
-      "ParticleSystem": "Beam_Heal_Red3",
-      "Offset": { "X": 2.5, "Y": -2.5, "Z": -2.5 },
-      "Anchor": "Volume",
-      "Scale": 5.0,
-      "Rotation": { "X": 0.0, "Y": 0.0, "Z": 0.0 },
-      "Duration": 10.0
-    },
-    {
-      "Type": "PlayVfx",
-      "Event": "VOLUME_CREATE",
-      "ParticleSystem": "Beam_Heal_Red3",
-      "Offset": { "X": 2.5, "Y": 2.5, "Z": -2.5 },
-      "Anchor": "Volume",
-      "Scale": 5.0,
-      "Rotation": { "X": 0.0, "Y": 0.0, "Z": 0.0 },
-      "Duration": 10.0
+      "Delay": 10.0,
+      "SoundEvent": "SFX_PORTAL_NEUTRAL_OPEN",
+      "Volume": 1.0,
+      "Pitch": 1.0,
+      "Location": "VolumeCenter",
+      "Offset": {
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 0.0
+      }
     }
   ],
   "Rules": [

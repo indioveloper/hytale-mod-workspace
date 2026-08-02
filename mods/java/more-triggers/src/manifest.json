@@ -1,8 +1,8 @@
 {
     "Group": "OrbGenesis",
     "Name": "More Triggers",
-    "Version": "1.6.0",
-    "Description": "Adds general-purpose Trigger Volume effects, including command execution, random items, tag-aware messages, and a circular timer HUD.",
+    "Version": "1.9.0",
+    "Description": "Adds general-purpose Trigger Volume effects and rules, including No Move, command execution, random items, tag-aware messages, and a circular timer HUD.",
     "Authors": [
         {
             "Name": "OrbGenesis",
@@ -13,6 +13,7 @@
     "IncludesAssetPack": true,
     "Dependencies": {
         "Hytale:EntityModule": "*",
+        "Hytale:NPC": "*",
         "Hytale:TriggerVolumes": "*"
     },
     "OptionalDependencies": {},
