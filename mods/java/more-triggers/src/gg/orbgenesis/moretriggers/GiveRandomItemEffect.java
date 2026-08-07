@@ -19,7 +19,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ThreadLocalRandom;
 
-/** Gives the triggering player one uniformly selected item from the loaded Item assets. */
+/** Gives the triggering player one uniformly selected survival-friendly creative item. */
 public class GiveRandomItemEffect extends TriggerEffect {
   public enum OverflowBehavior {
     DROP_REMAINDER,
@@ -99,7 +99,17 @@ public class GiveRandomItemEffect extends TriggerEffect {
 
     List<Item> candidates = new ArrayList<>(items.size());
     for (Item item : items.values()) {
-      if (item != null && item.getId() != null && !item.getId().isBlank()) {
+      if (item != null
+          && RandomItemCandidateFilter.isEligible(
+              item.getId(),
+              item.getCategories(),
+              item.getSubCategory(),
+              item.hasBlockType(),
+              item.getWeapon() != null,
+              item.getTool() != null,
+              item.getBuilderTool() != null,
+              item.getBlockSelectorToolData() != null,
+              item.isVariant())) {
         candidates.add(item);
       }
     }
