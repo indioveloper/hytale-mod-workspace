@@ -17,7 +17,7 @@ de verdad.
 
 ## Proyectos activos tras la consolidacion
 
-- `mods/java/more-triggers`, version `1.9.0`: utilidades generales de Trigger
+- `mods/java/more-triggers`, version `1.9.1`: utilidades generales de Trigger
   Volumes. Integra `ExecuteCommand` y la regla `NoMove`; el antiguo mod
   standalone esta deprecated.
 - `mods/java/entity-motion-triggers`, version `1.3.0`: crea, convierte y mueve
@@ -102,8 +102,9 @@ que registren los mismos IDs.
   otro desarrollador. Conserva `/mapas`, previews nativas de prefabs y destinos
   configurados en `MapDefinition`, pero no forma parte de las releases ni debe
   instalarse en los mapas de desarrollo de OrbGenesis.
-- `mods/java/more-triggers`: version `1.9.0`. `GiveRandomItem` entrega al
-  jugador activador un asset `Item` elegido uniformemente al azar. `SendTagMessage` y
+- `mods/java/more-triggers`: version `1.9.1`. `GiveRandomItem` entrega al
+  jugador activador un bloque, mueble, banco, arma o herramienta elegible y
+  excluye plantas, assets internos y herramientas creativas. `SendTagMessage` y
   `ShowTagEventTitle` sustituyen `{tag}` desde una fuente elegible:
   `SELF`, `EVENT` o `RADIUS`; no cambian los IDs de los efectos vanilla.
   Tambien incluye el HUD circular `/timer` y el efecto `ControlTimer`; el

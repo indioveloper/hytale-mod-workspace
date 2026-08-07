@@ -24,11 +24,13 @@ Los saves guardan esos IDs y un renombrado romperia Trigger Volumes existentes.
 
 ## Catalogo final por mod activo
 
-### More Triggers 1.9.0
+### More Triggers 1.9.1
 
 Efectos:
 
-- `GiveRandomItem`: entrega un item cargado elegido al azar.
+- `GiveRandomItem`: entrega un bloque de construccion, banco, objeto
+  decorativo, arma o herramienta elegido al azar. Excluye plantas, arboles,
+  menas, fluidos, portales, assets internos y herramientas creativas.
 - `PasteRandomPrefab`: pega un prefab elegido al azar, con pesos opcionales.
 - `SendTagMessage`: envia texto resolviendo marcadores `{tag}`.
 - `ShowTagEventTitle`: muestra titulos resolviendo marcadores `{tag}`.
@@ -147,7 +149,7 @@ instalarse junto a More Triggers porque ambos registrarian el mismo ID.
 ## Reglas de instalacion y migracion
 
 1. Instalar un unico JAR por cada `Group:Name`.
-2. Retirar `Trigger Execute Command` antes de instalar More Triggers 1.9.0.
+2. Retirar `Trigger Execute Command` antes de instalar More Triggers 1.9.1.
 3. Retirar `Player Trigger Tags` antes de instalar Entity Motion Triggers 1.3.0
    si el save usa `ConvertBlocksToEntities`.
 4. No instalar proyectos de `mods/java/deprecated`.

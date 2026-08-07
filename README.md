@@ -15,7 +15,7 @@ backups, instalaciones del juego, el Hytale Shared Source ni mundos completos.
 | --- | --- | --- |
 | `mods/java/build-battle` | Prototipo, v0.2.2 | Sugerencias de temas y regla Always Active para restringir herramientas creativas por plot. |
 | `mods/java/entity-motion-triggers` | Activo/prototipo, v1.3.0 | Efectos para crear, convertir y mover entidades, aplicar colision de plataforma y anclar particulas moviles. |
-| `mods/java/more-triggers` | Activo/prototipo, v1.9.0 | Utilidades generales de Trigger Volumes, incluida la regla `NoMove`, `ExecuteCommand`, objetos aleatorios, mensajes con tags y timer circular. |
+| `mods/java/more-triggers` | Activo/prototipo, v1.9.1 | Utilidades generales de Trigger Volumes, incluida la regla `NoMove`, `ExecuteCommand`, objetos aleatorios filtrados, mensajes con tags y timer circular. |
 | `mods/java/particle-shape-vfx` | Activo/prototipo, v0.1.0 | Efecto `SpawnParticleShape` para dibujar cubos, superficies esfericas y lineas de particulas con coordenadas exactas. |
 | `mods/java/scoreboards` | Prototipo, v2.0.10 | Objectives editables y persistentes con comandos, UI nativa y control desde Trigger Volumes; compila en 0.6.8 y requiere smoke test en juego. |
 
@@ -99,7 +99,7 @@ Ejemplo para More Triggers:
   -ProjectPath .\mods\java\more-triggers `
   -SourceRoot src `
   -PackageRoot src `
-  -ArtifactName More_Triggers-1_9_0.jar
+  -ArtifactName More_Triggers-1_9_1.jar
 ```
 
 Ejemplo para Entity Motion Triggers:
@@ -143,6 +143,7 @@ Para More Triggers, ejecuta siempre antes del despliegue:
 .\mods\java\more-triggers\tools\Test-PluginLocalization.ps1
 .\mods\java\more-triggers\tools\Test-TagTemplateResolver.ps1
 .\mods\java\more-triggers\tools\Test-NoMoveExceptionFilter.ps1
+.\mods\java\more-triggers\tools\Test-RandomItemCandidateFilter.ps1
 .\mods\java\more-triggers\tools\Test-TimerMath.ps1
 ```
 

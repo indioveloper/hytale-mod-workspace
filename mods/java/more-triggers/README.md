@@ -1,6 +1,6 @@
 # More Triggers
 
-Coleccion de utilidades generales para Trigger Volumes. La version `1.9.0`
+Coleccion de utilidades generales para Trigger Volumes. La version `1.9.1`
 esta preparada para Hytale pre-release `0.6.x` e integra el antiguo mod Trigger
 Execute Command.
 
@@ -8,7 +8,7 @@ Execute Command.
 
 | Nombre in-game (es-ES) | ID interno | Funcion |
 | --- | --- | --- |
-| Entregar objeto al azar | `GiveRandomItem` | Elige uniformemente un asset `Item` cargado y lo entrega al jugador activador. |
+| Entregar objeto al azar | `GiveRandomItem` | Elige uniformemente un bloque, mueble, banco, arma o herramienta aptos para juego. |
 | Pegar prefab al azar | `PasteRandomPrefab` | Elige y pega un prefab, con pesos opcionales. |
 | Enviar mensaje con tags | `SendTagMessage` | Envia mensajes sustituyendo marcadores `{tag}`. |
 | Mostrar titulo de evento con tags | `ShowTagEventTitle` | Muestra Event Titles sustituyendo marcadores `{tag}`. |
@@ -33,6 +33,11 @@ confundirse con `SpawnItems` de Entity Motion Triggers, que crea una
 entidad-prop visible en el mundo.
 
 - `Quantity`: cantidad del item seleccionado.
+- El pool incluye bloques de `Rocks`, `Wood`, `Metal`, `Cloth`, `Soils` y
+  `Deco`; bancos y mobiliario; armas y herramientas normales.
+- Se excluyen plantas y arboles, menas, fluidos, portales, variantes ocultas,
+  assets de debug/prueba/spawn, bloques tecnicos, `BuilderTool` y selectores de
+  bloques creativos. Una categoria permitida nunca anula una exclusion.
 - `OverflowBehavior`:
   - `DROP_REMAINDER`: lo que no cabe cae al suelo.
   - `IGNORE_REMAINDER`: lo que no cabe se descarta.
@@ -104,11 +109,12 @@ registran ni se empaquetan con More Triggers.
   -ProjectPath .\mods\java\more-triggers `
   -SourceRoot src `
   -PackageRoot src `
-  -ArtifactName More_Triggers-1_9_0.jar
+  -ArtifactName More_Triggers-1_9_1.jar
 
 .\mods\java\more-triggers\tools\Test-TimerMath.ps1
+.\mods\java\more-triggers\tools\Test-RandomItemCandidateFilter.ps1
 .\mods\java\more-triggers\tools\Test-Package.ps1 `
-  -ArchivePath .\mods\java\more-triggers\.build\dist\More_Triggers-1_9_0.jar
+  -ArchivePath .\mods\java\more-triggers\.build\dist\More_Triggers-1_9_1.jar
 ```
 
 El contorno del timer usa 61 frames PNG porque la UI 0.6.x no expone un
