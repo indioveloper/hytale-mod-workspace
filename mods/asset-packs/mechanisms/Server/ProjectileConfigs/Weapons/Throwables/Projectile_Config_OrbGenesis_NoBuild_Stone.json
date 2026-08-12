@@ -22,7 +22,7 @@
               "Z": 5.0
             }
           },
-          "LifetimeS": 10.25,
+          "LifetimeS": 11.25,
           "RequireHitLocation": true
         },
         {
@@ -52,7 +52,7 @@
               "Z": 5.0
             }
           },
-          "LifetimeS": 10.25,
+          "LifetimeS": 11.25,
           "RequireHitLocation": true
         },
         {

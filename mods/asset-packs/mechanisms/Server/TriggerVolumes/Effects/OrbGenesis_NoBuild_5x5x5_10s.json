@@ -24,13 +24,13 @@
       "Size": 10.0,
       "Spacing": 1.0,
       "ParticleScale": 2.0,
-      "Duration": 6.0,
+      "Duration": 9.0,
       "MaxPoints": 1500
     },
     {
       "Type": "ModifyRules",
       "Event": "VOLUME_CREATE",
-      "Delay": 6.0,
+      "Delay": 10.0,
       "Operation": "Remove",
       "Rule": {
         "Type": "NoBuild"
@@ -41,7 +41,7 @@
     {
       "Type": "SpawnParticleShape",
       "Event": "VOLUME_CREATE",
-      "Delay": 6.0,
+      "Delay": 9.0,
       "Shape": "SphereSurface",
       "ParticleSystem": "OrbGenesis_Shape_Point_YellowOrange",
       "CoordinateMode": "RelativeToVolume",
@@ -53,13 +53,13 @@
       "Size": 10.0,
       "Spacing": 1.0,
       "ParticleScale": 2.0,
-      "Duration": 3.0,
+      "Duration": 1.0,
       "MaxPoints": 1500
     },
     {
       "Type": "SpawnParticleShape",
       "Event": "VOLUME_CREATE",
-      "Delay": 9.0,
+      "Delay": 10.0,
       "Shape": "SphereSurface",
       "ParticleSystem": "OrbGenesis_Shape_Point_Green",
       "CoordinateMode": "RelativeToVolume",

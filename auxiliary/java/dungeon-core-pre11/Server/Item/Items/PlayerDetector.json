@@ -1,0 +1,81 @@
+{
+  "BlockType": {
+    "BlockEntity": {
+      "Components": {
+        "PlayerDetector": {
+          "Range": 5
+        },
+        "SignalSender": {
+          "LastSignal": false
+        },
+        "DungeonBlock": {}
+      }
+    },
+    "VariantRotation": "NESW",
+    "PlacementSettings": {
+      "AllowRotationKey": true
+    },
+    "State": {
+      "Definitions": {
+        "Normal": {
+          "Interactions": {
+            "Use": {
+              "Interactions": [
+                {
+                  "Type": "OpenCustomUI",
+                  "Page": {
+                    "Id": "PlayerDetector"
+                  }
+                }
+              ]
+            }
+          }
+        },
+        "Active": {
+          "DrawType": "Empty",
+          "HitboxType": "Block_Flat",
+          "Material": "Empty"
+        }
+      }
+    },
+    "Material": "Solid",
+    "DrawType": "Model",
+    "CustomModelTexture": [
+      {
+        "Texture": "Items/Blocks/Player_Texture.png"
+      }
+    ],
+    "CustomModel": "Items/Blocks/StartDungeon.blockymodel",
+    "Support": {
+      "BlockSides": [
+        {
+          "Support": "Ignored"
+        }
+      ]
+    },
+    "CubeShadingMode": "Standard",
+    "Looping": true,
+    "CustomModelAnimation": "Items/Blocks/Animation1.blockyanim"
+  },
+  "PlayerAnimationsId": "Block",
+  "TranslationProperties": {
+    "Name": "items.player_detector.name",
+    "Description": "items.player_detector.description"
+  },
+  "Icon": "Icons/ItemsGenerated/PlayerDetector.png",
+  "IconProperties": {
+    "Scale": 0.58823,
+    "Rotation": [
+      22.5,
+      45,
+      22.5
+    ],
+    "Translation": [
+      0,
+      -13.5
+    ]
+  },
+  "Categories": [
+    "DungeonMod.CreativeBlocks"
+  ]
+}

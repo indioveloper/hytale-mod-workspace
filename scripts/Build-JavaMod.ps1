@@ -6,6 +6,8 @@ param(
   [string]$PackageRoot = ".",
   [string]$AssetsRoot,
 
+  [string]$VanillaCustomUiAssetsZip,
+
   [Parameter(Mandatory = $true)]
   [string]$ArtifactName,
 
@@ -84,6 +86,36 @@ $iconSource = Join-Path $package "icon-256.png"
 if (Test-Path -LiteralPath $iconSource -PathType Leaf) {
   Assert-ModIcon $iconSource
   Copy-Item -LiteralPath $iconSource -Destination $stage -Force
+}
+
+if ($VanillaCustomUiAssetsZip) {
+  $vanillaAssets = (Resolve-Path -LiteralPath $VanillaCustomUiAssetsZip).Path
+  Add-Type -AssemblyName System.IO.Compression.FileSystem
+  $zip = [System.IO.Compression.ZipFile]::OpenRead($vanillaAssets)
+  try {
+    $customUiEntries = @($zip.Entries | Where-Object {
+      $_.FullName.StartsWith("Common/UI/Custom/", [System.StringComparison]::Ordinal) -and $_.Name
+    })
+    if ($customUiEntries.Count -lt 100) {
+      throw "Assets archive does not contain a complete vanilla Custom UI tree: $vanillaAssets"
+    }
+
+    foreach ($entry in $customUiEntries) {
+      $relativePath = $entry.FullName.Replace("/", [System.IO.Path]::DirectorySeparatorChar)
+      $target = [System.IO.Path]::GetFullPath((Join-Path $stage $relativePath))
+      if (-not $target.StartsWith($stage + [System.IO.Path]::DirectorySeparatorChar)) {
+        throw "Refusing to extract an asset outside the build stage: $($entry.FullName)"
+      }
+      $targetDirectory = Split-Path -Parent $target
+      if (-not (Test-Path -LiteralPath $targetDirectory)) {
+        New-Item -ItemType Directory -Path $targetDirectory -Force | Out-Null
+      }
+      [System.IO.Compression.ZipFileExtensions]::ExtractToFile($entry, $target, $true)
+    }
+  }
+  finally {
+    $zip.Dispose()
+  }
 }
 
 foreach ($assetDirectory in @("Common", "Server")) {

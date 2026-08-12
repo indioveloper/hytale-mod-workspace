@@ -1,0 +1,52 @@
+{
+  "TranslationProperties": {
+    "Name": "server.items.OrbGenesis_Configurable_Mob_Spawner.name",
+    "Description": "server.items.OrbGenesis_Configurable_Mob_Spawner.description"
+  },
+  "Icon": "Icons/ItemsGenerated/Ore_Iron_Stone.png",
+  "Categories": [
+    "Blocks.Rocks"
+  ],
+  "Quality": "Developer",
+  "PlayerAnimationsId": "Block",
+  "BlockType": {
+    "Material": "Solid",
+    "DrawType": "Model",
+    "CustomModel": "Blocks/OrbGenesis/Configurable_Mob_Spawner.blockymodel",
+    "CustomModelTexture": [
+      {
+        "Texture": "Items/NPC_Spawner_Block_Texture.png",
+        "Weight": 1
+      }
+    ],
+    "Group": "Stone",
+    "Gathering": {
+      "Breaking": {
+        "GatherType": "Rocks"
+      }
+    },
+    "BlockParticleSetId": "Stone",
+    "BlockSoundSetId": "Stone",
+    "PhysicalMaterialId": "Stone",
+    "BlockEntity": {
+      "Components": {
+        "OrbGenesis_ConfigurableMobSpawner": {}
+      }
+    },
+    "Interactions": {
+      "Use": {
+        "Interactions": [
+          {
+            "Type": "OpenCustomUI",
+            "Page": {
+              "Id": "OrbGenesis_ConfigurableMobSpawner"
+            }
+          }
+        ]
+      }
+    },
+    "ParticleColor": "#4f5968",
+    "TextureComputedColor": "#4f5968"
+  },
+  "ItemSoundSetId": "ISS_Blocks_Stone"
+}

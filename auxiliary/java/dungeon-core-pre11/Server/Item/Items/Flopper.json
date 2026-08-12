@@ -1,0 +1,82 @@
+{
+  "BlockType": {
+    "BlockEntity": {
+      "Components": {
+        "SignalSender": {
+          "LastSignal": false
+        },
+        "DungeonBlock": {},
+        "Flopper": {
+          "State": false
+        },
+        "SignalReceiver": {}
+      }
+    },
+    "VariantRotation": "NESW",
+    "PlacementSettings": {
+      "AllowRotationKey": true
+    },
+    "State": {
+      "Definitions": {
+        "Normal": {
+          "Interactions": {
+            "Use": {
+              "Interactions": [
+                {
+                  "Type": "OpenCustomUI",
+                  "Page": {
+                    "Id": "Flopper"
+                  }
+                }
+              ]
+            }
+          }
+        },
+        "Active": {
+          "DrawType": "Empty",
+          "Material": "Empty",
+          "HitboxType": "Block_Flat"
+        }
+      }
+    },
+    "Material": "Solid",
+    "DrawType": "Model",
+    "CustomModelTexture": [
+      {
+        "Texture": "Items/Blocks/Flopper_Texture.png"
+      }
+    ],
+    "CustomModel": "Items/Blocks/StartDungeon.blockymodel",
+    "CubeShadingMode": "Standard",
+    "Support": {
+      "BlockSides": [
+        {
+          "Support": "Ignored"
+        }
+      ]
+    },
+    "CustomModelAnimation": "Items/Blocks/Animation1.blockyanim",
+    "Looping": true
+  },
+  "PlayerAnimationsId": "Block",
+  "TranslationProperties": {
+    "Name": "items.flopper.name",
+    "Description": "items.flopper.description"
+  },
+  "Icon": "Icons/ItemsGenerated/Flopper.png",
+  "IconProperties": {
+    "Scale": 0.58823,
+    "Rotation": [
+      22.5,
+      45,
+      22.5
+    ],
+    "Translation": [
+      0,
+      -13.5
+    ]
+  },
+  "Categories": [
+    "DungeonMod.CreativeBlocks"
+  ]
+}

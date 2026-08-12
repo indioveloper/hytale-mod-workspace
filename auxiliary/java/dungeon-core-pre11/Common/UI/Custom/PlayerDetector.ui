@@ -1,0 +1,33 @@
+$Common = "Common.ui";
+
+@MyTex = PatchStyle(TexturePath: "Common/ContainerPanelPatch.png", Border: 8);
+
+Group #Main {
+  LayoutMode: Center;
+    Group {
+        Background: @MyTex;
+        Anchor: (Width: 640, Height: 100);
+        LayoutMode: Middle;
+
+      Group {
+        LayoutMode: Left;
+        Anchor: (Width: 640, Height: 50);
+        Label {
+          Text: "Range";
+          Style: (Alignment: Center,HorizontalAlignment: Start);
+          Background: #181818(1.0);
+          Padding: (Full: 10);
+          FlexWeight: 1;
+          Anchor: (Height: 50, Left: 10);
+        }
+
+        TextField #Range {
+          PlaceholderText: "0";
+          Padding: (Full: 10);
+          FlexWeight: 5;
+          Anchor: (Height: 50, Right: 10, Left: 10);
+          Background: #181818(1.0);
+        }
+      }
+    }
+}

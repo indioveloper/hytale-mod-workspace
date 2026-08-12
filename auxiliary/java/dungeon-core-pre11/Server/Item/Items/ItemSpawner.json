@@ -1,0 +1,75 @@
+{
+  "BlockType": {
+    "BlockEntity": {
+      "Components": {
+        "DungeonBlock": {},
+        "SignalReceiver": {},
+        "SignalSender": {
+          "LastSignal": false
+        },
+        "ItemSpawner": {}
+      }
+    },
+    "State": {
+      "Definitions": {
+        "Normal": {
+          "Interactions": {
+            "Use": {
+              "Interactions": [
+                {
+                  "Type": "OpenCustomUI",
+                  "Page": {
+                    "Id": "ItemSpawner"
+                  }
+                }
+              ]
+            }
+          }
+        },
+        "Active": {
+          "DrawType": "Empty",
+          "HitboxType": "Block_Flat",
+          "Material": "Empty"
+        }
+      }
+    },
+    "Material": "Solid",
+    "CustomModel": "Items/Blocks/StartDungeon.blockymodel",
+    "Support": {
+      "BlockSides": [
+        {
+          "Support": "Ignored"
+        }
+      ]
+    },
+    "CustomModelTexture": [
+      {
+        "Texture": "Items/Blocks/Item_Texture.png"
+      }
+    ],
+    "DrawType": "Model",
+    "CustomModelAnimation": "Items/Blocks/Animation1.blockyanim",
+    "Looping": true
+  },
+  "PlayerAnimationsId": "Block",
+  "TranslationProperties": {
+    "Name": "items.item_spawner.name",
+    "Description": "items.item_spawner.description"
+  },
+  "Icon": "Icons/ItemsGenerated/ItemSpawner.png",
+  "IconProperties": {
+    "Scale": 0.58823,
+    "Rotation": [
+      22.5,
+      45,
+      22.5
+    ],
+    "Translation": [
+      0,
+      -13.5
+    ]
+  },
+  "Categories": [
+    "DungeonMod.CreativeBlocks"
+  ]
+}

@@ -1,0 +1,132 @@
+<div
+    class="decorated-container"
+    data-hyui-title="Item Spawner"
+    style="anchor-height: 300; anchor-width: 800"
+>
+    <div class="row" style="layout-mode: Top; anchor-height: 80">
+        <div class="row-header" style="layout-mode: Left; anchor-height: 40">
+            <label
+                style="vertical-align: Center; anchor-left: 10; flex-weight: 3"
+                >Item</label
+            >
+
+            <label
+                style="vertical-align: Center; anchor-left: 10; flex-weight: 1"
+                >Count</label
+            >
+
+            <label
+                style="vertical-align: Center; anchor-left: 10; flex-weight: 1"
+                >Range</label
+            >
+            <label
+                    style="vertical-align: Center; anchor-left: 10; flex-weight: 1"
+            >Despawn</label
+            >
+        </div>
+
+        <div class="row-content" style="layout-mode: Left; anchor-height: 40">
+            <div
+                    id="item"
+                    class="item-grid"
+                    style="
+                    flex-weight: 1;
+                    anchor-left: 10;
+                    anchor-right: 0;
+                    anchor-min-width: 50;
+                "
+                    data-hyui-slots-per-row="1"
+                    data-hyui-inventory-section-id="10"
+                    data-hyui-are-items-draggable="true"
+            >
+            </div>
+            <div
+                style="
+                    flex-weight: 1;
+                    layout-mode: Left;
+                    anchor-left: 10;
+                    anchor-right: 10;
+                    anchor-min-width: 100;
+                "
+            >
+                <input
+                    id="count"
+                    type="number"
+                    value="1"
+                    data-hyui-max-decimal-places="0"
+                    style="flex-weight: 1; anchor-left: 0; anchor-min-width: 50"
+                />
+                <input
+                    id="range"
+                    type="number"
+                    value="1"
+                    data-hyui-max-decimal-places="2"
+                    style="
+                        flex-weight: 1;
+                        anchor-left: 10;
+                        anchor-min-width: 50;
+                    "
+                />
+                <input type="checkbox"
+                       id="despawn"
+                       style="
+                        flex-weight: 1;
+                        anchor-left: 10;
+                        anchor-min-width: 50;
+                    ">
+            </div>
+        </div>
+    </div>
+
+    <div class="column" style="    flex-weight: 5;
+                    anchor-left: 10;
+                    anchor-right: 0;
+                    anchor-min-width: 50;
+                    margin-top: 50;
+                    layout-mode: Top;
+                ">
+        <label>Hotbar</label>
+        <div
+                id="inv"
+                class="item-grid"
+                data-hyui-slots-per-row="9"
+                data-hyui-inventory-section-id="20"
+                data-hyui-are-items-draggable="true"
+        >
+        </div>
+    </div>
+
+
+    <!--<div class="container-contents" style="layout-mode: Top; padding: 6">
+        <p id="summary">Drop items to salvage. Click a slot for details.</p>
+
+        <div
+            id="salvage-grid"
+            class="item-grid"
+            data-hyui-slots-per-row="4"
+            data-hyui-inventory-section-id="10"
+            data-hyui-are-items-draggable="true"
+        >
+            <div
+                class="item-grid-slot"
+                data-hyui-item-id="Ore_Mithril"
+                data-hyui-quantity="12"
+            ></div>
+            <div
+                class="item-grid-slot"
+                data-hyui-item-id="Ore_Mithril"
+                data-hyui-quantity="1"
+            ></div>
+            <div class="item-grid-slot"></div>
+        </div>
+        <div
+            id="storage-grid"
+            class="item-grid"
+            data-hyui-slots-per-row="4"
+            data-hyui-inventory-section-id="20"
+            data-hyui-are-items-draggable="true"
+        >
+            <div class="item-grid-slot"></div>
+        </div>
+    </div>-->
+</div>

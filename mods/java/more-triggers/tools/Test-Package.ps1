@@ -82,4 +82,11 @@ foreach ($entry in $retiredClasses) {
     throw "Retired effect class must not be packaged: $entry"
   }
 }
+$pluginBytecode = & javap -classpath $archive -c gg.orbgenesis.moretriggers.MoreTriggersPlugin
+if ($LASTEXITCODE -ne 0) {
+  throw "Could not inspect MoreTriggersPlugin bytecode."
+}
+if (-not ($pluginBytecode | Select-String -SimpleMatch "ExecuteCommand")) {
+  throw "MoreTriggersPlugin does not register the ExecuteCommand effect ID."
+}
 Write-Output "More Triggers package check passed: $archive"

@@ -17,6 +17,10 @@
 hytale-shared-source/
 HytaleServer.jar
 Assets.zip
+**/asset-ids.generated.js
+**/item-previews.generated/
+**/mob-preview.generated.js
+**/mob-previews.generated/
 logs/
 backup/
 backups/

@@ -1,0 +1,48 @@
+{
+  "Model": "Items/MarkerItem.blockymodel",
+  "Texture": "Items/MimicTool.png",
+  "PlayerAnimationsId": "Item",
+  "Icon": "Icons/ItemsGenerated/MimicTool.png",
+  "IconProperties": {
+    "Scale": 1.1,
+    "Rotation": [
+      22.5,
+      45,
+      22.5
+    ],
+    "Translation": [
+      0,
+      -8
+    ]
+  },
+  "Interactions": {
+    "Secondary": {
+      "Interactions": [
+        {
+          "Type": "MakeMimic"
+        }
+      ]
+    },
+    "Use": {
+      "Interactions": [
+        {
+          "Type": "MimicInteract"
+        }
+      ]
+    },
+    "Held": {
+      "Interactions": [
+        {
+          "Type": "ViewMimic"
+        }
+      ]
+    }
+  },
+  "TranslationProperties": {
+    "Name": "items.items_mimic.name",
+    "Description": "items.items_mimic.description"
+  },
+  "Categories": [
+    "DungeonMod.Tools"
+  ]
+}

@@ -1,6 +1,6 @@
 # OrbGenesis Mechanisms
 
-Pack fusionado de props accionables/animados. La version actual es `1.1.0`.
+Pack fusionado de props accionables/animados. La version actual es `1.1.1`.
 
 Incluye:
 
@@ -18,10 +18,10 @@ Incluye:
   efecto `ModifyRules` con operacion `SET` inserta la regla vanilla `NoBuild`;
   este paso evita el bug de 0.6.8 por el que `SpawnTriggerVolume` no copia las
   reglas del asset al volumen recien creado. Un segundo `ModifyRules` retira
-  `NoBuild` a los 6 segundos.
+  `NoBuild` a los 10 segundos.
 - `SpawnParticleShape` muestra una esfera de 10 bloques con separacion 1,
-  escala 2 y limite 1500. Es roja de 0 a 6 segundos, amarillo-naranja de 6 a 9
-  y verde de 9 a 10.
+  escala 2 y limite 1500. Es roja de 0 a 9 segundos, amarillo-naranja de 9 a
+  10 como aviso, y verde de 10 a 11 tras desbloquear la construccion.
 - Reproduce `SFX_PORTAL_NEUTRAL_OPEN` en el centro al impactar y de nuevo en el
   segundo 10.
 
@@ -34,9 +34,9 @@ Requiere el mod `OrbGenesis:Particle Shape VFX` 0.1.0 o posterior.
 ```
 
 Lanza la piedra e intenta colocar un bloque dentro de la esfera. La colocacion
-debe rechazarse durante la fase roja y volver a funcionar al comenzar la fase
-amarillo-naranja en el segundo 6. Confirma el cambio a verde en el segundo 9 y
-el segundo sonido en el 10.
+debe rechazarse durante las fases roja y amarillo-naranja y volver a funcionar
+al comenzar la fase verde en el segundo 10. Confirma tambien el segundo sonido
+en ese momento.
 
 Validacion estatica:
 
@@ -45,10 +45,10 @@ Validacion estatica:
 
 .\scripts\Build-AssetPack.ps1 `
   -ProjectPath .\mods\asset-packs\mechanisms `
-  -ArtifactName OrbGenesis_Mechanisms-1_1_0.zip
+  -ArtifactName OrbGenesis_Mechanisms-1_1_1.zip
 
 .\mods\asset-packs\mechanisms\tools\Test-Package.ps1 `
-  -ArchivePath .\mods\asset-packs\mechanisms\.build\dist\OrbGenesis_Mechanisms-1_1_0.zip
+  -ArchivePath .\mods\asset-packs\mechanisms\.build\dist\OrbGenesis_Mechanisms-1_1_1.zip
 ```
 
 Origen:

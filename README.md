@@ -14,6 +14,7 @@ backups, instalaciones del juego, el Hytale Shared Source ni mundos completos.
 | Proyecto | Estado | Descripcion |
 | --- | --- | --- |
 | `mods/java/build-battle` | Prototipo, v0.2.2 | Sugerencias de temas y regla Always Active para restringir herramientas creativas por plot. |
+| `mods/java/configurable-mob-spawners` | MVP ampliado, v0.3.0 | Spawner con busqueda y preview NPC, vida/escala/armadura, suelo automatico, loot por filas, CMS1, modelo y VFX. |
 | `mods/java/entity-motion-triggers` | Activo/prototipo, v1.3.0 | Efectos para crear, convertir y mover entidades, aplicar colision de plataforma y anclar particulas moviles. |
 | `mods/java/more-triggers` | Activo/prototipo, v1.9.1 | Utilidades generales de Trigger Volumes, incluida la regla `NoMove`, `ExecuteCommand`, objetos aleatorios filtrados, mensajes con tags y timer circular. |
 | `mods/java/particle-shape-vfx` | Activo/prototipo, v0.1.0 | Efecto `SpawnParticleShape` para dibujar cubos, superficies esfericas y lineas de particulas con coordenadas exactas. |
@@ -30,6 +31,10 @@ para el proyecto de otro desarrollador. No forma parte de los mods activos, no
 se incluye en las releases de OrbGenesis y no debe instalarse en los mapas de
 desarrollo.
 
+`auxiliary/java/dungeon-core-pre11` conserva el port auxiliar de DungeonCore
+1.3.7 a Hytale `0.6.0-pre.11`. Mantiene los IDs originales y requiere HyUI
+0.9.8; no forma parte de los seis mods propios de OrbGenesis.
+
 El [catalogo consolidado de efectos](docs/MORE_TRIGGERS_CONSOLIDATION.md)
 detalla que registra cada mod despues de la reorganizacion.
 
@@ -42,7 +47,7 @@ y contratos de comportamiento. Los NPCs reutilizables viven en
 `mods/asset-packs` contiene los packs independientes que siguen siendo utiles:
 
 - `blocks`
-- `mechanisms` (`OrbGenesis:OrbGenesis Mechanisms`, v1.1.0; incluye la piedra
+- `mechanisms` (`OrbGenesis:OrbGenesis Mechanisms`, v1.1.1; incluye la piedra
   arrojadiza que crea una zona `NoBuild` temporal y requiere Particle Shape VFX)
 - `raynor-npcs`
 - `nexus-siege-props`
@@ -92,6 +97,16 @@ opcional `icon-256.png`, `Common` y `Server`, y genera el JAR bajo `.build/dist`
 El cliente de Hytale exige ese nombre exacto y una imagen PNG de 256x256; el
 icono no se declara en el manifest.
 
+La matriz completa de compatibilidad para los seis plugins Java activos se
+ejecuta con:
+
+```powershell
+.\scripts\Test-ActiveJavaMods.ps1
+```
+
+La ultima validacion se hizo el 11 de agosto de 2026 contra
+`0.6.0-pre.11` (`00cf2e930ab404ea983cb709c3e0a6deb45fda7a`) y Java 25.
+
 Ejemplo para More Triggers:
 
 ```powershell
@@ -128,7 +143,7 @@ Los asset packs puros se empaquetan con rutas ZIP portables mediante:
 ```powershell
 .\scripts\Build-AssetPack.ps1 `
   -ProjectPath .\mods\asset-packs\mechanisms `
-  -ArtifactName OrbGenesis_Mechanisms-1_1_0.zip
+  -ArtifactName OrbGenesis_Mechanisms-1_1_1.zip
 ```
 
 ## Instalar y probar

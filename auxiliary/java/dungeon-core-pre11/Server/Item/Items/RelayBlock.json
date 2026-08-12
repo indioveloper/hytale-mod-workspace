@@ -1,0 +1,82 @@
+{
+  "BlockType": {
+    "BlockEntity": {
+      "Components": {
+        "SignalSender": {
+          "LastSignal": false
+        },
+        "DungeonBlock": {},
+        "RelayComponent": {
+          "Delay": 1
+        },
+        "SignalReceiver": {}
+      }
+    },
+    "VariantRotation": "NESW",
+    "PlacementSettings": {
+      "AllowRotationKey": true
+    },
+    "State": {
+      "Definitions": {
+        "Normal": {
+          "Interactions": {
+            "Use": {
+              "Interactions": [
+                {
+                  "Type": "OpenCustomUI",
+                  "Page": {
+                    "Id": "RelayBlock"
+                  }
+                }
+              ]
+            }
+          }
+        },
+        "Active": {
+          "DrawType": "Empty",
+          "HitboxType": "Block_Flat",
+          "Material": "Empty"
+        }
+      }
+    },
+    "Material": "Solid",
+    "DrawType": "Model",
+    "CustomModelTexture": [
+      {
+        "Texture": "Items/Blocks/Relay_Texture.png"
+      }
+    ],
+    "CustomModel": "Items/Blocks/StartDungeon.blockymodel",
+    "Support": {
+      "BlockSides": [
+        {
+          "Support": "Ignored"
+        }
+      ]
+    },
+    "CubeShadingMode": "Standard",
+    "CustomModelAnimation": "Items/Blocks/Animation1.blockyanim",
+    "Looping": true
+  },
+  "PlayerAnimationsId": "Block",
+  "TranslationProperties": {
+    "Name": "items.relay_block.name",
+    "Description": "items.relay_block.description"
+  },
+  "Icon": "Icons/ItemsGenerated/RelayBlock.png",
+  "IconProperties": {
+    "Scale": 0.58823,
+    "Rotation": [
+      22.5,
+      45,
+      22.5
+    ],
+    "Translation": [
+      0,
+      -13.5
+    ]
+  },
+  "Categories": [
+    "DungeonMod.CreativeBlocks"
+  ]
+}

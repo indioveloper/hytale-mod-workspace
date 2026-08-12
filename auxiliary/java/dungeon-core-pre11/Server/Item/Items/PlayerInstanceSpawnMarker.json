@@ -1,0 +1,83 @@
+{
+  "BlockType": {
+    "PlacementSettings": {
+      "AllowRotationKey": true
+    },
+    "VariantRotation": "NESW",
+    "BlockEntity": {
+      "Components": {
+        "PlayerStart": {
+          "Running": false,
+          "BannerTitle": "Welcome",
+          "BannerMessage": "Dungeon made by LOL team!"
+        },
+        "DungeonBlock": {}
+      }
+    },
+    "State": {
+      "Definitions": {
+        "Normal": {
+          "Interactions": {
+            "Use": {
+              "Interactions": [
+                {
+                  "Type": "OpenCustomUI",
+                  "Page": {
+                    "Id": "PlayerStart"
+                  }
+                }
+              ]
+            }
+          }
+        },
+        "Active": {
+          "DrawType": "Empty",
+          "HitboxType": "Block_Flat",
+          "Material": "Empty"
+        }
+      }
+    },
+    "Material": "Solid",
+    "DrawType": "Model",
+    "CustomModelTexture": [
+      {
+        "Texture": "Items/Blocks/Start_Texture.png"
+      }
+    ],
+    "CustomModel": "Items/Blocks/StartDungeon.blockymodel",
+    "Support": {
+      "BlockSides": [
+        {
+          "Support": "Ignored"
+        }
+      ]
+    },
+    "CustomModelAnimation": "Items/Blocks/Animation1.blockyanim",
+    "Looping": true
+  },
+  "Interactions": {
+    "Primary": "Block_Primary",
+    "Secondary": "Block_Secondary"
+  },
+  "TranslationProperties": {
+    "Name": "items.player_start.name",
+    "Description": "items.player_start.description"
+  },
+  "Icon": "Icons/ItemsGenerated/PlayerInstanceSpawnMarker.png",
+  "IconProperties": {
+    "Scale": 0.58823,
+    "Rotation": [
+      22.5,
+      45,
+      22.5
+    ],
+    "Translation": [
+      0,
+      -13.5
+    ]
+  },
+  "PlayerAnimationsId": "Block",
+  "Categories": [
+    "DungeonMod.CreativeBlocks"
+  ]
+}
