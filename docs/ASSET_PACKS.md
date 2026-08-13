@@ -24,7 +24,7 @@ que usar una entidad marcada `HiddenFromAdventurePlayers`, no un bloque.
 
 ### `mods/asset-packs/mechanisms`
 
-Pack `OrbGenesis:OrbGenesis Mechanisms`, version `1.1.0`, con props
+Pack `OrbGenesis:OrbGenesis Mechanisms`, version `1.1.1`, con props
 accionables/animados y mecanismos jugables.
 
 Incluye:
@@ -35,9 +35,10 @@ Incluye:
   iconos, texturas y modelo comun `Essence_Button.blockymodel`.
 - Piedra de no construccion: `OrbGenesis_NoBuild_Stone` crea al impactar un
   Trigger Volume de `10 x 10 x 10`. El evento `VOLUME_CREATE` inserta
-  `NoBuild` mediante `ModifyRules SET` y lo retira a los 6 segundos. Una esfera
-  de particulas pasa de roja (0-6 s) a amarillo-naranja (6-9 s) y verde
-  (9-10 s). Reproduce `SFX_PORTAL_NEUTRAL_OPEN` al crearse y en el segundo 10.
+  `NoBuild` mediante `ModifyRules SET` y lo retira a los 10 segundos. Una
+  esfera de particulas pasa de roja (0-9 s) a amarillo-naranja (9-10 s) y verde
+  tras desbloquear (10-11 s). Reproduce `SFX_PORTAL_NEUTRAL_OPEN` al crearse y
+  en el segundo 10.
   El objeto arrojadizo usa el modelo e icono vanilla de
   `Ingredient_Void_Essence`.
 

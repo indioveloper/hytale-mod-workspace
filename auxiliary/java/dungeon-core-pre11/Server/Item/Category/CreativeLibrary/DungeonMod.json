@@ -1,0 +1,21 @@
+{
+  "Order": 5,
+  "Children": [
+    {
+      "Id": "CreativeBlocks",
+      "Name": "Creative Blocks",
+      "Icon": "Icons/ItemCategories/CreativeBlocks.png"
+    },
+    {
+      "Id": "Tools",
+      "Name": "Tool Items",
+      "Icon": "Icons/ItemCategories/Tools.png"
+    },
+    {
+      "Id": "Blocks",
+      "Name": "Dungeon Blocks",
+      "Icon": "Icons/ItemCategories/DungeonBlocks.png"
+    }
+  ],
+  "Icon": "Icons/ItemCategories/logo.png"
+}

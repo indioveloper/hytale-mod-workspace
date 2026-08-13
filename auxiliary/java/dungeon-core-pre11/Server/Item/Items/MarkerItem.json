@@ -1,0 +1,56 @@
+{
+  "Model": "Items/MarkerItem.blockymodel",
+  "Texture": "Items/MarkerItemDefault.png",
+  "PlayerAnimationsId": "Item",
+  "Icon": "Icons/ItemsGenerated/MarkerItem.png",
+  "IconProperties": {
+    "Scale": 1.1,
+    "Rotation": [
+      22.5,
+      45,
+      22.5
+    ],
+    "Translation": [
+      0,
+      -8
+    ]
+  },
+  "Interactions": {
+    "Secondary": {
+      "Interactions": [
+        {
+          "Type": "LinkItem"
+        }
+      ]
+    },
+    "Held": {
+      "Interactions": [
+        {
+          "Type": "ViewLinks",
+          "Mode": "Signal"
+        }
+      ]
+    }
+  },
+  "State": {
+    "Linking": {
+      "Texture": "Items/MarkerItemActive.png",
+      "Icon": "Icons/ItemsGenerated/MarkerItemActive.png",
+      "Quality": "Developer",
+      "TranslationProperties": {
+        "Name": "items.items_link_active.name",
+        "Description": "items.items_link_active.description"
+      }
+    },
+    "Normal": {
+      "Quality": "Developer"
+    }
+  },
+  "TranslationProperties": {
+    "Name": "items.items_link.name",
+    "Description": "items.items_link.description"
+  },
+  "Categories": [
+    "DungeonMod.Tools"
+  ]
+}

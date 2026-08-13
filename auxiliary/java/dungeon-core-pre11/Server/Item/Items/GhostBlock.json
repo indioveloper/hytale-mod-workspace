@@ -1,0 +1,74 @@
+{
+  "BlockType": {
+    "BlockEntity": {
+      "Components": {
+        "SignalSender": {
+          "LastSignal": false
+        },
+        "DungeonBlock": {},
+        "SignalReceiver": {},
+        "GhostBlock": {}
+      }
+    },
+    "VariantRotation": "NESW",
+    "PlacementSettings": {
+      "AllowRotationKey": true
+    },
+    "State": {
+      "Definitions": {
+        "Normal": {
+          "Interactions": {
+            "Use": {
+              "Interactions": [
+                {
+                  "Type": "OpenCustomUI",
+                  "Page": {
+                    "Id": "Flopper"
+                  }
+                }
+              ]
+            }
+          }
+        },
+        "Active": {}
+      }
+    },
+    "Material": "Solid",
+    "DrawType": "Model",
+    "CustomModelTexture": [
+      {
+        "Texture": "Items/Blocks/GhostBlock.png"
+      }
+    ],
+    "CustomModel": "Items/Blocks/GohstBlock.blockymodel",
+    "CubeShadingMode": "Standard",
+    "Support": {
+      "BlockSides": [
+        {
+          "Support": "Ignored"
+        }
+      ]
+    }
+  },
+  "PlayerAnimationsId": "Block",
+  "TranslationProperties": {
+    "Name": "items.ghostblock.name",
+    "Description": "items.ghostblock.description"
+  },
+  "Icon": "Icons/ItemsGenerated/GhostBlock.png",
+  "IconProperties": {
+    "Scale": 0.58823,
+    "Rotation": [
+      22.5,
+      45,
+      22.5
+    ],
+    "Translation": [
+      0,
+      -13.5
+    ]
+  },
+  "Categories": [
+    "DungeonMod.Blocks"
+  ]
+}

@@ -7,8 +7,9 @@ de verdad.
 
 ## Estado de referencia
 
-- Fecha del handoff: 2026-07-31.
-- Runtime de trabajo: Hytale pre-release 0.6.8.
+- Fecha de la ultima validacion: 2026-08-11.
+- Runtime de trabajo: Hytale pre-release `0.6.0-pre.11`, revision
+  `00cf2e930ab404ea983cb709c3e0a6deb45fda7a`.
 - Referencia de API: `HypixelStudios/hytale-shared-source`, rama `pre-release`.
 - JDK usado en los builds recientes: Java 25.
 - Save de smoke test en el PC de origen: `0.6.8`.
@@ -17,7 +18,7 @@ de verdad.
 
 ## Proyectos activos tras la consolidacion
 
-- `mods/java/more-triggers`, version `1.9.0`: utilidades generales de Trigger
+- `mods/java/more-triggers`, version `1.9.1`: utilidades generales de Trigger
   Volumes. Integra `ExecuteCommand` y la regla `NoMove`; el antiguo mod
   standalone esta deprecated.
 - `mods/java/entity-motion-triggers`, version `1.3.0`: crea, convierte y mueve
@@ -29,6 +30,13 @@ de verdad.
   Objectives y scoreboards.
 - `mods/java/build-battle`, version `0.2.2`: logica independiente del modo de
   juego.
+- `mods/java/configurable-mob-spawners`, version `0.3.0`: bloque solido minable
+  con busqueda y preview NPC, vida/armadura, suelo automatico, loot por filas,
+  importacion CMS1, modelo propio y VFX. Su tag persistente queda reservada
+  para una futura integracion de senales con Trigger Volumes. Su artefacto hidrata
+  el arbol `Common/UI/Custom` desde la `Assets.zip` usada para compilar, porque
+  el cliente pre.11 pierde documentos vanilla al recibir un pack Custom UI
+  parcial. Esos assets externos solo viven en `.build` y nunca se versionan.
 
 `Player Entity Tags`, `Chest Labels` y el antiguo `Trigger Execute Command`
 standalone se conservan bajo `mods/java/deprecated` y no deben distribuirse.
@@ -79,6 +87,10 @@ Antes de sustituir un mod instalado:
 5. Reinicia o recarga la partida; sobrescribir el archivo no recarga las clases
    de un plugin ya iniciado.
 
+Para validar todos los plugins Java activos contra el runtime local de
+pre-release, ejecuta `scripts/Test-ActiveJavaMods.ps1`. La prueba de paquete de
+More Triggers comprueba tambien que conserva el registro `ExecuteCommand`.
+
 Los iconos del menu de mods no se declaran en `manifest.json`. El cliente
 pre-release actual busca automaticamente `icon-256.png` en la raiz del JAR o
 ZIP y exige que sea un PNG de 256x256 pixeles.
@@ -102,8 +114,15 @@ que registren los mismos IDs.
   otro desarrollador. Conserva `/mapas`, previews nativas de prefabs y destinos
   configurados en `MapDefinition`, pero no forma parte de las releases ni debe
   instalarse en los mapas de desarrollo de OrbGenesis.
-- `mods/java/more-triggers`: version `1.9.0`. `GiveRandomItem` entrega al
-  jugador activador un asset `Item` elegido uniformemente al azar. `SendTagMessage` y
+- `auxiliary/java/dungeon-core-pre11`: port auxiliar de DungeonCore 1.3.7 a
+  `0.6.0-pre.11`, publicado internamente como `1.3.8-pre11`. Mantiene
+  `com.lol:DungeonCore` y todos sus IDs para poder abrir saves existentes.
+  Requiere HyUI 0.9.8; la copia local `0.9.8-pre11` solo amplía el rango de
+  compatibilidad del manifiesto después de comprobar que el plugin carga y se
+  habilita. No forma parte de las releases propias de OrbGenesis.
+- `mods/java/more-triggers`: version `1.9.1`. `GiveRandomItem` entrega al
+  jugador activador un bloque, mueble, banco, arma o herramienta elegible y
+  excluye plantas, assets internos y herramientas creativas. `SendTagMessage` y
   `ShowTagEventTitle` sustituyen `{tag}` desde una fuente elegible:
   `SELF`, `EVENT` o `RADIUS`; no cambian los IDs de los efectos vanilla.
   Tambien incluye el HUD circular `/timer` y el efecto `ControlTimer`; el
@@ -133,13 +152,14 @@ que registren los mismos IDs.
   editables se publican al cliente como traducciones dinamicas antes de enviar
   los paquetes nativos de Objective.
 - `mods/asset-packs`: packs independientes relativamente limpios.
-- `mods/asset-packs/mechanisms`, version `1.1.0`: props accionables y la piedra
+- `mods/asset-packs/mechanisms`, version `1.1.1`: props accionables y la piedra
   `OrbGenesis_NoBuild_Stone`. Su volumen temporal usa `ModifyRules` con
   operacion `SET` en `VOLUME_CREATE` para insertar `NoBuild`, porque
   `SpawnTriggerVolume` 0.6.8 no copia directamente las reglas del asset. El
-  volumen mide 10x10x10, retira `NoBuild` a los 6 segundos y usa
-  `SpawnParticleShape` para mostrar fases roja, amarillo-naranja y verde hasta
-  el segundo 10. Depende de Particle Shape VFX 0.1.0.
+  volumen mide 10x10x10, retira `NoBuild` a los 10 segundos y usa
+  `SpawnParticleShape` para mostrar fases roja y amarillo-naranja durante el
+  bloqueo y una fase verde de desbloqueo en el segundo 10. Depende de Particle
+  Shape VFX 0.1.0.
 - `mods/asset-packs/roguelike-prefabs`: pack `tests:tests` con los mapas y
   prefabs usados por `test roguelike` y, de forma opcional, por el prototipo
   auxiliar Map Selector.

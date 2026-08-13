@@ -45,9 +45,9 @@ if ($setRule.Count -ne 1 -or
 }
 if ($removeRule.Count -ne 1 -or
     $removeRule[0].Event -ne "VOLUME_CREATE" -or
-    [double]$removeRule[0].Delay -ne 6.0 -or
+    [double]$removeRule[0].Delay -ne 10.0 -or
     $removeRule[0].Rule.Type -ne "NoBuild") {
-  throw "VOLUME_CREATE must REMOVE the NoBuild rule after 6 seconds."
+  throw "VOLUME_CREATE must REMOVE the NoBuild rule after 10 seconds."
 }
 
 $shapes = @($effect.Effects | Where-Object { $_.Type -eq "SpawnParticleShape" })
@@ -78,9 +78,9 @@ function Assert-ParticleSphere(
   }
 }
 
-Assert-ParticleSphere ($shapes | Where-Object { $_.ParticleSystem -eq "OrbGenesis_Shape_Point_Red" }) "OrbGenesis_Shape_Point_Red" 0.0 6.0
-Assert-ParticleSphere ($shapes | Where-Object { $_.ParticleSystem -eq "OrbGenesis_Shape_Point_YellowOrange" }) "OrbGenesis_Shape_Point_YellowOrange" 6.0 3.0
-Assert-ParticleSphere ($shapes | Where-Object { $_.ParticleSystem -eq "OrbGenesis_Shape_Point_Green" }) "OrbGenesis_Shape_Point_Green" 9.0 1.0
+Assert-ParticleSphere ($shapes | Where-Object { $_.ParticleSystem -eq "OrbGenesis_Shape_Point_Red" }) "OrbGenesis_Shape_Point_Red" 0.0 9.0
+Assert-ParticleSphere ($shapes | Where-Object { $_.ParticleSystem -eq "OrbGenesis_Shape_Point_YellowOrange" }) "OrbGenesis_Shape_Point_YellowOrange" 9.0 1.0
+Assert-ParticleSphere ($shapes | Where-Object { $_.ParticleSystem -eq "OrbGenesis_Shape_Point_Green" }) "OrbGenesis_Shape_Point_Green" 10.0 1.0
 if (@($effect.Effects | Where-Object { $_.Type -eq "PlayVfx" }).Count -ne 0) {
   throw "Legacy offset PlayVfx emitters must not remain in the no-build effect."
 }
@@ -115,8 +115,8 @@ foreach ($eventName in @("ProjectileHit", "ProjectileMiss")) {
   if ($spawn.EffectAsset -ne "OrbGenesis_NoBuild_5x5x5_10s") {
     throw "$eventName references the wrong Trigger Volume effect asset."
   }
-  if ([double]$spawn.LifetimeS -ne 10.25 -or $spawn.RequireHitLocation -ne $true) {
-    throw "$eventName must survive slightly past the final sound at second 10."
+  if ([double]$spawn.LifetimeS -ne 11.25 -or $spawn.RequireHitLocation -ne $true) {
+    throw "$eventName must survive long enough to show the green unlocked phase."
   }
   if ($spawn.Shape.Type -ne "Box") {
     throw "$eventName must spawn a box-shaped volume."

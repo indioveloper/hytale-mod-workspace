@@ -8,7 +8,7 @@ Actualizado el 2026-07-31 tras la consolidacion de Trigger Volumes.
 
 | Ruta en el monorepo | Origen local | Estado |
 | --- | --- | --- |
-| `mods/java/more-triggers` | Utilidades activas y antiguo `trigger-execute-command` | Activo/prototipo; v1.9.0; integra `ExecuteCommand` y la regla Always Active `NoMove`. |
+| `mods/java/more-triggers` | Utilidades activas y antiguo `trigger-execute-command` | Activo/prototipo; v1.9.1; integra `ExecuteCommand`, la regla Always Active `NoMove` y un pool seguro de items aleatorios. |
 | `mods/java/entity-motion-triggers` | Extraido desde `mods/java/player-trigger-tags` | Activo/prototipo; v1.3.0; agrupa creacion, conversion, movimiento, colision y particulas ancladas. |
 | `mods/java/particle-shape-vfx` | Spin-off de las pruebas VFX de `mods/asset-packs/mechanisms` | Activo/prototipo; v0.1.0; crea cubos, superficies esfericas y lineas de particulas con posiciones exactas. |
 | `mods/java/deprecated/player-entity-tags` | `workspace/trigger-volumes-extensions`; funciones utiles de `player-triggers-src` y `Downloads/Player_Triggers-1_3_2-source` revisadas | Deprecated; conserva `ModifyPlayerTag`, `PlayerTagCondition` y datos legacy. |
@@ -17,7 +17,7 @@ Actualizado el 2026-07-31 tras la consolidacion de Trigger Volumes.
 | `mods/java/scoreboards` | `mod-interfaces/Mod interfaces/scoreboards_fixed` + `Desktop/mods/scoreboards mod` | Legacy 0.5.x unificado; la carpeta local separada fue absorbida/eliminada. Pendiente de migrar `Common.ui`: usa `PageOverlay`, nodo no reconocido por pre-release 0.6.8. |
 | `games/nexus-siege` | `workspace/nexus-siege` | Activo; los assets/plugins NPC reutilizables se movieron a `mods/asset-packs/raynor-npcs`. |
 | `mods/asset-packs/blocks` | `Barrier_Block_Texture` + pack global `ghost-outline-blocks` | Pack fusionado de barrera visible y ghost outline blocks. |
-| `mods/asset-packs/mechanisms` | `essence-pulsadores-stage` + `lever-real-stage` | Activo/prototipo; v1.1.0; botones, palancas y piedra NoBuild delimitada mediante Particle Shape VFX. |
+| `mods/asset-packs/mechanisms` | `essence-pulsadores-stage` + `lever-real-stage` | Activo/prototipo; v1.1.1; botones, palancas y piedra NoBuild de 10 segundos delimitada mediante Particle Shape VFX. |
 | `mods/asset-packs/raynor-npcs` | pack global `raynor-npcs` + `Triggers_NPCs` + `Nexus Siege NPCs` | Mod/asset pack unificado de NPCs reutilizables. |
 | `mods/asset-packs/nexus-siege-props` | pack global `Raynor.Nexus Siege Props` | Props Nexus Siege. |
 | `experiments/asset-packs/tests-0.6.3` | pack global `0.6.3.tests` | Snapshot experimental. |

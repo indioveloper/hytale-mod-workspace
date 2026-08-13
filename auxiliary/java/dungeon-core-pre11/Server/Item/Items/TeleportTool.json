@@ -1,0 +1,57 @@
+{
+  "Model": "Items/MarkerItem.blockymodel",
+  "Texture": "Items/TeleporterLinkDefault.png",
+  "PlayerAnimationsId": "Item",
+  "Icon": "Icons/ItemsGenerated/TeleportTool.png",
+  "IconProperties": {
+    "Scale": 1.1,
+    "Rotation": [
+      22.5,
+      45,
+      22.5
+    ],
+    "Translation": [
+      0,
+      -8
+    ]
+  },
+  "Interactions": {
+    "Secondary": {
+      "Interactions": [
+        {
+          "Type": "TeleporterLinkItem"
+        }
+      ]
+    },
+    "Held": {
+      "Interactions": [
+        {
+          "Type": "ViewLinks",
+          "Mode": "Teleporter"
+        }
+      ]
+    }
+  },
+  "State": {
+    "Linking": {
+      "Texture": "Items/TeleporterLinkActive.png",
+      "Icon": "Icons/ItemsGenerated/TeleportToolActive.png",
+      "Quality": "Developer",
+      "TranslationProperties": {
+        "Name": "items.teleporter_link_active.name",
+        "Description": "items.teleporter_link_active.description"
+      }
+    },
+    "Normal": {
+      "Quality": "Developer"
+    }
+  },
+  "TranslationProperties": {
+    "Name": "items.teleporter_link.name",
+    "Description": "items.teleporter_link.description"
+  },
+  "Categories": [
+    "DungeonMod.Tools"
+  ],
+  "Quality": "Developer"
+}

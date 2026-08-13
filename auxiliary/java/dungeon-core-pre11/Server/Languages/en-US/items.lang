@@ -1,0 +1,39 @@
+player_detector.name = Player Detector
+player_detector.description = Detects if a player is in its range. Sends out signal
+
+relay_block.name = Relay Block
+relay_block.description = Repeats input signal, with a delay in ticks
+
+flopper.name = Flopper!
+flopper.description = Switches output state, when triggered
+
+ghostblock.name = Ghost Block!
+ghostblock.description = Vanishes when powered. Use with Mimic tool!
+
+teleporter.name = Teleporter Block!
+teleporter.description = VERY WIP, USE ON YOUR OWN RISK!
+
+inverter.name = Inverter
+inverter.description = Inverts the input Signal
+
+mob_spawner.name = Mob Spawner
+mob_spawner.description = Spawns Mob(s) around it, when given a signal. Outputs signal when all dead
+
+item_spawner.name = Item Spawner
+item_spawner.description = Spawns Item(s) around it, when given a signal. Outputs signal when all collected
+
+player_start.name = Player Start
+player_start.description = Marks the starting position for the player
+
+items_link.name = Linking Tool
+items_link.description = Links Signal Senders to other Dungeon blocks for logic!
+items_link_active.name = Position Marker (Linking)
+items_link_active.description = Right click Dungeon blocks to link/unlink them from the sender
+
+teleporter_link.name = Teleporter Linking Tool
+teleporter_link.description = Link a Sender Teleporter to a Receiver
+teleporter_link_active.name = Teleporter Linking Tool (Linking)
+teleporter_link_active.description = Right click Teleporter Receiver to link/unlink them from the sender
+
+items_mimic.name = Mimic Tool
+items_mimic.description = Use it to turn blocks into mimics (right click) and edit them (F)

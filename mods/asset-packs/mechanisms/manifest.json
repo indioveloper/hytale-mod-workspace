@@ -1,7 +1,7 @@
 {
   "Group": "OrbGenesis",
   "Name": "OrbGenesis Mechanisms",
-  "Version": "1.1.0",
+  "Version": "1.1.1",
   "Description": "Animated mechanisms, essence buttons, and a throwable stone that creates a temporary no-build zone.",
   "Authors": [
     {

@@ -1,0 +1,146 @@
+$C = "../../Common.ui";
+
+@FieldLabel = LabelStyle(FontSize: 12, RenderUppercase: true, TextColor: #b8c8d9);
+
+$C.@PageOverlay {
+  LayoutMode: Middle;
+
+  $C.@DecoratedContainer {
+    @CloseButton = false;
+    Anchor: (Width: 1040, Height: 880);
+
+    #Title { $C.@Title { @Text = %server.customUI.configurableSpawners.title; } }
+
+    #Content {
+      LayoutMode: TopScrolling;
+      ScrollbarStyle: $C.@DefaultScrollbarStyle;
+      Padding: (Full: 16, Top: 10, Right: 24);
+
+      Group { LayoutMode: Left; Anchor: (Bottom: 7, Height: 38);
+        $C.@CheckBox #EnabledCheck { Anchor: (Width: 34, Height: 34); }
+        Label { Anchor: (Left: 6, Width: 105); Text: %server.customUI.configurableSpawners.enabled; Style: (...$C.@DefaultLabelStyle, VerticalAlignment: Center); }
+        $C.@TextField #TagInput { @Anchor = (Left: 8, Width: 280); PlaceholderText: %server.customUI.configurableSpawners.tag.placeholder; }
+        $C.@TextField #RoleSearchInput { @Anchor = (Left: 8, Width: 250); PlaceholderText: %server.customUI.configurableSpawners.roleSearch.placeholder; }
+        $C.@DropdownBox #RoleDropdown { Anchor: (Left: 8, Width: 300, Height: 32); }
+      }
+      Label #PreviewHint { Anchor: (Bottom: 8); Text: %server.customUI.configurableSpawners.preview.tooltip; Style: (...$C.@DefaultLabelStyle, FontSize: 12, TextColor: #91a7bc); }
+      $C.@PanelSeparatorFancy { @Anchor = (Bottom: 9); }
+
+      Group { LayoutMode: Left; Anchor: (Bottom: 4, Height: 18);
+        Label { Anchor: (Width: 140); Text: %server.customUI.configurableSpawners.cadenceMin; Style: @FieldLabel; }
+        Label { Anchor: (Left: 8, Width: 140); Text: %server.customUI.configurableSpawners.cadenceMax; Style: @FieldLabel; }
+        Label { Anchor: (Left: 8, Width: 130); Text: %server.customUI.configurableSpawners.countMin; Style: @FieldLabel; }
+        Label { Anchor: (Left: 8, Width: 130); Text: %server.customUI.configurableSpawners.countMax; Style: @FieldLabel; }
+        Label { Anchor: (Left: 8, Width: 130); Text: %server.customUI.configurableSpawners.maxAlive; Style: @FieldLabel; }
+        Label { Anchor: (Left: 8, Width: 145); Text: %server.customUI.configurableSpawners.activation; Style: @FieldLabel; }
+        Label { Anchor: (Left: 8, Width: 125); Text: %server.customUI.configurableSpawners.maxHealth; Style: @FieldLabel; }
+      }
+      Group { LayoutMode: Left; Anchor: (Bottom: 8, Height: 38);
+        $C.@TextField #CadenceMinInput { @Anchor = (Width: 140); PlaceholderText: "5"; }
+        $C.@TextField #CadenceMaxInput { @Anchor = (Left: 8, Width: 140); PlaceholderText: "10"; }
+        $C.@TextField #CountMinInput { @Anchor = (Left: 8, Width: 130); PlaceholderText: "1"; }
+        $C.@TextField #CountMaxInput { @Anchor = (Left: 8, Width: 130); PlaceholderText: "3"; }
+        $C.@TextField #MaxAliveInput { @Anchor = (Left: 8, Width: 130); PlaceholderText: "6"; }
+        $C.@TextField #ActivationInput { @Anchor = (Left: 8, Width: 145); PlaceholderText: "16"; }
+        $C.@TextField #MaxHealthInput { @Anchor = (Left: 8, Width: 125); PlaceholderText: "0"; }
+      }
+      Label { Anchor: (Bottom: 8); Text: %server.customUI.configurableSpawners.timing.tooltip; Style: (...$C.@DefaultLabelStyle, FontSize: 12, TextColor: #91a7bc); }
+
+      Group { LayoutMode: Left; Anchor: (Bottom: 10, Height: 34);
+        Label { Anchor: (Width: 180); Text: %server.customUI.configurableSpawners.mobScale; Style: (...@FieldLabel, VerticalAlignment: Center); }
+        FloatSlider #ScaleSlider {
+          Anchor: (Left: 8, Width: 300, Height: 3);
+          Style: (...$C.@DefaultSliderStyle, Background: (Color: #333333));
+          Min: 0.1;
+          Max: 5.0;
+          Step: 0.1;
+          Value: 1.0;
+        }
+        Label #ScaleValue { Anchor: (Left: 8, Width: 70); Text: "1.0x"; Style: (...$C.@DefaultLabelStyle, VerticalAlignment: Center, HorizontalAlignment: End); }
+        Label { Anchor: (Left: 16); Text: %server.customUI.configurableSpawners.mobScale.tooltip; Style: (...$C.@DefaultLabelStyle, FontSize: 12, TextColor: #91a7bc, VerticalAlignment: Center); }
+      }
+
+      Group { LayoutMode: Left; Anchor: (Bottom: 4, Height: 18);
+        Label { Anchor: (Width: 340); Text: %server.customUI.configurableSpawners.horizontal; Style: @FieldLabel; }
+        Label { Anchor: (Left: 8, Width: 340); Text: %server.customUI.configurableSpawners.maxLight; Style: @FieldLabel; }
+      }
+      Group { LayoutMode: Left; Anchor: (Bottom: 7, Height: 38);
+        $C.@TextField #HorizontalInput { @Anchor = (Width: 340); PlaceholderText: "4"; }
+        $C.@TextField #MaxLightInput { @Anchor = (Left: 8, Width: 340); PlaceholderText: "15"; }
+      }
+      Label { Anchor: (Bottom: 9); Text: %server.customUI.configurableSpawners.space.tooltip; Style: (...$C.@DefaultLabelStyle, FontSize: 12, TextColor: #91a7bc); }
+
+      $C.@PanelSeparatorFancy { @Anchor = (Bottom: 9); }
+      Group { LayoutMode: Left; Anchor: (Bottom: 4, Height: 18);
+        Label { Anchor: (Width: 310); Text: %server.customUI.configurableSpawners.heldItem; Style: @FieldLabel; }
+        Label { Anchor: (Left: 8, Width: 260); Text: %server.customUI.configurableSpawners.aggression; Style: @FieldLabel; }
+        Label { Anchor: (Left: 8, Width: 240); Text: %server.customUI.configurableSpawners.lootMode; Style: @FieldLabel; }
+      }
+      Group { LayoutMode: Left; Anchor: (Bottom: 7, Height: 38);
+        $C.@TextField #HeldItemInput { @Anchor = (Width: 310); PlaceholderText: %server.customUI.configurableSpawners.heldItem.placeholder; }
+        $C.@DropdownBox #AggressionDropdown {
+          Anchor: (Left: 8, Width: 260, Height: 32);
+          DropdownEntry { Value: "ROLE_DEFAULT"; Text: %server.customUI.configurableSpawners.aggression.default; }
+          DropdownEntry { Value: "HOSTILE"; Text: %server.customUI.configurableSpawners.aggression.hostile; }
+          DropdownEntry { Value: "PASSIVE"; Text: %server.customUI.configurableSpawners.aggression.passive; }
+          DropdownEntry { Value: "RETALIATE"; Text: %server.customUI.configurableSpawners.aggression.retaliate; }
+        }
+        $C.@DropdownBox #LootModeDropdown {
+          Anchor: (Left: 8, Width: 240, Height: 32);
+          DropdownEntry { Value: "DEFAULT"; Text: %server.customUI.configurableSpawners.loot.default; }
+          DropdownEntry { Value: "NONE"; Text: %server.customUI.configurableSpawners.loot.none; }
+          DropdownEntry { Value: "ADD"; Text: %server.customUI.configurableSpawners.loot.add; }
+          DropdownEntry { Value: "REPLACE"; Text: %server.customUI.configurableSpawners.loot.replace; }
+        }
+      }
+
+      Group #ArmorGroup { LayoutMode: Top; Visible: false; Anchor: (Bottom: 8);
+        Group { LayoutMode: Left; Anchor: (Bottom: 4, Height: 34);
+          $C.@CheckBox #CustomArmorCheck { Anchor: (Width: 34, Height: 34); }
+          Label { Anchor: (Left: 6, Width: 280); Text: %server.customUI.configurableSpawners.customArmor; Style: (...$C.@DefaultLabelStyle, VerticalAlignment: Center); }
+          Label { Anchor: (Left: 12); Text: %server.customUI.configurableSpawners.armor.tooltip; Style: (...$C.@DefaultLabelStyle, FontSize: 12, TextColor: #91a7bc, VerticalAlignment: Center); }
+        }
+        Group { LayoutMode: Left; Anchor: (Bottom: 4, Height: 18);
+          Label { Anchor: (Width: 235); Text: %server.customUI.configurableSpawners.armorHead; Style: @FieldLabel; }
+          Label { Anchor: (Left: 8, Width: 235); Text: %server.customUI.configurableSpawners.armorChest; Style: @FieldLabel; }
+          Label { Anchor: (Left: 8, Width: 235); Text: %server.customUI.configurableSpawners.armorHands; Style: @FieldLabel; }
+          Label { Anchor: (Left: 8, Width: 235); Text: %server.customUI.configurableSpawners.armorLegs; Style: @FieldLabel; }
+        }
+        Group { LayoutMode: Left; Anchor: (Height: 38);
+          $C.@TextField #ArmorHeadInput { @Anchor = (Width: 235); PlaceholderText: %server.customUI.configurableSpawners.armor.placeholder; }
+          $C.@TextField #ArmorChestInput { @Anchor = (Left: 8, Width: 235); PlaceholderText: %server.customUI.configurableSpawners.armor.placeholder; }
+          $C.@TextField #ArmorHandsInput { @Anchor = (Left: 8, Width: 235); PlaceholderText: %server.customUI.configurableSpawners.armor.placeholder; }
+          $C.@TextField #ArmorLegsInput { @Anchor = (Left: 8, Width: 235); PlaceholderText: %server.customUI.configurableSpawners.armor.placeholder; }
+        }
+      }
+
+      $C.@PanelSeparatorFancy { @Anchor = (Bottom: 8); }
+      Label { Anchor: (Bottom: 5); Text: %server.customUI.configurableSpawners.loot.tooltip; Style: (...$C.@DefaultLabelStyle, FontSize: 12, TextColor: #91a7bc); }
+      Group { LayoutMode: Left; Anchor: (Bottom: 3, Height: 18);
+        Label { Anchor: (Width: 35); Text: "#"; Style: @FieldLabel; }
+        Label { Anchor: (Left: 6, Width: 490); Text: %server.customUI.configurableSpawners.lootItem; Style: @FieldLabel; }
+        Label { Anchor: (Left: 8, Width: 135); Text: %server.customUI.configurableSpawners.lootMin; Style: @FieldLabel; }
+        Label { Anchor: (Left: 8, Width: 135); Text: %server.customUI.configurableSpawners.lootMax; Style: @FieldLabel; }
+        Label { Anchor: (Left: 8, Width: 150); Text: %server.customUI.configurableSpawners.lootChance; Style: @FieldLabel; }
+      }
+      Group { LayoutMode: Left; Anchor: (Bottom: 4, Height: 38); Label { Anchor: (Width: 35); Text: "1"; Style: (...$C.@DefaultLabelStyle, VerticalAlignment: Center); } $C.@TextField #LootItem0 { @Anchor = (Left: 6, Width: 490); PlaceholderText: %server.customUI.configurableSpawners.lootItem.placeholder; } $C.@TextField #LootMin0 { @Anchor = (Left: 8, Width: 135); PlaceholderText: "1"; } $C.@TextField #LootMax0 { @Anchor = (Left: 8, Width: 135); PlaceholderText: "1"; } $C.@TextField #LootChance0 { @Anchor = (Left: 8, Width: 150); PlaceholderText: "100"; } }
+      Group { LayoutMode: Left; Anchor: (Bottom: 4, Height: 38); Label { Anchor: (Width: 35); Text: "2"; Style: (...$C.@DefaultLabelStyle, VerticalAlignment: Center); } $C.@TextField #LootItem1 { @Anchor = (Left: 6, Width: 490); PlaceholderText: %server.customUI.configurableSpawners.lootItem.placeholder; } $C.@TextField #LootMin1 { @Anchor = (Left: 8, Width: 135); PlaceholderText: "1"; } $C.@TextField #LootMax1 { @Anchor = (Left: 8, Width: 135); PlaceholderText: "1"; } $C.@TextField #LootChance1 { @Anchor = (Left: 8, Width: 150); PlaceholderText: "100"; } }
+      Group { LayoutMode: Left; Anchor: (Bottom: 4, Height: 38); Label { Anchor: (Width: 35); Text: "3"; Style: (...$C.@DefaultLabelStyle, VerticalAlignment: Center); } $C.@TextField #LootItem2 { @Anchor = (Left: 6, Width: 490); PlaceholderText: %server.customUI.configurableSpawners.lootItem.placeholder; } $C.@TextField #LootMin2 { @Anchor = (Left: 8, Width: 135); PlaceholderText: "1"; } $C.@TextField #LootMax2 { @Anchor = (Left: 8, Width: 135); PlaceholderText: "1"; } $C.@TextField #LootChance2 { @Anchor = (Left: 8, Width: 150); PlaceholderText: "100"; } }
+      Group { LayoutMode: Left; Anchor: (Bottom: 4, Height: 38); Label { Anchor: (Width: 35); Text: "4"; Style: (...$C.@DefaultLabelStyle, VerticalAlignment: Center); } $C.@TextField #LootItem3 { @Anchor = (Left: 6, Width: 490); PlaceholderText: %server.customUI.configurableSpawners.lootItem.placeholder; } $C.@TextField #LootMin3 { @Anchor = (Left: 8, Width: 135); PlaceholderText: "1"; } $C.@TextField #LootMax3 { @Anchor = (Left: 8, Width: 135); PlaceholderText: "1"; } $C.@TextField #LootChance3 { @Anchor = (Left: 8, Width: 150); PlaceholderText: "100"; } }
+      Group { LayoutMode: Left; Anchor: (Bottom: 8, Height: 38); Label { Anchor: (Width: 35); Text: "5"; Style: (...$C.@DefaultLabelStyle, VerticalAlignment: Center); } $C.@TextField #LootItem4 { @Anchor = (Left: 6, Width: 490); PlaceholderText: %server.customUI.configurableSpawners.lootItem.placeholder; } $C.@TextField #LootMin4 { @Anchor = (Left: 8, Width: 135); PlaceholderText: "1"; } $C.@TextField #LootMax4 { @Anchor = (Left: 8, Width: 135); PlaceholderText: "1"; } $C.@TextField #LootChance4 { @Anchor = (Left: 8, Width: 150); PlaceholderText: "100"; } }
+
+      $C.@PanelSeparatorFancy { @Anchor = (Bottom: 8); }
+      Label { Anchor: (Bottom: 4); Text: %server.customUI.configurableSpawners.importExport; Style: @FieldLabel; }
+      Group { LayoutMode: Left; Anchor: (Bottom: 8, Height: 80);
+        $C.@MultilineTextField #ConfigStringInput { @Anchor = (Width: 790, Height: 80); PlaceholderText: %server.customUI.configurableSpawners.import.placeholder; }
+        $C.@SecondaryTextButton #ImportButton { @Anchor = (Left: 8, Width: 190, Height: 36); Text: %server.customUI.configurableSpawners.import; }
+      }
+
+      Label #Status { Anchor: (Bottom: 7, Height: 22); Text: ""; Style: (...$C.@DefaultLabelStyle, TextColor: #ff9d8c, HorizontalAlignment: Center); }
+      Group { LayoutMode: Left; Anchor: (Height: 42, Bottom: 8);
+        $C.@CancelTextButton #CancelButton { @Anchor = (Width: 260, Right: 8); @Text = %server.customUI.configurableSpawners.cancel; }
+        $C.@TextButton #SaveButton { @Anchor = (Left: 8); FlexWeight: 1; Text: %server.customUI.configurableSpawners.save; }
+      }
+    }
+  }
+}

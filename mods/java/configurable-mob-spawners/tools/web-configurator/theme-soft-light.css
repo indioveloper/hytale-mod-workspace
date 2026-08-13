@@ -1,0 +1,58 @@
+html[data-theme="soft-light"]{
+  color-scheme:light;
+  --bg:#e8f0fb;
+  --panel:#ffffff;
+  --line:#d7e2f2;
+  --text:#173765;
+  --muted:#6e87a9;
+  --accent:#4b73db;
+}
+html[data-theme="soft-light"] body{
+  background:linear-gradient(135deg,#dce9f9 0,#eef4fc 55%,#d9eef3 100%);
+  color:var(--text);
+}
+html[data-theme="soft-light"] main{
+  margin-top:22px;
+  padding:28px 26px 52px;
+  background:#edf3fc;
+  border-left:4px solid #3769cf;
+  border-right:4px solid #81cdd6;
+  border-radius:0 30px 30px 0;
+  box-shadow:0 22px 55px #7390b32e;
+}
+html[data-theme="soft-light"] h1,html[data-theme="soft-light"] h2{color:#173d78}
+html[data-theme="soft-light"] section{
+  background:#fff;
+  border:1px solid #e4ebf6;
+  border-radius:20px;
+  box-shadow:0 8px 24px #708eb21a;
+}
+html[data-theme="soft-light"] section:nth-of-type(1){border-top:6px solid #6661f8}
+html[data-theme="soft-light"] section:nth-of-type(2){border-top:6px solid #49a9ba}
+html[data-theme="soft-light"] section:nth-of-type(3){border-top:6px solid #d574a1}
+html[data-theme="soft-light"] section:nth-of-type(4){border-top:6px solid #4275d7}
+html[data-theme="soft-light"] label{color:#54739b;font-weight:600}
+html[data-theme="soft-light"] input,html[data-theme="soft-light"] select,html[data-theme="soft-light"] textarea{
+  color:#173765;
+  background:#f5f8fd;
+  border:1px solid #e3eaf5;
+  border-radius:14px;
+  box-shadow:inset 0 1px 2px #8ca5c214;
+}
+html[data-theme="soft-light"] input:focus,html[data-theme="soft-light"] select:focus,html[data-theme="soft-light"] textarea:focus{outline:3px solid #9eb9f055;background:#fff;border-color:#6f91e0}
+html[data-theme="soft-light"] input[type="checkbox"]{accent-color:#4c76da}
+html[data-theme="soft-light"] input[type="range"]{accent-color:#4c76da;background:transparent;border:0;box-shadow:none}
+html[data-theme="soft-light"] output{color:#416dce}
+html[data-theme="soft-light"] button{background:#4775d8;border-color:#4775d8;color:#fff;border-radius:12px;box-shadow:0 5px 12px #4775d82d}
+html[data-theme="soft-light"] button.secondary{background:#f4f7fc;border-color:#d7e2f2;color:#315b9b;box-shadow:none}
+html[data-theme="soft-light"] .role-toggle{background:transparent;border:0;color:#5577ae;box-shadow:none}
+html[data-theme="soft-light"] .role-options{background:#fff;border-color:#d7e2f2;border-radius:16px;box-shadow:0 18px 38px #58799d35}
+html[data-theme="soft-light"] .role-option{color:#244a7e;background:transparent;border-radius:10px;box-shadow:none}
+html[data-theme="soft-light"] .role-option:hover,html[data-theme="soft-light"] .role-option.active{background:#e7effc;color:#285fc3}
+html[data-theme="soft-light"] .preview-card{border-color:#dce6f4;border-radius:18px;background:radial-gradient(circle at 56% 63%,#fff 0,#f3f7fd 42%,#e8f0fa 100%);box-shadow:inset 0 0 0 10px #f7f9fd}
+html[data-theme="soft-light"] .ground{background:#a9bdd4}html[data-theme="soft-light"] .ground::after{background:#9bb0c444;opacity:.55}
+html[data-theme="soft-light"] .player-reference{color:#6f88a7;filter:drop-shadow(0 7px 6px #7690aa35)}html[data-theme="soft-light"] .player-reference svg{fill:#88a0bb}
+html[data-theme="soft-light"] .preview-meta{color:#31557f}html[data-theme="soft-light"] .preview-stats{color:#6b83a1}
+html[data-theme="soft-light"] .equipment-slot{background:#fff;border-color:#d8e3f2;box-shadow:0 5px 12px #6888aa26}html[data-theme="soft-light"] .equipment-slot small{color:#34598b;text-shadow:none}
+html[data-theme="soft-light"] th{color:#315a96}html[data-theme="soft-light"] #status{color:#319471}
+@media(max-width:620px){html[data-theme="soft-light"] main{border-radius:0;padding-left:18px;padding-right:18px}}

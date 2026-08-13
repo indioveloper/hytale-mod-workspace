@@ -1,0 +1,23 @@
+{
+  "Group": "com.lol",
+  "Name": "DungeonCore",
+  "Version": "1.3.9-pre11",
+  "ServerVersion": ">=0.6.0-pre <0.7.0",
+  "Description": "DungeonCore 1.3.7 ported to Hytale 0.6.0-pre.11 with safe link validation.",
+  "Authors": [
+    {"Name":  "Limesta"},
+    {"Name":  "MKOutlaw"},
+    {"Name":  "LichtMarv"}
+  ],
+  "Website": "https://opencollective.com/dungeonteam",
+  "Dependencies": {
+    "Ellie:HyUI": "*"
+  },
+  "OptionalDependencies": {
+  },
+  "LoadBefore": {},
+  "DisabledByDefault": false,
+  "IncludesAssetPack": true,
+  "Main": "com.lol.DungeonPlugin",
+  "SubPlugins": []
+}

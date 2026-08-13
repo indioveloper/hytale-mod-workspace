@@ -1,0 +1,67 @@
+{
+  "BlockType": {
+    "BlockEntity": {
+      "Components": {
+        "SignalSender": {
+          "LastSignal": false
+        },
+        "DungeonBlock": {},
+        "Inverter": {},
+        "SignalReceiver": {}
+      }
+    },
+    "VariantRotation": "NESW",
+    "PlacementSettings": {
+      "AllowRotationKey": true
+    },
+    "State": {
+      "Definitions": {
+        "Normal": {},
+        "Active": {
+          "DrawType": "Empty",
+          "Material": "Empty",
+          "HitboxType": "Block_Flat"
+        }
+      }
+    },
+    "Material": "Solid",
+    "DrawType": "Model",
+    "CustomModelTexture": [
+      {
+        "Texture": "Items/Blocks/Inverter_Texture.png"
+      }
+    ],
+    "CustomModel": "Items/Blocks/StartDungeon.blockymodel",
+    "CubeShadingMode": "Standard",
+    "Support": {
+      "BlockSides": [
+        {
+          "Support": "Ignored"
+        }
+      ]
+    },
+    "CustomModelAnimation": "Items/Blocks/Animation1.blockyanim",
+    "Looping": true
+  },
+  "PlayerAnimationsId": "Block",
+  "TranslationProperties": {
+    "Name": "items.inverter.name",
+    "Description": "items.inverter.description"
+  },
+  "Icon": "Icons/ItemsGenerated/Inverter.png",
+  "IconProperties": {
+    "Scale": 0.58823,
+    "Rotation": [
+      22.5,
+      45,
+      22.5
+    ],
+    "Translation": [
+      0,
+      -13.5
+    ]
+  },
+  "Categories": [
+    "DungeonMod.CreativeBlocks"
+  ]
+}

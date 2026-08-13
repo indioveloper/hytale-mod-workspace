@@ -27,4 +27,4 @@ items.Essence_Button_Void.name = Void Essence Button
 items.Essence_Button_Void.description = A floating void essence button.
 
 items.OrbGenesis_NoBuild_Stone.name = No-build stone
-items.OrbGenesis_NoBuild_Stone.description = Throw to block construction in a particle-marked 5 x 5 x 5 area for 10 seconds.
+items.OrbGenesis_NoBuild_Stone.description = Throw to block construction in a particle-marked 10 x 10 x 10 area for 10 seconds.
