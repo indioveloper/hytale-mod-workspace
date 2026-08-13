@@ -18,7 +18,11 @@ final class SpawnerConfigString {
     root.addProperty("v", 1);
     root.addProperty("enabled", config.enabled);
     root.addProperty("tag", config.tag);
+    JsonArray tags = new JsonArray();
+    for (String tag : config.tags) tags.add(tag);
+    root.add("tags", tags);
     root.addProperty("role", config.roleId);
+    root.addProperty("name", config.mobName);
     root.addProperty("health", config.maxHealth);
     root.addProperty("scale", config.mobScale);
     root.addProperty("held", config.heldItemId);
@@ -69,7 +73,13 @@ final class SpawnerConfigString {
       ConfigurableSpawnerComponent result = new ConfigurableSpawnerComponent();
       result.enabled = bool(root, "enabled", true);
       result.tag = string(root, "tag", "");
+      if (root.has("tags") && root.get("tags").isJsonArray()) {
+        JsonArray tags = root.getAsJsonArray("tags");
+        result.tags = new String[tags.size()];
+        for (int i = 0; i < tags.size(); i++) result.tags[i] = tags.get(i).getAsString();
+      }
       result.roleId = string(root, "role", "Skeleton");
+      result.mobName = string(root, "name", "");
       result.maxHealth = number(root, "health", 0.0);
       result.mobScale = number(root, "scale", 1.0);
       result.heldItemId = string(root, "held", "");

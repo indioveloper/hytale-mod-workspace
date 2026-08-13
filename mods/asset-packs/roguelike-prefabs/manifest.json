@@ -1,11 +1,18 @@
 {
   "Group": "tests",
   "Name": "tests",
-  "Authors": [],
+  "Version": "1.0.0",
+  "Description": "Roguelike room, map, and connector prefabs used by existing test saves.",
+  "Authors": [
+    {
+      "Name": "Raynor"
+    }
+  ],
+  "ServerVersion": ">=0.6.0-pre <0.7.0",
   "Dependencies": {},
   "OptionalDependencies": {},
   "LoadBefore": {},
   "DisabledByDefault": false,
-  "IncludesAssetPack": false,
+  "IncludesAssetPack": true,
   "SubPlugins": []
 }

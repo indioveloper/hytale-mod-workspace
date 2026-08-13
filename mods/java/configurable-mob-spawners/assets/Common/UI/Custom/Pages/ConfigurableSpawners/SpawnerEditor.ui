@@ -24,6 +24,10 @@ $C.@PageOverlay {
         $C.@DropdownBox #RoleDropdown { Anchor: (Left: 8, Width: 300, Height: 32); }
       }
       Label #PreviewHint { Anchor: (Bottom: 8); Text: %server.customUI.configurableSpawners.preview.tooltip; Style: (...$C.@DefaultLabelStyle, FontSize: 12, TextColor: #91a7bc); }
+      Group { LayoutMode: Left; Anchor: (Bottom: 8, Height: 38);
+        Label { Anchor: (Width: 170); Text: %server.customUI.configurableSpawners.mobName; Style: (...@FieldLabel, VerticalAlignment: Center); }
+        $C.@TextField #MobNameInput { @Anchor = (Left: 8, Width: 420); PlaceholderText: %server.customUI.configurableSpawners.mobName.placeholder; }
+      }
       $C.@PanelSeparatorFancy { @Anchor = (Bottom: 9); }
 
       Group { LayoutMode: Left; Anchor: (Bottom: 4, Height: 18);
@@ -94,12 +98,8 @@ $C.@PageOverlay {
         }
       }
 
-      Group #ArmorGroup { LayoutMode: Top; Visible: false; Anchor: (Bottom: 8);
-        Group { LayoutMode: Left; Anchor: (Bottom: 4, Height: 34);
-          $C.@CheckBox #CustomArmorCheck { Anchor: (Width: 34, Height: 34); }
-          Label { Anchor: (Left: 6, Width: 280); Text: %server.customUI.configurableSpawners.customArmor; Style: (...$C.@DefaultLabelStyle, VerticalAlignment: Center); }
-          Label { Anchor: (Left: 12); Text: %server.customUI.configurableSpawners.armor.tooltip; Style: (...$C.@DefaultLabelStyle, FontSize: 12, TextColor: #91a7bc, VerticalAlignment: Center); }
-        }
+      Group #ArmorGroup { LayoutMode: Top; Anchor: (Bottom: 8);
+        Label { Anchor: (Bottom: 7); Text: %server.customUI.configurableSpawners.armor.tooltip; Style: (...$C.@DefaultLabelStyle, FontSize: 12, TextColor: #91a7bc); }
         Group { LayoutMode: Left; Anchor: (Bottom: 4, Height: 18);
           Label { Anchor: (Width: 235); Text: %server.customUI.configurableSpawners.armorHead; Style: @FieldLabel; }
           Label { Anchor: (Left: 8, Width: 235); Text: %server.customUI.configurableSpawners.armorChest; Style: @FieldLabel; }

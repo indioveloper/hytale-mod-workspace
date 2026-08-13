@@ -74,11 +74,7 @@ public final class SpawnerLootEntry {
     itemId = itemId == null ? "" : itemId.trim();
     minQuantity = Math.max(1, Math.min(999, minQuantity));
     maxQuantity = Math.max(1, Math.min(999, maxQuantity));
-    if (minQuantity > maxQuantity) {
-      int swap = minQuantity;
-      minQuantity = maxQuantity;
-      maxQuantity = swap;
-    }
+    maxQuantity = Math.max(minQuantity, maxQuantity);
     chancePercent = Math.max(0.0, Math.min(100.0, chancePercent));
   }
 

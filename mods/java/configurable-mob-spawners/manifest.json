@@ -1,7 +1,7 @@
 {
   "Group": "OrbGenesis",
   "Name": "ConfigurableMobSpawners",
-  "Version": "0.3.0",
+  "Version": "0.4.0",
   "ServerVersion": ">=0.6.0-pre <0.7.0",
   "Description": "Adventure-mineable mob spawners configured in creative mode.",
   "Authors": [

@@ -132,12 +132,9 @@ public class PasteRandomPrefabEffect extends TriggerEffect {
           world,
           blockPosition,
           Rotation.None,
-          true,
           new Random(),
+          1,
           flags,
-          false,
-          false,
-          true,
           context.getStore());
     } catch (Exception e) {
       LOGGER.at(Level.WARNING).withCause(e).log("PasteRandomPrefab: Failed to paste prefab '%s'", prefabPath);

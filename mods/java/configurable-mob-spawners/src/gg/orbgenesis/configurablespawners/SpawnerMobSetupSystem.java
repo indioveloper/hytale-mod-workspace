@@ -17,6 +17,7 @@ import com.hypixel.hytale.server.core.modules.entitystats.modifier.StaticModifie
 import com.hypixel.hytale.server.core.universe.world.storage.EntityStore;
 import com.hypixel.hytale.server.npc.entities.NPCEntity;
 import com.hypixel.hytale.server.npc.role.RoleUtils;
+import com.hypixel.hytale.server.npc.role.support.DisplayNameSupport;
 import com.hypixel.hytale.server.npc.systems.BalancingInitialisationSystem;
 import java.util.Set;
 import javax.annotation.Nonnull;
@@ -50,8 +51,13 @@ final class SpawnerMobSetupSystem extends EntityTickingSystem<EntityStore> {
         index, SpawnedBySpawnerComponent.getComponentType());
     NPCEntity npc = archetypeChunk.getComponent(index, NPCEntity.getComponentType());
     if (tracker == null || npc == null || tracker.equipmentApplied || npc.getRole() == null) return;
+    if (!tracker.mobName.isBlank()) {
+      DisplayNameSupport.setDisplayName(
+          archetypeChunk.getReferenceTo(index), tracker.mobName, true, commandBuffer);
+    }
     if (!tracker.heldItemId.isBlank() && Item.getAssetMap().getAsset(tracker.heldItemId) != null) {
-      RoleUtils.setItemInHand(archetypeChunk.getReferenceTo(index), npc, tracker.heldItemId, store);
+      RoleUtils.setItemInHand(
+          archetypeChunk.getReferenceTo(index), npc, tracker.heldItemId, commandBuffer);
     }
     if (tracker.maxHealth > 0.0) {
       EntityStatMap stats = archetypeChunk.getComponent(index, EntityStatMap.getComponentType());
@@ -65,18 +71,19 @@ final class SpawnerMobSetupSystem extends EntityTickingSystem<EntityStore> {
       }
     }
     var ref = archetypeChunk.getReferenceTo(index);
-    EntityScaleComponent scale = store.getComponent(ref, EntityScaleComponent.getComponentType());
+    EntityScaleComponent scale = commandBuffer.getComponent(
+        ref, EntityScaleComponent.getComponentType());
     if (scale == null) {
-      store.putComponent(ref, EntityScaleComponent.getComponentType(),
+      commandBuffer.putComponent(ref, EntityScaleComponent.getComponentType(),
           new EntityScaleComponent((float) tracker.mobScale));
     } else {
       scale.setScale((float) tracker.mobScale);
     }
     if (tracker.customArmor) {
-      applyArmor(archetypeChunk.getReferenceTo(index), npc, tracker.armorHeadId, store);
-      applyArmor(archetypeChunk.getReferenceTo(index), npc, tracker.armorChestId, store);
-      applyArmor(archetypeChunk.getReferenceTo(index), npc, tracker.armorHandsId, store);
-      applyArmor(archetypeChunk.getReferenceTo(index), npc, tracker.armorLegsId, store);
+      applyArmor(archetypeChunk.getReferenceTo(index), npc, tracker.armorHeadId, commandBuffer);
+      applyArmor(archetypeChunk.getReferenceTo(index), npc, tracker.armorChestId, commandBuffer);
+      applyArmor(archetypeChunk.getReferenceTo(index), npc, tracker.armorHandsId, commandBuffer);
+      applyArmor(archetypeChunk.getReferenceTo(index), npc, tracker.armorLegsId, commandBuffer);
     }
     tracker.equipmentApplied = true;
   }
@@ -85,11 +92,11 @@ final class SpawnerMobSetupSystem extends EntityTickingSystem<EntityStore> {
       com.hypixel.hytale.component.Ref<EntityStore> ref,
       NPCEntity npc,
       String itemId,
-      Store<EntityStore> store) {
+      CommandBuffer<EntityStore> commandBuffer) {
     if (itemId.isBlank()) return;
     Item item = Item.getAssetMap().getAsset(itemId);
     if (item != null && item.getArmor() != null) {
-      RoleUtils.setArmor(ref, npc, itemId, store);
+      RoleUtils.setArmor(ref, npc, itemId, commandBuffer);
     }
   }
 }

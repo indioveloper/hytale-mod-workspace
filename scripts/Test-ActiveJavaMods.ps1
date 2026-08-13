@@ -50,10 +50,10 @@ Invoke-ProjectScript "mods\java\more-triggers\tools\Test-TagTemplateResolver.ps1
 Invoke-ProjectScript "mods\java\more-triggers\tools\Test-NoMoveExceptionFilter.ps1"
 Invoke-ProjectScript "mods\java\more-triggers\tools\Test-RandomItemCandidateFilter.ps1"
 Invoke-ProjectScript "mods\java\more-triggers\tools\Test-TimerMath.ps1"
-& $buildScript -ProjectPath (Join-Path $repo "mods\java\more-triggers") -SourceRoot src -PackageRoot src -ArtifactName More_Triggers-1_9_1.jar -ServerJar $ServerJar
-Invoke-ProjectScript "mods\java\more-triggers\tools\Test-Package.ps1" @{ ArchivePath = (Join-Path $repo "mods\java\more-triggers\.build\dist\More_Triggers-1_9_1.jar") }
+& $buildScript -ProjectPath (Join-Path $repo "mods\java\more-triggers") -SourceRoot src -PackageRoot src -ArtifactName More_Triggers-1_9_2.jar -ServerJar $ServerJar
+Invoke-ProjectScript "mods\java\more-triggers\tools\Test-Package.ps1" @{ ArchivePath = (Join-Path $repo "mods\java\more-triggers\.build\dist\More_Triggers-1_9_2.jar") }
 
-& $buildScript -ProjectPath (Join-Path $repo "mods\java\entity-motion-triggers") -SourceRoot src -PackageRoot src -ArtifactName Entity_Motion_Triggers-1_3_0.jar -ServerJar $ServerJar
+& $buildScript -ProjectPath (Join-Path $repo "mods\java\entity-motion-triggers") -SourceRoot src -PackageRoot src -ArtifactName Entity_Motion_Triggers-1_3_1.jar -ServerJar $ServerJar
 
 Invoke-ProjectScript "mods\java\particle-shape-vfx\tools\Test-PluginLocalization.ps1"
 Invoke-ProjectScript "mods\java\particle-shape-vfx\tools\Test-Geometry.ps1"
@@ -67,12 +67,15 @@ Invoke-ProjectScript "mods\java\scoreboards\tools\Test-DynamicTranslations.ps1"
 Invoke-ProjectScript "mods\java\scoreboards\tools\Test-Package.ps1" @{ ArchivePath = (Join-Path $repo "mods\java\scoreboards\.build\dist\Scoreboards-2_0_10.jar") }
 
 Invoke-ProjectScript "mods\java\build-battle\tools\Test-PluginLocalization.ps1"
-& $buildScript -ProjectPath (Join-Path $repo "mods\java\build-battle") -SourceRoot src -PackageRoot . -ArtifactName Build_Battle-0_2_2.jar -ServerJar $ServerJar
+& $buildScript -ProjectPath (Join-Path $repo "mods\java\build-battle") -SourceRoot src -PackageRoot . -ArtifactName Build_Battle-0_2_3.jar -ServerJar $ServerJar
+
+& $buildScript -ProjectPath (Join-Path $repo "mods\asset-packs\raynor-npcs") -SourceRoot src -PackageRoot . -ArtifactName Raynor_NPCs-1_1_0.jar -ServerJar $ServerJar
 
 Invoke-ProjectScript "mods\java\configurable-mob-spawners\tools\Test-PluginLocalization.ps1"
 Invoke-ProjectScript "mods\java\configurable-mob-spawners\tools\Test-LightLevelMath.ps1"
 Invoke-ProjectScript "mods\java\configurable-mob-spawners\tools\Test-ConfigString.ps1"
-& $buildScript -ProjectPath (Join-Path $repo "mods\java\configurable-mob-spawners") -SourceRoot src -PackageRoot . -AssetsRoot assets -VanillaCustomUiAssetsZip $AssetsZip -ArtifactName ConfigurableMobSpawners-0.3.0.jar -ServerJar $ServerJar
-Invoke-ProjectScript "mods\java\configurable-mob-spawners\tools\Test-Package.ps1" @{ ArchivePath = (Join-Path $repo "mods\java\configurable-mob-spawners\.build\dist\ConfigurableMobSpawners-0.3.0.jar"); AssetsZip = $AssetsZip }
+Invoke-ProjectScript "mods\java\configurable-mob-spawners\tools\web-configurator\Test-WebConfigurator.ps1"
+& $buildScript -ProjectPath (Join-Path $repo "mods\java\configurable-mob-spawners") -SourceRoot src -PackageRoot . -AssetsRoot assets -VanillaCustomUiAssetsZip $AssetsZip -ArtifactName ConfigurableMobSpawners-0.4.0.jar -ServerJar $ServerJar
+Invoke-ProjectScript "mods\java\configurable-mob-spawners\tools\Test-Package.ps1" @{ ArchivePath = (Join-Path $repo "mods\java\configurable-mob-spawners\.build\dist\ConfigurableMobSpawners-0.4.0.jar"); AssetsZip = $AssetsZip }
 
 Write-Host "All active Java mods passed compatibility checks."

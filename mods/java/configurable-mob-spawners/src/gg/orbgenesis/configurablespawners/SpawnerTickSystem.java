@@ -16,7 +16,7 @@ import com.hypixel.hytale.server.core.modules.entity.damage.DeathComponent;
 import com.hypixel.hytale.server.core.modules.time.WorldTimeResource;
 import com.hypixel.hytale.server.core.universe.world.World;
 import com.hypixel.hytale.server.core.universe.world.ParticleUtil;
-import com.hypixel.hytale.server.core.universe.world.chunk.WorldChunk;
+import com.hypixel.hytale.server.core.universe.world.chunk.BlockChunk;
 import com.hypixel.hytale.server.core.universe.world.storage.ChunkStore;
 import com.hypixel.hytale.server.core.universe.world.storage.EntityStore;
 import com.hypixel.hytale.server.npc.NPCPlugin;
@@ -90,7 +90,7 @@ final class SpawnerTickSystem extends EntityTickingSystem<ChunkStore> {
     var entityStore = world.getEntityStore().getStore();
     ArrayList<UUID> tracked = new ArrayList<>(Arrays.asList(config.trackedMobs));
     for (int i = 0; i < Math.min(requested, capacity); i++) {
-      Vector3d position = findSpawnPosition(world, entityStore, center, config);
+      Vector3d position = findSpawnPosition(world, store, entityStore, center, config);
       if (position == null) continue;
       var result = NPCPlugin.get().spawnEntity(
           entityStore,
@@ -144,7 +144,11 @@ final class SpawnerTickSystem extends EntityTickingSystem<ChunkStore> {
   }
 
   private static Vector3d findSpawnPosition(
-      World world, Store<EntityStore> entityStore, Vector3d center, ConfigurableSpawnerComponent config) {
+      World world,
+      Store<ChunkStore> chunkComponentStore,
+      Store<EntityStore> entityStore,
+      Vector3d center,
+      ConfigurableSpawnerComponent config) {
     double sunlight = entityStore.getResource(WorldTimeResource.getResourceType()).getSunlightFactor();
     ThreadLocalRandom random = ThreadLocalRandom.current();
     for (int attempt = 0; attempt < config.spawnAttempts; attempt++) {
@@ -152,15 +156,17 @@ final class SpawnerTickSystem extends EntityTickingSystem<ChunkStore> {
       double radius = Math.sqrt(random.nextDouble()) * config.horizontalRadius;
       int x = (int) Math.floor(center.x + Math.cos(angle) * radius);
       int z = (int) Math.floor(center.z + Math.sin(angle) * radius);
-      WorldChunk chunk = world.getChunkIfInMemory(ChunkUtil.indexChunkFromBlock(x, z));
+      Ref<ChunkStore> chunkRef = world.getChunkStore().getChunkReference(
+          ChunkUtil.indexChunkFromBlock(x, z));
+      if (chunkRef == null || !chunkRef.isValid()) continue;
+      BlockChunk chunk = chunkComponentStore.getComponent(chunkRef, BlockChunk.getComponentType());
       if (chunk == null) continue;
       int y = findGroundY(chunk, x, z, (int) Math.floor(center.y));
       if (y == Integer.MIN_VALUE) continue;
-      var blockChunk = chunk.getBlockChunk();
       int light = SpawnerLightLevel.calculate(
-          blockChunk.getBlockLightIntensity(x, y, z),
-          blockChunk.getSkyLight(x, y, z),
-          blockChunk.getHeight(x, z),
+          chunk.getBlockLightIntensity(x, y, z),
+          chunk.getSkyLight(x, y, z),
+          chunk.getHeight(x, z),
           y,
           sunlight);
       if (light > config.maxLight) continue;
@@ -169,7 +175,7 @@ final class SpawnerTickSystem extends EntityTickingSystem<ChunkStore> {
     return null;
   }
 
-  private static int findGroundY(WorldChunk chunk, int x, int z, int originY) {
+  private static int findGroundY(BlockChunk chunk, int x, int z, int originY) {
     for (int distance = 0; distance <= GROUND_SCAN_DISTANCE; distance++) {
       int below = originY - distance;
       if (isWalkable(chunk, x, below, z)) return below;
@@ -181,7 +187,7 @@ final class SpawnerTickSystem extends EntityTickingSystem<ChunkStore> {
     return Integer.MIN_VALUE;
   }
 
-  private static boolean isWalkable(WorldChunk chunk, int x, int y, int z) {
+  private static boolean isWalkable(BlockChunk chunk, int x, int y, int z) {
     BlockType floor = BlockType.getAssetMap().getAsset(chunk.getBlock(x, y - 1, z));
     BlockType body = BlockType.getAssetMap().getAsset(chunk.getBlock(x, y, z));
     BlockType head = BlockType.getAssetMap().getAsset(chunk.getBlock(x, y + 1, z));

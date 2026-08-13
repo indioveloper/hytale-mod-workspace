@@ -9,6 +9,7 @@ import com.hypixel.hytale.component.Component;
 import com.hypixel.hytale.component.ComponentType;
 import com.hypixel.hytale.server.core.universe.world.storage.ChunkStore;
 import java.util.Arrays;
+import java.util.LinkedHashSet;
 import java.util.UUID;
 import javax.annotation.Nullable;
 
@@ -19,8 +20,10 @@ public final class ConfigurableSpawnerComponent implements Component<ChunkStore>
       BuilderCodec.builder(ConfigurableSpawnerComponent.class, ConfigurableSpawnerComponent::new)
           .append(new KeyedCodec<>("SpawnerId", Codec.UUID_BINARY, false), (c, v) -> c.spawnerId = v, c -> c.spawnerId).add()
           .append(new KeyedCodec<>("Tag", Codec.STRING, false), (c, v) -> c.tag = v == null ? "" : v, c -> c.tag).add()
+          .append(new KeyedCodec<>("Tags", new ArrayCodec<>(Codec.STRING, String[]::new), false), (c, v) -> c.tags = v == null ? new String[0] : v, c -> c.tags).add()
           .append(new KeyedCodec<>("Enabled", Codec.BOOLEAN, false), (c, v) -> c.enabled = v == null || v, c -> c.enabled).add()
           .append(new KeyedCodec<>("Role", Codec.STRING, false), (c, v) -> c.roleId = v == null ? "" : v, c -> c.roleId).add()
+          .append(new KeyedCodec<>("MobName", Codec.STRING, false), (c, v) -> c.mobName = clean(v), c -> c.mobName).add()
           .append(new KeyedCodec<>("HeldItem", Codec.STRING, false), (c, v) -> c.heldItemId = v == null ? "" : v, c -> c.heldItemId).add()
           .append(new KeyedCodec<>("MaxHealth", Codec.DOUBLE, false), (c, v) -> c.maxHealth = v == null ? 0.0 : v, c -> c.maxHealth).add()
           .append(new KeyedCodec<>("MobScale", Codec.DOUBLE, false), (c, v) -> c.mobScale = v == null ? 1.0 : v, c -> c.mobScale).add()
@@ -49,8 +52,10 @@ public final class ConfigurableSpawnerComponent implements Component<ChunkStore>
 
   UUID spawnerId;
   String tag = "";
+  String[] tags = new String[0];
   boolean enabled = true;
   String roleId = "Skeleton";
+  String mobName = "";
   String heldItemId = "";
   double maxHealth;
   double mobScale = 1.0;
@@ -95,8 +100,11 @@ public final class ConfigurableSpawnerComponent implements Component<ChunkStore>
   }
 
   public void normalize() {
-    tag = tag == null ? "" : tag.trim();
+    tags = normalizeTags(tag, tags);
+    tag = tags.length == 0 ? "" : tags[0];
     roleId = roleId == null ? "" : roleId.trim();
+    mobName = clean(mobName);
+    if (mobName.length() > 64) mobName = mobName.substring(0, 64);
     heldItemId = heldItemId == null ? "" : heldItemId.trim();
     armorHeadId = clean(armorHeadId);
     armorChestId = clean(armorChestId);
@@ -115,11 +123,7 @@ public final class ConfigurableSpawnerComponent implements Component<ChunkStore>
     }
     spawnCountMin = clamp(spawnCountMin, 1, 64);
     spawnCountMax = clamp(spawnCountMax, 1, 64);
-    if (spawnCountMin > spawnCountMax) {
-      int swap = spawnCountMin;
-      spawnCountMin = spawnCountMax;
-      spawnCountMax = swap;
-    }
+    spawnCountMax = Math.max(spawnCountMin, spawnCountMax);
     maxAlive = clamp(maxAlive, 1, 256);
     activationRadius = clamp(activationRadius, 1.0, 128.0);
     horizontalRadius = clamp(horizontalRadius, 0.0, 64.0);
@@ -135,8 +139,10 @@ public final class ConfigurableSpawnerComponent implements Component<ChunkStore>
 
   public void copyConfigurationFrom(ConfigurableSpawnerComponent source) {
     tag = source.tag;
+    tags = source.tags == null ? new String[0] : Arrays.copyOf(source.tags, source.tags.length);
     enabled = source.enabled;
     roleId = source.roleId;
+    mobName = source.mobName;
     heldItemId = source.heldItemId;
     maxHealth = source.maxHealth;
     mobScale = source.mobScale;
@@ -209,5 +215,20 @@ public final class ConfigurableSpawnerComponent implements Component<ChunkStore>
 
   private static String clean(String value) {
     return value == null ? "" : value.trim();
+  }
+
+  private static String[] normalizeTags(String legacyTag, String[] values) {
+    LinkedHashSet<String> normalized = new LinkedHashSet<>();
+    if (values != null) {
+      for (String value : values) {
+        String cleaned = clean(value);
+        if (!cleaned.isEmpty()) normalized.add(cleaned);
+      }
+    }
+    if (normalized.isEmpty()) {
+      String cleaned = clean(legacyTag);
+      if (!cleaned.isEmpty()) normalized.add(cleaned);
+    }
+    return normalized.toArray(String[]::new);
   }
 }

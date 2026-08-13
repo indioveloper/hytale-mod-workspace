@@ -12,6 +12,7 @@ Add-Type -AssemblyName System.Drawing
 $archive = [System.IO.Compression.ZipFile]::OpenRead((Resolve-Path -LiteralPath $AssetsZip).Path)
 try {
   $roles = @{}
+  $rolePaths = @{}
   $models = @{}
   foreach ($entry in $archive.Entries) {
     $isRole = $entry.FullName.StartsWith("Server/NPC/Roles/", [StringComparison]::Ordinal)
@@ -29,8 +30,20 @@ try {
       $reader.Dispose()
     }
     $id = [System.IO.Path]::GetFileNameWithoutExtension($entry.Name)
-    if ($isRole) { $roles[$id] = $json }
+    if ($isRole) { $roles[$id] = $json; $rolePaths[$id] = $entry.FullName }
     else { $models[$id] = $json }
+  }
+
+  $translations = @{}
+  $languageEntry = $archive.GetEntry("Server/Languages/en-US/server.lang")
+  if ($languageEntry) {
+    $reader = [System.IO.StreamReader]::new($languageEntry.Open())
+    try {
+      foreach ($line in $reader.ReadToEnd() -split "`r?`n") {
+        if ($line -match '^\s*([^=]+?)\s*=\s*(.+?)\s*$') { $translations[$matches[1]] = $matches[2] }
+      }
+    }
+    finally { $reader.Dispose() }
   }
 
   $icons = @{}
@@ -94,6 +107,54 @@ try {
     return 1.85
   }
 
+  function Get-RoleCategory([string]$RoleId, [string]$Appearance, [string]$DisplayName) {
+    $parts = $rolePaths[$RoleId] -split '/'
+    $family = if ($parts.Count -gt 3) { $parts[3] } else { "" }
+    if ($family -eq "Boss" -or $DisplayName -match 'Hedera') { return "Bosses" }
+    if ($RoleId -match 'Klops|Bramblekin|Slothian|Quest_Master') { return "Neutrales" }
+    if ($family -in @("Aquatic", "Avian", "Creature") -or $Appearance -match 'Antelope|Armadillo|Bear|Bison|Boar|Bunny|Camel|Chicken|Cow|Deer|Fox|Frog|Goat|Horse|Mouflon|Pig|Rabbit|Ram|Sheep|Skrill|Turkey|Warthog') { return "Animales" }
+    if ($RoleId -match 'Kweebec|Feran|Trork|Goblin|Scarak|Outlander|Tuluk') { return "Facciones" }
+    if ($family -in @("Undead", "Elemental", "Void")) {
+      if ($RoleId -match 'Sand|Sandswept|Desert') { return "Enemigos zona 2" }
+      if ($RoleId -match 'Frost|Ice|Snow') { return "Enemigos zona 3" }
+      if ($RoleId -match 'Incandescent|Fire|Flame|Void|Lava') { return "Enemigos zona 4" }
+      return "Enemigos zona 1"
+    }
+    return "Otros"
+  }
+
+  function Get-RoleFaction([string]$RoleId) {
+    foreach ($faction in @("Kweebec", "Feran", "Trork", "Goblin", "Scarak", "Outlander", "Tuluk")) {
+      if ($RoleId -match $faction) { return $faction }
+    }
+    return $null
+  }
+
+  function Is-InternalRole([string]$RoleId) {
+    return $RoleId -match '^(Test|Template|Empty|Component_)' -or $rolePaths[$RoleId] -match '/_Core/'
+  }
+
+  function Get-LegacyRoleCategory([string]$RoleId) {
+    # Kept separate from the public category so role folders can still be inspected while debugging.
+    $parts = $rolePaths[$RoleId] -split '/'
+    $family = if ($parts.Count -gt 3) { $parts[3] } else { "" }
+    $subfamily = if ($parts.Count -gt 4) { $parts[4] } else { "" }
+    if ($family -in @("Aquatic", "Avian", "Creature")) { return "Animales" }
+    if ($family -eq "Intelligent") {
+      $group = if ($subfamily -in @("Aggressive", "Neutral", "Passive") -and $parts.Count -gt 5) { $parts[5] } else { $subfamily }
+      $group = $group -replace '\.json$', ''
+      if ($group -and $group -notmatch '^_' -and $group -notmatch 'Template|Component') { return $group -replace '_', ' ' }
+    }
+    if ($family -in @("Undead", "Elemental", "Void", "Boss")) { return "Enemigos" }
+    return "Otros"
+  }
+
+  function Normalize-Attitude([string]$Attitude) {
+    if ($Attitude -match 'Hostile') { return "HOSTILE" }
+    if ($Attitude -match 'Neutral|Retaliate') { return "RETALIATE" }
+    return "PASSIVE"
+  }
+
   function Model-InheritsFromPlayer([string]$ModelId) {
     $seen = [Collections.Generic.HashSet[string]]::new([StringComparer]::Ordinal)
     while ($ModelId -and $seen.Add($ModelId) -and $models.ContainsKey($ModelId)) {
@@ -141,11 +202,14 @@ try {
   $usedIcons = [Collections.Generic.HashSet[string]]::new([StringComparer]::OrdinalIgnoreCase)
   $spawnableRoles = @($roles.Keys | Where-Object {
       $type = [string]$roles[$_].Type
-      $type -eq "Generic" -or $type -eq "Variant"
+      ($type -eq "Generic" -or $type -eq "Variant") -and -not (Is-InternalRole $_)
     } | Sort-Object)
   foreach ($roleId in $spawnableRoles) {
     $appearance = [string](Resolve-RoleValue $roleId "Appearance")
     $health = Resolve-RoleValue $roleId "MaxHealth"
+    $nameKey = [string](Resolve-RoleValue $roleId "NameTranslationKey") -replace '^server\.', ''
+    $displayName = if ($nameKey -and $translations.ContainsKey($nameKey)) { $translations[$nameKey] } else { $roleId -replace '_', ' ' }
+    $attitude = Normalize-Attitude ([string](Resolve-RoleValue $roleId "DefaultPlayerAttitude"))
     $iconId = $null
     foreach ($candidate in @($roleId, $appearance, ($roleId -replace '_(Patrol|Wander)$', ''))) {
       if ($candidate -and $icons.ContainsKey($candidate)) { $iconId = $candidate; break }
@@ -156,6 +220,10 @@ try {
     if ($iconId) { [void]$usedIcons.Add($iconId) }
     $mapping[$roleId] = [ordered]@{
       image = if ($iconId) { "mob-previews.generated/$iconId.png" } else { $null }
+      name = $displayName
+      category = Get-RoleCategory $roleId $appearance $displayName
+      faction = Get-RoleFaction $roleId
+      attitude = $attitude
       appearance = $appearance
       health = if ($null -ne $health) { [double]$health } else { $null }
       height = Resolve-ModelHeight $appearance

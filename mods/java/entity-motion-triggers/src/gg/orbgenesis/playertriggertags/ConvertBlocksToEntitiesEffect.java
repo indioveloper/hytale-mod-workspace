@@ -34,7 +34,6 @@ import com.hypixel.hytale.server.core.modules.entity.tracker.NetworkId;
 import com.hypixel.hytale.server.core.modules.entity.hitboxcollision.HitboxCollisionConfig;
 import com.hypixel.hytale.server.core.universe.world.SetBlockSettings;
 import com.hypixel.hytale.server.core.universe.world.chunk.BlockChunk;
-import com.hypixel.hytale.server.core.universe.world.chunk.WorldChunk;
 import com.hypixel.hytale.server.core.universe.world.chunk.section.BlockSection;
 import com.hypixel.hytale.server.core.universe.world.storage.ChunkStore;
 import com.hypixel.hytale.server.core.universe.world.storage.EntityStore;
@@ -137,11 +136,13 @@ public class ConvertBlocksToEntitiesEffect extends TriggerEffect {
       return;
     }
     BlockChunk blockChunk = chunkComponentStore.getComponent(chunkRef, BlockChunk.getComponentType());
-    WorldChunk worldChunk = chunkComponentStore.getComponent(chunkRef, WorldChunk.getComponentType());
-    if (blockChunk == null || worldChunk == null) {
+    Ref<ChunkStore> sectionRef = chunkStore.getChunkSectionReferenceAtBlock(x, y, z);
+    BlockSection section = sectionRef == null
+        ? null
+        : chunkComponentStore.getComponent(sectionRef, BlockSection.getComponentType());
+    if (blockChunk == null || section == null) {
       return;
     }
-    BlockSection section = blockChunk.getSectionAtBlockY(y);
     if (blockChunk.getBlock(x, y, z) == BlockType.EMPTY_ID
         || section.getFiller(x, y, z) != FillerBlockUtil.NO_FILLER) {
       return;
@@ -191,7 +192,8 @@ public class ConvertBlocksToEntitiesEffect extends TriggerEffect {
           new PendingPlatformCollisionComponent(collisionConfig.getId(), 2));
     }
     entityStore.addEntity(holder, AddReason.SPAWN);
-    worldChunk.setBlock(x, y, z, BlockType.EMPTY_ID, SetBlockSettings.PERFORM_BLOCK_UPDATE);
+    chunkStore.getWorld().setBlock(
+        x, y, z, BlockType.EMPTY_KEY, SetBlockSettings.PERFORM_BLOCK_UPDATE);
   }
 
   private static String resolveItemModelId(Item item) {

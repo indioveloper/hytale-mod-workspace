@@ -1,9 +1,14 @@
 package gg.orbgenesis.configurablespawners;
 
+import java.nio.charset.StandardCharsets;
+import java.util.Base64;
+
 public final class SpawnerConfigStringTest {
   public static void main(String[] args) {
     ConfigurableSpawnerComponent source = new ConfigurableSpawnerComponent();
     source.roleId = "Skeleton_Soldier";
+    source.mobName = "Guardián del puente";
+    source.tags = new String[] {"arena", "wave.one"};
     source.maxHealth = 42.5;
     source.mobScale = 1.7;
     source.horizontalRadius = 9.0;
@@ -13,11 +18,15 @@ public final class SpawnerConfigStringTest {
     source.armorHeadId = "Armor_Iron_Head";
     source.lootMode = LootMode.REPLACE;
     source.lootEntries[0].set("Ingredient_Bone", 2, 5, 37.5);
+    source.spawnCountMin = 5;
+    source.spawnCountMax = 3;
 
     String encoded = SpawnerConfigString.encode(source);
     if (!encoded.startsWith("CMS1:")) throw new AssertionError("Missing CMS1 prefix");
     ConfigurableSpawnerComponent decoded = SpawnerConfigString.decode(encoded);
     require(decoded.roleId.equals(source.roleId), "role");
+    require(decoded.mobName.equals(source.mobName), "mob name");
+    require(decoded.tags.length == 2 && decoded.tags[1].equals("wave.one"), "tags");
     require(decoded.maxHealth == source.maxHealth, "health");
     require(decoded.mobScale == source.mobScale, "scale");
     require(decoded.horizontalRadius == source.horizontalRadius, "radius");
@@ -30,6 +39,15 @@ public final class SpawnerConfigStringTest {
     require(decoded.lootEntries[0].minQuantity == 2, "loot min");
     require(decoded.lootEntries[0].maxQuantity == 5, "loot max");
     require(decoded.lootEntries[0].chancePercent == 37.5, "loot chance");
+    require(decoded.spawnCountMin == 5 && decoded.spawnCountMax == 5, "wave count ordering");
+
+    String malformedLootJson = "{\"v\":1,\"lootMode\":\"REPLACE\",\"loot\":["
+        + "{\"item\":\"Weapon_Club_Adamantite\",\"min\":12,\"max\":1,\"chance\":100}]}";
+    String malformedLoot = SpawnerConfigString.PREFIX + Base64.getUrlEncoder().withoutPadding()
+        .encodeToString(malformedLootJson.getBytes(StandardCharsets.UTF_8));
+    ConfigurableSpawnerComponent normalizedLoot = SpawnerConfigString.decode(malformedLoot);
+    require(normalizedLoot.lootEntries[0].minQuantity == 12, "imported loot min retained");
+    require(normalizedLoot.lootEntries[0].maxQuantity == 12, "imported loot max ordering");
 
     boolean rejected = false;
     try {

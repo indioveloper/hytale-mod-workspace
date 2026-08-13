@@ -18,6 +18,7 @@ public final class SpawnedBySpawnerComponent implements Component<EntityStore> {
       BuilderCodec.builder(SpawnedBySpawnerComponent.class, SpawnedBySpawnerComponent::new)
           .append(new KeyedCodec<>("SpawnerId", Codec.UUID_BINARY), (c, v) -> c.spawnerId = v, c -> c.spawnerId).add()
           .append(new KeyedCodec<>("Aggression", new EnumCodec<>(AggressionMode.class), false), (c, v) -> c.aggressionMode = v == null ? AggressionMode.ROLE_DEFAULT : v, c -> c.aggressionMode).add()
+          .append(new KeyedCodec<>("MobName", Codec.STRING, false), (c, v) -> c.mobName = v == null ? "" : v, c -> c.mobName).add()
           .append(new KeyedCodec<>("HeldItem", Codec.STRING, false), (c, v) -> c.heldItemId = v == null ? "" : v, c -> c.heldItemId).add()
           .append(new KeyedCodec<>("MaxHealth", Codec.DOUBLE, false), (c, v) -> c.maxHealth = v == null ? 0.0 : v, c -> c.maxHealth).add()
           .append(new KeyedCodec<>("MobScale", Codec.DOUBLE, false), (c, v) -> c.mobScale = v == null ? 1.0 : v, c -> c.mobScale).add()
@@ -33,6 +34,7 @@ public final class SpawnedBySpawnerComponent implements Component<EntityStore> {
 
   UUID spawnerId;
   AggressionMode aggressionMode = AggressionMode.ROLE_DEFAULT;
+  String mobName = "";
   String heldItemId = "";
   double maxHealth;
   double mobScale = 1.0;
@@ -51,6 +53,7 @@ public final class SpawnedBySpawnerComponent implements Component<EntityStore> {
   public SpawnedBySpawnerComponent(UUID spawnerId, ConfigurableSpawnerComponent config) {
     this.spawnerId = spawnerId;
     this.aggressionMode = config.aggressionMode;
+    this.mobName = config.mobName;
     this.heldItemId = config.heldItemId;
     this.maxHealth = config.maxHealth;
     this.mobScale = config.mobScale;
@@ -77,6 +80,7 @@ public final class SpawnedBySpawnerComponent implements Component<EntityStore> {
     SpawnedBySpawnerComponent copy = new SpawnedBySpawnerComponent();
     copy.spawnerId = spawnerId;
     copy.aggressionMode = aggressionMode;
+    copy.mobName = mobName;
     copy.heldItemId = heldItemId;
     copy.maxHealth = maxHealth;
     copy.mobScale = mobScale;
