@@ -1,6 +1,6 @@
 /*
  * Decompiled with CFR 0.152.
- * 
+ *
  * Could not load the following classes:
  *  au.ellie.hyui.builders.DropdownBoxBuilder
  *  au.ellie.hyui.builders.NumberFieldBuilder
@@ -86,4 +86,3 @@ implements OpenCustomUIInteraction.CustomPageSupplier {
         return page.open(((EntityStore)componentAccessor.getExternalData()).getStore());
     }
 }
-

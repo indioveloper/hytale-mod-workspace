@@ -1,6 +1,6 @@
 /*
  * Decompiled with CFR 0.152.
- * 
+ *
  * Could not load the following classes:
  *  com.hypixel.hytale.component.CommandBuffer
  *  com.hypixel.hytale.component.system.EcsEvent
@@ -22,4 +22,3 @@ extends EcsEvent {
     public static void sendEvent(boolean signal, SignalSender sender, Vector3i pos, CommandBuffer<ChunkStore> commandBuffer) {
     }
 }
-

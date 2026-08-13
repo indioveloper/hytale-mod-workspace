@@ -1,6 +1,6 @@
 /*
  * Decompiled with CFR 0.152.
- * 
+ *
  * Could not load the following classes:
  *  com.hypixel.hytale.codec.builder.BuilderCodec
  *  com.hypixel.hytale.component.CommandBuffer
@@ -70,4 +70,3 @@ extends SimpleInstantInteraction {
         commandBuffer.putComponent(interactionContext.getEntity(), MimicPlaceMode.getComponentType(), (Component)mp);
     }
 }
-

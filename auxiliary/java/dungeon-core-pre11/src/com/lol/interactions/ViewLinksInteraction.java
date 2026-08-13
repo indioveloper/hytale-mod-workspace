@@ -1,6 +1,6 @@
 /*
  * Decompiled with CFR 0.152.
- * 
+ *
  * Could not load the following classes:
  *  com.hypixel.hytale.codec.Codec
  *  com.hypixel.hytale.codec.KeyedCodec

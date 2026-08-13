@@ -1,6 +1,6 @@
 /*
  * Decompiled with CFR 0.152.
- * 
+ *
  * Could not load the following classes:
  *  com.hypixel.hytale.common.util.RandomUtil
  *  com.hypixel.hytale.component.AddReason

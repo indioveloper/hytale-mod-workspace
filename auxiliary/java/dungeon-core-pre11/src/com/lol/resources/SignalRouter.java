@@ -1,6 +1,6 @@
 /*
  * Decompiled with CFR 0.152.
- * 
+ *
  * Could not load the following classes:
  *  com.hypixel.hytale.codec.builder.BuilderCodec
  *  com.hypixel.hytale.common.util.ArrayUtil
@@ -215,4 +215,3 @@ implements Resource<ChunkStore> {
     public record ListenerRegister(UUID id, Function<LogicSignal[], Optional<boolean[]>> folder, Consumer<boolean[]> callback) {
     }
 }
-

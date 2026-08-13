@@ -1,6 +1,6 @@
 /*
  * Decompiled with CFR 0.152.
- * 
+ *
  * Could not load the following classes:
  *  com.hypixel.hytale.codec.builder.BuilderCodec
  *  com.hypixel.hytale.component.Resource
@@ -52,4 +52,3 @@ implements Resource<ChunkStore> {
         }
     }
 }
-

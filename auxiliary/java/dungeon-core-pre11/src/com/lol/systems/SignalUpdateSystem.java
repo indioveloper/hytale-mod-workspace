@@ -1,6 +1,6 @@
 /*
  * Decompiled with CFR 0.152.
- * 
+ *
  * Could not load the following classes:
  *  com.hypixel.hytale.builtin.blocktick.system.ChunkBlockTickSystem$Ticking
  *  com.hypixel.hytale.component.Store
@@ -35,4 +35,3 @@ extends TickingSystem<ChunkStore> {
         ((SignalRouter)store.getResource(SignalRouter.getResourceType())).update();
     }
 }
-

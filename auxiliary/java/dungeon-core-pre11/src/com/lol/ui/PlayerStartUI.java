@@ -1,6 +1,6 @@
 /*
  * Decompiled with CFR 0.152.
- * 
+ *
  * Could not load the following classes:
  *  au.ellie.hyui.builders.PageBuilder
  *  au.ellie.hyui.builders.TextFieldBuilder
@@ -75,4 +75,3 @@ implements OpenCustomUIInteraction.CustomPageSupplier {
         return page.open(((EntityStore)componentAccessor.getExternalData()).getStore());
     }
 }
-

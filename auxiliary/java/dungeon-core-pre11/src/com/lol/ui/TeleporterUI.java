@@ -1,6 +1,6 @@
 /*
  * Decompiled with CFR 0.152.
- * 
+ *
  * Could not load the following classes:
  *  au.ellie.hyui.builders.CheckBoxBuilder
  *  au.ellie.hyui.builders.DropdownBoxBuilder
@@ -114,4 +114,3 @@ implements OpenCustomUIInteraction.CustomPageSupplier {
     record Entry(String name) {
     }
 }
-

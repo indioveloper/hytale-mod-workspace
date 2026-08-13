@@ -1,6 +1,6 @@
 /*
  * Decompiled with CFR 0.152.
- * 
+ *
  * Could not load the following classes:
  *  com.hypixel.hytale.component.system.EcsEvent
  */
@@ -16,4 +16,3 @@ extends EcsEvent {
         this.running = run;
     }
 }
-
