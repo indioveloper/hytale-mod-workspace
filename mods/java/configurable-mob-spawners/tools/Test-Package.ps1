@@ -16,6 +16,7 @@ $required = @(
   "gg/orbgenesis/configurablespawners/ConfigurableMobSpawnersPlugin.class"
   "gg/orbgenesis/configurablespawners/SpawnerEditorPage.class"
   "gg/orbgenesis/configurablespawners/SpawnerTickSystem.class"
+  "gg/orbgenesis/configurablespawners/SpawnerVisualState.class"
   "gg/orbgenesis/configurablespawners/SpawnerLightLevel.class"
   "gg/orbgenesis/configurablespawners/SpawnerConfigString.class"
   "gg/orbgenesis/configurablespawners/SpawnerAttitudeSystem.class"
@@ -24,6 +25,8 @@ $required = @(
   "Common/UI/Custom/Hud/ReturnToHubButton.ui"
   "Common/UI/Custom/Pages/ConfigurableSpawners/SpawnerEditor.ui"
   "Common/Blocks/OrbGenesis/Configurable_Mob_Spawner.blockymodel"
+  "Common/Items/OrbGenesis/Configurable_Mob_Spawner_Texture.png"
+  "Common/Items/OrbGenesis/Configurable_Mob_Spawner_Texture_Off.png"
   "Server/Item/Items/OrbGenesis/OrbGenesis_Configurable_Mob_Spawner.json"
   "Server/Languages/en-US/server.lang"
   "Server/Languages/es-ES/server.lang"
@@ -87,6 +90,19 @@ if ($asset.BlockType.Interactions.Use.Interactions[0].Page.Id -ne "OrbGenesis_Co
 }
 if ($asset.BlockType.DrawType -ne "Model" -or -not $asset.BlockType.CustomModel) {
   throw "Spawner block must use its custom model."
+}
+if ($asset.BlockType.BlockSoundSetId -ne "Metal" -or
+    $asset.BlockType.BlockParticleSetId -ne "Metal" -or
+    $asset.BlockType.PhysicalMaterialId -ne "Metal") {
+  throw "Spawner block must use the metal impact material, sound and particles."
+}
+if ($asset.BlockType.State.Definitions.Off.CustomModelTexture[0].Texture -ne
+    "Items/OrbGenesis/Configurable_Mob_Spawner_Texture_Off.png") {
+  throw "Disabled spawners must use the red texture variant."
+}
+if ($asset.BlockType.State.Definitions.On.CustomModelTexture[0].Texture -ne
+    "Items/OrbGenesis/Configurable_Mob_Spawner_Texture.png") {
+  throw "Enabled spawners must use the cyan texture variant."
 }
 
 $uiPath = Join-Path $PSScriptRoot "..\assets\Common\UI\Custom\Pages\ConfigurableSpawners\SpawnerEditor.ui"

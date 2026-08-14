@@ -60,6 +60,7 @@ final class SpawnerTickSystem extends EntityTickingSystem<ChunkStore> {
     Ref<ChunkStore> blockRef = archetypeChunk.getReferenceTo(index);
     var blockPosition = SpawnerBlockHelper.getPosition(blockRef, store);
     if (blockPosition == null) return;
+    if (SpawnerVisualState.synchronize(world, blockPosition, config.enabled)) return;
     Vector3d center = new Vector3d(blockPosition).add(0.5, 1.0, 0.5);
 
     config.maintenanceSeconds += dt;

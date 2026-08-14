@@ -22,6 +22,7 @@ Assets.zip
 **/mob-preview.generated.js
 **/mob-previews.generated/
 logs/
+telemetry/
 backup/
 backups/
 **/backup-*/
