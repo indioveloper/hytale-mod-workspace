@@ -15,19 +15,19 @@
     "CustomModel": "Blocks/OrbGenesis/Configurable_Mob_Spawner.blockymodel",
     "CustomModelTexture": [
       {
-        "Texture": "Items/NPC_Spawner_Block_Texture.png",
+        "Texture": "Items/OrbGenesis/Configurable_Mob_Spawner_Texture.png",
         "Weight": 1
       }
     ],
-    "Group": "Stone",
+    "Group": "Metal",
     "Gathering": {
       "Breaking": {
         "GatherType": "Rocks"
       }
     },
-    "BlockParticleSetId": "Stone",
-    "BlockSoundSetId": "Stone",
-    "PhysicalMaterialId": "Stone",
+    "BlockParticleSetId": "Metal",
+    "BlockSoundSetId": "Metal",
+    "PhysicalMaterialId": "Metal",
     "BlockEntity": {
       "Components": {
         "OrbGenesis_ConfigurableMobSpawner": {}
@@ -45,8 +45,28 @@
         ]
       }
     },
-    "ParticleColor": "#4f5968",
-    "TextureComputedColor": "#4f5968"
+    "State": {
+      "Definitions": {
+        "Off": {
+          "CustomModelTexture": [
+            {
+              "Texture": "Items/OrbGenesis/Configurable_Mob_Spawner_Texture_Off.png",
+              "Weight": 1
+            }
+          ]
+        },
+        "On": {
+          "CustomModelTexture": [
+            {
+              "Texture": "Items/OrbGenesis/Configurable_Mob_Spawner_Texture.png",
+              "Weight": 1
+            }
+          ]
+        }
+      }
+    },
+    "ParticleColor": "#26353d",
+    "TextureComputedColor": "#0db6c1"
   },
-  "ItemSoundSetId": "ISS_Blocks_Stone"
+  "ItemSoundSetId": "ISS_Items_Metal"
 }

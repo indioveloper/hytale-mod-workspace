@@ -139,10 +139,10 @@ public final class CreativeToolRestrictionManager {
     PermissionProvider provider = permissions.getFirstPermissionProvider();
     Set<String> existing = provider.getUserPermissions(playerId);
     Set<String> required = new HashSet<>();
-    required.add("-" + HytalePermissions.BUILDER_TOOLS_EDITOR);
+    required.add("-" + HytalePermissions.BUILDER_TOOLS_EDITOR.getId());
     required.add("-" + HytalePermissions.toolPermission("*"));
-    required.add(HytalePermissions.EDITOR_BRUSH_USE);
-    required.add(HytalePermissions.EDITOR_BRUSH_CONFIG);
+    required.add(HytalePermissions.EDITOR_BRUSH_USE.getId());
+    required.add(HytalePermissions.EDITOR_BRUSH_CONFIG.getId());
     for (String toolId : ALLOWED_TOOL_IDS) {
       required.add(HytalePermissions.toolPermission(toolId));
     }

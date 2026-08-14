@@ -1,7 +1,7 @@
 {
   "Group": "OrbGenesis",
   "Name": "Build Battle",
-  "Version": "0.2.2",
+  "Version": "0.2.3",
   "Description": "Adds Build Battle theme suggestions and plot-safe creative tool restrictions.",
   "Authors": [
     {

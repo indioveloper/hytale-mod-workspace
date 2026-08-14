@@ -8,8 +8,8 @@ Actualizado el 2026-07-31 tras la consolidacion de Trigger Volumes.
 
 | Ruta en el monorepo | Origen local | Estado |
 | --- | --- | --- |
-| `mods/java/more-triggers` | Utilidades activas y antiguo `trigger-execute-command` | Activo/prototipo; v1.9.1; integra `ExecuteCommand`, la regla Always Active `NoMove` y un pool seguro de items aleatorios. |
-| `mods/java/entity-motion-triggers` | Extraido desde `mods/java/player-trigger-tags` | Activo/prototipo; v1.3.0; agrupa creacion, conversion, movimiento, colision y particulas ancladas. |
+| `mods/java/more-triggers` | Utilidades activas y antiguo `trigger-execute-command` | Activo/prototipo; v1.9.2; integra `ExecuteCommand`, la regla Always Active `NoMove` y un pool seguro de items aleatorios. |
+| `mods/java/entity-motion-triggers` | Extraido desde `mods/java/player-trigger-tags` | Activo/prototipo; v1.3.1; agrupa creacion, conversion, movimiento, colision y particulas ancladas. |
 | `mods/java/particle-shape-vfx` | Spin-off de las pruebas VFX de `mods/asset-packs/mechanisms` | Activo/prototipo; v0.1.0; crea cubos, superficies esfericas y lineas de particulas con posiciones exactas. |
 | `mods/java/deprecated/player-entity-tags` | `workspace/trigger-volumes-extensions`; funciones utiles de `player-triggers-src` y `Downloads/Player_Triggers-1_3_2-source` revisadas | Deprecated; conserva `ModifyPlayerTag`, `PlayerTagCondition` y datos legacy. |
 | `mods/java/deprecated/trigger-execute-command-standalone` | `Desktop/mods/trigger execute command mod` | Deprecated; sustituido por More Triggers 1.6.0. |

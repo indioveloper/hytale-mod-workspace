@@ -1,11 +1,18 @@
 {
   "Group": "Raynor",
   "Name": "Nexus Siege Props",
-  "Authors": [],
+  "Version": "1.0.0",
+  "Description": "Reusable props and assets for Nexus Siege maps.",
+  "Authors": [
+    {
+      "Name": "Raynor"
+    }
+  ],
+  "ServerVersion": ">=0.6.0-pre <0.7.0",
   "Dependencies": {},
   "OptionalDependencies": {},
   "LoadBefore": {},
   "DisabledByDefault": false,
-  "IncludesAssetPack": false,
+  "IncludesAssetPack": true,
   "SubPlugins": []
 }

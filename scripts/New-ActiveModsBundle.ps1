@@ -6,7 +6,7 @@ $ErrorActionPreference = "Stop"
 $repo = (Resolve-Path -LiteralPath (Join-Path $PSScriptRoot "..")).Path
 New-Item -ItemType Directory -Path $OutputDirectory -Force | Out-Null
 $stamp = Get-Date -Format "yyyyMMdd-HHmmss"
-$zipPath = Join-Path $OutputDirectory "OrbGenesis_5_Mods_Source_Jars_Hytale_0.6.0-pre.11_$stamp.zip"
+$zipPath = Join-Path $OutputDirectory "OrbGenesis_7_Mods_Source_Jars_Hytale_0.6.0-pre.12_$stamp.zip"
 
 Add-Type -AssemblyName System.IO.Compression
 Add-Type -AssemblyName System.IO.Compression.FileSystem
@@ -31,39 +31,45 @@ try {
   }
 
   $projects = @(
-    "more-triggers"
-    "entity-motion-triggers"
-    "particle-shape-vfx"
-    "scoreboards"
-    "build-battle"
+    @{ Name = "more-triggers"; Path = "mods\java\more-triggers" }
+    @{ Name = "entity-motion-triggers"; Path = "mods\java\entity-motion-triggers" }
+    @{ Name = "particle-shape-vfx"; Path = "mods\java\particle-shape-vfx" }
+    @{ Name = "scoreboards"; Path = "mods\java\scoreboards" }
+    @{ Name = "build-battle"; Path = "mods\java\build-battle" }
+    @{ Name = "configurable-mob-spawners"; Path = "mods\java\configurable-mob-spawners" }
+    @{ Name = "raynor-npcs"; Path = "mods\asset-packs\raynor-npcs" }
   )
   foreach ($project in $projects) {
-    $projectRoot = Join-Path $repo "mods\java\$project"
+    $projectRoot = Join-Path $repo $project.Path
     Get-ChildItem -LiteralPath $projectRoot -Recurse -File |
         Where-Object {
           $relative = $_.FullName.Substring($projectRoot.Length).TrimStart("\")
           $relative -notmatch '(^|\\)(\.build|build|dist|target)(\\|$)' -and
+              $relative -notmatch '(^|\\)(item-previews\.generated|mob-previews\.generated)(\\|$)' -and
+              $_.Name -notin "asset-ids.generated.js", "mob-preview.generated.js" -and
               $_.Extension -notin ".jar", ".class", ".zip"
         } |
         ForEach-Object {
           $relative = $_.FullName.Substring($projectRoot.Length).TrimStart("\")
-          Add-BundleFile $_.FullName "source/$project/$relative"
+          Add-BundleFile $_.FullName "source/$($project.Name)/$relative"
         }
   }
 
   $jars = @(
-    "mods\java\more-triggers\.build\dist\More_Triggers-1_9_1.jar"
-    "mods\java\entity-motion-triggers\.build\dist\Entity_Motion_Triggers-1_3_0.jar"
+    "mods\java\more-triggers\.build\dist\More_Triggers-1_9_2.jar"
+    "mods\java\entity-motion-triggers\.build\dist\Entity_Motion_Triggers-1_3_1.jar"
     "mods\java\particle-shape-vfx\.build\dist\Particle_Shape_VFX-0_1_0.jar"
     "mods\java\scoreboards\.build\dist\Scoreboards-2_0_10.jar"
-    "mods\java\build-battle\.build\dist\Build_Battle-0_2_2.jar"
+    "mods\java\build-battle\.build\dist\Build_Battle-0_2_3.jar"
+    "mods\java\configurable-mob-spawners\.build\dist\ConfigurableMobSpawners-0.4.0.jar"
+    "mods\asset-packs\raynor-npcs\.build\dist\Raynor_NPCs-1_1_0.jar"
   )
   $index = @(
     "# OrbGenesis active mods bundle"
     ""
-    "Built and tested: 2026-08-11"
-    "Hytale: 0.6.0-pre.11"
-    "Server revision: 00cf2e930ab404ea983cb709c3e0a6deb45fda7a"
+    "Built and tested: 2026-08-13"
+    "Hytale: 0.6.0-pre.12"
+    "Server revision: f57d3e0abf0c2d47a7c839cb33a88aaa7a0daed2"
     "Java: 25"
     ""
     "## JARs"
@@ -76,19 +82,10 @@ try {
     $index += "- $name  SHA-256: $hash"
   }
 
-  $hotfixSource = "C:\Users\andre\Downloads\orbgenesis-core-main\orbgenesis-core-main\common\src\main\java\com\orbgenesis\common\ui\DynamicPngAsset.java"
-  $hotfixJar = Join-Path $env:APPDATA "Hytale\data\pre-release\Saves\buildbattle2\mods\common-1.0-SNAPSHOT.jar"
-  Add-BundleFile $hotfixSource "hotfix/orb-common-pre11/source/com/orbgenesis/common/ui/DynamicPngAsset.java"
-  Add-BundleFile $hotfixJar "hotfix/orb-common-pre11/common-1.0-SNAPSHOT-patched.jar"
-  $hotfixHash = (Get-FileHash -LiteralPath $hotfixJar -Algorithm SHA256).Hash
   $index += @(
     ""
-    "## Additional pre.11 hotfix"
-    "- Fixes the dynamic PNG asset hash mismatch in orb-common."
-    "- common-1.0-SNAPSHOT-patched.jar  SHA-256: $hotfixHash"
-    ""
     "## Notes"
-    "- ExecuteCommand is included in More Triggers 1.9.1."
+    "- ExecuteCommand is included in More Triggers 1.9.2."
     "- Build outputs, logs, saves, HytaleServer.jar, and extracted vanilla assets are excluded."
     "- workspace-changes.patch records the current uncommitted repository changes."
   )

@@ -17,5 +17,5 @@ Origen:
 - `mods/asset-packs/visible-barrier-block`
 - `mods/asset-packs/ghost-outline-blocks`
 
-Estado: pack orientado a pre-release 0.6.x. Requiere prueba visual en 0.6.8
+Estado: pack validado estáticamente para `0.6.0-pre.12`. Requiere prueba visual
 para confirmar iconos, texturas e IDs de item.

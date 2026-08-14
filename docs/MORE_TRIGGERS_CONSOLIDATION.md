@@ -1,6 +1,7 @@
 # Consolidacion de More Triggers
 
-Estado final de la reorganizacion aplicada sobre Hytale pre-release 0.6.8.
+Estado final de la reorganizacion, actualizado y compilado para Hytale
+`0.6.0-pre.12`.
 
 ## Resultado
 
@@ -24,7 +25,7 @@ Los saves guardan esos IDs y un renombrado romperia Trigger Volumes existentes.
 
 ## Catalogo final por mod activo
 
-### More Triggers 1.9.1
+### More Triggers 1.9.2
 
 Efectos:
 
@@ -45,7 +46,7 @@ No registra condiciones. Tambien aporta el comando `/timer`.
 `SetPlayerGravityView` y `/gravityview` se retiraron del mod activo; el
 prototipo 1.8.x se conserva bajo `experiments/java/inverted-gravity-camera`.
 
-### Entity Motion Triggers 1.3.0
+### Entity Motion Triggers 1.3.1
 
 Efectos:
 
@@ -92,7 +93,7 @@ Condiciones:
 Sigue separado porque mantiene Objectives persistentes, assets dinamicos,
 comandos y UI propia.
 
-### Build Battle 0.2.2
+### Build Battle 0.2.3
 
 Efectos:
 
@@ -149,8 +150,8 @@ instalarse junto a More Triggers porque ambos registrarian el mismo ID.
 ## Reglas de instalacion y migracion
 
 1. Instalar un unico JAR por cada `Group:Name`.
-2. Retirar `Trigger Execute Command` antes de instalar More Triggers 1.9.1.
-3. Retirar `Player Trigger Tags` antes de instalar Entity Motion Triggers 1.3.0
+2. Retirar `Trigger Execute Command` antes de instalar More Triggers 1.9.2.
+3. Retirar `Player Trigger Tags` antes de instalar Entity Motion Triggers 1.3.1
    si el save usa `ConvertBlocksToEntities`.
 4. No instalar proyectos de `mods/java/deprecated`.
 5. No instalar proyectos de `auxiliary` salvo para reproducir expresamente el

@@ -33,6 +33,7 @@ import com.hypixel.hytale.server.core.universe.world.storage.EntityStore;
 import com.hypixel.hytale.server.npc.NPCPlugin;
 import com.hypixel.hytale.server.spawning.ISpawnableWithModel;
 import com.hypixel.hytale.server.spawning.SpawningContext;
+import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Locale;
@@ -81,10 +82,11 @@ public final class SpawnerEditorPage extends InteractiveCustomUIPage<SpawnerEdit
 
   private void populate(UICommandBuilder cmd) {
     cmd.set("#EnabledCheck.Value", draft.enabled);
-    cmd.set("#TagInput.Value", draft.tag);
+    cmd.set("#TagInput.Value", String.join(", ", draft.tags));
     cmd.set("#RoleSearchInput.Value", roleSearch);
     cmd.set("#RoleDropdown.Entries", roleEntries(roleSearch, draft.roleId));
     cmd.set("#RoleDropdown.Value", draft.roleId);
+    cmd.set("#MobNameInput.Value", draft.mobName);
     cmd.set("#CadenceMinInput.Value", Double.toString(draft.cadenceMinSeconds));
     cmd.set("#CadenceMaxInput.Value", Double.toString(draft.cadenceMaxSeconds));
     cmd.set("#CountMinInput.Value", Integer.toString(draft.spawnCountMin));
@@ -99,9 +101,6 @@ public final class SpawnerEditorPage extends InteractiveCustomUIPage<SpawnerEdit
     cmd.set("#HeldItemInput.Value", draft.heldItemId);
     cmd.set("#AggressionDropdown.Value", draft.aggressionMode.name());
     cmd.set("#LootModeDropdown.Value", draft.lootMode.name());
-    boolean armorSupported = supportsArmor(draft.roleId);
-    cmd.set("#ArmorGroup.Visible", armorSupported);
-    cmd.set("#CustomArmorCheck.Value", armorSupported && draft.customArmor);
     cmd.set("#ArmorHeadInput.Value", draft.armorHeadId);
     cmd.set("#ArmorChestInput.Value", draft.armorChestId);
     cmd.set("#ArmorHandsInput.Value", draft.armorHandsId);
@@ -138,6 +137,7 @@ public final class SpawnerEditorPage extends InteractiveCustomUIPage<SpawnerEdit
         .append(PageData.ENABLED, "#EnabledCheck.Value")
         .append(PageData.TAG, "#TagInput.Value")
         .append(PageData.ROLE, "#RoleDropdown.Value")
+        .append(PageData.MOB_NAME, "#MobNameInput.Value")
         .append(PageData.CADENCE_MIN, "#CadenceMinInput.Value")
         .append(PageData.CADENCE_MAX, "#CadenceMaxInput.Value")
         .append(PageData.COUNT_MIN, "#CountMinInput.Value")
@@ -151,7 +151,6 @@ public final class SpawnerEditorPage extends InteractiveCustomUIPage<SpawnerEdit
         .append(PageData.HELD_ITEM, "#HeldItemInput.Value")
         .append(PageData.AGGRESSION, "#AggressionDropdown.Value")
         .append(PageData.LOOT_MODE, "#LootModeDropdown.Value")
-        .append(PageData.CUSTOM_ARMOR, "#CustomArmorCheck.Value")
         .append(PageData.ARMOR_HEAD, "#ArmorHeadInput.Value")
         .append(PageData.ARMOR_CHEST, "#ArmorChestInput.Value")
         .append(PageData.ARMOR_HANDS, "#ArmorHandsInput.Value")
@@ -182,11 +181,6 @@ public final class SpawnerEditorPage extends InteractiveCustomUIPage<SpawnerEdit
         String role = text(data.role);
         if (!role.isBlank() && NPCPlugin.get().getRoleTemplateNames(true).contains(role)) {
           draft.roleId = role;
-          draft.customArmor = draft.customArmor && supportsArmor(role);
-          UICommandBuilder cmd = new UICommandBuilder();
-          cmd.set("#ArmorGroup.Visible", supportsArmor(role));
-          cmd.set("#CustomArmorCheck.Value", draft.customArmor);
-          sendUpdate(cmd, false);
           updatePreview(ref, store, role);
         }
       }
@@ -248,7 +242,9 @@ public final class SpawnerEditorPage extends InteractiveCustomUIPage<SpawnerEdit
     try {
       draft.enabled = data.enabled == null || data.enabled;
       draft.tag = text(data.tag);
+      draft.tags = splitTags(draft.tag);
       draft.roleId = text(data.role);
+      draft.mobName = text(data.mobName);
       draft.cadenceMinSeconds = number(data.cadenceMin);
       draft.cadenceMaxSeconds = number(data.cadenceMax);
       draft.spawnCountMin = integer(data.countMin);
@@ -263,11 +259,12 @@ public final class SpawnerEditorPage extends InteractiveCustomUIPage<SpawnerEdit
       draft.heldItemId = text(data.heldItem);
       draft.aggressionMode = AggressionMode.valueOf(text(data.aggression));
       draft.lootMode = LootMode.valueOf(text(data.lootMode));
-      draft.customArmor = supportsArmor(draft.roleId) && Boolean.TRUE.equals(data.customArmor);
       draft.armorHeadId = text(data.armorHead);
       draft.armorChestId = text(data.armorChest);
       draft.armorHandsId = text(data.armorHands);
       draft.armorLegsId = text(data.armorLegs);
+      draft.customArmor = !draft.armorHeadId.isBlank() || !draft.armorChestId.isBlank()
+          || !draft.armorHandsId.isBlank() || !draft.armorLegsId.isBlank();
       for (int i = 0; i < SpawnerLootEntry.MAX_ENTRIES; i++) {
         draft.lootEntries[i].set(text(data.lootItem[i]), integer(data.lootMin[i]),
             integer(data.lootMax[i]), number(data.lootChance[i]));
@@ -280,7 +277,9 @@ public final class SpawnerEditorPage extends InteractiveCustomUIPage<SpawnerEdit
   }
 
   private String validateDraft() {
-    if (!TAG_PATTERN.matcher(draft.tag).matches()) return "server.customUI.configurableSpawners.error.tag";
+    for (String tag : draft.tags) {
+      if (!TAG_PATTERN.matcher(tag).matches()) return "server.customUI.configurableSpawners.error.tag";
+    }
     if (!NPCPlugin.get().getRoleTemplateNames(true).contains(draft.roleId)) return "server.customUI.configurableSpawners.error.role";
     if (!validItem(draft.heldItemId)) return "server.customUI.configurableSpawners.error.item";
     if (draft.customArmor) {
@@ -299,14 +298,6 @@ public final class SpawnerEditorPage extends InteractiveCustomUIPage<SpawnerEdit
 
   private static boolean validItem(String itemId) {
     return itemId.isBlank() || Item.getAssetMap().getAsset(itemId) != null;
-  }
-
-  private static boolean supportsArmor(String roleId) {
-    String id = roleId == null ? "" : roleId.toLowerCase(Locale.ROOT);
-    return id.contains("skeleton") || id.contains("zombie") || id.contains("undead")
-        || id.contains("human") || id.contains("humanoid") || id.contains("outlander")
-        || id.contains("goblin") || id.contains("trork") || id.contains("feran")
-        || id.contains("kweebec") || id.contains("scar");
   }
 
   private void updatePreview(Ref<EntityStore> player, Store<EntityStore> store, String roleId) {
@@ -378,6 +369,10 @@ public final class SpawnerEditorPage extends InteractiveCustomUIPage<SpawnerEdit
   }
 
   private static String text(String value) { return value == null ? "" : value.trim(); }
+  private static String[] splitTags(String value) {
+    return Arrays.stream(text(value).split(","))
+        .map(String::trim).filter(tag -> !tag.isEmpty()).distinct().toArray(String[]::new);
+  }
   private static double number(String value) { return Double.parseDouble(text(value)); }
   private static int integer(String value) { return Integer.parseInt(text(value)); }
 
@@ -388,6 +383,7 @@ public final class SpawnerEditorPage extends InteractiveCustomUIPage<SpawnerEdit
     static final String ENABLED = "@Enabled";
     static final String TAG = "@Tag";
     static final String ROLE = "@Role";
+    static final String MOB_NAME = "@MobName";
     static final String CADENCE_MIN = "@CadenceMin";
     static final String CADENCE_MAX = "@CadenceMax";
     static final String COUNT_MIN = "@CountMin";
@@ -401,7 +397,6 @@ public final class SpawnerEditorPage extends InteractiveCustomUIPage<SpawnerEdit
     static final String HELD_ITEM = "@HeldItem";
     static final String AGGRESSION = "@Aggression";
     static final String LOOT_MODE = "@LootMode";
-    static final String CUSTOM_ARMOR = "@CustomArmor";
     static final String ARMOR_HEAD = "@ArmorHead";
     static final String ARMOR_CHEST = "@ArmorChest";
     static final String ARMOR_HANDS = "@ArmorHands";
@@ -419,6 +414,7 @@ public final class SpawnerEditorPage extends InteractiveCustomUIPage<SpawnerEdit
         .append(new KeyedCodec<>(ENABLED, Codec.BOOLEAN, false), (d, v) -> d.enabled = v, d -> d.enabled).add()
         .append(new KeyedCodec<>(TAG, Codec.STRING, false), (d, v) -> d.tag = v, d -> d.tag).add()
         .append(new KeyedCodec<>(ROLE, Codec.STRING, false), (d, v) -> d.role = v, d -> d.role).add()
+        .append(new KeyedCodec<>(MOB_NAME, Codec.STRING, false), (d, v) -> d.mobName = v, d -> d.mobName).add()
         .append(new KeyedCodec<>(CADENCE_MIN, Codec.STRING, false), (d, v) -> d.cadenceMin = v, d -> d.cadenceMin).add()
         .append(new KeyedCodec<>(CADENCE_MAX, Codec.STRING, false), (d, v) -> d.cadenceMax = v, d -> d.cadenceMax).add()
         .append(new KeyedCodec<>(COUNT_MIN, Codec.STRING, false), (d, v) -> d.countMin = v, d -> d.countMin).add()
@@ -432,7 +428,6 @@ public final class SpawnerEditorPage extends InteractiveCustomUIPage<SpawnerEdit
         .append(new KeyedCodec<>(HELD_ITEM, Codec.STRING, false), (d, v) -> d.heldItem = v, d -> d.heldItem).add()
         .append(new KeyedCodec<>(AGGRESSION, Codec.STRING, false), (d, v) -> d.aggression = v, d -> d.aggression).add()
         .append(new KeyedCodec<>(LOOT_MODE, Codec.STRING, false), (d, v) -> d.lootMode = v, d -> d.lootMode).add()
-        .append(new KeyedCodec<>(CUSTOM_ARMOR, Codec.BOOLEAN, false), (d, v) -> d.customArmor = v, d -> d.customArmor).add()
         .append(new KeyedCodec<>(ARMOR_HEAD, Codec.STRING, false), (d, v) -> d.armorHead = v, d -> d.armorHead).add()
         .append(new KeyedCodec<>(ARMOR_CHEST, Codec.STRING, false), (d, v) -> d.armorChest = v, d -> d.armorChest).add()
         .append(new KeyedCodec<>(ARMOR_HANDS, Codec.STRING, false), (d, v) -> d.armorHands = v, d -> d.armorHands).add()
@@ -459,11 +454,11 @@ public final class SpawnerEditorPage extends InteractiveCustomUIPage<SpawnerEdit
         .append(new KeyedCodec<>(lootChanceKey(4), Codec.STRING, false), (d, v) -> d.lootChance[4] = v, d -> d.lootChance[4]).add()
         .build();
 
-    String action, search, config, tag, role, cadenceMin, cadenceMax, countMin, countMax;
+    String action, search, config, tag, role, mobName, cadenceMin, cadenceMax, countMin, countMax;
     String maxAlive, activation, maxHealth, horizontal, maxLight, heldItem;
     Float scale;
     String aggression, lootMode, armorHead, armorChest, armorHands, armorLegs;
-    Boolean enabled, customArmor;
+    Boolean enabled;
     final String[] lootItem = new String[SpawnerLootEntry.MAX_ENTRIES];
     final String[] lootMin = new String[SpawnerLootEntry.MAX_ENTRIES];
     final String[] lootMax = new String[SpawnerLootEntry.MAX_ENTRIES];

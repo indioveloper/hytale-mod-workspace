@@ -1,7 +1,7 @@
 {
   "Group": "OrbGenesis",
   "Name": "Entity Motion Triggers",
-  "Version": "1.3.0",
+  "Version": "1.3.1",
   "Description": "Adds Trigger Volume effects for spawning, converting, moving and decorating entities with platform collision and attached particles.",
   "Authors": [
     {

@@ -4,22 +4,24 @@ Plugin Java independiente para Hytale pre-release que añade un bloque sólido y
 minable en aventura capaz de generar oleadas de NPC. La configuración se guarda
 en la entidad del bloque y se edita interactuando con él en creativo.
 
-## Versión 0.3.0
+## Versión 0.4.0
 
 - selector limitado a roles NPC generables, con búsqueda y previsualización temporal del modelo 3D;
+- nombre visible opcional y persistente para los NPC generados;
 - cadencia, cantidad por oleada, máximo de mobs vivos y radio de activación;
 - radio horizontal de spawn con detección automática del suelo cercano;
 - luz efectiva máxima de 0 a 15, incluyendo cielo directo: cualquier valor igual o inferior permite el spawn;
 - vida máxima personalizada (`0` conserva la vida original del rol);
 - escala del mob entre `0,1x` y `5,0x`, reflejada también en la preview;
 - objeto opcional en la mano y actitud original, hostil, pacífica o neutral;
-- armadura personalizada por cuatro ranuras para roles humanoides compatibles;
+- armadura personalizada por cuatro ranuras: sus propiedades se aplican a todos
+  los mobs, aunque solo algunos modelos puedan representarla visualmente;
 - loot estándar, ninguno, suma o sustitución y cinco drops visibles como filas;
 - importación de toda la configuración mediante un string portable `CMS1:`;
 - configurador web local, modelo propio del bloque y `Effect_Fire` durante
   0,75 segundos al generar una oleada;
-- tag persistente reservada para la futura recepción de señales de Trigger
-  Volumes.
+- varias tags persistentes reservadas para la futura recepción de señales de
+  Trigger Volumes.
 
 La previsualización usa el mismo mecanismo admitido por el selector NPC vanilla:
 una entidad visual temporal, no serializada, delante del jugador. El componente
@@ -33,10 +35,14 @@ un rol NPC arbitrario desde una Custom UI de servidor.
    interactúa con él.
 3. Busca y selecciona un rol, ajusta los valores y pulsa Guardar.
 4. Para preparar configuraciones fuera del juego, abre
-   `tools/web-configurator/index.html`, genera el string `CMS1:` y pégalo en el
+   `tools/web-configurator/Configurador Spawner de Mobs.html`, genera el string `CMS1:` y pégalo en el
    editor del bloque con **Importar string**.
 
-El configurador ofrece autocompletado para los IDs de objetos y solo para roles
+El configurador ofrece selectores de objetos con búsqueda diferida, categorías,
+nombres e iconos oficiales. El objeto de mano y cada ranura de armadura se
+filtran por su tipo real; los bloques se eligen aparte mediante las categorías
+de la biblioteca creativa vanilla. El loot conserva el catálogo público de
+objetos no bloque y despliega sus filas según se necesitan. La lista de mobs contiene solo roles
 realmente generables (`Generic` y `Variant` en la pre-release actual). Al
 seleccionar uno muestra sus HP basales, su miniatura oficial y su altura a escala
 frente a una referencia de jugador de 1,85 m. La comparación se actualiza al
@@ -50,10 +56,10 @@ los accesorios sobre el cuerpo en 3D. Los catálogos locales se regeneran desde
 .\tools\web-configurator\Generate-WebMobPreviews.ps1
 ```
 
-Los JavaScript y PNG de modelos y objetos se ignoran en Git: son una caché local de la
+Los JavaScript y PNG generados de modelos y objetos se ignoran en Git: son una caché local de la
 pre-release instalada y no forman parte del código fuente ni del JAR.
 
-La apariencia oscura original está en `tools/web-configurator/index.html`. La
+La apariencia oscura original está en `tools/web-configurator/Configurador Spawner de Mobs.html`. La
 variante visual clara y pastel se abre con
 `tools/web-configurator/index-light.html`; comparte exactamente los mismos
 campos, distribución, datos y lógica. El selector NPC es un autocomplete propio:
@@ -63,9 +69,10 @@ al abrirlo enseña el catálogo completo y solo filtra mientras se escribe.
 compatibilidad con bloques y strings CMS1 antiguos, pero se ignoran y se
 normalizan a 0.
 
-Los IDs de objetos son IDs de assets. Los campos vacíos no aplican un objeto. La
-armadura solo se muestra para familias humanoides conocidas y cada ID se valida
-como un asset de armadura antes de guardar.
+Los IDs de objetos son IDs de assets. Los campos vacíos no aplican un objeto.
+Cada ID de armadura se valida como un asset de armadura antes de guardar. El
+mapa del configurador simula las oleadas con la cantidad, el rango y una
+cadencia aleatoria dentro de los valores configurados.
 
 ## Compilación y pruebas
 
@@ -79,8 +86,8 @@ como un asset de armadura antes de guardar.
   -PackageRoot . `
   -AssetsRoot assets `
   -VanillaCustomUiAssetsZip "$env:APPDATA\Hytale\install\pre-release\package\game\latest\Assets.zip" `
-  -ArtifactName ConfigurableMobSpawners-0.3.0.jar
-.\tools\Test-Package.ps1 -ArchivePath .\.build\dist\ConfigurableMobSpawners-0.3.0.jar
+  -ArtifactName ConfigurableMobSpawners-0.4.0.jar
+.\tools\Test-Package.ps1 -ArchivePath .\.build\dist\ConfigurableMobSpawners-0.4.0.jar
 ```
 
 Compila siempre contra el `HytaleServer.jar` de la pre-release instalada. El
