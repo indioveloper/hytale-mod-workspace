@@ -69,6 +69,9 @@ El inventario de los mods, packs y configuraciones encontrados en las 27
 partidas de la instalacion local pre-release esta documentado en
 `docs/PRE_RELEASE_INSTALLATION_INVENTORY_2026-07-29.md`.
 
+El contexto de los antiguos PR #1, #6 y #7 y su lista de revision futura se
+conservan en `docs/FUTURE_REVIEW_LEGACY_PRS.md` dentro de esta rama.
+
 ## Preparar otro PC
 
 Requisitos:
