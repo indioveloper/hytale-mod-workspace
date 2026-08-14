@@ -1,2 +1,5 @@
-server.items.Ghost_Outline_Rock_Stone.name = Ghost Outline: Stone
-server.items.Ghost_Outline_Rock_Stone.description = Non-colliding transparent stone outline used as a locked platform preview.
+items.Ghost_Outline_Rock_Stone.name = Ghost Outline: Stone
+items.Ghost_Outline_Rock_Stone.description = Non-colliding transparent stone outline used as a locked platform preview.
+items.OrbGenesis_Tally_Marks.name = Tally Marks
+items.OrbGenesis_Tally_Marks.description = A carved wall mark. Use it again on the mark to advance from one to five.
+interactionHints.addTallyMark = Add a tally mark

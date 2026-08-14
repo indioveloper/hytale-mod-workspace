@@ -1,2 +1,5 @@
-server.items.Ghost_Outline_Rock_Stone.name = Contorno fantasma: piedra
-server.items.Ghost_Outline_Rock_Stone.description = Contorno transparente de piedra sin colision para senalar una plataforma bloqueada.
+items.Ghost_Outline_Rock_Stone.name = Contorno fantasma: piedra
+items.Ghost_Outline_Rock_Stone.description = Contorno transparente de piedra sin colision para senalar una plataforma bloqueada.
+items.OrbGenesis_Tally_Marks.name = Marcas de conteo
+items.OrbGenesis_Tally_Marks.description = Marca mural tallada. Usala de nuevo sobre la marca para avanzar del uno al cinco.
+interactionHints.addTallyMark = Anadir una raya

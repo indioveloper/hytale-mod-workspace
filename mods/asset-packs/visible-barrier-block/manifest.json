@@ -1,0 +1,15 @@
+{
+  "Group": "OrbGenesis",
+  "Name": "Visible Barrier Block",
+  "Version": "1.0.0",
+  "Description": "Adds a technical barrier block with a subtle visible texture.",
+  "Authors": [],
+  "Website": "",
+  "ServerVersion": ">=0.6.0-pre <0.7.0",
+  "Dependencies": {},
+  "OptionalDependencies": {},
+  "LoadBefore": {},
+  "DisabledByDefault": false,
+  "IncludesAssetPack": false,
+  "SubPlugins": []
+}

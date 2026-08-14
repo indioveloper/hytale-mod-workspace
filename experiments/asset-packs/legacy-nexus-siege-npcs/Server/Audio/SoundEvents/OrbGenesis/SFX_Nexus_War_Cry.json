@@ -1,0 +1,23 @@
+{
+  "Volume": 0,
+  "Pitch": 0,
+  "StartAttenuationDistance": 3,
+  "MaxDistance": 48,
+  "SpatialBlend": 0.8,
+  "MaxInstance": 4,
+  "PreventSoundInterruption": false,
+  "AudioCategory": "AudioCat_SFX",
+  "Layers": [
+    {
+      "Volume": 0,
+      "StartDelay": 0,
+      "Looping": false,
+      "Probability": 100,
+      "ProbabilityRerollDelay": 1,
+      "Files": [
+        "Sounds/OrbGenesis/nexus_war_cry.ogg"
+      ],
+      "RoundRobinHistorySize": 0
+    }
+  ]
+}

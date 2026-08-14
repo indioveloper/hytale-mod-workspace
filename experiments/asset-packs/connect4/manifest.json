@@ -1,0 +1,15 @@
+{
+  "Group": "FoxyCCA",
+  "Name": "Connect4",
+  "Version": "1.0.0",
+  "Description": "A simple Minigame of Connect4 made entirely with Trigger Volumes!",
+  "Authors": [],
+  "Website": "https://x.com/foxy_cca",
+  "ServerVersion": ">=0.6.0-pre <0.7.0",
+  "Dependencies": {},
+  "OptionalDependencies": {},
+  "LoadBefore": {},
+  "DisabledByDefault": false,
+  "IncludesAssetPack": false,
+  "SubPlugins": []
+}

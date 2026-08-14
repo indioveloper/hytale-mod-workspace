@@ -1,0 +1,47 @@
+{
+  "Type": "Generic",
+  "MaxHealth": 40,
+  "Appearance": "Player",
+  "NameTranslationKey": "nexus_siege.npc.avatar_sword_runner",
+  "DisplayNames": [
+    "Avatar Runner"
+  ],
+  "BreathesInAir": true,
+  "SpawnLockTime": 0.2,
+  "MotionControllerList": [
+    {
+      "Type": "Walk",
+      "MaxWalkSpeed": 5.5,
+      "Gravity": 10,
+      "RunThreshold": 0.3,
+      "MaxFallSpeed": 15,
+      "MaxRotationSpeed": 8,
+      "Acceleration": 12
+    }
+  ],
+  "Instructions": [
+    {
+      "Name": "FollowAssignedPathAndSwing",
+      "Sensor": {
+        "Type": "Path",
+        "PathType": "WorldPath",
+        "Path": "Nexus_Avatar_Sword_Runner_Path",
+        "Range": 128
+      },
+      "BodyMotion": {
+        "Type": "Path",
+        "Shape": "LINE",
+        "Direction": "FORWARD",
+        "StartAtNearestNode": true,
+        "NodeWidth": 0.6,
+        "MinRelSpeed": 1.0,
+        "MaxRelSpeed": 1.0,
+        "MinNodeDelay": 0,
+        "MaxNodeDelay": 0,
+        "UseNodeViewDirection": true
+      },
+      "ActionsBlocking": true,
+      "Continue": true
+    }
+  ]
+}

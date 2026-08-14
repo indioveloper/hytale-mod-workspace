@@ -65,6 +65,10 @@ camara/gravedad invertida y el handoff de sus problemas pendientes de control.
 El resultado de la consolidacion de los mods Java de Trigger Volumes esta en
 `docs/MORE_TRIGGERS_CONSOLIDATION.md`.
 
+El inventario de los mods, packs y configuraciones encontrados en las 27
+partidas de la instalacion local pre-release esta documentado en
+`docs/PRE_RELEASE_INSTALLATION_INVENTORY_2026-07-29.md`.
+
 ## Preparar otro PC
 
 Requisitos:

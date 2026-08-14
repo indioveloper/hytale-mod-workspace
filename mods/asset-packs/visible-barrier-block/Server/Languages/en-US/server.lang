@@ -1,0 +1,4 @@
+server.items.OrbGenesis_Barrier_Visible.name = Visible Barrier Block
+server.items.OrbGenesis_Barrier_Visible.description = Solid technical barrier with a faint red safety texture.
+server.items.Barrier_Visible.name = Visible Barrier Block
+server.items.Barrier_Visible.description = Solid technical barrier with a faint red safety texture.
