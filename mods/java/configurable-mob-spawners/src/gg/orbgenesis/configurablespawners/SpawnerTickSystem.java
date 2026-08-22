@@ -10,8 +10,11 @@ import com.hypixel.hytale.math.util.ChunkUtil;
 import com.hypixel.hytale.math.vector.Rotation3f;
 import com.hypixel.hytale.protocol.BlockMaterial;
 import com.hypixel.hytale.server.core.asset.type.blocktype.config.BlockType;
+import com.hypixel.hytale.server.core.Message;
+import com.hypixel.hytale.server.core.universe.PlayerRef;
 import com.hypixel.hytale.server.core.modules.block.BlockModule;
 import com.hypixel.hytale.server.core.entity.UUIDComponent;
+import com.hypixel.hytale.server.core.modules.entity.component.TransformComponent;
 import com.hypixel.hytale.server.core.modules.entity.damage.DeathComponent;
 import com.hypixel.hytale.server.core.modules.time.WorldTimeResource;
 import com.hypixel.hytale.server.core.universe.world.World;
@@ -31,6 +34,7 @@ final class SpawnerTickSystem extends EntityTickingSystem<ChunkStore> {
   private static final int GROUND_SCAN_DISTANCE = 16;
   private static final String SPAWN_PARTICLE = "Effect_Fire";
   private static final float SPAWN_PARTICLE_DURATION_SECONDS = 0.75f;
+  private static final String ELITE_PARTICLE = "Effect_Fire";
   private final Query<ChunkStore> query = Query.and(
       ConfigurableSpawnerComponent.getComponentType(),
       BlockModule.BlockStateInfo.getComponentType());
@@ -55,12 +59,13 @@ final class SpawnerTickSystem extends EntityTickingSystem<ChunkStore> {
     if (config == null || info == null) return;
 
     config.normalize();
-    config.ensureSpawnerId();
     World world = store.getExternalData().getWorld();
     Ref<ChunkStore> blockRef = archetypeChunk.getReferenceTo(index);
     var blockPosition = SpawnerBlockHelper.getPosition(blockRef, store);
     if (blockPosition == null) return;
-    if (SpawnerVisualState.synchronize(world, blockPosition, config.enabled)) return;
+    boolean configured = config.usableProfiles().length > 0;
+    if (!configured) return;
+    config.ensureSpawnerId();
     Vector3d center = new Vector3d(blockPosition).add(0.5, 1.0, 0.5);
 
     config.maintenanceSeconds += dt;
@@ -68,20 +73,15 @@ final class SpawnerTickSystem extends EntityTickingSystem<ChunkStore> {
       config.maintenanceSeconds = 0.0;
       pruneTracked(config, world);
     }
-    if (!config.enabled || config.roleId.isBlank() || !hasNearbyPlayer(world, center, config.activationRadius)) {
+    PlayerRef activator = nearestPlayer(world, center, config.activationRadius);
+    if (activator == null) {
       return;
     }
 
     config.cooldownSeconds -= dt;
     if (config.cooldownSeconds > 0.0) return;
 
-    int roleIndex = NPCPlugin.get().getIndex(config.roleId);
-    if (roleIndex < 0 || !NPCPlugin.get().getRoleTemplateNames(true).contains(config.roleId)) {
-      config.cooldownSeconds = 2.0;
-      return;
-    }
-
-    int capacity = config.maxAlive - config.trackedMobs.length;
+    int capacity = config.maxAlive - countTrackedWithinRadius(config, world, center);
     if (capacity <= 0) {
       config.cooldownSeconds = 1.0;
       return;
@@ -91,6 +91,11 @@ final class SpawnerTickSystem extends EntityTickingSystem<ChunkStore> {
     var entityStore = world.getEntityStore().getStore();
     ArrayList<UUID> tracked = new ArrayList<>(Arrays.asList(config.trackedMobs));
     for (int i = 0; i < Math.min(requested, capacity); i++) {
+      SpawnerMobProfile profile = config.selectProfile(ThreadLocalRandom.current().nextDouble());
+      if (profile == null) continue;
+      int roleIndex = NPCPlugin.get().getIndex(profile.roleId);
+      if (roleIndex < 0 || !NPCPlugin.get().getRoleTemplateNames(true).contains(profile.roleId)) continue;
+      boolean elite = profile.rollElite(ThreadLocalRandom.current());
       Vector3d position = findSpawnPosition(world, store, entityStore, center, config);
       if (position == null) continue;
       var result = NPCPlugin.get().spawnEntity(
@@ -101,11 +106,19 @@ final class SpawnerTickSystem extends EntityTickingSystem<ChunkStore> {
           null,
           (npc, holder, ignored) -> holder.addComponent(
               SpawnedBySpawnerComponent.getComponentType(),
-              new SpawnedBySpawnerComponent(config.spawnerId, config)),
+              new SpawnedBySpawnerComponent(config.spawnerId, profile, elite)),
           null);
       if (result == null) continue;
       UUIDComponent uuid = entityStore.getComponent(result.first(), UUIDComponent.getComponentType());
       if (uuid != null) tracked.add(uuid.getUuid());
+      if (elite) {
+        ParticleUtil.spawnParticleEffect(
+            ELITE_PARTICLE, new Vector3d(position).add(0.0, 1.0, 0.0),
+            0.0f, 0.0f, 0.0f, 1.35f, 2.0f, entityStore);
+        broadcast(world, "¡" + activator.getUsername() + " se enfrenta a un "
+            + profile.effectiveBaseName() + " " + profile.elitePrefix.toLowerCase(java.util.Locale.ROOT)
+            + "!");
+      }
       spawned++;
     }
     config.trackedMobs = tracked.toArray(UUID[]::new);
@@ -126,12 +139,23 @@ final class SpawnerTickSystem extends EntityTickingSystem<ChunkStore> {
     info.markNeedsSaving();
   }
 
-  private static boolean hasNearbyPlayer(World world, Vector3d center, double radius) {
+  private static PlayerRef nearestPlayer(World world, Vector3d center, double radius) {
     double radiusSquared = radius * radius;
+    PlayerRef nearest = null;
+    double nearestDistance = Double.MAX_VALUE;
     for (var player : world.getPlayerRefs()) {
-      if (player.getTransform().getPosition().distanceSquared(center) <= radiusSquared) return true;
+      double distance = player.getTransform().getPosition().distanceSquared(center);
+      if (distance <= radiusSquared && distance < nearestDistance) {
+        nearest = player;
+        nearestDistance = distance;
+      }
     }
-    return false;
+    return nearest;
+  }
+
+  private static void broadcast(World world, String text) {
+    Message message = Message.raw(text);
+    for (PlayerRef player : world.getPlayerRefs()) player.sendMessage(message);
   }
 
   private static void pruneTracked(ConfigurableSpawnerComponent config, World world) {
@@ -142,6 +166,25 @@ final class SpawnerTickSystem extends EntityTickingSystem<ChunkStore> {
               && ref.getStore().getComponent(ref, DeathComponent.getComponentType()) == null;
         })
         .toArray(UUID[]::new);
+  }
+
+  private static int countTrackedWithinRadius(
+      ConfigurableSpawnerComponent config, World world, Vector3d center) {
+    double radiusSquared = config.activationRadius * config.activationRadius;
+    int count = 0;
+    for (UUID uuid : config.trackedMobs) {
+      Ref<EntityStore> ref = world.getEntityRef(uuid);
+      if (ref == null || !ref.isValid()
+          || ref.getStore().getComponent(ref, DeathComponent.getComponentType()) != null) {
+        continue;
+      }
+      TransformComponent transform = ref.getStore().getComponent(
+          ref, TransformComponent.getComponentType());
+      if (transform != null && transform.getPosition().distanceSquared(center) <= radiusSquared) {
+        count++;
+      }
+    }
+    return count;
   }
 
   private static Vector3d findSpawnPosition(

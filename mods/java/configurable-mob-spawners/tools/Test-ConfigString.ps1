@@ -8,6 +8,7 @@ $sources = @(
   (Join-Path $project "src\gg\orbgenesis\configurablespawners\AggressionMode.java")
   (Join-Path $project "src\gg\orbgenesis\configurablespawners\LootMode.java")
   (Join-Path $project "src\gg\orbgenesis\configurablespawners\SpawnerLootEntry.java")
+  (Join-Path $project "src\gg\orbgenesis\configurablespawners\SpawnerMobProfile.java")
   (Join-Path $project "src\gg\orbgenesis\configurablespawners\ConfigurableSpawnerComponent.java")
   (Join-Path $project "src\gg\orbgenesis\configurablespawners\SpawnerConfigString.java")
   (Join-Path $project "tools\tests\SpawnerConfigStringTest.java")

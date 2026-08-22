@@ -1,11 +1,12 @@
-items.OrbGenesis_Configurable_Mob_Spawner.name = Generador de mobs configurable
+items.OrbGenesis_Configurable_Mob_Spawner.name = Spawner Block
 items.OrbGenesis_Configurable_Mob_Spawner.description = Bloque sólido que se puede minar en aventura y genera oleadas de NPC configuradas. Interactúa en creativo para editarlo.
+configurableSpawners.elite.nearby = Enemigo élite cercano
 
 customUI.configurableSpawners.title = Generador de mobs configurable
 customUI.configurableSpawners.creativeOnly = Este generador solo se puede configurar en modo creativo.
 customUI.configurableSpawners.saved = Configuración del generador guardada.
-customUI.configurableSpawners.enabled = Activado
 customUI.configurableSpawners.roleSearch.placeholder = Buscar mob generable...
+customUI.configurableSpawners.role.unconfigured = Sin configurar
 customUI.configurableSpawners.preview.tooltip = Al seleccionar un mob se muestra su modelo 3D real delante de ti. La previsualización es temporal y nunca se guarda en el mundo.
 customUI.configurableSpawners.mobName = Nombre visible
 customUI.configurableSpawners.mobName.placeholder = Vacío = nombre vanilla
@@ -19,8 +20,10 @@ customUI.configurableSpawners.maxAlive = Máx. vivos
 customUI.configurableSpawners.activation = Radio de activación
 customUI.configurableSpawners.maxHealth = Vida personalizada (0 = rol)
 customUI.configurableSpawners.mobScale = Escala del mob
-customUI.configurableSpawners.mobScale.tooltip = Cambia el tamaño del mob generado y de la previsualización entre 0,1x y 5,0x.
-customUI.configurableSpawners.timing.tooltip = La cadencia es el retraso aleatorio entre oleadas en segundos. Máx. vivos solo cuenta los mobs vivos creados por este bloque; vida 0 conserva la del rol.
+customUI.configurableSpawners.mobScale.tooltip = Escala el modelo, la hitbox física, las zonas de impacto y la previsualización entre 0,1x y 5,0x.
+customUI.configurableSpawners.mobSpeed = Velocidad de movimiento
+customUI.configurableSpawners.mobSpeed.tooltip = Multiplica la velocidad horizontal natural del rol entre 0,0x (inmóvil) y 3,0x. Se combina con otros efectos de velocidad.
+customUI.configurableSpawners.timing.tooltip = La cadencia es el retraso aleatorio entre oleadas en segundos. Máx. vivos cuenta los mobs de este bloque que sigan dentro del radio de activación; vida 0 conserva la del rol.
 customUI.configurableSpawners.horizontal = Radio horizontal de spawn
 customUI.configurableSpawners.vertical = Radio vertical de spawn
 customUI.configurableSpawners.maxLight = Luz máxima (0-15)
@@ -57,6 +60,17 @@ customUI.configurableSpawners.importExport = String de configuración portable (
 customUI.configurableSpawners.import.placeholder = Pega una configuración CMS1: generada por el configurador externo...
 customUI.configurableSpawners.import = Importar string
 customUI.configurableSpawners.imported = Configuración importada. Revísala y pulsa Guardar para aplicarla.
+customUI.configurableSpawners.quickStep1 = 1) Accede a la web:
+customUI.configurableSpawners.quickStep2 = 2) Configura el spawner deseado.
+customUI.configurableSpawners.quickStep3 = 3) Copia el código en la web y pégalo aquí abajo.
+customUI.configurableSpawners.copyUrl = Copiar URL
+customUI.configurableSpawners.copyUrlReady = URL preparada en el chat. Pulsa Ctrl+A y Ctrl+C para copiarla.
+customUI.configurableSpawners.copyUrlChat = URL del configurador:
+customUI.configurableSpawners.quickImport = Guardar y cerrar
+customUI.configurableSpawners.quickExport = Exportar spawner
+customUI.configurableSpawners.configure = Acceder a la configuración completa (editar spawner dentro del juego)
+customUI.configurableSpawners.importedSaved = Spawner importado y guardado.
+customUI.configurableSpawners.exportReady = Exportación lista. Selecciona el campo y pulsa Ctrl+A, Ctrl+C.
 customUI.configurableSpawners.cancel = Cancelar
 customUI.configurableSpawners.save = Guardar configuración
 customUI.configurableSpawners.error.number = Falta algún valor numérico o no es válido.

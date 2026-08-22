@@ -14,7 +14,7 @@ backups, instalaciones del juego, el Hytale Shared Source ni mundos completos.
 | Proyecto | Estado | Descripcion |
 | --- | --- | --- |
 | `mods/java/build-battle` | Prototipo, v0.2.3 | Sugerencias de temas y regla Always Active para restringir herramientas creativas por plot. |
-| `mods/java/configurable-mob-spawners` | MVP ampliado, v0.4.0 | Spawner con busqueda y preview NPC, vida/escala/armadura, suelo automatico, loot por filas, CMS1, modelo y VFX. |
+| `mods/java/configurable-mob-spawners` | MVP ampliado, v0.5.1 | Spawner compuesto con perfiles ponderados y variantes élite configurables, nombre reforzado, tinte ModelVFX, aviso por proximidad, portada CMS1 guiada, preview NPC, vida, velocidad, escala física, equipo, loot y límite local de mobs vivos. |
 | `mods/java/entity-motion-triggers` | Activo/prototipo, v1.3.1 | Efectos para crear, convertir y mover entidades, aplicar colision de plataforma y anclar particulas moviles. |
 | `mods/java/more-triggers` | Activo/prototipo, v1.9.2 | Utilidades generales de Trigger Volumes, incluida la regla `NoMove`, `ExecuteCommand`, objetos aleatorios filtrados, mensajes con tags y timer circular. |
 | `mods/java/particle-shape-vfx` | Activo/prototipo, v0.1.0 | Efecto `SpawnParticleShape` para dibujar cubos, superficies esfericas y lineas de particulas con coordenadas exactas. |
@@ -104,8 +104,8 @@ ejecuta con:
 .\scripts\Test-ActiveJavaMods.ps1
 ```
 
-La ultima validacion se hizo el 13 de agosto de 2026 contra
-`0.6.0-pre.12` (`f57d3e0abf0c2d47a7c839cb33a88aaa7a0daed2`) y Java 25.
+La ultima validacion se hizo el 15 de agosto de 2026 contra
+`0.6.0-pre.12.2` (`58a14e1362808d3b1bcffc0a02a1b5b9f8bfdcb2`) y Java 25.
 
 Ejemplo para More Triggers:
 

@@ -7,9 +7,9 @@ de verdad.
 
 ## Estado de referencia
 
-- Fecha de la ultima validacion: 2026-08-11.
-- Runtime de trabajo: Hytale pre-release `0.6.0-pre.11`, revision
-  `00cf2e930ab404ea983cb709c3e0a6deb45fda7a`.
+- Fecha de la ultima validacion: 2026-08-15.
+- Runtime de trabajo: Hytale pre-release `0.6.0-pre.12.2`, revision
+  `58a14e1362808d3b1bcffc0a02a1b5b9f8bfdcb2`.
 - Referencia de API: `HypixelStudios/hytale-shared-source`, rama `pre-release`.
 - JDK usado en los builds recientes: Java 25.
 - Save de smoke test en el PC de origen: `0.6.8`.
@@ -30,13 +30,32 @@ de verdad.
   Objectives y scoreboards.
 - `mods/java/build-battle`, version `0.2.2`: logica independiente del modo de
   juego.
-- `mods/java/configurable-mob-spawners`, version `0.3.0`: bloque solido minable
-  con busqueda y preview NPC, vida/armadura, suelo automatico, loot por filas,
-  importacion CMS1, modelo propio y VFX. Su tag persistente queda reservada
-  para una futura integracion de senales con Trigger Volumes. Su artefacto hidrata
+- `mods/java/configurable-mob-spawners`, version `0.5.1`: bloque solido minable
+  visible como `Spawner Block` en el creativo normal. Abre primero una portada
+  CMS1 ligera con instrucciones, `Guardar y cerrar` y cancelacion sin cambios.
+  Un bloque recien colocado no tiene rol y permanece apagado hasta guardar o
+  importar una configuracion valida; los bloques existentes conservan su rol.
+  La exportacion solo aparece en el editor completo, que carga el catalogo NPC
+  y la preview 3D bajo demanda; conserva vida/armadura, suelo automatico, loot por filas,
+  importacion CMS1, velocidad relativa y escala nativa de modelo, hitboxes y
+  controladores de movimiento, modelo propio y VFX. Su tag persistente queda reservada
+  para una futura integracion de senales con Trigger Volumes. No expone un
+  interruptor manual: genera al cumplirse proximidad, luz y cadencia. El limite
+  de mobs vivos cuenta solo los generados por ese bloque que permanezcan dentro
+  de su radio de activacion. Su artefacto hidrata
   el arbol `Common/UI/Custom` desde la `Assets.zip` usada para compilar, porque
   el cliente pre.11 pierde documentos vanilla al recibir un pack Custom UI
   parcial. Esos assets externos solo viven en `.build` y nunca se versionan.
+  Los elites usan un ModelVFX violeta oscuro propio, refuerzan su nameplate
+  despues del comportamiento NPC y muestran un Event Title al entrar a 10
+  bloques, con cooldown por jugador.
+  CMS1 admite hasta 12 perfiles ponderados por spawner. Cada perfil puede tener
+  una variante elite con probabilidad, multiplicadores, equipo y loot adicional;
+  el editor completo multiperfil vive en la web y el editor del juego conserva
+  los perfiles importados aunque solo exponga los campos basicos de Mob 1.
+  Al entrar, cada jugador recibe en el chat la guia de instalacion y el enlace
+  clicable al configurador. El boton `Copiar URL` prepara la URL en el chat para
+  copiarla, ya que una Custom UI de servidor no accede al portapapeles cliente.
 
 `Player Entity Tags`, `Chest Labels` y el antiguo `Trigger Execute Command`
 standalone se conservan bajo `mods/java/deprecated` y no deben distribuirse.
@@ -168,6 +187,10 @@ que registren los mismos IDs.
 
 ## Higiene del repositorio
 
+- La marca publica y la autoria de estos mods es `Raynor` / `Raynor Mods`.
+  `OrbGenesis` identifica colaboraciones e IDs tecnicos historicos; no renombrar
+  namespaces, paquetes ni assets persistentes hasta preparar una migracion
+  compatible y separada.
 - No versionar JARs, ZIPs, clases, outputs, logs, backups o saves directamente
   en Git. Publicar los snapshots de saves y binarios como GitHub Release
   artifacts y documentarlos bajo `snapshots/`.

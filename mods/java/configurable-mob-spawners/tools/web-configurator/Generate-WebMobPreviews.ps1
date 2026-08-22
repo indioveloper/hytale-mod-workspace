@@ -14,10 +14,13 @@ try {
   $roles = @{}
   $rolePaths = @{}
   $models = @{}
+  $interactions = @{}
   foreach ($entry in $archive.Entries) {
     $isRole = $entry.FullName.StartsWith("Server/NPC/Roles/", [StringComparison]::Ordinal)
     $isModel = $entry.FullName.StartsWith("Server/Models/", [StringComparison]::Ordinal)
-    if ((-not $isRole -and -not $isModel) -or
+    $isInteraction = $entry.FullName.StartsWith("Server/Item/Interactions/", [StringComparison]::Ordinal) -or
+      $entry.FullName.StartsWith("Server/Item/RootInteractions/", [StringComparison]::Ordinal)
+    if ((-not $isRole -and -not $isModel -and -not $isInteraction) -or
         -not $entry.FullName.EndsWith(".json", [StringComparison]::OrdinalIgnoreCase)) { continue }
     $reader = [System.IO.StreamReader]::new($entry.Open())
     try {
@@ -31,7 +34,8 @@ try {
     }
     $id = [System.IO.Path]::GetFileNameWithoutExtension($entry.Name)
     if ($isRole) { $roles[$id] = $json; $rolePaths[$id] = $entry.FullName }
-    else { $models[$id] = $json }
+    elseif ($isModel) { $models[$id] = $json }
+    else { $interactions[$id] = $json }
   }
 
   $translations = @{}
@@ -93,6 +97,170 @@ try {
       if ($compute) { return Get-ParameterValue $chain ([string]$compute.Value) }
     }
     return $null
+  }
+
+  # These graphs are shared by hundreds of public roles. Cache their direct
+  # edges and resolved damage so regenerating the catalogue does not rescan
+  # the same large JSON records for every mob.
+  $roleInteractionReferenceCache = @{}
+  $roleRoleReferenceCache = @{}
+  $interactionReferenceCache = @{}
+  $interactionDamageCache = @{}
+
+  function Get-BaseDamageValues([object]$Node) {
+    if ($null -eq $Node -or $Node -is [string] -or $Node -is [ValueType]) { return @() }
+    $values = [Collections.Generic.List[double]]::new()
+    if ($Node -is [System.Collections.IEnumerable] -and $Node -isnot [pscustomobject]) {
+      foreach ($entry in $Node) {
+        foreach ($value in @(Get-BaseDamageValues $entry)) { $values.Add([double]$value) }
+      }
+      return $values.ToArray()
+    }
+    foreach ($property in $Node.PSObject.Properties) {
+      if ($property.Name -eq "BaseDamage" -and $property.Value) {
+        foreach ($damage in $property.Value.PSObject.Properties) {
+          if ($damage.Value -is [ValueType] -and [double]$damage.Value -gt 0) {
+            $values.Add([double]$damage.Value)
+          }
+        }
+        continue
+      }
+      foreach ($value in @(Get-BaseDamageValues $property.Value)) { $values.Add([double]$value) }
+    }
+    return $values.ToArray()
+  }
+
+  function Resolve-RoleBaseAttack([string]$RoleId) {
+    $chain = Get-RoleChain $RoleId
+    foreach ($role in $chain) {
+      $values = [Collections.Generic.List[double]]::new()
+      foreach ($source in @($role.Modify._InteractionVars, $role._InteractionVars)) {
+        foreach ($value in @(Get-BaseDamageValues $source)) { $values.Add([double]$value) }
+      }
+      if ($values.Count -gt 0) {
+        return [Math]::Round(($values | Measure-Object -Minimum).Minimum, 2)
+      }
+    }
+    $interactionIds = [Collections.Generic.HashSet[string]]::new([StringComparer]::Ordinal)
+    $visitedRoles = [Collections.Generic.HashSet[string]]::new([StringComparer]::Ordinal)
+    $pendingRoles = [Collections.Generic.Queue[string]]::new()
+    $pendingRoles.Enqueue($RoleId)
+    while ($pendingRoles.Count -gt 0) {
+      $currentRoleId = $pendingRoles.Dequeue()
+      if (-not $roles.ContainsKey($currentRoleId) -or -not $visitedRoles.Add($currentRoleId)) {
+        continue
+      }
+      $currentRole = $roles[$currentRoleId]
+      foreach ($id in @(Get-RoleInteractionReferences $currentRoleId)) {
+        [void]$interactionIds.Add($id)
+      }
+      foreach ($referencedRoleId in @(Get-RoleRoleReferences $currentRoleId)) {
+        if (-not $visitedRoles.Contains($referencedRoleId)) {
+          $pendingRoles.Enqueue($referencedRoleId)
+        }
+      }
+    }
+    $resolved = [Collections.Generic.List[double]]::new()
+    foreach ($id in $interactionIds) {
+      $visited = [Collections.Generic.HashSet[string]]::new([StringComparer]::Ordinal)
+      foreach ($value in @(Get-InteractionDamageValues $id $visited)) {
+        $resolved.Add([double]$value)
+      }
+    }
+    if ($resolved.Count -gt 0) {
+      return [Math]::Round(($resolved | Measure-Object -Minimum).Minimum, 2)
+    }
+    return 0.0
+  }
+
+  function Get-ReferencedInteractionIds([object]$Node) {
+    if ($null -eq $Node -or $Node -is [ValueType]) { return @() }
+    $ids = [Collections.Generic.HashSet[string]]::new([StringComparer]::Ordinal)
+    if ($Node -is [string]) {
+      if ($interactions.ContainsKey([string]$Node)) { [void]$ids.Add([string]$Node) }
+      return @($ids)
+    }
+    if ($Node -is [System.Collections.IEnumerable] -and $Node -isnot [pscustomobject]) {
+      foreach ($entry in $Node) {
+        foreach ($id in @(Get-ReferencedInteractionIds $entry)) { [void]$ids.Add($id) }
+      }
+      return @($ids)
+    }
+    foreach ($property in $Node.PSObject.Properties) {
+      foreach ($id in @(Get-ReferencedInteractionIds $property.Value)) { [void]$ids.Add($id) }
+    }
+    return @($ids)
+  }
+
+  function Get-ReferencedRoleIds([object]$Node) {
+    if ($null -eq $Node -or $Node -is [ValueType]) { return @() }
+    $ids = [Collections.Generic.HashSet[string]]::new([StringComparer]::Ordinal)
+    if ($Node -is [string]) {
+      if ($roles.ContainsKey([string]$Node)) { [void]$ids.Add([string]$Node) }
+      return @($ids)
+    }
+    if ($Node -is [System.Collections.IEnumerable] -and $Node -isnot [pscustomobject]) {
+      foreach ($entry in $Node) {
+        foreach ($id in @(Get-ReferencedRoleIds $entry)) { [void]$ids.Add($id) }
+      }
+      return @($ids)
+    }
+    foreach ($property in $Node.PSObject.Properties) {
+      foreach ($id in @(Get-ReferencedRoleIds $property.Value)) { [void]$ids.Add($id) }
+    }
+    return @($ids)
+  }
+
+  function Get-RoleInteractionReferences([string]$RoleId) {
+    if ($roleInteractionReferenceCache.ContainsKey($RoleId)) {
+      return @($roleInteractionReferenceCache[$RoleId])
+    }
+    $result = @(Get-ReferencedInteractionIds $roles[$RoleId])
+    $roleInteractionReferenceCache[$RoleId] = $result
+    return $result
+  }
+
+  function Get-RoleRoleReferences([string]$RoleId) {
+    if ($roleRoleReferenceCache.ContainsKey($RoleId)) {
+      return @($roleRoleReferenceCache[$RoleId])
+    }
+    $result = @(Get-ReferencedRoleIds $roles[$RoleId])
+    $roleRoleReferenceCache[$RoleId] = $result
+    return $result
+  }
+
+  function Get-InteractionReferences([string]$InteractionId) {
+    if ($interactionReferenceCache.ContainsKey($InteractionId)) {
+      return @($interactionReferenceCache[$InteractionId])
+    }
+    $result = @(Get-ReferencedInteractionIds $interactions[$InteractionId])
+    $interactionReferenceCache[$InteractionId] = $result
+    return $result
+  }
+
+  function Get-InteractionDamageValues(
+      [string]$InteractionId,
+      [Collections.Generic.HashSet[string]]$Visited) {
+    if (-not $InteractionId -or -not $interactions.ContainsKey($InteractionId)) { return @() }
+    if ($interactionDamageCache.ContainsKey($InteractionId)) {
+      return @($interactionDamageCache[$InteractionId])
+    }
+    if (-not $Visited.Add($InteractionId)) { return @() }
+    $record = $interactions[$InteractionId]
+    $direct = @(Get-BaseDamageValues $record)
+    if ($direct.Count -gt 0) {
+      $interactionDamageCache[$InteractionId] = $direct
+      return $direct
+    }
+    $values = [Collections.Generic.List[double]]::new()
+    foreach ($nextId in @(Get-InteractionReferences $InteractionId)) {
+      foreach ($value in @(Get-InteractionDamageValues $nextId $Visited)) {
+        $values.Add([double]$value)
+      }
+    }
+    $result = $values.ToArray()
+    $interactionDamageCache[$InteractionId] = $result
+    return $result
   }
 
   function Resolve-ModelHeight([string]$ModelId) {
@@ -226,6 +394,7 @@ try {
       attitude = $attitude
       appearance = $appearance
       health = if ($null -ne $health) { [double]$health } else { $null }
+      attack = Resolve-RoleBaseAttack $roleId
       height = Resolve-ModelHeight $appearance
       equipment = Model-InheritsFromPlayer $appearance
       alpha = $null

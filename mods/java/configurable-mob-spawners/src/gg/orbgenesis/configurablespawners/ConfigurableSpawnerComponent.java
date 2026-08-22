@@ -27,6 +27,7 @@ public final class ConfigurableSpawnerComponent implements Component<ChunkStore>
           .append(new KeyedCodec<>("HeldItem", Codec.STRING, false), (c, v) -> c.heldItemId = v == null ? "" : v, c -> c.heldItemId).add()
           .append(new KeyedCodec<>("MaxHealth", Codec.DOUBLE, false), (c, v) -> c.maxHealth = v == null ? 0.0 : v, c -> c.maxHealth).add()
           .append(new KeyedCodec<>("MobScale", Codec.DOUBLE, false), (c, v) -> c.mobScale = v == null ? 1.0 : v, c -> c.mobScale).add()
+          .append(new KeyedCodec<>("MobSpeed", Codec.DOUBLE, false), (c, v) -> c.mobSpeed = v == null ? 1.0 : v, c -> c.mobSpeed).add()
           .append(new KeyedCodec<>("CustomArmor", Codec.BOOLEAN, false), (c, v) -> c.customArmor = v != null && v, c -> c.customArmor).add()
           .append(new KeyedCodec<>("ArmorHead", Codec.STRING, false), (c, v) -> c.armorHeadId = clean(v), c -> c.armorHeadId).add()
           .append(new KeyedCodec<>("ArmorChest", Codec.STRING, false), (c, v) -> c.armorChestId = clean(v), c -> c.armorChestId).add()
@@ -35,6 +36,7 @@ public final class ConfigurableSpawnerComponent implements Component<ChunkStore>
           .append(new KeyedCodec<>("Aggression", new EnumCodec<>(AggressionMode.class), false), (c, v) -> c.aggressionMode = v == null ? AggressionMode.ROLE_DEFAULT : v, c -> c.aggressionMode).add()
           .append(new KeyedCodec<>("LootMode", new EnumCodec<>(LootMode.class), false), (c, v) -> c.lootMode = v == null ? LootMode.DEFAULT : v, c -> c.lootMode).add()
           .append(new KeyedCodec<>("Loot", new ArrayCodec<>(SpawnerLootEntry.CODEC, SpawnerLootEntry[]::new), false), (c, v) -> c.lootEntries = copyLoot(v), c -> c.lootEntries).add()
+          .append(new KeyedCodec<>("MobProfiles", new ArrayCodec<>(SpawnerMobProfile.CODEC, SpawnerMobProfile[]::new), false), (c, v) -> c.mobProfiles = copyProfiles(v), c -> c.mobProfiles).add()
           .append(new KeyedCodec<>("CadenceMinSeconds", Codec.DOUBLE, false), (c, v) -> c.cadenceMinSeconds = v == null ? 5.0 : v, c -> c.cadenceMinSeconds).add()
           .append(new KeyedCodec<>("CadenceMaxSeconds", Codec.DOUBLE, false), (c, v) -> c.cadenceMaxSeconds = v == null ? 10.0 : v, c -> c.cadenceMaxSeconds).add()
           .append(new KeyedCodec<>("SpawnCountMin", Codec.INTEGER, false), (c, v) -> c.spawnCountMin = v == null ? 1 : v, c -> c.spawnCountMin).add()
@@ -54,11 +56,12 @@ public final class ConfigurableSpawnerComponent implements Component<ChunkStore>
   String tag = "";
   String[] tags = new String[0];
   boolean enabled = true;
-  String roleId = "Skeleton";
+  String roleId = "";
   String mobName = "";
   String heldItemId = "";
   double maxHealth;
   double mobScale = 1.0;
+  double mobSpeed = 1.0;
   boolean customArmor;
   String armorHeadId = "";
   String armorChestId = "";
@@ -67,6 +70,7 @@ public final class ConfigurableSpawnerComponent implements Component<ChunkStore>
   AggressionMode aggressionMode = AggressionMode.ROLE_DEFAULT;
   LootMode lootMode = LootMode.DEFAULT;
   SpawnerLootEntry[] lootEntries = emptyLoot();
+  SpawnerMobProfile[] mobProfiles = new SpawnerMobProfile[0];
   double cadenceMinSeconds = 5.0;
   double cadenceMaxSeconds = 10.0;
   int spawnCountMin = 1;
@@ -100,6 +104,8 @@ public final class ConfigurableSpawnerComponent implements Component<ChunkStore>
   }
 
   public void normalize() {
+    // Kept in the codec only so old saves with the former manual toggle remain readable.
+    enabled = true;
     tags = normalizeTags(tag, tags);
     tag = tags.length == 0 ? "" : tags[0];
     roleId = roleId == null ? "" : roleId.trim();
@@ -112,6 +118,7 @@ public final class ConfigurableSpawnerComponent implements Component<ChunkStore>
     armorLegsId = clean(armorLegsId);
     maxHealth = clamp(maxHealth, 0.0, 100000.0);
     mobScale = clamp(mobScale, 0.1, 5.0);
+    mobSpeed = Math.round(clamp(mobSpeed, 0.0, 3.0) * 10.0) / 10.0;
     aggressionMode = aggressionMode == null ? AggressionMode.ROLE_DEFAULT : aggressionMode;
     lootMode = lootMode == null ? LootMode.DEFAULT : lootMode;
     cadenceMinSeconds = clamp(cadenceMinSeconds, 0.25, 3600.0);
@@ -135,17 +142,25 @@ public final class ConfigurableSpawnerComponent implements Component<ChunkStore>
     cooldownSeconds = clamp(cooldownSeconds, 0.0, cadenceMaxSeconds);
     trackedMobs = trackedMobs == null ? new UUID[0] : trackedMobs;
     lootEntries = copyLoot(lootEntries);
+    if (mobProfiles == null || mobProfiles.length == 0) {
+      mobProfiles = new SpawnerMobProfile[] {profileFromLegacy()};
+    } else {
+      mobProfiles = copyProfiles(mobProfiles);
+    }
+    for (SpawnerMobProfile profile : mobProfiles) profile.normalize();
+    syncLegacyFromFirstProfile();
   }
 
   public void copyConfigurationFrom(ConfigurableSpawnerComponent source) {
     tag = source.tag;
     tags = source.tags == null ? new String[0] : Arrays.copyOf(source.tags, source.tags.length);
-    enabled = source.enabled;
+    enabled = true;
     roleId = source.roleId;
     mobName = source.mobName;
     heldItemId = source.heldItemId;
     maxHealth = source.maxHealth;
     mobScale = source.mobScale;
+    mobSpeed = source.mobSpeed;
     customArmor = source.customArmor;
     armorHeadId = source.armorHeadId;
     armorChestId = source.armorChestId;
@@ -154,6 +169,7 @@ public final class ConfigurableSpawnerComponent implements Component<ChunkStore>
     aggressionMode = source.aggressionMode;
     lootMode = source.lootMode;
     lootEntries = copyLoot(source.lootEntries);
+    mobProfiles = copyProfiles(source.mobProfiles);
     cadenceMinSeconds = source.cadenceMinSeconds;
     cadenceMaxSeconds = source.cadenceMaxSeconds;
     spawnCountMin = source.spawnCountMin;
@@ -203,6 +219,111 @@ public final class ConfigurableSpawnerComponent implements Component<ChunkStore>
       entries[i] = source[i] == null ? new SpawnerLootEntry() : source[i].copy();
     }
     return entries;
+  }
+
+  SpawnerMobProfile[] usableProfiles() {
+    return Arrays.stream(mobProfiles).filter(profile -> !profile.roleId.isBlank())
+        .toArray(SpawnerMobProfile[]::new);
+  }
+
+  SpawnerMobProfile selectProfile(double roll) {
+    SpawnerMobProfile[] usable = usableProfiles();
+    if (usable.length == 0) return null;
+    double total = Arrays.stream(usable).mapToDouble(profile -> profile.weight).sum();
+    double cursor = Math.max(0.0, Math.min(Math.nextDown(1.0), roll)) * total;
+    for (SpawnerMobProfile profile : usable) {
+      cursor -= profile.weight;
+      if (cursor < 0.0) return profile;
+    }
+    return usable[usable.length - 1];
+  }
+
+  void updateFirstProfileFromLegacy() {
+    SpawnerMobProfile first = profileFromLegacy();
+    if (mobProfiles == null || mobProfiles.length == 0) {
+      mobProfiles = new SpawnerMobProfile[] {first};
+    } else {
+      SpawnerMobProfile[] updated = copyProfiles(mobProfiles);
+      double weight = updated[0].weight;
+      boolean eliteEnabled = updated[0].eliteEnabled;
+      double eliteChance = updated[0].eliteChancePercent;
+      String elitePrefix = updated[0].elitePrefix;
+      double eliteHealth = updated[0].eliteHealthMultiplier;
+      double eliteScale = updated[0].eliteScaleMultiplier;
+      double eliteSpeed = updated[0].eliteSpeedMultiplier;
+      boolean eliteEquipment = updated[0].eliteOverrideEquipment;
+      String eliteHeld = updated[0].eliteHeldItemId;
+      String eliteHead = updated[0].eliteArmorHeadId;
+      String eliteChest = updated[0].eliteArmorChestId;
+      String eliteHands = updated[0].eliteArmorHandsId;
+      String eliteLegs = updated[0].eliteArmorLegsId;
+      SpawnerLootEntry[] eliteLoot = SpawnerMobProfile.copyLoot(updated[0].eliteLootEntries);
+      first.weight = weight;
+      first.eliteEnabled = eliteEnabled;
+      first.eliteChancePercent = eliteChance;
+      first.elitePrefix = elitePrefix;
+      first.eliteHealthMultiplier = eliteHealth;
+      first.eliteScaleMultiplier = eliteScale;
+      first.eliteSpeedMultiplier = eliteSpeed;
+      first.eliteOverrideEquipment = eliteEquipment;
+      first.eliteHeldItemId = eliteHeld;
+      first.eliteArmorHeadId = eliteHead;
+      first.eliteArmorChestId = eliteChest;
+      first.eliteArmorHandsId = eliteHands;
+      first.eliteArmorLegsId = eliteLegs;
+      first.eliteLootEntries = eliteLoot;
+      updated[0] = first;
+      mobProfiles = updated;
+    }
+  }
+
+  private SpawnerMobProfile profileFromLegacy() {
+    SpawnerMobProfile profile = new SpawnerMobProfile();
+    profile.roleId = roleId;
+    profile.mobName = mobName;
+    profile.heldItemId = heldItemId;
+    profile.maxHealth = maxHealth;
+    profile.mobScale = mobScale;
+    profile.mobSpeed = mobSpeed;
+    profile.customArmor = customArmor;
+    profile.armorHeadId = armorHeadId;
+    profile.armorChestId = armorChestId;
+    profile.armorHandsId = armorHandsId;
+    profile.armorLegsId = armorLegsId;
+    profile.aggressionMode = aggressionMode;
+    profile.lootMode = lootMode;
+    profile.lootEntries = copyLoot(lootEntries);
+    profile.normalize();
+    return profile;
+  }
+
+  private void syncLegacyFromFirstProfile() {
+    if (mobProfiles.length == 0) return;
+    SpawnerMobProfile first = mobProfiles[0];
+    roleId = first.roleId;
+    mobName = first.mobName;
+    heldItemId = first.heldItemId;
+    maxHealth = first.maxHealth;
+    mobScale = first.mobScale;
+    mobSpeed = first.mobSpeed;
+    customArmor = first.customArmor;
+    armorHeadId = first.armorHeadId;
+    armorChestId = first.armorChestId;
+    armorHandsId = first.armorHandsId;
+    armorLegsId = first.armorLegsId;
+    aggressionMode = first.aggressionMode;
+    lootMode = first.lootMode;
+    lootEntries = copyLoot(first.lootEntries);
+  }
+
+  private static SpawnerMobProfile[] copyProfiles(SpawnerMobProfile[] source) {
+    if (source == null || source.length == 0) return new SpawnerMobProfile[0];
+    int length = Math.min(source.length, SpawnerMobProfile.MAX_PROFILES);
+    SpawnerMobProfile[] copy = new SpawnerMobProfile[length];
+    for (int i = 0; i < length; i++) {
+      copy[i] = source[i] == null ? new SpawnerMobProfile() : source[i].copy();
+    }
+    return copy;
   }
 
   private static int clamp(int value, int minimum, int maximum) {

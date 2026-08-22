@@ -39,6 +39,25 @@ foreach ($suffix in $requiredSuffixes) {
   }
 }
 
+foreach ($suffix in @(
+    "quickStep1",
+    "quickStep2",
+    "quickStep3",
+    "copyUrl",
+    "copyUrlReady",
+    "copyUrlChat",
+    "quickImport",
+    "quickExport",
+    "configure",
+    "importedSaved",
+    "exportReady"
+  )) {
+  $key = "customUI.configurableSpawners.$suffix"
+  if (-not $english.ContainsKey($key) -or -not $spanish.ContainsKey($key)) {
+    throw "Missing landing page localization: $key"
+  }
+}
+
 foreach ($option in @("default", "hostile", "passive", "retaliate")) {
   $key = "customUI.configurableSpawners.aggression.$option"
   if (-not $english.ContainsKey($key) -or -not $spanish.ContainsKey($key)) {
