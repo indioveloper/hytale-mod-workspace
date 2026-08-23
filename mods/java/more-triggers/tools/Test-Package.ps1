@@ -5,8 +5,8 @@ param(
 
 $ErrorActionPreference = "Stop"
 $archive = (Resolve-Path -LiteralPath $ArchivePath).Path
-if ((Split-Path -Leaf $archive) -ne "More_Triggers-1_10_0.jar") {
-  throw "Artifact name must match version 1.10.0: $archive"
+if ((Split-Path -Leaf $archive) -ne "More_Triggers-1_10_1.jar") {
+  throw "Artifact name must match version 1.10.1: $archive"
 }
 $entries = @(jar tf $archive)
 if ($LASTEXITCODE -ne 0) {
@@ -18,6 +18,7 @@ $required = @(
   "icon-256.png"
   "gg/orbgenesis/moretriggers/MoreTriggersPlugin.class"
   "gg/orbgenesis/moretriggers/GiveRandomItemEffect.class"
+  "gg/orbgenesis/moretriggers/PasteRandomPrefabEffect.class"
   "gg/orbgenesis/moretriggers/RandomItemCandidateFilter.class"
   "gg/orbgenesis/moretriggers/ExecuteCommandEffect.class"
   "gg/orbgenesis/moretriggers/NoMoveRule.class"
@@ -61,8 +62,8 @@ try {
 if ($manifest.Group -ne "OrbGenesis" -or $manifest.Name -ne "More Triggers") {
   throw "Unexpected plugin identity in manifest.json."
 }
-if ($manifest.Version -ne "1.10.0") {
-  throw "Manifest version must be 1.10.0, found $($manifest.Version)."
+if ($manifest.Version -ne "1.10.1") {
+  throw "Manifest version must be 1.10.1, found $($manifest.Version)."
 }
 
 $frames = @($entries | Where-Object { $_ -match '^Common/UI/Custom/HUD/CircularTimer/Frames/Ring\d{2}\.png$' })
@@ -95,5 +96,9 @@ if (-not ($pluginBytecode | Select-String -SimpleMatch "ExecuteCommand")) {
 }
 if (-not ($pluginBytecode | Select-String -SimpleMatch "ControlSignalLoop")) {
   throw "MoreTriggersPlugin does not register the ControlSignalLoop effect ID."
+}
+$prefabBytecode = & javap -classpath $archive -c -p gg.orbgenesis.moretriggers.PasteRandomPrefabEffect
+if ($LASTEXITCODE -ne 0 -or -not ($prefabBytecode | Select-String -SimpleMatch 'Field yaw:Lcom/hypixel/hytale/server/core/asset/type/blocktype/config/Rotation;')) {
+  throw "PasteRandomPrefab does not expose or apply its Yaw rotation field."
 }
 Write-Output "More Triggers package check passed: $archive"

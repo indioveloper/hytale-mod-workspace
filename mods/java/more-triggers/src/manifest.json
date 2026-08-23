@@ -1,7 +1,7 @@
 {
     "Group": "OrbGenesis",
     "Name": "More Triggers",
-    "Version": "1.10.0",
+    "Version": "1.10.1",
     "Description": "Adds general-purpose Trigger Volume effects and rules, including No Move, command execution, random items, tag-aware messages, and a circular timer HUD.",
     "Authors": [
         {

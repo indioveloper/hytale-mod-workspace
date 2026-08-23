@@ -51,8 +51,8 @@ Invoke-ProjectScript "mods\java\more-triggers\tools\Test-NoMoveExceptionFilter.p
 Invoke-ProjectScript "mods\java\more-triggers\tools\Test-RandomItemCandidateFilter.ps1"
 Invoke-ProjectScript "mods\java\more-triggers\tools\Test-TimerMath.ps1"
 Invoke-ProjectScript "mods\java\more-triggers\tools\Test-SignalLoopSchedule.ps1"
-& $buildScript -ProjectPath (Join-Path $repo "mods\java\more-triggers") -SourceRoot src -PackageRoot src -ArtifactName More_Triggers-1_10_0.jar -ServerJar $ServerJar
-Invoke-ProjectScript "mods\java\more-triggers\tools\Test-Package.ps1" @{ ArchivePath = (Join-Path $repo "mods\java\more-triggers\.build\dist\More_Triggers-1_10_0.jar") }
+& $buildScript -ProjectPath (Join-Path $repo "mods\java\more-triggers") -SourceRoot src -PackageRoot src -ArtifactName More_Triggers-1_10_1.jar -ServerJar $ServerJar
+Invoke-ProjectScript "mods\java\more-triggers\tools\Test-Package.ps1" @{ ArchivePath = (Join-Path $repo "mods\java\more-triggers\.build\dist\More_Triggers-1_10_1.jar") }
 
 & $buildScript -ProjectPath (Join-Path $repo "mods\java\entity-motion-triggers") -SourceRoot src -PackageRoot src -ArtifactName Entity_Motion_Triggers-1_3_1.jar -ServerJar $ServerJar
 

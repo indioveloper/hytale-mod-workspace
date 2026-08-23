@@ -28,6 +28,13 @@ customUI.triggerVolumeEffectEditor.field.PasteRandomPrefab.Position = Posicion
 customUI.triggerVolumeEffectEditor.field.PasteRandomPrefab.Position.tooltip = Desplazamiento o posicion absoluta en bloques.
 customUI.triggerVolumeEffectEditor.field.PasteRandomPrefab.AtVolumeOrigin = Relativa al volumen
 customUI.triggerVolumeEffectEditor.field.PasteRandomPrefab.AtVolumeOrigin.tooltip = Suma Posicion como desplazamiento desde este Trigger Volume.
+customUI.triggerVolumeEffectEditor.field.PasteRandomPrefab.Yaw = Rotacion horizontal
+customUI.triggerVolumeEffectEditor.field.PasteRandomPrefab.Yaw.tooltip = Gira el prefab pegado en sentido horario alrededor del eje vertical Y. La API de pegado solo admite 0, 90, 180 y 270 grados.
+customUI.triggerVolumeEffectEditor.field.PasteRandomPrefab.Yaw.placeholder = p. ej. 90 grados
+customUI.triggerVolumeEffectEditor.field.PasteRandomPrefab.Yaw.option.None = 0 grados (orientacion original)
+customUI.triggerVolumeEffectEditor.field.PasteRandomPrefab.Yaw.option.Ninety = 90 grados en sentido horario
+customUI.triggerVolumeEffectEditor.field.PasteRandomPrefab.Yaw.option.OneEighty = 180 grados
+customUI.triggerVolumeEffectEditor.field.PasteRandomPrefab.Yaw.option.TwoSeventy = 270 grados en sentido horario
 customUI.triggerVolumeEffectEditor.field.PasteRandomPrefab.ShowParticles = Mostrar particulas
 customUI.triggerVolumeEffectEditor.field.PasteRandomPrefab.ShowParticles.tooltip = Muestra las particulas vanilla al pegar el prefab.
 

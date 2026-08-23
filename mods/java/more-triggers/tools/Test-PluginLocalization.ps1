@@ -41,6 +41,10 @@ $required = @(
   "customUI.triggerVolumeEffectEditor.field.GiveRandomItem.Quantity.placeholder"
   "customUI.triggerVolumeEffectEditor.field.GiveRandomItem.OverflowBehavior"
   "customUI.triggerVolumeEffectEditor.field.GiveRandomItem.OverflowBehavior.tooltip"
+  "customUI.triggerVolumeEffectEditor.effectType.PasteRandomPrefab"
+  "customUI.triggerVolumeEffectEditor.field.PasteRandomPrefab.Yaw"
+  "customUI.triggerVolumeEffectEditor.field.PasteRandomPrefab.Yaw.tooltip"
+  "customUI.triggerVolumeEffectEditor.field.PasteRandomPrefab.Yaw.placeholder"
   "customUI.triggerVolumeEffectEditor.effectType.SendTagMessage"
   "customUI.triggerVolumeEffectEditor.field.SendTagMessage.Message"
   "customUI.triggerVolumeEffectEditor.field.SendTagMessage.Message.tooltip"
@@ -110,6 +114,13 @@ foreach ($option in @("DROP_REMAINDER", "IGNORE_REMAINDER", "REQUIRE_FULL_STACK"
   $key = "customUI.triggerVolumeEffectEditor.field.GiveRandomItem.OverflowBehavior.option.$option"
   if (-not $english.ContainsKey($key) -or -not $spanish.ContainsKey($key)) {
     throw "Missing random item overflow option localization: $key"
+  }
+}
+
+foreach ($option in @("None", "Ninety", "OneEighty", "TwoSeventy")) {
+  $key = "customUI.triggerVolumeEffectEditor.field.PasteRandomPrefab.Yaw.option.$option"
+  if (-not $english.ContainsKey($key) -or -not $spanish.ContainsKey($key)) {
+    throw "Missing prefab yaw option localization: $key"
   }
 }
 

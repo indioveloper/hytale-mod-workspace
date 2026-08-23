@@ -28,6 +28,13 @@ customUI.triggerVolumeEffectEditor.field.PasteRandomPrefab.Position = Position
 customUI.triggerVolumeEffectEditor.field.PasteRandomPrefab.Position.tooltip = Paste offset or absolute world position in blocks.
 customUI.triggerVolumeEffectEditor.field.PasteRandomPrefab.AtVolumeOrigin = Relative to volume
 customUI.triggerVolumeEffectEditor.field.PasteRandomPrefab.AtVolumeOrigin.tooltip = Add Position as an offset from this Trigger Volume.
+customUI.triggerVolumeEffectEditor.field.PasteRandomPrefab.Yaw = Horizontal rotation
+customUI.triggerVolumeEffectEditor.field.PasteRandomPrefab.Yaw.tooltip = Rotate the pasted prefab clockwise around the vertical Y axis. Only 0, 90, 180, and 270 degrees are supported by the prefab paste API.
+customUI.triggerVolumeEffectEditor.field.PasteRandomPrefab.Yaw.placeholder = e.g. 90 degrees
+customUI.triggerVolumeEffectEditor.field.PasteRandomPrefab.Yaw.option.None = 0 degrees (original orientation)
+customUI.triggerVolumeEffectEditor.field.PasteRandomPrefab.Yaw.option.Ninety = 90 degrees clockwise
+customUI.triggerVolumeEffectEditor.field.PasteRandomPrefab.Yaw.option.OneEighty = 180 degrees
+customUI.triggerVolumeEffectEditor.field.PasteRandomPrefab.Yaw.option.TwoSeventy = 270 degrees clockwise
 customUI.triggerVolumeEffectEditor.field.PasteRandomPrefab.ShowParticles = Show particles
 customUI.triggerVolumeEffectEditor.field.PasteRandomPrefab.ShowParticles.tooltip = Show the vanilla prefab paste particles.
 

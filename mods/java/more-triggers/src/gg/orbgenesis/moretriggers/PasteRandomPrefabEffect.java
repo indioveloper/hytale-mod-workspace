@@ -72,6 +72,11 @@ public class PasteRandomPrefabEffect extends TriggerEffect {
               effect -> effect.atVolumeOrigin)
           .add()
           .append(
+              new KeyedCodec<>("Yaw", Rotation.CODEC, false),
+              (effect, value) -> effect.yaw = value,
+              effect -> effect.yaw)
+          .add()
+          .append(
               new KeyedCodec<>("ShowParticles", Codec.BOOLEAN, false),
               (effect, value) -> effect.showParticles = value,
               effect -> effect.showParticles)
@@ -86,6 +91,7 @@ public class PasteRandomPrefabEffect extends TriggerEffect {
   public boolean useWeights;
   public Vector3d position;
   public boolean atVolumeOrigin = true;
+  public Rotation yaw = Rotation.None;
   public boolean showParticles;
 
   @Override
@@ -131,7 +137,7 @@ public class PasteRandomPrefabEffect extends TriggerEffect {
           buffer.newAccess(),
           world,
           blockPosition,
-          Rotation.None,
+          yaw == null ? Rotation.None : yaw,
           new Random(),
           1,
           flags,
