@@ -9,6 +9,8 @@ en la entidad del bloque y se edita interactuando con él en creativo.
 
 ## Versión 0.5.2
 
+- portado a Hytale `0.6.0-pre.13.1`: la luz global se consulta ahora desde la
+  sección del bloque, conservando el cálculo de luz efectiva y cielo directo;
 - al aparecer un élite se emite además un estallido de partículas sobre la
   posición de spawn, como refuerzo visual independiente del `ModelVFX`;
 - el bloque spawner declara `ParticleColor` y `TextureComputedColor` propios

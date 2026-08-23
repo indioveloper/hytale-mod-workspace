@@ -107,13 +107,13 @@ if ($asset.BlockType.BlockSoundSetId -ne "Metal" -or
     $asset.BlockType.PhysicalMaterialId -ne "Metal") {
   throw "Spawner block must use the metal impact material, sound and particles."
 }
-if ($asset.BlockType.State.Definitions.Off.CustomModelTexture[0].Texture -ne
-    "Items/OrbGenesis/Configurable_Mob_Spawner_Texture_Off.png") {
-  throw "Disabled spawners must use the red texture variant."
+if ($asset.BlockType.PSObject.Properties.Name -contains "State") {
+  throw "Spawner visual state must not depend on the removed On/Off interaction states."
 }
-if ($asset.BlockType.State.Definitions.On.CustomModelTexture[0].Texture -ne
-    "Items/OrbGenesis/Configurable_Mob_Spawner_Texture.png") {
-  throw "Enabled spawners must use the cyan texture variant."
+if ($asset.BlockType.CustomModelTexture[0].Texture -ne
+    "Items/OrbGenesis/Configurable_Mob_Spawner_Texture.png" -or
+    -not $asset.BlockType.ParticleColor -or -not $asset.BlockType.TextureComputedColor) {
+  throw "Spawner block must declare its model texture and computed particle colors directly."
 }
 
 foreach ($uiName in @("SpawnerLanding.ui", "SpawnerEditor.ui")) {
@@ -189,8 +189,8 @@ if ($pageSource.Contains('EntityScaleComponent')) {
 $componentSource = Get-Content -Raw -LiteralPath (Join-Path $PSScriptRoot "..\src\gg\orbgenesis\configurablespawners\ConfigurableSpawnerComponent.java")
 $tickSource = Get-Content -Raw -LiteralPath (Join-Path $PSScriptRoot "..\src\gg\orbgenesis\configurablespawners\SpawnerTickSystem.java")
 if (-not $componentSource.Contains('String roleId = "";') -or
-    -not $tickSource.Contains('SpawnerVisualState.synchronize(world, blockPosition, configured)')) {
-  throw "New spawner blocks must remain unconfigured and visually disabled until a role is saved."
+    -not $tickSource.Contains('if (!configured) return;')) {
+  throw "New spawner blocks must remain unconfigured and inactive until a role is saved."
 }
 if ($editorUi.Contains('#EnabledCheck') -or $pageSource.Contains('PageData.ENABLED') -or
     $tickSource.Contains('!config.enabled') -or $tickSource.Contains('config.enabled && configured')) {

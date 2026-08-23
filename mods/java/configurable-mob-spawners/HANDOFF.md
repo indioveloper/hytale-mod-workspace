@@ -1,25 +1,26 @@
 # Handoff de Configurable Mob Spawners
 
-Última actualización: 2026-08-15.
+Última actualización: 2026-08-23.
 
 Este documento conserva el estado funcional observado durante las pruebas y la
 lista concreta de trabajo para la siguiente sesión. La versión actual del mod
-es `0.5.2` y se compila contra Hytale `0.6.0-pre.12.2`.
+es `0.5.2` y se compila contra Hytale `0.6.0-pre.13.1`.
 
-> Estado del build: el último JAR distribuido es `0.5.1`. Existen cambios
-> posteriores en `SpawnerTickSystem.java` y en el asset del bloque que aún no
-> se han compilado. La versión se subió a `0.5.2` para que el artefacto nuevo
-> no reutilice el nombre del anterior. Compila e instala con
-> `.\tools\Build-And-Install.ps1`.
+La migración a pre.13.1 mueve la lectura de luz desde los métodos eliminados de
+`BlockChunk` a `BlockSection.getGlobalLight()`. Se conservan las mismas
+coordenadas, el factor solar, la corrección de cielo directo mediante el mapa de
+altura y el umbral máximo configurado.
+
+> Estado del build: `0.5.2` compila y supera sus pruebas contra pre.13.1. El
+> artefacto local se genera con `.\tools\Build-And-Install.ps1`; no se versiona.
 >
 > El JAR se instala por partida, no en la carpeta global: la partida de pruebas
 > es `%APPDATA%\Hytale\data\pre-release\Saves\mod spawners\mods`. El JRE que
 > acompaña a Hytale no trae `javac`; hace falta un JDK en el PATH.
 >
-> Validación pendiente de 0.5.2: el asset del bloque ya no declara `State`
-> `On/Off`, pero `Test-Package.ps1` todavía comprueba esas texturas. Antes de
-> fusionar hay que confirmar si el cambio de color computado sustituye
-> intencionadamente ese estado o si debe recuperarse la definición visual.
+> El asset del bloque ya no declara `State` `On/Off`: el color computado y las
+> partículas propios lo sustituyen intencionadamente. `Test-Package.ps1`
+> comprueba este contrato y que un bloque sin rol permanezca inactivo.
 
 ## Implementado en esta iteración
 

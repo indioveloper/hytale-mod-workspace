@@ -56,10 +56,9 @@ de verdad.
   Al entrar, cada jugador recibe en el chat la guia de instalacion y el enlace
   clicable al configurador. El boton `Copiar URL` prepara la URL en el chat para
   copiarla, ya que una Custom UI de servidor no accede al portapapeles cliente.
-  Tras actualizar el runtime local a `0.6.0-pre.13.1`, este proyecto queda
-  pendiente de portar: `BlockChunk.getBlockLightIntensity` y `getSkyLight` ya
-  no existen. Sus pruebas de localizacion, CMS1, luz y web pasan, pero `javac`
-  se detiene en esas dos llamadas de `SpawnerTickSystem`.
+  En `0.6.0-pre.13.1`, la consulta de luz se porta a los datos globales de la
+  seccion del bloque porque `BlockChunk.getBlockLightIntensity` y `getSkyLight`
+  fueron eliminados.
 
 `Player Entity Tags`, `Chest Labels` y el antiguo `Trigger Execute Command`
 standalone se conservan bajo `mods/java/deprecated` y no deben distribuirse.

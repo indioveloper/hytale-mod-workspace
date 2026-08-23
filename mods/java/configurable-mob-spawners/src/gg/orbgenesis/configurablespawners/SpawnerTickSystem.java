@@ -207,9 +207,10 @@ final class SpawnerTickSystem extends EntityTickingSystem<ChunkStore> {
       if (chunk == null) continue;
       int y = findGroundY(chunk, x, z, (int) Math.floor(center.y));
       if (y == Integer.MIN_VALUE) continue;
+      var globalLight = chunk.getSectionAtBlockY(y).getGlobalLight();
       int light = SpawnerLightLevel.calculate(
-          chunk.getBlockLightIntensity(x, y, z),
-          chunk.getSkyLight(x, y, z),
+          globalLight.getBlockLightIntensity(x, y, z),
+          globalLight.getSkyLight(x, y, z),
           chunk.getHeight(x, z),
           y,
           sunlight);
