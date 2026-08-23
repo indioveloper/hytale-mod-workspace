@@ -5,8 +5,8 @@ param(
 
 $ErrorActionPreference = "Stop"
 $archive = (Resolve-Path -LiteralPath $ArchivePath).Path
-if ((Split-Path -Leaf $archive) -ne "More_Triggers-1_10_1.jar") {
-  throw "Artifact name must match version 1.10.1: $archive"
+if ((Split-Path -Leaf $archive) -ne "More_Triggers-1_10_2.jar") {
+  throw "Artifact name must match version 1.10.2: $archive"
 }
 $entries = @(jar tf $archive)
 if ($LASTEXITCODE -ne 0) {
@@ -62,8 +62,8 @@ try {
 if ($manifest.Group -ne "OrbGenesis" -or $manifest.Name -ne "More Triggers") {
   throw "Unexpected plugin identity in manifest.json."
 }
-if ($manifest.Version -ne "1.10.1") {
-  throw "Manifest version must be 1.10.1, found $($manifest.Version)."
+if ($manifest.Version -ne "1.10.2") {
+  throw "Manifest version must be 1.10.2, found $($manifest.Version)."
 }
 
 $frames = @($entries | Where-Object { $_ -match '^Common/UI/Custom/HUD/CircularTimer/Frames/Ring\d{2}\.png$' })
@@ -100,5 +100,13 @@ if (-not ($pluginBytecode | Select-String -SimpleMatch "ControlSignalLoop")) {
 $prefabBytecode = & javap -classpath $archive -c -p gg.orbgenesis.moretriggers.PasteRandomPrefabEffect
 if ($LASTEXITCODE -ne 0 -or -not ($prefabBytecode | Select-String -SimpleMatch 'Field yaw:Lcom/hypixel/hytale/server/core/asset/type/blocktype/config/Rotation;')) {
   throw "PasteRandomPrefab does not expose or apply its Yaw rotation field."
+}
+if (-not ($prefabBytecode | Select-String -SimpleMatch 'extends com.hypixel.hytale.builtin.triggervolumes.effect.builtin.PastePrefabEffect')) {
+  throw "PasteRandomPrefab must extend vanilla PastePrefabEffect so the inspector exposes Show/Hide Preview."
+}
+foreach ($previewMethod in @('getPrefabRelPath', 'getPosition', 'getOrigin', 'getRotation')) {
+  if (-not ($prefabBytecode | Select-String -SimpleMatch $previewMethod)) {
+    throw "PasteRandomPrefab does not expose vanilla preview method: $previewMethod"
+  }
 }
 Write-Output "More Triggers package check passed: $archive"

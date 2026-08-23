@@ -1,6 +1,6 @@
 # More Triggers
 
-Coleccion de utilidades generales para Trigger Volumes. La version `1.10.1`
+Coleccion de utilidades generales para Trigger Volumes. La version `1.10.2`
 esta validada con Hytale `0.6.0-pre.13.1` e integra el antiguo mod Trigger
 Execute Command.
 
@@ -9,7 +9,7 @@ Execute Command.
 | Nombre in-game (es-ES) | ID interno | Funcion |
 | --- | --- | --- |
 | Entregar objeto al azar | `GiveRandomItem` | Elige uniformemente un bloque, mueble, banco, arma o herramienta aptos para juego. |
-| Pegar prefab al azar | `PasteRandomPrefab` | Elige y pega un prefab, con pesos opcionales. |
+| Pegar prefab al azar | `PasteRandomPrefab` | Elige y pega un prefab, con pesos opcionales, rotacion y preview. |
 | Enviar mensaje con tags | `SendTagMessage` | Envia mensajes sustituyendo marcadores `{tag}`. |
 | Mostrar titulo de evento con tags | `ShowTagEventTitle` | Muestra Event Titles sustituyendo marcadores `{tag}`. |
 | Controlar timer circular | `ControlTimer` | Inicia, pausa, muestra, oculta o cancela el timer circular. |
@@ -62,6 +62,14 @@ cuatro opciones. Los efectos guardados antes de 1.10.1 no contienen `Yaw`; al
 cargarlos se usa `None`, por lo que mantienen exactamente su orientacion.
 `PrefabUtil.paste` en Hytale 0.6.0-pre.13.1 solo expone esta rotacion cardinal
 horizontal; pitch, roll y angulos arbitrarios no estan soportados.
+
+El editor muestra tambien el boton vanilla `Mostrar preview` / `Ocultar
+preview`. La preview usa el primer prefab configurado que pueda resolverse
+(`Prefab1`, despues `Prefab2` y finalmente la lista adicional), para no cambiar
+aleatoriamente mientras se edita. Esto solo afecta a la ayuda visual: al
+ejecutarse, el efecto sigue seleccionando entre todos los prefabs y respetando
+sus pesos. La posicion, el modo relativo/absoluto y la rotacion horizontal se
+exponen al inspector vanilla para colocar correctamente la preview.
 
 ## Mensajes y titulos con tags
 
@@ -157,13 +165,13 @@ registran ni se empaquetan con More Triggers.
   -ProjectPath .\mods\java\more-triggers `
   -SourceRoot src `
   -PackageRoot src `
-  -ArtifactName More_Triggers-1_10_1.jar
+  -ArtifactName More_Triggers-1_10_2.jar
 
 .\mods\java\more-triggers\tools\Test-TimerMath.ps1
 .\mods\java\more-triggers\tools\Test-SignalLoopSchedule.ps1
 .\mods\java\more-triggers\tools\Test-RandomItemCandidateFilter.ps1
 .\mods\java\more-triggers\tools\Test-Package.ps1 `
-  -ArchivePath .\mods\java\more-triggers\.build\dist\More_Triggers-1_10_1.jar
+  -ArchivePath .\mods\java\more-triggers\.build\dist\More_Triggers-1_10_2.jar
 ```
 
 El contorno del timer usa 61 frames PNG porque la UI 0.6.x no expone un

@@ -16,7 +16,7 @@ backups, instalaciones del juego, el Hytale Shared Source ni mundos completos.
 | `mods/java/build-battle` | Prototipo, v0.2.3 | Sugerencias de temas y regla Always Active para restringir herramientas creativas por plot. |
 | `mods/java/configurable-mob-spawners` | MVP ampliado, v0.5.1 | Spawner compuesto con perfiles ponderados y variantes élite configurables, nombre reforzado, tinte ModelVFX, aviso por proximidad, portada CMS1 guiada, preview NPC, vida, velocidad, escala física, equipo, loot y límite local de mobs vivos. |
 | `mods/java/entity-motion-triggers` | Activo/prototipo, v1.3.1 | Efectos para crear, convertir y mover entidades, aplicar colision de plataforma y anclar particulas moviles. |
-| `mods/java/more-triggers` | Activo/prototipo, v1.10.1 | Utilidades generales de Trigger Volumes, incluida la regla `NoMove`, `ExecuteCommand`, objetos aleatorios filtrados, prefabs aleatorios rotables, mensajes con tags, timer circular y senales repetitivas persistentes. |
+| `mods/java/more-triggers` | Activo/prototipo, v1.10.2 | Utilidades generales de Trigger Volumes, incluida la regla `NoMove`, `ExecuteCommand`, objetos aleatorios filtrados, prefabs aleatorios rotables con preview, mensajes con tags, timer circular y senales repetitivas persistentes. |
 | `mods/java/particle-shape-vfx` | Activo/prototipo, v0.1.0 | Efecto `SpawnParticleShape` para dibujar cubos, superficies esfericas y lineas de particulas con coordenadas exactas. |
 | `mods/java/scoreboards` | Prototipo, v2.0.10 | Objectives editables y persistentes con comandos, UI nativa y control desde Trigger Volumes; compila en pre.12 y requiere smoke test en juego. |
 
@@ -107,7 +107,7 @@ ejecuta con:
 La ultima validacion completa se hizo el 15 de agosto de 2026 contra
 `0.6.0-pre.12.2` (`58a14e1362808d3b1bcffc0a02a1b5b9f8bfdcb2`) y Java 25.
 El runtime local actual es `0.6.0-pre.13.1`
-(`f0a85f20ac60b34232fa6b42d3585850bd959dde`); More Triggers 1.10.1 ya se
+(`f0a85f20ac60b34232fa6b42d3585850bd959dde`); More Triggers 1.10.2 ya se
 compila y valida contra esta version.
 
 Ejemplo para More Triggers:
@@ -117,7 +117,7 @@ Ejemplo para More Triggers:
   -ProjectPath .\mods\java\more-triggers `
   -SourceRoot src `
   -PackageRoot src `
-  -ArtifactName More_Triggers-1_10_1.jar
+  -ArtifactName More_Triggers-1_10_2.jar
 ```
 
 Ejemplo para Entity Motion Triggers:

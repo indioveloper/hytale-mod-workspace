@@ -1,7 +1,10 @@
 package gg.orbgenesis.moretriggers;
 
+import com.hypixel.hytale.builtin.triggervolumes.YawRotation;
+import com.hypixel.hytale.builtin.triggervolumes.effect.EffectOrigin;
 import com.hypixel.hytale.builtin.triggervolumes.effect.TriggerContext;
 import com.hypixel.hytale.builtin.triggervolumes.effect.TriggerEffect;
+import com.hypixel.hytale.builtin.triggervolumes.effect.builtin.PastePrefabEffect;
 import com.hypixel.hytale.codec.Codec;
 import com.hypixel.hytale.codec.KeyedCodec;
 import com.hypixel.hytale.codec.builder.BuilderCodec;
@@ -23,7 +26,7 @@ import java.util.logging.Level;
 import org.joml.Vector3d;
 import org.joml.Vector3i;
 
-public class PasteRandomPrefabEffect extends TriggerEffect {
+public class PasteRandomPrefabEffect extends PastePrefabEffect {
   private static final HytaleLogger LOGGER = HytaleLogger.forEnclosingClass();
 
   public static final BuilderCodec<PasteRandomPrefabEffect> CODEC =
@@ -93,6 +96,55 @@ public class PasteRandomPrefabEffect extends TriggerEffect {
   public boolean atVolumeOrigin = true;
   public Rotation yaw = Rotation.None;
   public boolean showParticles;
+
+  /**
+   * The vanilla inspector enables its Show/Hide Preview control for PastePrefabEffect instances.
+   * Expose the first resolvable random choice as a stable editor preview; execution remains random.
+   */
+  @Override
+  public String getPrefabRelPath() {
+    List<PrefabChoice> choices = collectChoices();
+    for (PrefabChoice choice : choices) {
+      if (resolveDirectPrefabPath(choice.path) != null) {
+        return choice.path;
+      }
+    }
+    return choices.isEmpty() ? null : choices.get(0).path;
+  }
+
+  @Override
+  public String getPrefabListId() {
+    return null;
+  }
+
+  @Override
+  public Vector3d getPosition() {
+    return position == null ? null : new Vector3d(position);
+  }
+
+  @Override
+  public EffectOrigin getOrigin() {
+    return atVolumeOrigin ? EffectOrigin.VOLUME_ORIGIN : EffectOrigin.WORLD_ABSOLUTE;
+  }
+
+  @Override
+  public Rotation getRotation() {
+    return yaw == null ? Rotation.None : yaw;
+  }
+
+  @Override
+  public void rotateInPlace(float yawRadians, Vector3d volumeOrigin) {
+    if (!atVolumeOrigin) {
+      return;
+    }
+    if (position != null) {
+      YawRotation.rotate(position, yawRadians);
+    }
+    int quarterTurns = YawRotation.quarterTurns(yawRadians);
+    if (quarterTurns > 0) {
+      yaw = YawRotation.rotate(getRotation(), quarterTurns);
+    }
+  }
 
   @Override
   public void execute(TriggerContext context) {
@@ -173,7 +225,7 @@ public class PasteRandomPrefabEffect extends TriggerEffect {
     return position == null ? new Vector3d() : new Vector3d(position);
   }
 
-  static Path resolveDirectPrefabPath(String rawPath) {
+  public static Path resolveDirectPrefabPath(String rawPath) {
     if (rawPath == null || rawPath.isBlank()) {
       return null;
     }

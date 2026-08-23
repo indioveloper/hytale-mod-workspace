@@ -18,7 +18,7 @@ de verdad.
 
 ## Proyectos activos tras la consolidacion
 
-- `mods/java/more-triggers`, version `1.10.1`: utilidades generales de Trigger
+- `mods/java/more-triggers`, version `1.10.2`: utilidades generales de Trigger
   Volumes. Integra `ExecuteCommand`, la regla `NoMove` y bucles de senales
   persistentes; el antiguo mod standalone esta deprecated.
 - `mods/java/entity-motion-triggers`, version `1.3.0`: crea, convierte y mueve
@@ -142,8 +142,11 @@ que registren los mismos IDs.
   Requiere HyUI 0.9.8; la copia local `0.9.8-pre11` solo amplía el rango de
   compatibilidad del manifiesto después de comprobar que el plugin carga y se
   habilita. No forma parte de las releases propias de OrbGenesis.
-- `mods/java/more-triggers`: version `1.10.1`. `PasteRandomPrefab` permite yaw
+- `mods/java/more-triggers`: version `1.10.2`. `PasteRandomPrefab` permite yaw
   cardinal de 0, 90, 180 o 270 grados sin cambiar su ID ni los saves antiguos.
+  Hereda de `PastePrefabEffect` y expone al inspector sus getters de prefab,
+  posicion, origen y rotacion para reutilizar el boton vanilla Show/Hide
+  Preview; previsualiza el primer prefab configurado que pueda resolverse.
   `GiveRandomItem` entrega al
   jugador activador un bloque, mueble, banco, arma o herramienta elegible y
   excluye plantas, assets internos y herramientas creativas. `SendTagMessage` y
