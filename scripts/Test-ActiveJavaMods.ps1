@@ -76,7 +76,7 @@ Invoke-ProjectScript "mods\java\configurable-mob-spawners\tools\Test-PluginLocal
 Invoke-ProjectScript "mods\java\configurable-mob-spawners\tools\Test-LightLevelMath.ps1"
 Invoke-ProjectScript "mods\java\configurable-mob-spawners\tools\Test-ConfigString.ps1"
 Invoke-ProjectScript "mods\java\configurable-mob-spawners\tools\web-configurator\Test-WebConfigurator.ps1"
-& $buildScript -ProjectPath (Join-Path $repo "mods\java\configurable-mob-spawners") -SourceRoot src -PackageRoot . -AssetsRoot assets -VanillaCustomUiAssetsZip $AssetsZip -ArtifactName ConfigurableMobSpawners-0.4.0.jar -ServerJar $ServerJar
-Invoke-ProjectScript "mods\java\configurable-mob-spawners\tools\Test-Package.ps1" @{ ArchivePath = (Join-Path $repo "mods\java\configurable-mob-spawners\.build\dist\ConfigurableMobSpawners-0.4.0.jar"); AssetsZip = $AssetsZip }
+& $buildScript -ProjectPath (Join-Path $repo "mods\java\configurable-mob-spawners") -SourceRoot src -PackageRoot . -AssetsRoot assets -VanillaCustomUiAssetsZip $AssetsZip -ArtifactName ConfigurableMobSpawners-0.5.2.jar -ServerJar $ServerJar
+Invoke-ProjectScript "mods\java\configurable-mob-spawners\tools\Test-Package.ps1" @{ ArchivePath = (Join-Path $repo "mods\java\configurable-mob-spawners\.build\dist\ConfigurableMobSpawners-0.5.2.jar"); AssetsZip = $AssetsZip }
 
 Write-Host "All active Java mods passed compatibility checks."
