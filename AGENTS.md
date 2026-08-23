@@ -8,8 +8,8 @@ de verdad.
 ## Estado de referencia
 
 - Fecha de la ultima validacion: 2026-08-15.
-- Runtime de trabajo: Hytale pre-release `0.6.0-pre.12.2`, revision
-  `58a14e1362808d3b1bcffc0a02a1b5b9f8bfdcb2`.
+- Runtime de trabajo: Hytale pre-release `0.6.0-pre.13.1`, revision
+  `f0a85f20ac60b34232fa6b42d3585850bd959dde`.
 - Referencia de API: `HypixelStudios/hytale-shared-source`, rama `pre-release`.
 - JDK usado en los builds recientes: Java 25.
 - Save de smoke test en el PC de origen: `0.6.8`.
@@ -18,9 +18,9 @@ de verdad.
 
 ## Proyectos activos tras la consolidacion
 
-- `mods/java/more-triggers`, version `1.9.1`: utilidades generales de Trigger
-  Volumes. Integra `ExecuteCommand` y la regla `NoMove`; el antiguo mod
-  standalone esta deprecated.
+- `mods/java/more-triggers`, version `1.10.0`: utilidades generales de Trigger
+  Volumes. Integra `ExecuteCommand`, la regla `NoMove` y bucles de senales
+  persistentes; el antiguo mod standalone esta deprecated.
 - `mods/java/entity-motion-triggers`, version `1.3.0`: crea, convierte y mueve
   entidades, gestiona colision de plataforma y ancla particulas moviles.
 - `mods/java/particle-shape-vfx`, version `0.1.0`: registra
@@ -56,6 +56,10 @@ de verdad.
   Al entrar, cada jugador recibe en el chat la guia de instalacion y el enlace
   clicable al configurador. El boton `Copiar URL` prepara la URL en el chat para
   copiarla, ya que una Custom UI de servidor no accede al portapapeles cliente.
+  Tras actualizar el runtime local a `0.6.0-pre.13.1`, este proyecto queda
+  pendiente de portar: `BlockChunk.getBlockLightIntensity` y `getSkyLight` ya
+  no existen. Sus pruebas de localizacion, CMS1, luz y web pasan, pero `javac`
+  se detiene en esas dos llamadas de `SpawnerTickSystem`.
 
 `Player Entity Tags`, `Chest Labels` y el antiguo `Trigger Execute Command`
 standalone se conservan bajo `mods/java/deprecated` y no deben distribuirse.
@@ -139,13 +143,17 @@ que registren los mismos IDs.
   Requiere HyUI 0.9.8; la copia local `0.9.8-pre11` solo amplía el rango de
   compatibilidad del manifiesto después de comprobar que el plugin carga y se
   habilita. No forma parte de las releases propias de OrbGenesis.
-- `mods/java/more-triggers`: version `1.9.1`. `GiveRandomItem` entrega al
+- `mods/java/more-triggers`: version `1.10.0`. `GiveRandomItem` entrega al
   jugador activador un bloque, mueble, banco, arma o herramienta elegible y
   excluye plantas, assets internos y herramientas creativas. `SendTagMessage` y
   `ShowTagEventTitle` sustituyen `{tag}` desde una fuente elegible:
   `SELF`, `EVENT` o `RADIUS`; no cambian los IDs de los efectos vanilla.
   Tambien incluye el HUD circular `/timer` y el efecto `ControlTimer`; el
   contorno radial usa 61 frames PNG y su estado solo vive durante la sesion.
+  `ControlSignalLoop` inicia y controla senales `SignalReceived` repetitivas
+  por mundo, con intervalo, limites, condicion por tag del volumen origen y
+  acciones `START`, `STOP`, `PAUSE`, `RESUME` y `PULSE_NOW`. El bucle persiste
+  al salir el actor del volumen, pero no tras reiniciar el servidor.
   Tambien registra `ExecuteCommand` con los IDs y campos del antiguo mod
   standalone. `NoMove` se registra como regla (no como efecto) para aparecer
   bajo `Always Active`; cancela la velocidad dentro del volumen y permite

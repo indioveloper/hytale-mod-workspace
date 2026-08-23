@@ -5,8 +5,8 @@ param(
 
 $ErrorActionPreference = "Stop"
 $archive = (Resolve-Path -LiteralPath $ArchivePath).Path
-if ((Split-Path -Leaf $archive) -ne "More_Triggers-1_9_2.jar") {
-  throw "Artifact name must match version 1.9.2: $archive"
+if ((Split-Path -Leaf $archive) -ne "More_Triggers-1_10_0.jar") {
+  throw "Artifact name must match version 1.10.0: $archive"
 }
 $entries = @(jar tf $archive)
 if ($LASTEXITCODE -ne 0) {
@@ -28,6 +28,10 @@ $required = @(
   "gg/orbgenesis/moretriggers/timer/ControlTimerEffect.class"
   "gg/orbgenesis/moretriggers/timer/TimerCommand.class"
   "gg/orbgenesis/moretriggers/timer/CircularTimerHud.class"
+  "gg/orbgenesis/moretriggers/signalloop/ControlSignalLoopEffect.class"
+  "gg/orbgenesis/moretriggers/signalloop/SignalLoopManager.class"
+  "gg/orbgenesis/moretriggers/signalloop/SignalLoopSchedule.class"
+  "gg/orbgenesis/moretriggers/signalloop/SignalLoopTickingSystem.class"
   "Common/UI/Custom/HUD/CircularTimer.ui"
   "Common/UI/Custom/HUD/CircularTimer/CenterBackdrop.png"
   "Common/UI/Custom/HUD/CircularTimer/Frames/Ring00.png"
@@ -57,8 +61,8 @@ try {
 if ($manifest.Group -ne "OrbGenesis" -or $manifest.Name -ne "More Triggers") {
   throw "Unexpected plugin identity in manifest.json."
 }
-if ($manifest.Version -ne "1.9.2") {
-  throw "Manifest version must be 1.9.2, found $($manifest.Version)."
+if ($manifest.Version -ne "1.10.0") {
+  throw "Manifest version must be 1.10.0, found $($manifest.Version)."
 }
 
 $frames = @($entries | Where-Object { $_ -match '^Common/UI/Custom/HUD/CircularTimer/Frames/Ring\d{2}\.png$' })
@@ -88,5 +92,8 @@ if ($LASTEXITCODE -ne 0) {
 }
 if (-not ($pluginBytecode | Select-String -SimpleMatch "ExecuteCommand")) {
   throw "MoreTriggersPlugin does not register the ExecuteCommand effect ID."
+}
+if (-not ($pluginBytecode | Select-String -SimpleMatch "ControlSignalLoop")) {
+  throw "MoreTriggersPlugin does not register the ControlSignalLoop effect ID."
 }
 Write-Output "More Triggers package check passed: $archive"

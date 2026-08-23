@@ -1,7 +1,7 @@
 # More Triggers
 
-Coleccion de utilidades generales para Trigger Volumes. La version `1.9.2`
-esta validada con Hytale `0.6.0-pre.12` e integra el antiguo mod Trigger
+Coleccion de utilidades generales para Trigger Volumes. La version `1.10.0`
+esta validada con Hytale `0.6.0-pre.13.1` e integra el antiguo mod Trigger
 Execute Command.
 
 ## Efectos incluidos
@@ -13,6 +13,7 @@ Execute Command.
 | Enviar mensaje con tags | `SendTagMessage` | Envia mensajes sustituyendo marcadores `{tag}`. |
 | Mostrar titulo de evento con tags | `ShowTagEventTitle` | Muestra Event Titles sustituyendo marcadores `{tag}`. |
 | Controlar timer circular | `ControlTimer` | Inicia, pausa, muestra, oculta o cancela el timer circular. |
+| Controlar senal repetitiva | `ControlSignalLoop` | Inicia y controla bucles que envian `SignalReceived` aunque el activador abandone el volumen. |
 | Ejecutar comando | `ExecuteCommand` | Ejecuta un comando como consola o jugador activador. |
 
 ## Reglas incluidas
@@ -72,6 +73,40 @@ Comandos equivalentes:
 /timer status
 ```
 
+## Senales repetitivas
+
+`ControlSignalLoop` crea un bucle con estado propio del mundo. Al iniciarlo,
+captura el volumen origen, el centro de busqueda, el actor y las tags de senal;
+despues sigue enviando `SignalReceived` aunque el jugador salga del Trigger
+Volume que lo activo. No necesita `On Tick` ni un volumen que cubra toda la
+sala.
+
+- `Action`: `START`, `STOP`, `PAUSE`, `RESUME` o `PULSE_NOW`.
+- `LoopId`: nombre compartido por todas las acciones que controlan el mismo
+  bucle. Es unico dentro de cada mundo.
+- `IntervalSeconds`: cadencia; el minimo efectivo es 0.1 segundos.
+- `FirstPulse`: primera senal inmediata o despues del primer intervalo.
+- `StartBehavior`: ignora un segundo inicio, reinicia la cadencia existente o
+  sustituye toda su configuracion.
+- `DurationSeconds` y `MaxPulses`: limites automaticos; `0` significa sin
+  limite.
+- `MatchKey`, `MatchValue`, `Radius` y `Center`: seleccionan receptores igual
+  que el efecto vanilla `SendSignal`. Sin `MatchKey`, la senal vuelve al
+  volumen que inicio el bucle.
+- `SignalKeys` y `SignalValues`: tags transportadas por `SignalReceived` para
+  que el receptor pueda filtrarlas desde `EVENT`.
+- `ContinueTagKey` y `ContinueTagValue`: condicion opcional comprobada
+  continuamente en el volumen origen. Si deja de cumplirse, el bucle se para.
+
+Ejemplo: en `On Enter`, usa `START` con `LoopId=room_a`, intervalo `5`, tag
+objetivo `wave_receiver=room_a` y condicion `encounter_active=true`. Otro
+efecto puede cambiar esa tag o ejecutar `STOP` con el mismo `LoopId`. El bucle
+tambien termina si se desactiva o elimina el volumen que lo inicio.
+
+Los bucles son deliberadamente temporales: no se restauran tras reiniciar el
+servidor. Si un tick llega tarde, se envia una sola senal y comienza un nuevo
+intervalo, sin rafagas de recuperacion.
+
 ## Ejecutar comando
 
 `ExecuteCommand` conserva el ID y los campos del antiguo mod standalone.
@@ -109,12 +144,13 @@ registran ni se empaquetan con More Triggers.
   -ProjectPath .\mods\java\more-triggers `
   -SourceRoot src `
   -PackageRoot src `
-  -ArtifactName More_Triggers-1_9_2.jar
+  -ArtifactName More_Triggers-1_10_0.jar
 
 .\mods\java\more-triggers\tools\Test-TimerMath.ps1
+.\mods\java\more-triggers\tools\Test-SignalLoopSchedule.ps1
 .\mods\java\more-triggers\tools\Test-RandomItemCandidateFilter.ps1
 .\mods\java\more-triggers\tools\Test-Package.ps1 `
-  -ArchivePath .\mods\java\more-triggers\.build\dist\More_Triggers-1_9_2.jar
+  -ArchivePath .\mods\java\more-triggers\.build\dist\More_Triggers-1_10_0.jar
 ```
 
 El contorno del timer usa 61 frames PNG porque la UI 0.6.x no expone un

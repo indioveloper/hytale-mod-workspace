@@ -7,11 +7,15 @@ import gg.orbgenesis.moretriggers.timer.ControlTimerEffect;
 import gg.orbgenesis.moretriggers.timer.TimerCommand;
 import gg.orbgenesis.moretriggers.timer.TimerManager;
 import gg.orbgenesis.moretriggers.timer.TimerTickingSystem;
+import gg.orbgenesis.moretriggers.signalloop.ControlSignalLoopEffect;
+import gg.orbgenesis.moretriggers.signalloop.SignalLoopManager;
+import gg.orbgenesis.moretriggers.signalloop.SignalLoopTickingSystem;
 
 public class MoreTriggersPlugin extends JavaPlugin {
   private static MoreTriggersPlugin instance;
 
   private final TimerManager timerManager = new TimerManager();
+  private final SignalLoopManager signalLoopManager = new SignalLoopManager();
 
   public MoreTriggersPlugin(JavaPluginInit init) {
     super(init);
@@ -24,6 +28,10 @@ public class MoreTriggersPlugin extends JavaPlugin {
 
   public TimerManager getTimerManager() {
     return timerManager;
+  }
+
+  public SignalLoopManager getSignalLoopManager() {
+    return signalLoopManager;
   }
 
   @Override
@@ -41,6 +49,8 @@ public class MoreTriggersPlugin extends JavaPlugin {
     triggerVolumes.registerEffectType(
         "ControlTimer", ControlTimerEffect.class, ControlTimerEffect.CODEC);
     triggerVolumes.registerEffectType(
+        "ControlSignalLoop", ControlSignalLoopEffect.class, ControlSignalLoopEffect.CODEC);
+    triggerVolumes.registerEffectType(
         "ExecuteCommand", ExecuteCommandEffect.class, ExecuteCommandEffect.CODEC);
     triggerVolumes.registerRuleType("NoMove", NoMoveRule.class, NoMoveRule.CODEC);
     triggerVolumes.registerAssetField("PasteRandomPrefab", "Prefab1", "Prefab");
@@ -49,12 +59,14 @@ public class MoreTriggersPlugin extends JavaPlugin {
     triggerVolumes.registerAssetField("NoMove", "ExcludedNpcRoles", "NpcRole");
     getCommandRegistry().registerCommand(new TimerCommand(this));
     getEntityStoreRegistry().registerSystem(new TimerTickingSystem(timerManager));
+    getEntityStoreRegistry().registerSystem(new SignalLoopTickingSystem(signalLoopManager));
     getEntityStoreRegistry().registerSystem(new NoMoveRuleSystem());
   }
 
   @Override
   protected void shutdown() {
     timerManager.clear();
+    signalLoopManager.clear();
     instance = null;
     super.shutdown();
   }
