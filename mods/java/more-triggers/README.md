@@ -68,8 +68,11 @@ preview`. La preview usa el primer prefab configurado que pueda resolverse
 (`Prefab1`, despues `Prefab2` y finalmente la lista adicional), para no cambiar
 aleatoriamente mientras se edita. Esto solo afecta a la ayuda visual: al
 ejecutarse, el efecto sigue seleccionando entre todos los prefabs y respetando
-sus pesos. La posicion, el modo relativo/absoluto y la rotacion horizontal se
-exponen al inspector vanilla para colocar correctamente la preview.
+sus pesos. La posicion y el modo relativo/absoluto se exponen al inspector
+vanilla para colocar correctamente la preview. En pre.13.1, el inspector
+vanilla no aplica `Rotation` a los bloques de la preview ni siquiera para
+`PastePrefabEffect`: la ayuda visual conserva la orientacion original, aunque
+el `Yaw` configurado si se aplica al pegado real.
 
 ## Mensajes y titulos con tags
 

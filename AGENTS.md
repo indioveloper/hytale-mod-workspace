@@ -144,9 +144,10 @@ que registren los mismos IDs.
   habilita. No forma parte de las releases propias de OrbGenesis.
 - `mods/java/more-triggers`: version `1.10.2`. `PasteRandomPrefab` permite yaw
   cardinal de 0, 90, 180 o 270 grados sin cambiar su ID ni los saves antiguos.
-  Hereda de `PastePrefabEffect` y expone al inspector sus getters de prefab,
-  posicion, origen y rotacion para reutilizar el boton vanilla Show/Hide
-  Preview; previsualiza el primer prefab configurado que pueda resolverse.
+  Hereda de `PastePrefabEffect` y expone al inspector sus getters para
+  reutilizar el boton vanilla Show/Hide Preview; previsualiza el primer prefab
+  configurado que pueda resolverse. El inspector pre.13.1 coloca la preview,
+  pero no renderiza su `Rotation`; el yaw si se aplica al pegado real.
   `GiveRandomItem` entrega al
   jugador activador un bloque, mueble, banco, arma o herramienta elegible y
   excluye plantas, assets internos y herramientas creativas. `SendTagMessage` y
