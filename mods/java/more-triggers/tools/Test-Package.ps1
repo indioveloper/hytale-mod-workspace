@@ -5,8 +5,8 @@ param(
 
 $ErrorActionPreference = "Stop"
 $archive = (Resolve-Path -LiteralPath $ArchivePath).Path
-if ((Split-Path -Leaf $archive) -ne "More_Triggers-1_10_2.jar") {
-  throw "Artifact name must match version 1.10.2: $archive"
+if ((Split-Path -Leaf $archive) -ne "More_Triggers-1_10_4.jar") {
+  throw "Artifact name must match version 1.10.4: $archive"
 }
 $entries = @(jar tf $archive)
 if ($LASTEXITCODE -ne 0) {
@@ -19,6 +19,7 @@ $required = @(
   "gg/orbgenesis/moretriggers/MoreTriggersPlugin.class"
   "gg/orbgenesis/moretriggers/GiveRandomItemEffect.class"
   "gg/orbgenesis/moretriggers/PasteRandomPrefabEffect.class"
+  "gg/orbgenesis/moretriggers/RoomOccupancyGeometry.class"
   "gg/orbgenesis/moretriggers/RandomItemCandidateFilter.class"
   "gg/orbgenesis/moretriggers/ExecuteCommandEffect.class"
   "gg/orbgenesis/moretriggers/NoMoveRule.class"
@@ -62,8 +63,8 @@ try {
 if ($manifest.Group -ne "OrbGenesis" -or $manifest.Name -ne "More Triggers") {
   throw "Unexpected plugin identity in manifest.json."
 }
-if ($manifest.Version -ne "1.10.2") {
-  throw "Manifest version must be 1.10.2, found $($manifest.Version)."
+if ($manifest.Version -ne "1.10.4") {
+  throw "Manifest version must be 1.10.4, found $($manifest.Version)."
 }
 
 $frames = @($entries | Where-Object { $_ -match '^Common/UI/Custom/HUD/CircularTimer/Frames/Ring\d{2}\.png$' })

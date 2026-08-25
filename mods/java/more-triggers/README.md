@@ -1,6 +1,6 @@
 # More Triggers
 
-Coleccion de utilidades generales para Trigger Volumes. La version `1.10.2`
+Coleccion de utilidades generales para Trigger Volumes. La version `1.10.4`
 esta validada con Hytale `0.6.0-pre.13.1` e integra el antiguo mod Trigger
 Execute Command.
 
@@ -61,7 +61,20 @@ selecciona `Rotacion horizontal` / `Horizontal rotation` y elige una de esas
 cuatro opciones. Los efectos guardados antes de 1.10.1 no contienen `Yaw`; al
 cargarlos se usa `None`, por lo que mantienen exactamente su orientacion.
 `PrefabUtil.paste` en Hytale 0.6.0-pre.13.1 solo expone esta rotacion cardinal
-horizontal; pitch, roll y angulos arbitrarios no estan soportados.
+horizontal; pitch, roll y angulos arbitrarios no estan soportados. Ademas, su
+ruta de rotacion desplaza una celda las entidades incluidas en el prefab y no
+compone su orientacion. Desde More Triggers 1.10.3, los giros se preparan sobre
+una copia completa del prefab antes de pegar: esto mantiene alineados los
+Trigger Volumes y rota tambien sus formas, offsets y efectos internos.
+
+`PreventOverlap` activa la proteccion de salas procedurales. El efecto calcula
+la huella tridimensional real del prefab ya rotado, la compara con las reservas
+persistentes del mismo `OccupancyGroup` y, si esta libre, registra la reserva
+antes de pegar. Dos huellas que solo comparten pared, suelo o techo no se
+consideran solapadas. Los efectos antiguos no incluyen este campo y conservan
+el comportamiento previo. Para proteger tambien una sala inicial construida a
+mano, crea fuera del prefab un Trigger Volume desactivado que cubra su huella y
+asigna la tag `procedural_room=<OccupancyGroup>`.
 
 El editor muestra tambien el boton vanilla `Mostrar preview` / `Ocultar
 preview`. La preview usa el primer prefab configurado que pueda resolverse
@@ -168,13 +181,14 @@ registran ni se empaquetan con More Triggers.
   -ProjectPath .\mods\java\more-triggers `
   -SourceRoot src `
   -PackageRoot src `
-  -ArtifactName More_Triggers-1_10_2.jar
+  -ArtifactName More_Triggers-1_10_4.jar
 
 .\mods\java\more-triggers\tools\Test-TimerMath.ps1
 .\mods\java\more-triggers\tools\Test-SignalLoopSchedule.ps1
+.\mods\java\more-triggers\tools\Test-RoomOccupancyGeometry.ps1
 .\mods\java\more-triggers\tools\Test-RandomItemCandidateFilter.ps1
 .\mods\java\more-triggers\tools\Test-Package.ps1 `
-  -ArchivePath .\mods\java\more-triggers\.build\dist\More_Triggers-1_10_2.jar
+  -ArchivePath .\mods\java\more-triggers\.build\dist\More_Triggers-1_10_4.jar
 ```
 
 El contorno del timer usa 61 frames PNG porque la UI 0.6.x no expone un

@@ -37,6 +37,11 @@ customUI.triggerVolumeEffectEditor.field.PasteRandomPrefab.Yaw.option.OneEighty 
 customUI.triggerVolumeEffectEditor.field.PasteRandomPrefab.Yaw.option.TwoSeventy = 270 degrees clockwise
 customUI.triggerVolumeEffectEditor.field.PasteRandomPrefab.ShowParticles = Show particles
 customUI.triggerVolumeEffectEditor.field.PasteRandomPrefab.ShowParticles.tooltip = Show the vanilla prefab paste particles.
+customUI.triggerVolumeEffectEditor.field.PasteRandomPrefab.PreventOverlap = Prevent room overlap
+customUI.triggerVolumeEffectEditor.field.PasteRandomPrefab.PreventOverlap.tooltip = Reserve the prefab's complete footprint before pasting and skip generation if it overlaps another room in the same group. Rooms that only share a wall are not considered overlapping.
+customUI.triggerVolumeEffectEditor.field.PasteRandomPrefab.OccupancyGroup = Occupancy group
+customUI.triggerVolumeEffectEditor.field.PasteRandomPrefab.OccupancyGroup.tooltip = Name used to isolate independent procedural layouts. Only reservations in the same group are compared. Use the same value on every door in one dungeon.
+customUI.triggerVolumeEffectEditor.field.PasteRandomPrefab.OccupancyGroup.placeholder = e.g. main_dungeon
 
 customUI.triggerVolumeEffectEditor.field.SendTagMessage.Message = Message
 customUI.triggerVolumeEffectEditor.field.SendTagMessage.Message.tooltip = Text to send. Use {tag_name} to insert the current value of a tag on this Trigger Volume.

@@ -37,6 +37,11 @@ customUI.triggerVolumeEffectEditor.field.PasteRandomPrefab.Yaw.option.OneEighty 
 customUI.triggerVolumeEffectEditor.field.PasteRandomPrefab.Yaw.option.TwoSeventy = 270 grados en sentido horario
 customUI.triggerVolumeEffectEditor.field.PasteRandomPrefab.ShowParticles = Mostrar particulas
 customUI.triggerVolumeEffectEditor.field.PasteRandomPrefab.ShowParticles.tooltip = Muestra las particulas vanilla al pegar el prefab.
+customUI.triggerVolumeEffectEditor.field.PasteRandomPrefab.PreventOverlap = Evitar solapamiento de salas
+customUI.triggerVolumeEffectEditor.field.PasteRandomPrefab.PreventOverlap.tooltip = Antes de pegar, reserva la huella completa del prefab y cancela la generacion si se solapa con otra sala del mismo grupo. Las salas que solo comparten pared no cuentan como solapadas.
+customUI.triggerVolumeEffectEditor.field.PasteRandomPrefab.OccupancyGroup = Grupo de ocupacion
+customUI.triggerVolumeEffectEditor.field.PasteRandomPrefab.OccupancyGroup.tooltip = Nombre que separa trazados procedurales independientes. Solo se comparan reservas con el mismo grupo. Usa el mismo valor en todas las puertas del mismo dungeon.
+customUI.triggerVolumeEffectEditor.field.PasteRandomPrefab.OccupancyGroup.placeholder = p. ej. dungeon_principal
 
 customUI.triggerVolumeEffectEditor.field.SendTagMessage.Message = Mensaje
 customUI.triggerVolumeEffectEditor.field.SendTagMessage.Message.tooltip = Texto que enviar. Usa {nombre_tag} para insertar el valor actual de un tag de este Trigger Volume.
