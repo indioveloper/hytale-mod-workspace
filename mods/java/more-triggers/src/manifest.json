@@ -1,14 +1,15 @@
 {
     "Group": "OrbGenesis",
     "Name": "More Triggers",
-    "Version": "1.10.4",
+    "Version": "1.10.5",
     "Description": "Adds general-purpose Trigger Volume effects and rules, including No Move, command execution, random items, tag-aware messages, and a circular timer HUD.",
     "Authors": [
         {
-            "Name": "OrbGenesis",
-            "Url": "https://orbgenesis.gg"
+            "Name": "Raynor",
+            "Url": "https://raynor-mods.vercel.app"
         }
     ],
+    "Website": "https://raynor-mods.vercel.app/#mod-more-triggers",
     "DisabledByDefault": false,
     "IncludesAssetPack": true,
     "Dependencies": {
@@ -17,6 +18,6 @@
         "Hytale:TriggerVolumes": "*"
     },
     "OptionalDependencies": {},
-    "ServerVersion": ">=0.6.0-pre <0.7.0",
+    "ServerVersion": ">=0.6.2 <0.7.0",
     "Main": "gg.orbgenesis.moretriggers.MoreTriggersPlugin"
 }

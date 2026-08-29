@@ -14,9 +14,9 @@ window.RAYNOR_PORTAL = {
     {
       slug: "configurable-mob-spawners",
       name: "Configurable Mob Spawners",
-      version: "0.4.3",
-      status: "MVP ampliado",
-      maturity: "stable",
+      version: "0.5.3",
+      status: "WIP · Update 6",
+      maturity: "prototype",
       icon: "assets/configurable-mob-spawners.png",
       accent: "cyan",
       summary: "Un bloque de spawner diseñado para controlar oleadas completas sin programar.",
@@ -27,8 +27,8 @@ window.RAYNOR_PORTAL = {
     {
       slug: "more-triggers",
       name: "More Triggers",
-      version: "1.9.2",
-      status: "Activo",
+      version: "1.10.5",
+      status: "Update 6 · Activo",
       maturity: "stable",
       icon: "assets/more-triggers.png",
       accent: "violet",
@@ -39,8 +39,8 @@ window.RAYNOR_PORTAL = {
     {
       slug: "entity-motion-triggers",
       name: "Entity Motion Triggers",
-      version: "1.3.1",
-      status: "Activo",
+      version: "1.3.2",
+      status: "Update 6 · Activo",
       maturity: "stable",
       icon: "assets/entity-motion-triggers.png",
       accent: "orange",
@@ -51,8 +51,8 @@ window.RAYNOR_PORTAL = {
     {
       slug: "build-battle",
       name: "Build Battle",
-      version: "0.2.3",
-      status: "Prototipo",
+      version: "0.2.4",
+      status: "Update 6 · Prototipo",
       maturity: "prototype",
       icon: "assets/build-battle.png",
       accent: "pink",
@@ -63,8 +63,8 @@ window.RAYNOR_PORTAL = {
     {
       slug: "particle-shape-vfx",
       name: "Particle Shape VFX",
-      version: "0.1.0",
-      status: "Prototipo activo",
+      version: "0.1.1",
+      status: "Update 6 · Prototipo",
       maturity: "prototype",
       icon: "assets/particle-shape-vfx.png",
       accent: "green",
@@ -75,8 +75,8 @@ window.RAYNOR_PORTAL = {
     {
       slug: "scoreboards",
       name: "Editable Objectives",
-      version: "2.0.10",
-      status: "Smoke test pendiente",
+      version: "2.0.11",
+      status: "Update 6 · Smoke pendiente",
       maturity: "prototype",
       icon: "assets/scoreboards.png",
       accent: "gold",
@@ -87,43 +87,48 @@ window.RAYNOR_PORTAL = {
   ],
   packs: [
     {
+      slug: "raynor-npcs",
       name: "Raynor NPCs",
-      version: "1.1.0",
+      version: "1.1.2",
       marker: "NPC",
       summary: "Roles, marcadores y efectos reutilizables para generar, equipar y limpiar NPCs.",
-      status: "Activo",
+      status: "Update 6 · Activo",
       source: "mods/asset-packs/raynor-npcs"
     },
     {
+      slug: "mechanisms",
       name: "Mechanisms",
       version: "1.1.1",
       marker: "MEC",
       summary: "Palancas, botones de esencia y una piedra que crea zonas NoBuild temporales.",
-      status: "Smoke test visual",
+      status: "Update 6 · Smoke visual pendiente",
       source: "mods/asset-packs/mechanisms"
     },
     {
+      slug: "raynor-blocks",
       name: "Raynor Blocks",
-      version: "1.0.1",
+      version: "1.0.2",
       marker: "BLK",
       summary: "Barreras técnicas y bloques fantasma para previsualizar zonas y posiciones.",
-      status: "Validación estática",
+      status: "Update 6 · Validación estática",
       source: "mods/asset-packs/blocks"
     },
     {
+      slug: "nexus-siege-props",
       name: "Nexus Siege Props",
-      version: "1.0.0",
+      version: "1.0.1",
       marker: "NS",
       summary: "Props reutilizables del minijuego Nexus Siege, empezando por el soporte de espada.",
-      status: "Proyecto interno",
+      status: "Update 6 · Proyecto interno",
       source: "mods/asset-packs/nexus-siege-props"
     },
     {
+      slug: "roguelike-prefabs",
       name: "Roguelike Prefabs",
-      version: "1.0.0",
+      version: "1.0.1",
       marker: "RLG",
       summary: "Mapas, salas y conectores usados por las pruebas roguelike existentes.",
-      status: "Uso interno",
+      status: "Update 6 · Uso interno",
       source: "mods/asset-packs/roguelike-prefabs"
     }
   ]

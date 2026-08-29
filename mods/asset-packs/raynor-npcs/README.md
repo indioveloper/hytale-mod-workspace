@@ -2,6 +2,8 @@
 
 Reusable NPC toolkit for Raynor/OrbGenesis projects.
 
+Version `1.1.1`, compiled and validated against Hytale Update 6 stable `0.6.2`.
+
 This pack is the canonical home for:
 
 - Raynor NPC roles and spawn markers.

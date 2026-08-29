@@ -41,7 +41,7 @@
 
   function renderPacks() {
     packsList.innerHTML = config.packs.map((pack, index) => `
-      <article class="pack-row">
+      <article class="pack-row" id="pack-${pack.slug}">
         <div class="pack-index">${String(index + 1).padStart(2, "0")}</div>
         <div class="pack-marker" aria-hidden="true">${pack.marker}</div>
         <div class="pack-copy">

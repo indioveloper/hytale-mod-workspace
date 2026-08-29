@@ -1,17 +1,18 @@
 # Handoff de Configurable Mob Spawners
 
-Última actualización: 2026-08-23.
+Última actualización: 2026-08-30.
 
 Este documento conserva el estado funcional observado durante las pruebas y la
 lista concreta de trabajo para la siguiente sesión. La versión actual del mod
-es `0.5.2` y se compila contra Hytale `0.6.0-pre.13.1`.
+es `0.5.3` y se compila contra Hytale Update 6 estable `0.6.2`, revisión
+`bb28fc642e147a39b1ce7e952903235e43f5afe8`.
 
 La migración a pre.13.1 mueve la lectura de luz desde los métodos eliminados de
 `BlockChunk` a `BlockSection.getGlobalLight()`. Se conservan las mismas
 coordenadas, el factor solar, la corrección de cielo directo mediante el mapa de
 altura y el umbral máximo configurado.
 
-> Estado del build: `0.5.2` compila y supera sus pruebas contra pre.13.1. El
+> Estado del build: `0.5.3` compila y supera sus pruebas contra `0.6.2`. El
 > artefacto local se genera con `.\tools\Build-And-Install.ps1`; no se versiona.
 >
 > El JAR se instala por partida, no en la carpeta global: la partida de pruebas

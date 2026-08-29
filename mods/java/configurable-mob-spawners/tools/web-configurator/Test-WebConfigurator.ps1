@@ -32,6 +32,9 @@ foreach ($required in @('itemModal', 'itemSearch', 'itemCategories', 'HYTALE_ITE
 foreach ($required in @('Mob Spawner Customizable', 'helpOpen', 'helpModal', 'helpClose', 'themeToggle', 'Modo oscuro', 'Modo claro', 'data-color-mode', 'cms-color-mode', 'applyColorMode', 'dentro del radio de activaci', 'dentro de ese radio', '1) Crea tu Mob', '2) Objetos equipados', '3) Loot', '4) Configura el Spawner', 'summary-section', 'Carga en el configurador un c', 'previamente de un Spawner.', '>Ejemplo<', 'Exportar Spawner', 'export-string', 'updateExport', 'Importar Spawner', 'Importar spawner desde el portapapeles', 'navigator.clipboard.readText()', 'Se va a sobreescribir esta configuraci', 'por el spawner que tienes en el portapapeles.', 'window.confirm(warning)', 'syncLootRow', 'syncAllLoot')) {
   if (-not $html.Contains($required)) { throw "Automatic export hook is missing: $required" }
 }
+foreach ($required in @('id="langEs"', 'id="langEn"', 'Idioma / Language', 'cms-language', 'applyLanguage', "url.searchParams.set('lang','en')", 'wip-badge', 'WIP · En desarrollo', 'WIP · Work in progress', '1) Create your Mob', '4) Configure the Spawner', 'Import spawner from clipboard', 'How does it work?')) {
+  if (-not $html.Contains($required)) { throw "Bilingual interface hook is missing: $required" }
+}
 if (-not $html.Contains('a cualquier mob: aunque no se visualicen')) {
   throw "The armor visibility explanation is outdated."
 }

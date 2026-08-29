@@ -3,9 +3,18 @@
 El estado de la prueba más reciente y las tareas concretas para retomar el
 desarrollo están en [HANDOFF.md](HANDOFF.md).
 
-Plugin Java independiente para Hytale pre-release que añade un bloque sólido y
+Plugin Java independiente para Hytale Update 6 que añade un bloque sólido y
 minable en aventura capaz de generar oleadas de NPC. La configuración se guarda
 en la entidad del bloque y se edita interactuando con él en creativo.
+
+## Versión 0.5.3
+
+- recompilado y validado contra Hytale estable `0.6.2` (Update 6, hotfix 2);
+- el manifest público apunta a la línea estable `>=0.6.2 <0.7.0` y conserva
+  los IDs técnicos existentes para no romper bloques ni configuraciones CMS1;
+- el configurador web incorpora interfaz completa en español e inglés y un
+  aviso WIP visible junto al título;
+- la autoría pública y el enlace del proyecto se muestran como Raynor Mods.
 
 ## Versión 0.5.2
 
@@ -170,6 +179,11 @@ variante visual clara y pastel se abre con
 campos, distribución, datos y lógica. El selector NPC es un autocomplete propio:
 al abrirlo enseña el catálogo completo y solo filtra mientras se escribe.
 
+La interfaz principal incluye español e inglés en la misma página. Los botones
+`ES` y `EN` del encabezado cambian todos los textos estáticos y dinámicos,
+guardan la preferencia en el navegador y permiten enlazar directamente la
+versión inglesa mediante `?lang=en`.
+
 `MinLight` y `lightMin` se siguen leyendo únicamente para mantener la
 compatibilidad con bloques y strings CMS1 antiguos, pero se ignoran y se
 normalizan a 0.
@@ -190,9 +204,10 @@ cadencia aleatoria dentro de los valores configurados.
   -SourceRoot src `
   -PackageRoot . `
   -AssetsRoot assets `
-  -VanillaCustomUiAssetsZip "$env:APPDATA\Hytale\install\pre-release\package\game\latest\Assets.zip" `
-  -ArtifactName ConfigurableMobSpawners-0.5.2.jar
-.\tools\Test-Package.ps1 -ArchivePath .\.build\dist\ConfigurableMobSpawners-0.5.2.jar
+  -VanillaCustomUiAssetsZip "$env:APPDATA\Hytale\install\release\package\game\latest\Assets.zip" `
+  -ArtifactName ConfigurableMobSpawners-0.5.3.jar
+.\tools\Test-Package.ps1 -ArchivePath .\.build\dist\ConfigurableMobSpawners-0.5.3.jar `
+  -AssetsZip "$env:APPDATA\Hytale\install\release\package\game\latest\Assets.zip"
 ```
 
 Todo lo anterior, más la instalación en la carpeta `mods` de la partida de
@@ -208,7 +223,8 @@ Antes de copiar retira cualquier JAR previo del paquete a una subcarpeta
 `backup-<fecha>`, porque cargar dos versiones del mismo mod rompe el arranque
 del servidor.
 
-Compila siempre contra el `HytaleServer.jar` de la pre-release instalada. El
+Para una release pública, compila siempre contra el `HytaleServer.jar` de la
+instalación estable que se vaya a publicar. El
 campo persistente antiguo `VerticalRadius` se conserva únicamente para poder
 leer bloques 0.1.x; la versión 0.2.x ya no lo muestra ni lo usa.
 

@@ -3,6 +3,11 @@
 Portal estático del catálogo público de Raynor. Está aislado del código de los
 mods y se puede servir desde cualquier hosting de archivos estáticos.
 
+El catálogo publicado refleja las builds de Hytale estable `0.6.2` (Update 6).
+`Configurable Mob Spawners` se etiqueta expresamente como WIP; los estados de
+smoke test se mantienen visibles y no deben convertirse en "estable" solo
+porque el proyecto compile.
+
 ## Editar catálogo y enlaces
 
 Todas las versiones, estados y URLs viven en `portal-config.js`. Los enlaces a

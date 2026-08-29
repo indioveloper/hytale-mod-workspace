@@ -7,10 +7,11 @@ de verdad.
 
 ## Estado de referencia
 
-- Fecha de la ultima validacion: 2026-08-15.
-- Runtime de trabajo: Hytale pre-release `0.6.0-pre.13.1`, revision
-  `f0a85f20ac60b34232fa6b42d3585850bd959dde`.
-- Referencia de API: `HypixelStudios/hytale-shared-source`, rama `pre-release`.
+- Fecha de la ultima validacion: 2026-08-30.
+- Runtime de trabajo y publicacion: Hytale estable `0.6.2` (Update 6), revision
+  `bb28fc642e147a39b1ce7e952903235e43f5afe8`.
+- Referencia de API: `HypixelStudios/hytale-shared-source`, rama `pre-release`,
+  commit local validado `634880ce888e66922881597667fb87fbc0851e12`.
 - JDK usado en los builds recientes: Java 25.
 - Save de smoke test en el PC de origen: `0.6.8`.
 - El Shared Source, el servidor y los assets vanilla son dependencias externas y
@@ -18,19 +19,19 @@ de verdad.
 
 ## Proyectos activos tras la consolidacion
 
-- `mods/java/more-triggers`, version `1.10.4`: utilidades generales de Trigger
+- `mods/java/more-triggers`, version `1.10.5`: utilidades generales de Trigger
   Volumes. Integra `ExecuteCommand`, la regla `NoMove` y bucles de senales
   persistentes; el antiguo mod standalone esta deprecated.
-- `mods/java/entity-motion-triggers`, version `1.3.0`: crea, convierte y mueve
+- `mods/java/entity-motion-triggers`, version `1.3.2`: crea, convierte y mueve
   entidades, gestiona colision de plataforma y ancla particulas moviles.
-- `mods/java/particle-shape-vfx`, version `0.1.0`: registra
+- `mods/java/particle-shape-vfx`, version `0.1.1`: registra
   `SpawnParticleShape` para cubos, superficies esfericas y lineas de
   particulas calculadas en coordenadas exactas.
-- `mods/java/scoreboards`, version `2.0.10`: sistema independiente de
+- `mods/java/scoreboards`, version `2.0.11`: sistema independiente de
   Objectives y scoreboards.
-- `mods/java/build-battle`, version `0.2.2`: logica independiente del modo de
+- `mods/java/build-battle`, version `0.2.4`: logica independiente del modo de
   juego.
-- `mods/java/configurable-mob-spawners`, version `0.5.1`: bloque solido minable
+- `mods/java/configurable-mob-spawners`, version `0.5.3` (WIP): bloque solido minable
   visible como `Spawner Block` en el creativo normal. Abre primero una portada
   CMS1 ligera con instrucciones, `Guardar y cerrar` y cancelacion sin cambios.
   Un bloque recien colocado no tiene rol y permanece apagado hasta guardar o
@@ -56,7 +57,7 @@ de verdad.
   Al entrar, cada jugador recibe en el chat la guia de instalacion y el enlace
   clicable al configurador. El boton `Copiar URL` prepara la URL en el chat para
   copiarla, ya que una Custom UI de servidor no accede al portapapeles cliente.
-  En `0.6.0-pre.13.1`, la consulta de luz se porta a los datos globales de la
+  En `0.6.0-pre.13.1` y estable `0.6.2`, la consulta de luz usa los datos globales de la
   seccion del bloque porque `BlockChunk.getBlockLightIntensity` y `getSkyLight`
   fueron eliminados.
 
@@ -109,8 +110,9 @@ Antes de sustituir un mod instalado:
 5. Reinicia o recarga la partida; sobrescribir el archivo no recarga las clases
    de un plugin ya iniciado.
 
-Para validar todos los plugins Java activos contra el runtime local de
-pre-release, ejecuta `scripts/Test-ActiveJavaMods.ps1`. La prueba de paquete de
+Para validar todos los plugins Java activos contra el runtime estable local,
+ejecuta `scripts/Test-ActiveJavaMods.ps1`. Los manifests publicables usan
+`>=0.6.2 <0.7.0`. La prueba de paquete de
 More Triggers comprueba tambien que conserva el registro `ExecuteCommand`.
 
 Los iconos del menu de mods no se declaran en `manifest.json`. El cliente
@@ -123,7 +125,7 @@ que registren los mismos IDs.
 
 ## Otros proyectos
 
-- `mods/java/build-battle`: prototipo `0.2.2`. `SuggestBuildTheme` abre una UI
+- `mods/java/build-battle`: prototipo `0.2.4`. `SuggestBuildTheme` abre una UI
   de una palabra y guarda en el propio volumen `theme_<palabra>=empty` y
   `points=0`. La regla `RestrictBuildBattleCreativeTools`, usada bajo
   `Always Active`, aplica una whitelist de Builder Tools por permisos e IDs de
@@ -142,7 +144,7 @@ que registren los mismos IDs.
   Requiere HyUI 0.9.8; la copia local `0.9.8-pre11` solo amplía el rango de
   compatibilidad del manifiesto después de comprobar que el plugin carga y se
   habilita. No forma parte de las releases propias de OrbGenesis.
-- `mods/java/more-triggers`: version `1.10.4`. `PasteRandomPrefab` permite yaw
+- `mods/java/more-triggers`: version `1.10.5`. `PasteRandomPrefab` permite yaw
   cardinal de 0, 90, 180 o 270 grados sin cambiar su ID ni los saves antiguos.
   Hereda de `PastePrefabEffect` y expone al inspector sus getters para
   reutilizar el boton vanilla Show/Hide Preview; previsualiza el primer prefab
@@ -179,7 +181,7 @@ que registren los mismos IDs.
 - `games/nexus-siege`: workspace del minijuego. Los NPCs reutilizables y
   efectos de Trigger Volumes para NPCs viven en `mods/asset-packs/raynor-npcs`;
   la carpeta `npcs/vanilla` conserva contratos y notas de diseno del juego.
-- `mods/java/scoreboards`: prototipo `2.0.10` reconstruido para 0.6.8. Usa
+- `mods/java/scoreboards`: prototipo `2.0.11` validado contra estable `0.6.2`. Usa
   `ObjectiveDataStore`, assets dinamicos y la tarea `OrbGenesisManualCount`;
   permite editar definiciones mediante `/scoreboard`, controlar instancias con
   comandos y usar `ControlScoreboard`, `ModifyScoreboardTask`,
@@ -190,14 +192,14 @@ que registren los mismos IDs.
   editables se publican al cliente como traducciones dinamicas antes de enviar
   los paquetes nativos de Objective.
 - `mods/asset-packs`: packs independientes relativamente limpios.
-- `mods/asset-packs/mechanisms`, version `1.1.1`: props accionables y la piedra
+- `mods/asset-packs/mechanisms`, version `1.1.2`: props accionables y la piedra
   `OrbGenesis_NoBuild_Stone`. Su volumen temporal usa `ModifyRules` con
   operacion `SET` en `VOLUME_CREATE` para insertar `NoBuild`, porque
   `SpawnTriggerVolume` 0.6.8 no copia directamente las reglas del asset. El
   volumen mide 10x10x10, retira `NoBuild` a los 10 segundos y usa
   `SpawnParticleShape` para mostrar fases roja y amarillo-naranja durante el
   bloqueo y una fase verde de desbloqueo en el segundo 10. Depende de Particle
-  Shape VFX 0.1.0.
+  Shape VFX 0.1.1.
 - `mods/asset-packs/roguelike-prefabs`: pack `tests:tests` con los mapas y
   prefabs usados por `test roguelike` y, de forma opcional, por el prototipo
   auxiliar Map Selector.

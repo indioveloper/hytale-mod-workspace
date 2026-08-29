@@ -1,7 +1,7 @@
 # Consolidacion de More Triggers
 
-Estado final de la reorganizacion, actualizado y compilado para Hytale
-`0.6.0-pre.12`.
+Estado final de la reorganizacion, actualizado y compilado para Hytale estable
+`0.6.2` (Update 6).
 
 ## Resultado
 
@@ -25,18 +25,21 @@ Los saves guardan esos IDs y un renombrado romperia Trigger Volumes existentes.
 
 ## Catalogo final por mod activo
 
-### More Triggers 1.9.2
+### More Triggers 1.10.5
 
 Efectos:
 
 - `GiveRandomItem`: entrega un bloque de construccion, banco, objeto
   decorativo, arma o herramienta elegido al azar. Excluye plantas, arboles,
   menas, fluidos, portales, assets internos y herramientas creativas.
-- `PasteRandomPrefab`: pega un prefab elegido al azar, con pesos opcionales.
+- `PasteRandomPrefab`: pega un prefab elegido al azar, con pesos opcionales,
+  yaw cardinal, preview y reserva tridimensional antisolapamiento.
 - `SendTagMessage`: envia texto resolviendo marcadores `{tag}`.
 - `ShowTagEventTitle`: muestra titulos resolviendo marcadores `{tag}`.
 - `ControlTimer`: inicia, pausa, muestra, oculta o cancela el timer circular.
 - `ExecuteCommand`: ejecuta un comando como servidor o jugador activador.
+- `ControlSignalLoop`: inicia, detiene, pausa, reanuda o pulsa bucles de senales
+  que continuan despues de abandonar el volumen activador.
 Reglas:
 
 - `NoMove`: aparece bajo `Always Active` y cancela el movimiento dentro del
@@ -46,7 +49,7 @@ No registra condiciones. Tambien aporta el comando `/timer`.
 `SetPlayerGravityView` y `/gravityview` se retiraron del mod activo; el
 prototipo 1.8.x se conserva bajo `experiments/java/inverted-gravity-camera`.
 
-### Entity Motion Triggers 1.3.1
+### Entity Motion Triggers 1.3.2
 
 Efectos:
 
@@ -64,7 +67,7 @@ No registra condiciones ni reglas. Conserva los componentes persistentes y
 temporales necesarios para movimiento y colision, incluido
 `OrbGenesis_PendingPlatformCollision`.
 
-### Particle Shape VFX 0.1.0
+### Particle Shape VFX 0.1.1
 
 Efectos:
 
@@ -76,7 +79,7 @@ Efectos:
 No registra condiciones ni reglas. Sigue separado porque es una extension
 generica de VFX y no depende de la logica de movimiento de entidades.
 
-### Scoreboards 2.0.10
+### Scoreboards 2.0.11
 
 Efectos:
 
@@ -93,7 +96,7 @@ Condiciones:
 Sigue separado porque mantiene Objectives persistentes, assets dinamicos,
 comandos y UI propia.
 
-### Build Battle 0.2.3
+### Build Battle 0.2.4
 
 Efectos:
 

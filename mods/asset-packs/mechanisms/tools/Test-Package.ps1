@@ -41,12 +41,12 @@ try {
 
   if ($manifest.Group -ne "OrbGenesis" -or
       $manifest.Name -ne "OrbGenesis Mechanisms" -or
-      $manifest.Version -ne "1.1.1" -or
+      $manifest.Version -ne "1.1.2" -or
       $manifest.IncludesAssetPack -ne $true) {
-    throw "Archive manifest does not identify OrbGenesis Mechanisms 1.1.1."
+    throw "Archive manifest does not identify OrbGenesis Mechanisms 1.1.2."
   }
-  if ($manifest.Dependencies.'OrbGenesis:Particle Shape VFX' -ne ">=0.1.0") {
-    throw "Archive manifest does not require Particle Shape VFX 0.1.0."
+  if ($manifest.Dependencies.'OrbGenesis:Particle Shape VFX' -ne ">=0.1.1") {
+    throw "Archive manifest does not require Particle Shape VFX 0.1.1."
   }
 } finally {
   $zip.Dispose()
