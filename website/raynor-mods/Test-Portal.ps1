@@ -20,6 +20,7 @@ foreach ($file in $requiredFiles) {
 
 $index = Get-Content -Raw -LiteralPath (Join-Path $root 'index.html')
 $config = Get-Content -Raw -LiteralPath (Join-Path $root 'portal-config.js')
+$app = Get-Content -Raw -LiteralPath (Join-Path $root 'app.js')
 
 if ($index -notmatch '<title>Raynor Mods') {
     throw 'The public title is not branded as Raynor Mods.'
@@ -36,10 +37,16 @@ if ($index -match 'indioveloper') {
 if ($index -match '\bTODO\b|\bPLACEHOLDER\b') {
   throw 'The page contains unfinished placeholder copy.'
 }
-if ($index -notmatch 'Hytale Update 6' -or $index -notmatch 'Hytale 0\.6\.2\+') {
-    throw 'The portal does not advertise the current stable compatibility line.'
+if ($index -notmatch 'Hytale 0\.6\.x') {
+    throw 'The portal does not advertise the supported stable compatibility line.'
 }
-foreach ($version in @('0.5.3', '1.10.5', '1.3.2', '0.2.4', '0.1.1', '2.0.11', '1.1.2', '1.0.2', '1.0.1')) {
+if ($index -match 'Más posibilidades|Menos límites|Prueba\. Construye|descargas') {
+    throw 'Removed promotional sections returned to the minimal portal.'
+}
+if ($index -notmatch 'Asset packs <span>WIP</span>' -or $config -notmatch 'packs:\s*\[\]') {
+    throw 'Private asset packs must remain hidden behind a WIP label.'
+}
+foreach ($version in @('0.5.3', '1.10.5', '1.3.2', '0.2.4', '0.1.1', '2.0.11')) {
     if ($config -notmatch [regex]::Escape("version: `"$version`"")) {
         throw "Updated mod version is missing from the portal: $version"
     }
@@ -63,6 +70,9 @@ foreach ($icon in $icons) {
 }
 
 $sourcePaths = [regex]::Matches($config, 'source:\s*"([^"]+)"') | ForEach-Object { $_.Groups[1].Value }
+if ($sourcePaths.Count -ne 6) {
+    throw "Expected only 6 public mod sources, found $($sourcePaths.Count)."
+}
 foreach ($sourcePath in $sourcePaths) {
     $workspacePath = Join-Path (Split-Path (Split-Path $root -Parent) -Parent) $sourcePath
     if (-not (Test-Path -LiteralPath $workspacePath)) {
@@ -70,9 +80,9 @@ foreach ($sourcePath in $sourcePaths) {
     }
 }
 
-$packSlugs = [regex]::Matches($config, 'slug:\s*"([^"]+)"') | ForEach-Object { $_.Groups[1].Value } | Select-Object -Last 5
-if ($packSlugs.Count -ne 5 -or (Get-Content -Raw -LiteralPath (Join-Path $root 'app.js')) -notmatch 'id="pack-\$\{pack\.slug\}"') {
-    throw 'Asset packs must expose stable public anchors.'
+$curseforgeLinks = [regex]::Matches($config, 'curseforge:\s*"https://www\.curseforge\.com/members/raynor_hytale/projects"')
+if ($curseforgeLinks.Count -ne 7 -or $app -notmatch 'mod\.curseforge') {
+    throw 'Every public mod must expose an editable CurseForge placeholder link.'
 }
 
-Write-Host "Raynor Mods portal OK: 6 mods, $($sourcePaths.Count - 6) asset packs, all local assets and source links present."
+Write-Host 'Raynor Mods minimal portal OK: 6 mods, CurseForge placeholders present, private asset packs hidden.'

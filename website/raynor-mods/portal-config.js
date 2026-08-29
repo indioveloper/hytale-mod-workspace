@@ -1,7 +1,7 @@
 /*
  * Único punto de edición para versiones, estados y URLs públicas.
- * No inventes enlaces de CurseForge: añade `curseforge` solo cuando la ficha
- * exista en el perfil oficial de Raynor.
+ * Los enlaces `curseforge` de cada mod apuntan provisionalmente al perfil
+ * general. Sustituyelos por las fichas individuales cuando esten publicadas.
  */
 window.RAYNOR_PORTAL = {
   links: {
@@ -21,6 +21,7 @@ window.RAYNOR_PORTAL = {
       accent: "cyan",
       summary: "Un bloque de spawner diseñado para controlar oleadas completas sin programar.",
       features: ["Editor web con código CMS1", "NPC, equipo, loot y comportamiento", "Preview y configuración persistente"],
+      curseforge: "https://www.curseforge.com/members/raynor_hytale/projects",
       source: "mods/java/configurable-mob-spawners",
       extraLink: { label: "Abrir configurador", urlKey: "configurator" }
     },
@@ -34,6 +35,7 @@ window.RAYNOR_PORTAL = {
       accent: "violet",
       summary: "Una caja de herramientas general para llevar los Trigger Volumes mucho más lejos.",
       features: ["Comandos, mensajes y tags", "Timer circular por jugador", "Objetos aleatorios y regla NoMove"],
+      curseforge: "https://www.curseforge.com/members/raynor_hytale/projects",
       source: "mods/java/more-triggers"
     },
     {
@@ -46,6 +48,7 @@ window.RAYNOR_PORTAL = {
       accent: "orange",
       summary: "Crea props, convierte bloques y mueve plataformas desde Trigger Volumes.",
       features: ["Movimiento y rotación", "Colisión para plataformas", "Partículas ancladas a entidades"],
+      curseforge: "https://www.curseforge.com/members/raynor_hytale/projects",
       source: "mods/java/entity-motion-triggers"
     },
     {
@@ -58,6 +61,7 @@ window.RAYNOR_PORTAL = {
       accent: "pink",
       summary: "Sugerencias de temas y control seguro de herramientas creativas por parcela.",
       features: ["Temas guardados como tags", "Whitelist de Builder Tools", "Restauración al salir del plot"],
+      curseforge: "https://www.curseforge.com/members/raynor_hytale/projects",
       source: "mods/java/build-battle"
     },
     {
@@ -70,6 +74,7 @@ window.RAYNOR_PORTAL = {
       accent: "green",
       summary: "Dibuja formas precisas con partículas desde cualquier Trigger Volume.",
       features: ["Cubos, esferas y líneas", "Coordenadas absolutas o relativas", "Densidad y coste controlables"],
+      curseforge: "https://www.curseforge.com/members/raynor_hytale/projects",
       source: "mods/java/particle-shape-vfx"
     },
     {
@@ -82,54 +87,9 @@ window.RAYNOR_PORTAL = {
       accent: "gold",
       summary: "Objectives nativos, editables y persistentes con comandos, interfaz y triggers.",
       features: ["Hasta cinco tareas", "Progreso individual o compartido", "Control completo desde Trigger Volumes"],
+      curseforge: "https://www.curseforge.com/members/raynor_hytale/projects",
       source: "mods/java/scoreboards"
     }
   ],
-  packs: [
-    {
-      slug: "raynor-npcs",
-      name: "Raynor NPCs",
-      version: "1.1.2",
-      marker: "NPC",
-      summary: "Roles, marcadores y efectos reutilizables para generar, equipar y limpiar NPCs.",
-      status: "Update 6 · Activo",
-      source: "mods/asset-packs/raynor-npcs"
-    },
-    {
-      slug: "mechanisms",
-      name: "Mechanisms",
-      version: "1.1.1",
-      marker: "MEC",
-      summary: "Palancas, botones de esencia y una piedra que crea zonas NoBuild temporales.",
-      status: "Update 6 · Smoke visual pendiente",
-      source: "mods/asset-packs/mechanisms"
-    },
-    {
-      slug: "raynor-blocks",
-      name: "Raynor Blocks",
-      version: "1.0.2",
-      marker: "BLK",
-      summary: "Barreras técnicas y bloques fantasma para previsualizar zonas y posiciones.",
-      status: "Update 6 · Validación estática",
-      source: "mods/asset-packs/blocks"
-    },
-    {
-      slug: "nexus-siege-props",
-      name: "Nexus Siege Props",
-      version: "1.0.1",
-      marker: "NS",
-      summary: "Props reutilizables del minijuego Nexus Siege, empezando por el soporte de espada.",
-      status: "Update 6 · Proyecto interno",
-      source: "mods/asset-packs/nexus-siege-props"
-    },
-    {
-      slug: "roguelike-prefabs",
-      name: "Roguelike Prefabs",
-      version: "1.0.1",
-      marker: "RLG",
-      summary: "Mapas, salas y conectores usados por las pruebas roguelike existentes.",
-      status: "Update 6 · Uso interno",
-      source: "mods/asset-packs/roguelike-prefabs"
-    }
-  ]
+  packs: []
 };

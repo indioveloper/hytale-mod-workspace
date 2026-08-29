@@ -8,6 +8,12 @@ El catálogo publicado refleja las builds de Hytale estable `0.6.2` (Update 6).
 smoke test se mantienen visibles y no deben convertirse en "estable" solo
 porque el proyecto compile.
 
+La interfaz publica es deliberadamente minimalista y sigue la linea visual del
+configurador de spawners: fondo calido, filas compactas y modo claro/oscuro. Los
+asset packs permanecen ocultos tras una etiqueta WIP mientras sean privados.
+Cada mod tiene un campo `curseforge` independiente; hasta recibir las fichas
+definitivas, esos enlaces apuntan provisionalmente al perfil general de Raynor.
+
 ## Editar catálogo y enlaces
 
 Todas las versiones, estados y URLs viven en `portal-config.js`. Los enlaces a
