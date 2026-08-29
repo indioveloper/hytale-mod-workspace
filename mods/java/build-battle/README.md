@@ -1,10 +1,10 @@
 # Build Battle
 
-Mod Java para Hytale pre-release que anade el efecto de Trigger Volume
+Mod Java para Hytale Update 6 estable que anade el efecto de Trigger Volume
 `SuggestBuildTheme` y la regla segura de herramientas creativas
 `RestrictBuildBattleCreativeTools`. El manifest acepta servidores
-`>=0.6.0-pre <0.7.0`; la version `0.2.3` compila y se ha validado con el
-runtime `0.6.0-pre.12`.
+`>=0.6.2 <0.7.0`; la version `0.2.4` compila y se ha validado con el
+runtime estable `0.6.2`.
 
 Al ejecutar el efecto sobre un jugador se abre una interfaz que solicita una
 sola palabra. Una sugerencia valida se normaliza a minusculas y se guarda en el
@@ -59,7 +59,7 @@ servidor se cierra de forma inesperada.
   -ProjectPath .\mods\java\build-battle `
   -SourceRoot src `
   -PackageRoot . `
-  -ArtifactName Build_Battle-0_2_3.jar
+  -ArtifactName Build_Battle-0_2_4.jar
 ```
 
 Antes de empaquetar o desplegar, ejecuta:

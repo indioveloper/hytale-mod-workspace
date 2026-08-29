@@ -12,6 +12,7 @@ import com.hypixel.hytale.math.vector.Rotation3f;
 import com.hypixel.hytale.math.vector.Transform;
 import com.hypixel.hytale.protocol.packets.interface_.CustomPageLifetime;
 import com.hypixel.hytale.protocol.packets.interface_.CustomUIEventBindingType;
+import com.hypixel.hytale.protocol.packets.interface_.OpenChatWithCommand;
 import com.hypixel.hytale.server.core.Message;
 import com.hypixel.hytale.server.core.asset.type.item.config.Item;
 import com.hypixel.hytale.server.core.asset.type.model.config.Model;
@@ -19,7 +20,6 @@ import com.hypixel.hytale.server.core.command.system.exceptions.GeneralCommandEx
 import com.hypixel.hytale.server.core.entity.entities.player.pages.InteractiveCustomUIPage;
 import com.hypixel.hytale.server.core.modules.block.BlockModule;
 import com.hypixel.hytale.server.core.modules.entity.component.HeadRotation;
-import com.hypixel.hytale.server.core.modules.entity.component.EntityScaleComponent;
 import com.hypixel.hytale.server.core.modules.entity.component.ModelComponent;
 import com.hypixel.hytale.server.core.modules.entity.component.TransformComponent;
 import com.hypixel.hytale.server.core.modules.entity.tracker.NetworkId;
@@ -33,6 +33,7 @@ import com.hypixel.hytale.server.core.universe.world.storage.EntityStore;
 import com.hypixel.hytale.server.npc.NPCPlugin;
 import com.hypixel.hytale.server.spawning.ISpawnableWithModel;
 import com.hypixel.hytale.server.spawning.SpawningContext;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
@@ -48,6 +49,7 @@ public final class SpawnerEditorPage extends InteractiveCustomUIPage<SpawnerEdit
   private final ConfigurableSpawnerComponent state;
   private final ConfigurableSpawnerComponent draft;
   private String roleSearch = "";
+  private boolean configurationVisible;
   private Ref<EntityStore> preview;
 
   public SpawnerEditorPage(
@@ -68,20 +70,38 @@ public final class SpawnerEditorPage extends InteractiveCustomUIPage<SpawnerEdit
       @Nonnull UIEventBuilder events,
       @Nonnull Store<EntityStore> store) {
     draft.normalize();
+    if (!configurationVisible) {
+      buildLanding(cmd, events);
+      return;
+    }
     cmd.append("Pages/ConfigurableSpawners/SpawnerEditor.ui");
     populate(cmd);
     bindSimple(events, CustomUIEventBindingType.ValueChanged, "#RoleSearchInput", "SEARCH", PageData.SEARCH, "#RoleSearchInput.Value");
     bindSimple(events, CustomUIEventBindingType.ValueChanged, "#RoleDropdown", "ROLE", PageData.ROLE, "#RoleDropdown.Value");
     bindSimple(events, CustomUIEventBindingType.ValueChanged, "#ScaleSlider", "SCALE", PageData.SCALE, "#ScaleSlider.Value");
+    bindSimple(events, CustomUIEventBindingType.ValueChanged, "#SpeedSlider", "SPEED", PageData.SPEED, "#SpeedSlider.Value");
     bindSimple(events, CustomUIEventBindingType.Activating, "#ImportButton", "IMPORT", PageData.CONFIG, "#ConfigStringInput.Value");
-    bindSave(events);
+    bindConfigurationActions(events);
     events.addEventBinding(CustomUIEventBindingType.Activating, "#CancelButton",
         new EventData().append(PageData.ACTION, "CANCEL"), false);
     updatePreview(ref, store, draft.roleId);
   }
 
+  private void buildLanding(UICommandBuilder cmd, UIEventBuilder events) {
+    cmd.append("Pages/ConfigurableSpawners/SpawnerLanding.ui");
+    cmd.set("#ConfiguratorUrl.Value", ConfigurableMobSpawnersPlugin.CONFIGURATOR_URL);
+    cmd.set("#QuickConfigStringInput.Value", "");
+    bindSimple(events, CustomUIEventBindingType.Activating, "#QuickImportButton",
+        "QUICK_IMPORT", PageData.CONFIG, "#QuickConfigStringInput.Value");
+    events.addEventBinding(CustomUIEventBindingType.Activating, "#ConfigureButton",
+        new EventData().append(PageData.ACTION, "CONFIGURE"), false);
+    events.addEventBinding(CustomUIEventBindingType.Activating, "#CopyUrlButton",
+        new EventData().append(PageData.ACTION, "COPY_URL"), false);
+    events.addEventBinding(CustomUIEventBindingType.Activating, "#CancelButton",
+        new EventData().append(PageData.ACTION, "CANCEL"), false);
+  }
+
   private void populate(UICommandBuilder cmd) {
-    cmd.set("#EnabledCheck.Value", draft.enabled);
     cmd.set("#TagInput.Value", String.join(", ", draft.tags));
     cmd.set("#RoleSearchInput.Value", roleSearch);
     cmd.set("#RoleDropdown.Entries", roleEntries(roleSearch, draft.roleId));
@@ -96,6 +116,8 @@ public final class SpawnerEditorPage extends InteractiveCustomUIPage<SpawnerEdit
     cmd.set("#MaxHealthInput.Value", Double.toString(draft.maxHealth));
     cmd.set("#ScaleSlider.Value", (float) draft.mobScale);
     cmd.set("#ScaleValue.Text", String.format(Locale.ROOT, "%.1fx", draft.mobScale));
+    cmd.set("#SpeedSlider.Value", (float) draft.mobSpeed);
+    cmd.set("#SpeedValue.Text", String.format(Locale.ROOT, "%.1fx", draft.mobSpeed));
     cmd.set("#HorizontalInput.Value", Double.toString(draft.horizontalRadius));
     cmd.set("#MaxLightInput.Value", Integer.toString(draft.maxLight));
     cmd.set("#HeldItemInput.Value", draft.heldItemId);
@@ -117,11 +139,18 @@ public final class SpawnerEditorPage extends InteractiveCustomUIPage<SpawnerEdit
 
   private static List<DropdownEntryInfo> roleEntries(String query, String selected) {
     String needle = query == null ? "" : query.trim().toLowerCase(Locale.ROOT);
-    return NPCPlugin.get().getRoleTemplateNames(true).stream()
+    ArrayList<DropdownEntryInfo> entries = new ArrayList<>();
+    if (selected == null || selected.isBlank()) {
+      entries.add(new DropdownEntryInfo(
+          LocalizableString.fromMessageId(
+              "server.customUI.configurableSpawners.role.unconfigured"), ""));
+    }
+    entries.addAll(NPCPlugin.get().getRoleTemplateNames(true).stream()
         .filter(id -> needle.isEmpty() || id.toLowerCase(Locale.ROOT).contains(needle) || id.equals(selected))
         .sorted(Comparator.comparing(String::toLowerCase))
         .map(id -> new DropdownEntryInfo(LocalizableString.fromString(id), id))
-        .toList();
+        .toList());
+    return entries;
   }
 
   private static void bindSimple(
@@ -131,10 +160,16 @@ public final class SpawnerEditorPage extends InteractiveCustomUIPage<SpawnerEdit
         new EventData().append(PageData.ACTION, action).append(key, valueSelector), false);
   }
 
-  private static void bindSave(UIEventBuilder events) {
+  private static void bindConfigurationActions(UIEventBuilder events) {
+    events.addEventBinding(CustomUIEventBindingType.Activating, "#SaveButton",
+        configurationData("SAVE"), false);
+    events.addEventBinding(CustomUIEventBindingType.Activating, "#ExportButton",
+        configurationData("EXPORT"), false);
+  }
+
+  private static EventData configurationData(String action) {
     EventData data = new EventData()
-        .append(PageData.ACTION, "SAVE")
-        .append(PageData.ENABLED, "#EnabledCheck.Value")
+        .append(PageData.ACTION, action)
         .append(PageData.TAG, "#TagInput.Value")
         .append(PageData.ROLE, "#RoleDropdown.Value")
         .append(PageData.MOB_NAME, "#MobNameInput.Value")
@@ -146,6 +181,7 @@ public final class SpawnerEditorPage extends InteractiveCustomUIPage<SpawnerEdit
         .append(PageData.ACTIVATION, "#ActivationInput.Value")
         .append(PageData.MAX_HEALTH, "#MaxHealthInput.Value")
         .append(PageData.SCALE, "#ScaleSlider.Value")
+        .append(PageData.SPEED, "#SpeedSlider.Value")
         .append(PageData.HORIZONTAL, "#HorizontalInput.Value")
         .append(PageData.MAX_LIGHT, "#MaxLightInput.Value")
         .append(PageData.HELD_ITEM, "#HeldItemInput.Value")
@@ -161,7 +197,7 @@ public final class SpawnerEditorPage extends InteractiveCustomUIPage<SpawnerEdit
           .append(PageData.lootMaxKey(i), "#LootMax" + i + ".Value")
           .append(PageData.lootChanceKey(i), "#LootChance" + i + ".Value");
     }
-    events.addEventBinding(CustomUIEventBindingType.Activating, "#SaveButton", data, false);
+    return data;
   }
 
   @Override
@@ -170,6 +206,13 @@ public final class SpawnerEditorPage extends InteractiveCustomUIPage<SpawnerEdit
     if (data.action == null) return;
     switch (data.action) {
       case "CANCEL" -> close();
+      case "CONFIGURE" -> {
+        configurationVisible = true;
+        rebuild();
+      }
+      case "QUICK_IMPORT" -> importAndSave(data.config);
+      case "COPY_URL" -> prepareConfiguratorUrl();
+      case "EXPORT" -> exportConfiguration(data);
       case "SEARCH" -> {
         roleSearch = text(data.search);
         UICommandBuilder cmd = new UICommandBuilder();
@@ -191,13 +234,72 @@ public final class SpawnerEditorPage extends InteractiveCustomUIPage<SpawnerEdit
           cmd.set("#ScaleSlider.Value", (float) draft.mobScale);
           cmd.set("#ScaleValue.Text", String.format(Locale.ROOT, "%.1fx", draft.mobScale));
           sendUpdate(cmd, false);
-          updatePreviewScale(store);
+          updatePreview(ref, store, draft.roleId);
+        }
+      }
+      case "SPEED" -> {
+        if (data.speed != null) {
+          draft.mobSpeed = Math.max(0.0, Math.min(3.0, Math.round(data.speed * 10.0f) / 10.0));
+          UICommandBuilder cmd = new UICommandBuilder();
+          cmd.set("#SpeedSlider.Value", (float) draft.mobSpeed);
+          cmd.set("#SpeedValue.Text", String.format(Locale.ROOT, "%.1fx", draft.mobSpeed));
+          sendUpdate(cmd, false);
         }
       }
       case "IMPORT" -> importConfiguration(ref, store, data.config);
       case "SAVE" -> save(data);
       default -> {}
     }
+  }
+
+  private void prepareConfiguratorUrl() {
+    playerRef.getPacketHandler().write(
+        new OpenChatWithCommand(ConfigurableMobSpawnersPlugin.CONFIGURATOR_URL));
+    playerRef.sendMessage(Message.join(
+        Message.translation("server.customUI.configurableSpawners.copyUrlChat"),
+        Message.raw(" "),
+        Message.raw(ConfigurableMobSpawnersPlugin.CONFIGURATOR_URL)
+            .link(ConfigurableMobSpawnersPlugin.CONFIGURATOR_URL)));
+    showStatus("server.customUI.configurableSpawners.copyUrlReady");
+  }
+
+  private void importAndSave(String value) {
+    try {
+      ConfigurableSpawnerComponent imported = SpawnerConfigString.decode(value);
+      draft.copyConfigurationFrom(imported);
+      roleSearch = "";
+      String validation = validateDraft();
+      if (validation != null) {
+        showStatus(validation);
+        return;
+      }
+      state.copyConfigurationFrom(draft);
+      state.ensureSpawnerId();
+      blockInfo.markNeedsSaving();
+      playerRef.sendMessage(
+          Message.translation("server.customUI.configurableSpawners.importedSaved"));
+      close();
+    } catch (RuntimeException exception) {
+      showStatus("server.customUI.configurableSpawners.error.import");
+    }
+  }
+
+  private void exportConfiguration(PageData data) {
+    String error = readDraft(data);
+    if (error != null) {
+      showStatus(error);
+      return;
+    }
+    String validation = validateDraft();
+    if (validation != null) {
+      showStatus(validation);
+      return;
+    }
+    UICommandBuilder cmd = new UICommandBuilder();
+    cmd.set("#ConfigStringInput.Value", SpawnerConfigString.encode(draft));
+    cmd.set("#Status.Text",
+        Message.translation("server.customUI.configurableSpawners.exportReady"));
+    sendUpdate(cmd, false);
   }
 
   private void importConfiguration(Ref<EntityStore> ref, Store<EntityStore> store, String value) {
@@ -240,7 +342,6 @@ public final class SpawnerEditorPage extends InteractiveCustomUIPage<SpawnerEdit
 
   private String readDraft(PageData data) {
     try {
-      draft.enabled = data.enabled == null || data.enabled;
       draft.tag = text(data.tag);
       draft.tags = splitTags(draft.tag);
       draft.roleId = text(data.role);
@@ -253,6 +354,7 @@ public final class SpawnerEditorPage extends InteractiveCustomUIPage<SpawnerEdit
       draft.activationRadius = number(data.activation);
       draft.maxHealth = number(data.maxHealth);
       draft.mobScale = data.scale == null ? 1.0 : data.scale;
+      draft.mobSpeed = data.speed == null ? 1.0 : data.speed;
       draft.horizontalRadius = number(data.horizontal);
       draft.minLight = 0;
       draft.maxLight = integer(data.maxLight);
@@ -269,6 +371,9 @@ public final class SpawnerEditorPage extends InteractiveCustomUIPage<SpawnerEdit
         draft.lootEntries[i].set(text(data.lootItem[i]), integer(data.lootMin[i]),
             integer(data.lootMax[i]), number(data.lootChance[i]));
       }
+      // The in-game editor intentionally edits Mob 1 only. Preserve the remaining web profiles
+      // and the elite settings attached to Mob 1 while synchronizing its basic fields.
+      draft.updateFirstProfileFromLegacy();
       draft.normalize();
       return null;
     } catch (RuntimeException exception) {
@@ -304,6 +409,8 @@ public final class SpawnerEditorPage extends InteractiveCustomUIPage<SpawnerEdit
     try {
       Model model = getNpcModel(roleId);
       if (model == null) return;
+      model = SpawnerMobScale.scaledCopy(model, draft.mobScale);
+      if (model == null) return;
       TransformComponent transform = store.getComponent(player, TransformComponent.getComponentType());
       HeadRotation head = store.getComponent(player, HeadRotation.getComponentType());
       if (transform == null || head == null) return;
@@ -319,7 +426,6 @@ public final class SpawnerEditorPage extends InteractiveCustomUIPage<SpawnerEdit
       holder.addComponent(EntityStore.REGISTRY.getNonSerializedComponentType(), NonSerialized.get());
       holder.addComponent(TransformComponent.getComponentType(), new TransformComponent(position, rotation));
       holder.addComponent(ModelComponent.getComponentType(), new ModelComponent(model));
-      holder.addComponent(EntityScaleComponent.getComponentType(), new EntityScaleComponent((float) draft.mobScale));
       holder.addComponent(HeadRotation.getComponentType(), new HeadRotation(rotation));
       preview = store.addEntity(holder, AddReason.SPAWN);
     } catch (RuntimeException ignored) {
@@ -346,17 +452,6 @@ public final class SpawnerEditorPage extends InteractiveCustomUIPage<SpawnerEdit
     preview = null;
   }
 
-  private void updatePreviewScale(Store<EntityStore> store) {
-    if (preview == null || !preview.isValid()) return;
-    EntityScaleComponent scale = store.getComponent(preview, EntityScaleComponent.getComponentType());
-    if (scale == null) {
-      store.putComponent(preview, EntityScaleComponent.getComponentType(),
-          new EntityScaleComponent((float) draft.mobScale));
-    } else {
-      scale.setScale((float) draft.mobScale);
-    }
-  }
-
   @Override
   public void onDismiss(@Nonnull Ref<EntityStore> ref, @Nonnull Store<EntityStore> store) {
     clearPreview(store);
@@ -380,7 +475,6 @@ public final class SpawnerEditorPage extends InteractiveCustomUIPage<SpawnerEdit
     static final String ACTION = "Action";
     static final String SEARCH = "@Search";
     static final String CONFIG = "@Config";
-    static final String ENABLED = "@Enabled";
     static final String TAG = "@Tag";
     static final String ROLE = "@Role";
     static final String MOB_NAME = "@MobName";
@@ -392,6 +486,7 @@ public final class SpawnerEditorPage extends InteractiveCustomUIPage<SpawnerEdit
     static final String ACTIVATION = "@Activation";
     static final String MAX_HEALTH = "@MaxHealth";
     static final String SCALE = "@Scale";
+    static final String SPEED = "@Speed";
     static final String HORIZONTAL = "@Horizontal";
     static final String MAX_LIGHT = "@MaxLight";
     static final String HELD_ITEM = "@HeldItem";
@@ -411,7 +506,6 @@ public final class SpawnerEditorPage extends InteractiveCustomUIPage<SpawnerEdit
         .append(new KeyedCodec<>(ACTION, Codec.STRING), (d, v) -> d.action = v, d -> d.action).add()
         .append(new KeyedCodec<>(SEARCH, Codec.STRING, false), (d, v) -> d.search = v, d -> d.search).add()
         .append(new KeyedCodec<>(CONFIG, Codec.STRING, false), (d, v) -> d.config = v, d -> d.config).add()
-        .append(new KeyedCodec<>(ENABLED, Codec.BOOLEAN, false), (d, v) -> d.enabled = v, d -> d.enabled).add()
         .append(new KeyedCodec<>(TAG, Codec.STRING, false), (d, v) -> d.tag = v, d -> d.tag).add()
         .append(new KeyedCodec<>(ROLE, Codec.STRING, false), (d, v) -> d.role = v, d -> d.role).add()
         .append(new KeyedCodec<>(MOB_NAME, Codec.STRING, false), (d, v) -> d.mobName = v, d -> d.mobName).add()
@@ -423,6 +517,7 @@ public final class SpawnerEditorPage extends InteractiveCustomUIPage<SpawnerEdit
         .append(new KeyedCodec<>(ACTIVATION, Codec.STRING, false), (d, v) -> d.activation = v, d -> d.activation).add()
         .append(new KeyedCodec<>(MAX_HEALTH, Codec.STRING, false), (d, v) -> d.maxHealth = v, d -> d.maxHealth).add()
         .append(new KeyedCodec<>(SCALE, Codec.FLOAT, false), (d, v) -> d.scale = v, d -> d.scale).add()
+        .append(new KeyedCodec<>(SPEED, Codec.FLOAT, false), (d, v) -> d.speed = v, d -> d.speed).add()
         .append(new KeyedCodec<>(HORIZONTAL, Codec.STRING, false), (d, v) -> d.horizontal = v, d -> d.horizontal).add()
         .append(new KeyedCodec<>(MAX_LIGHT, Codec.STRING, false), (d, v) -> d.maxLight = v, d -> d.maxLight).add()
         .append(new KeyedCodec<>(HELD_ITEM, Codec.STRING, false), (d, v) -> d.heldItem = v, d -> d.heldItem).add()
@@ -456,9 +551,8 @@ public final class SpawnerEditorPage extends InteractiveCustomUIPage<SpawnerEdit
 
     String action, search, config, tag, role, mobName, cadenceMin, cadenceMax, countMin, countMax;
     String maxAlive, activation, maxHealth, horizontal, maxLight, heldItem;
-    Float scale;
+    Float scale, speed;
     String aggression, lootMode, armorHead, armorChest, armorHands, armorLegs;
-    Boolean enabled;
     final String[] lootItem = new String[SpawnerLootEntry.MAX_ENTRIES];
     final String[] lootMin = new String[SpawnerLootEntry.MAX_ENTRIES];
     final String[] lootMax = new String[SpawnerLootEntry.MAX_ENTRIES];

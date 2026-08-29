@@ -24,7 +24,7 @@ que usar una entidad marcada `HiddenFromAdventurePlayers`, no un bloque.
 
 ### `mods/asset-packs/mechanisms`
 
-Pack `OrbGenesis:OrbGenesis Mechanisms`, version `1.1.1`, con props
+Pack `OrbGenesis:OrbGenesis Mechanisms`, version `1.1.2`, con props
 accionables/animados y mecanismos jugables.
 
 Incluye:

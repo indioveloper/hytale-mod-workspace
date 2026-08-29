@@ -36,10 +36,15 @@ final class SpawnerRetaliationSystem extends DamageEventSystem {
       @Nonnull Damage damage) {
     SpawnedBySpawnerComponent tracker = archetypeChunk.getComponent(
         index, SpawnedBySpawnerComponent.getComponentType());
-    if (tracker == null || tracker.aggressionMode != AggressionMode.RETALIATE) return;
+    if (tracker == null) return;
     if (!(damage.getSource() instanceof Damage.EntitySource source) || !source.getRef().isValid()) return;
     if (commandBuffer.getComponent(source.getRef(), Player.getComponentType()) == null) return;
     UUIDComponent uuid = commandBuffer.getComponent(source.getRef(), UUIDComponent.getComponentType());
-    if (uuid != null) tracker.retaliationTarget = uuid.getUuid();
+    if (uuid != null) {
+      tracker.lastPlayerAttacker = uuid.getUuid();
+      if (tracker.aggressionMode == AggressionMode.RETALIATE) {
+        tracker.retaliationTarget = uuid.getUuid();
+      }
+    }
   }
 }

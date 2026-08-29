@@ -7,7 +7,7 @@
   "Categories": [
     "Blocks.Rocks"
   ],
-  "Quality": "Developer",
+  "Quality": "Common",
   "PlayerAnimationsId": "Block",
   "BlockType": {
     "Material": "Solid",
@@ -45,28 +45,8 @@
         ]
       }
     },
-    "State": {
-      "Definitions": {
-        "Off": {
-          "CustomModelTexture": [
-            {
-              "Texture": "Items/OrbGenesis/Configurable_Mob_Spawner_Texture_Off.png",
-              "Weight": 1
-            }
-          ]
-        },
-        "On": {
-          "CustomModelTexture": [
-            {
-              "Texture": "Items/OrbGenesis/Configurable_Mob_Spawner_Texture.png",
-              "Weight": 1
-            }
-          ]
-        }
-      }
-    },
-    "ParticleColor": "#26353d",
-    "TextureComputedColor": "#0db6c1"
+    "ParticleColor": "#2a1f3d",
+    "TextureComputedColor": "#8f5eea"
   },
   "ItemSoundSetId": "ISS_Items_Metal"
 }

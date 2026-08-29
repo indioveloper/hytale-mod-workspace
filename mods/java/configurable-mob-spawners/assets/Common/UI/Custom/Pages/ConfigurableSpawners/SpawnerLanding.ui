@@ -1,0 +1,77 @@
+$C = "../../Common.ui";
+
+$C.@PageOverlay {
+  LayoutMode: Middle;
+
+  $C.@DecoratedContainer {
+    @CloseButton = false;
+    Anchor: (Width: 760, Height: 540);
+
+    #Title { $C.@Title { @Text = %server.customUI.configurableSpawners.title; } }
+
+    #Content {
+      LayoutMode: Top;
+      Padding: (Full: 24, Top: 18);
+
+      Group {
+        LayoutMode: Left;
+        Anchor: (Bottom: 4, Height: 38);
+        Label {
+          Anchor: (Width: 130, Height: 38);
+          Text: %server.customUI.configurableSpawners.quickStep1;
+          Style: (...$C.@DefaultLabelStyle, FontSize: 15, TextColor: #b8c8d9,
+            VerticalAlignment: Center);
+        }
+        $C.@TextField #ConfiguratorUrl {
+          @Anchor = (Left: 8, Width: 410, Height: 38);
+          IsReadOnly: true;
+        }
+        $C.@SecondaryTextButton #CopyUrlButton {
+          @Anchor = (Left: 8, Width: 140, Height: 38);
+          Text: %server.customUI.configurableSpawners.copyUrl;
+        }
+      }
+      Label {
+        Anchor: (Bottom: 4, Height: 24);
+        Text: %server.customUI.configurableSpawners.quickStep2;
+        Style: (...$C.@DefaultLabelStyle, FontSize: 15, TextColor: #b8c8d9,
+          Wrap: true, VerticalAlignment: Center);
+      }
+      Label {
+        Anchor: (Bottom: 10, Height: 42);
+        Text: %server.customUI.configurableSpawners.quickStep3;
+        Style: (...$C.@DefaultLabelStyle, FontSize: 15, TextColor: #b8c8d9,
+          Wrap: true, VerticalAlignment: Center);
+      }
+
+      $C.@MultilineTextField #QuickConfigStringInput {
+        @Anchor = (Bottom: 12, Height: 84);
+        PlaceholderText: %server.customUI.configurableSpawners.import.placeholder;
+      }
+
+      $C.@TextButton #QuickImportButton {
+        @Anchor = (Bottom: 14, Height: 42);
+        Text: %server.customUI.configurableSpawners.quickImport;
+      }
+
+      $C.@PanelSeparatorFancy { @Anchor = (Bottom: 12); }
+
+      $C.@SecondaryTextButton #ConfigureButton {
+        @Anchor = (Bottom: 12, Height: 46);
+        Text: %server.customUI.configurableSpawners.configure;
+      }
+
+      Label #Status {
+        Anchor: (Bottom: 6, Height: 28);
+        Text: "";
+        Style: (...$C.@DefaultLabelStyle, TextColor: #ffcf70,
+          Wrap: true, HorizontalAlignment: Center, VerticalAlignment: Center);
+      }
+
+      $C.@CancelTextButton #CancelButton {
+        @Anchor = (Height: 42);
+        @Text = %server.customUI.configurableSpawners.cancel;
+      }
+    }
+  }
+}

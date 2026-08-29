@@ -1,6 +1,7 @@
 # Particle Shape VFX
 
-Mod independiente para Hytale pre-release 0.6.x. Registra el efecto de Trigger
+Mod independiente para Hytale Update 6 estable. La version `0.1.1` esta
+compilada y validada con Hytale `0.6.2`. Registra el efecto de Trigger
 Volumes `SpawnParticleShape`, que calcula posiciones exactas y crea figuras con
 un `ParticleSystem` puntual en cada posicion.
 
@@ -50,8 +51,8 @@ MaxPoints: 512
   -ProjectPath .\mods\java\particle-shape-vfx `
   -SourceRoot src `
   -PackageRoot src `
-  -ArtifactName Particle_Shape_VFX-0_1_0.jar
+  -ArtifactName Particle_Shape_VFX-0_1_1.jar
 
 .\mods\java\particle-shape-vfx\tools\Test-Package.ps1 `
-  -ArchivePath .\mods\java\particle-shape-vfx\.build\dist\Particle_Shape_VFX-0_1_0.jar
+  -ArchivePath .\mods\java\particle-shape-vfx\.build\dist\Particle_Shape_VFX-0_1_1.jar
 ```

@@ -1,14 +1,15 @@
 {
   "Group": "OrbGenesis",
   "Name": "Build Battle",
-  "Version": "0.2.3",
+  "Version": "0.2.4",
   "Description": "Adds Build Battle theme suggestions and plot-safe creative tool restrictions.",
   "Authors": [
     {
-      "Name": "OrbGenesis",
-      "Url": "https://orbgenesis.gg"
+      "Name": "Raynor",
+      "Url": "https://raynor-mods.vercel.app"
     }
   ],
+  "Website": "https://raynor-mods.vercel.app/#mod-build-battle",
   "DisabledByDefault": false,
   "IncludesAssetPack": true,
   "Dependencies": {
@@ -16,6 +17,6 @@
     "Hytale:BuilderTools": "*"
   },
   "OptionalDependencies": {},
-  "ServerVersion": ">=0.6.0-pre <0.7.0",
+  "ServerVersion": ">=0.6.2 <0.7.0",
   "Main": "gg.orbgenesis.buildbattle.BuildBattlePlugin"
 }

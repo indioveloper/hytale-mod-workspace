@@ -1,13 +1,13 @@
 {
   "Group": "OrbGenesis",
   "Name": "ConfigurableMobSpawners",
-  "Version": "0.4.0",
-  "ServerVersion": ">=0.6.0-pre <0.7.0",
+  "Version": "0.5.3",
+  "ServerVersion": ">=0.6.2 <0.7.0",
   "Description": "Adventure-mineable mob spawners configured in creative mode.",
   "Authors": [
-    {"Name": "Raynor"},
-    {"Name": "OrbGenesis"}
+    {"Name": "Raynor", "Url": "https://raynor-mods.vercel.app"}
   ],
+  "Website": "https://raynor-mods.vercel.app/#mod-configurable-mob-spawners",
   "Dependencies": {
     "Hytale:NPC": "*"
   },

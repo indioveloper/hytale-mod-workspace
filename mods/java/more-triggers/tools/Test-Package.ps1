@@ -5,8 +5,8 @@ param(
 
 $ErrorActionPreference = "Stop"
 $archive = (Resolve-Path -LiteralPath $ArchivePath).Path
-if ((Split-Path -Leaf $archive) -ne "More_Triggers-1_9_2.jar") {
-  throw "Artifact name must match version 1.9.2: $archive"
+if ((Split-Path -Leaf $archive) -ne "More_Triggers-1_10_5.jar") {
+  throw "Artifact name must match version 1.10.5: $archive"
 }
 $entries = @(jar tf $archive)
 if ($LASTEXITCODE -ne 0) {
@@ -18,6 +18,8 @@ $required = @(
   "icon-256.png"
   "gg/orbgenesis/moretriggers/MoreTriggersPlugin.class"
   "gg/orbgenesis/moretriggers/GiveRandomItemEffect.class"
+  "gg/orbgenesis/moretriggers/PasteRandomPrefabEffect.class"
+  "gg/orbgenesis/moretriggers/RoomOccupancyGeometry.class"
   "gg/orbgenesis/moretriggers/RandomItemCandidateFilter.class"
   "gg/orbgenesis/moretriggers/ExecuteCommandEffect.class"
   "gg/orbgenesis/moretriggers/NoMoveRule.class"
@@ -28,6 +30,10 @@ $required = @(
   "gg/orbgenesis/moretriggers/timer/ControlTimerEffect.class"
   "gg/orbgenesis/moretriggers/timer/TimerCommand.class"
   "gg/orbgenesis/moretriggers/timer/CircularTimerHud.class"
+  "gg/orbgenesis/moretriggers/signalloop/ControlSignalLoopEffect.class"
+  "gg/orbgenesis/moretriggers/signalloop/SignalLoopManager.class"
+  "gg/orbgenesis/moretriggers/signalloop/SignalLoopSchedule.class"
+  "gg/orbgenesis/moretriggers/signalloop/SignalLoopTickingSystem.class"
   "Common/UI/Custom/HUD/CircularTimer.ui"
   "Common/UI/Custom/HUD/CircularTimer/CenterBackdrop.png"
   "Common/UI/Custom/HUD/CircularTimer/Frames/Ring00.png"
@@ -57,8 +63,8 @@ try {
 if ($manifest.Group -ne "OrbGenesis" -or $manifest.Name -ne "More Triggers") {
   throw "Unexpected plugin identity in manifest.json."
 }
-if ($manifest.Version -ne "1.9.2") {
-  throw "Manifest version must be 1.9.2, found $($manifest.Version)."
+if ($manifest.Version -ne "1.10.5") {
+  throw "Manifest version must be 1.10.5, found $($manifest.Version)."
 }
 
 $frames = @($entries | Where-Object { $_ -match '^Common/UI/Custom/HUD/CircularTimer/Frames/Ring\d{2}\.png$' })
@@ -88,5 +94,20 @@ if ($LASTEXITCODE -ne 0) {
 }
 if (-not ($pluginBytecode | Select-String -SimpleMatch "ExecuteCommand")) {
   throw "MoreTriggersPlugin does not register the ExecuteCommand effect ID."
+}
+if (-not ($pluginBytecode | Select-String -SimpleMatch "ControlSignalLoop")) {
+  throw "MoreTriggersPlugin does not register the ControlSignalLoop effect ID."
+}
+$prefabBytecode = & javap -classpath $archive -c -p gg.orbgenesis.moretriggers.PasteRandomPrefabEffect
+if ($LASTEXITCODE -ne 0 -or -not ($prefabBytecode | Select-String -SimpleMatch 'Field yaw:Lcom/hypixel/hytale/server/core/asset/type/blocktype/config/Rotation;')) {
+  throw "PasteRandomPrefab does not expose or apply its Yaw rotation field."
+}
+if (-not ($prefabBytecode | Select-String -SimpleMatch 'extends com.hypixel.hytale.builtin.triggervolumes.effect.builtin.PastePrefabEffect')) {
+  throw "PasteRandomPrefab must extend vanilla PastePrefabEffect so the inspector exposes Show/Hide Preview."
+}
+foreach ($previewMethod in @('getPrefabRelPath', 'getPosition', 'getOrigin', 'getRotation')) {
+  if (-not ($prefabBytecode | Select-String -SimpleMatch $previewMethod)) {
+    throw "PasteRandomPrefab does not expose vanilla preview method: $previewMethod"
+  }
 }
 Write-Output "More Triggers package check passed: $archive"

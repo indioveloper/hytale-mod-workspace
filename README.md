@@ -13,12 +13,12 @@ backups, instalaciones del juego, el Hytale Shared Source ni mundos completos.
 
 | Proyecto | Estado | Descripcion |
 | --- | --- | --- |
-| `mods/java/build-battle` | Prototipo, v0.2.3 | Sugerencias de temas y regla Always Active para restringir herramientas creativas por plot. |
-| `mods/java/configurable-mob-spawners` | MVP ampliado, v0.4.0 | Spawner con busqueda y preview NPC, vida/escala/armadura, suelo automatico, loot por filas, CMS1, modelo y VFX. |
-| `mods/java/entity-motion-triggers` | Activo/prototipo, v1.3.1 | Efectos para crear, convertir y mover entidades, aplicar colision de plataforma y anclar particulas moviles. |
-| `mods/java/more-triggers` | Activo/prototipo, v1.9.2 | Utilidades generales de Trigger Volumes, incluida la regla `NoMove`, `ExecuteCommand`, objetos aleatorios filtrados, mensajes con tags y timer circular. |
-| `mods/java/particle-shape-vfx` | Activo/prototipo, v0.1.0 | Efecto `SpawnParticleShape` para dibujar cubos, superficies esfericas y lineas de particulas con coordenadas exactas. |
-| `mods/java/scoreboards` | Prototipo, v2.0.10 | Objectives editables y persistentes con comandos, UI nativa y control desde Trigger Volumes; compila en pre.12 y requiere smoke test en juego. |
+| `mods/java/build-battle` | Prototipo, v0.2.4 | Sugerencias de temas y regla Always Active para restringir herramientas creativas por plot. |
+| `mods/java/configurable-mob-spawners` | WIP, v0.5.3 | Spawner compuesto con perfiles ponderados y variantes élite configurables, nombre reforzado, tinte ModelVFX, aviso por proximidad, portada CMS1 guiada, preview NPC, vida, velocidad, escala física, equipo, loot y límite local de mobs vivos. |
+| `mods/java/entity-motion-triggers` | Activo/prototipo, v1.3.2 | Efectos para crear, convertir y mover entidades, aplicar colision de plataforma y anclar particulas moviles. |
+| `mods/java/more-triggers` | Activo/prototipo, v1.10.5 | Utilidades generales de Trigger Volumes, incluida la regla `NoMove`, `ExecuteCommand`, objetos aleatorios filtrados, prefabs aleatorios rotables con preview y reserva antisolapamiento, mensajes con tags, timer circular y senales repetitivas persistentes. |
+| `mods/java/particle-shape-vfx` | Activo/prototipo, v0.1.1 | Efecto `SpawnParticleShape` para dibujar cubos, superficies esfericas y lineas de particulas con coordenadas exactas. |
+| `mods/java/scoreboards` | Prototipo, v2.0.11 | Objectives editables y persistentes con comandos, UI nativa y control desde Trigger Volumes; compila en Update 6 y requiere smoke test en juego. |
 
 `mods/java/deprecated` conserva Player Entity Tags, Chest Labels y el antiguo
 Trigger Execute Command standalone. Son fuentes historicas desactivadas por
@@ -47,7 +47,7 @@ y contratos de comportamiento. Los NPCs reutilizables viven en
 `mods/asset-packs` contiene los packs independientes que siguen siendo utiles:
 
 - `blocks`
-- `mechanisms` (`OrbGenesis:OrbGenesis Mechanisms`, v1.1.1; incluye la piedra
+- `mechanisms` (`OrbGenesis:OrbGenesis Mechanisms`, v1.1.2; incluye la piedra
   arrojadiza que crea una zona `NoBuild` temporal y requiere Particle Shape VFX)
 - `raynor-npcs`
 - `nexus-siege-props`
@@ -69,7 +69,8 @@ El resultado de la consolidacion de los mods Java de Trigger Volumes esta en
 
 Requisitos:
 
-- Hytale pre-release instalada.
+- Hytale estable instalada (para estas versiones, `0.6.2` o posterior dentro de
+  la linea `0.6.x`).
 - JDK compatible con el servidor actual; los builds recientes usan Java 25.
 - Git y PowerShell 7 o Windows PowerShell.
 - Maven solo para proyectos que tengan `pom.xml`.
@@ -84,10 +85,10 @@ repositorio:
 Por defecto se crea junto al monorepo, en `..\hytale-shared-source`, usando la
 rama `pre-release` oficial.
 
-El JAR del servidor suele estar en:
+El JAR del servidor estable suele estar en:
 
 ```text
-%APPDATA%\Hytale\install\pre-release\package\game\latest\Server\HytaleServer.jar
+%APPDATA%\Hytale\install\release\package\game\latest\Server\HytaleServer.jar
 ```
 
 ## Compilar un mod Java
@@ -104,8 +105,10 @@ ejecuta con:
 .\scripts\Test-ActiveJavaMods.ps1
 ```
 
-La ultima validacion se hizo el 13 de agosto de 2026 contra
-`0.6.0-pre.12` (`f57d3e0abf0c2d47a7c839cb33a88aaa7a0daed2`) y Java 25.
+La ultima validacion completa se hizo el 30 de agosto de 2026 contra Hytale
+estable `0.6.2`, revision `bb28fc642e147a39b1ce7e952903235e43f5afe8`,
+con Java 25. La matriz, los limites de esa validacion y los artefactos que se
+pueden publicar estan en [Compatibilidad con Update 6](docs/UPDATE_6_COMPATIBILITY.md).
 
 Ejemplo para More Triggers:
 
@@ -114,7 +117,7 @@ Ejemplo para More Triggers:
   -ProjectPath .\mods\java\more-triggers `
   -SourceRoot src `
   -PackageRoot src `
-  -ArtifactName More_Triggers-1_9_2.jar
+  -ArtifactName More_Triggers-1_10_5.jar
 ```
 
 Ejemplo para Entity Motion Triggers:
@@ -124,7 +127,7 @@ Ejemplo para Entity Motion Triggers:
   -ProjectPath .\mods\java\entity-motion-triggers `
   -SourceRoot src `
   -PackageRoot src `
-  -ArtifactName Entity_Motion_Triggers-1_3_1.jar
+  -ArtifactName Entity_Motion_Triggers-1_3_2.jar
 ```
 
 Para Scoreboards, los assets estan en una raiz distinta:
@@ -135,7 +138,7 @@ Para Scoreboards, los assets estan en una raiz distinta:
   -SourceRoot src `
   -PackageRoot . `
   -AssetsRoot assets `
-  -ArtifactName Scoreboards-2_0_10.jar
+  -ArtifactName Scoreboards-2_0_11.jar
 ```
 
 Los asset packs puros se empaquetan con rutas ZIP portables mediante:
@@ -143,7 +146,7 @@ Los asset packs puros se empaquetan con rutas ZIP portables mediante:
 ```powershell
 .\scripts\Build-AssetPack.ps1 `
   -ProjectPath .\mods\asset-packs\mechanisms `
-  -ArtifactName OrbGenesis_Mechanisms-1_1_1.zip
+  -ArtifactName OrbGenesis_Mechanisms-1_1_2.zip
 ```
 
 ## Instalar y probar
@@ -160,6 +163,7 @@ Para More Triggers, ejecuta siempre antes del despliegue:
 .\mods\java\more-triggers\tools\Test-NoMoveExceptionFilter.ps1
 .\mods\java\more-triggers\tools\Test-RandomItemCandidateFilter.ps1
 .\mods\java\more-triggers\tools\Test-TimerMath.ps1
+.\mods\java\more-triggers\tools\Test-SignalLoopSchedule.ps1
 ```
 
 Antes de migrar un save, retira los JARs standalone de Player Trigger Tags y

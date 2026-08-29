@@ -23,6 +23,7 @@ try {
   }
 
   $items = [ordered]@{}
+  $itemStats = [ordered]@{}
   $itemRecords = @{}
   $itemPaths = @{}
   $itemGroups = [ordered]@{
@@ -70,6 +71,29 @@ try {
   }
   $ids = @($items.Keys | Sort-Object)
 
+  function Get-BaseDamageValues([object]$Node) {
+    if ($null -eq $Node -or $Node -is [string] -or $Node -is [ValueType]) { return @() }
+    $values = [Collections.Generic.List[double]]::new()
+    if ($Node -is [System.Collections.IEnumerable] -and $Node -isnot [pscustomobject]) {
+      foreach ($entry in $Node) {
+        foreach ($value in @(Get-BaseDamageValues $entry)) { $values.Add([double]$value) }
+      }
+      return $values.ToArray()
+    }
+    foreach ($property in $Node.PSObject.Properties) {
+      if ($property.Name -eq "BaseDamage" -and $property.Value) {
+        foreach ($damage in $property.Value.PSObject.Properties) {
+          if ($damage.Value -is [ValueType] -and [double]$damage.Value -gt 0) {
+            $values.Add([double]$damage.Value)
+          }
+        }
+        continue
+      }
+      foreach ($value in @(Get-BaseDamageValues $property.Value)) { $values.Add([double]$value) }
+    }
+    return $values.ToArray()
+  }
+
   $idSet = [Collections.Generic.HashSet[string]]::new([StringComparer]::OrdinalIgnoreCase)
   foreach ($id in $ids) { [void]$idSet.Add($id) }
   $iconEntries = @($archive.Entries | Where-Object {
@@ -102,6 +126,8 @@ try {
     $hasTool = $false
     $hasConsumable = $false
     $armorSlot = ""
+    $armorRecord = $null
+    $damageValues = [Collections.Generic.List[double]]::new()
     $quality = [string]$itemRecords[$id].Quality
     $paths = [Collections.Generic.List[string]]::new()
     while ($currentId -and $itemRecords.ContainsKey($currentId) -and $visited.Add($currentId)) {
@@ -112,7 +138,15 @@ try {
       if ($record.BlockType) { $hasBlock = $true }
       if ($record.Tool) { $hasTool = $true }
       if ($record.Consumable) { $hasConsumable = $true }
-      if (-not $armorSlot -and $record.Armor) { $armorSlot = [string]$record.Armor.ArmorSlot }
+      if (-not $armorSlot -and $record.Armor) {
+        $armorSlot = [string]$record.Armor.ArmorSlot
+        $armorRecord = $record.Armor
+      }
+      if ($damageValues.Count -eq 0 -and $record.InteractionVars) {
+        foreach ($value in @(Get-BaseDamageValues $record.InteractionVars)) {
+          $damageValues.Add([double]$value)
+        }
+      }
       $currentId = [string]$record.Parent
     }
     $path = $paths -join ";"
@@ -122,6 +156,27 @@ try {
     $isRecipeVariant = [bool]$itemRecords[$id].Variant -and [bool]$itemRecords[$id].Recipe -and
       [string]$itemPaths[$id] -match '(?i)Recipes?/'
     if ($isInternal -or $isRecipeVariant) { continue }
+
+    $stats = [ordered]@{}
+    if ($damageValues.Count -gt 0) {
+      $stats.damage = [Math]::Round(($damageValues | Measure-Object -Minimum).Minimum, 2)
+    }
+    if ($armorRecord) {
+      $flatDefense = [double]$armorRecord.BaseDamageResistance
+      $percentDefense = 0.0
+      foreach ($modifier in @($armorRecord.DamageResistance.Physical)) {
+        if (-not $modifier) { continue }
+        if ([string]$modifier.CalculationType -match '(?i)Percent') {
+          $percentDefense += [double]$modifier.Amount * 100.0
+        }
+        elseif ([string]$modifier.CalculationType -match '(?i)Flat') {
+          $flatDefense += [double]$modifier.Amount
+        }
+      }
+      $stats.defenseFlat = [Math]::Round($flatDefense, 2)
+      $stats.defensePercent = [Math]::Round($percentDefense, 2)
+    }
+    if ($stats.Count -gt 0) { $itemStats[$id] = $stats }
 
     $nativeItem = @($categories | Where-Object { $_ -like 'Items.*' }).Count -gt 0 -or
       $path -match '(?i)/Items/(Food|Potion|Weapon|Tool|Armor|Ingredient|Recipe)/'
@@ -166,10 +221,11 @@ finally {
 $json = ConvertTo-Json -InputObject $ids -Compress
 $catalogJson = ConvertTo-Json -InputObject $items -Compress
 $groupsJson = ConvertTo-Json -InputObject $itemGroups -Compress
+$statsJson = ConvertTo-Json -InputObject $itemStats -Compress
 $previewJson = ConvertTo-Json -InputObject $previews -Compress
 $target = Join-Path $PSScriptRoot "asset-ids.generated.js"
 [System.IO.File]::WriteAllText(
   $target,
-  "window.HYTALE_ITEM_IDS=$json;window.HYTALE_ITEM_CATALOG=$catalogJson;window.HYTALE_ITEM_GROUPS=$groupsJson;window.HYTALE_ITEM_PREVIEWS=$previewJson;",
+  "window.HYTALE_ITEM_IDS=$json;window.HYTALE_ITEM_CATALOG=$catalogJson;window.HYTALE_ITEM_GROUPS=$groupsJson;window.HYTALE_ITEM_STATS=$statsJson;window.HYTALE_ITEM_PREVIEWS=$previewJson;",
   [System.Text.UTF8Encoding]::new($false))
 Write-Output "Generated $($ids.Count) item IDs, filtered equipment groups and $($previews.Count) item previews: $target"

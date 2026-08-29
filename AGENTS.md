@@ -7,10 +7,11 @@ de verdad.
 
 ## Estado de referencia
 
-- Fecha de la ultima validacion: 2026-08-11.
-- Runtime de trabajo: Hytale pre-release `0.6.0-pre.11`, revision
-  `00cf2e930ab404ea983cb709c3e0a6deb45fda7a`.
-- Referencia de API: `HypixelStudios/hytale-shared-source`, rama `pre-release`.
+- Fecha de la ultima validacion: 2026-08-30.
+- Runtime de trabajo y publicacion: Hytale estable `0.6.2` (Update 6), revision
+  `bb28fc642e147a39b1ce7e952903235e43f5afe8`.
+- Referencia de API: `HypixelStudios/hytale-shared-source`, rama `pre-release`,
+  commit local validado `634880ce888e66922881597667fb87fbc0851e12`.
 - JDK usado en los builds recientes: Java 25.
 - Save de smoke test en el PC de origen: `0.6.8`.
 - El Shared Source, el servidor y los assets vanilla son dependencias externas y
@@ -18,25 +19,47 @@ de verdad.
 
 ## Proyectos activos tras la consolidacion
 
-- `mods/java/more-triggers`, version `1.9.1`: utilidades generales de Trigger
-  Volumes. Integra `ExecuteCommand` y la regla `NoMove`; el antiguo mod
-  standalone esta deprecated.
-- `mods/java/entity-motion-triggers`, version `1.3.0`: crea, convierte y mueve
+- `mods/java/more-triggers`, version `1.10.5`: utilidades generales de Trigger
+  Volumes. Integra `ExecuteCommand`, la regla `NoMove` y bucles de senales
+  persistentes; el antiguo mod standalone esta deprecated.
+- `mods/java/entity-motion-triggers`, version `1.3.2`: crea, convierte y mueve
   entidades, gestiona colision de plataforma y ancla particulas moviles.
-- `mods/java/particle-shape-vfx`, version `0.1.0`: registra
+- `mods/java/particle-shape-vfx`, version `0.1.1`: registra
   `SpawnParticleShape` para cubos, superficies esfericas y lineas de
   particulas calculadas en coordenadas exactas.
-- `mods/java/scoreboards`, version `2.0.10`: sistema independiente de
+- `mods/java/scoreboards`, version `2.0.11`: sistema independiente de
   Objectives y scoreboards.
-- `mods/java/build-battle`, version `0.2.2`: logica independiente del modo de
+- `mods/java/build-battle`, version `0.2.4`: logica independiente del modo de
   juego.
-- `mods/java/configurable-mob-spawners`, version `0.3.0`: bloque solido minable
-  con busqueda y preview NPC, vida/armadura, suelo automatico, loot por filas,
-  importacion CMS1, modelo propio y VFX. Su tag persistente queda reservada
-  para una futura integracion de senales con Trigger Volumes. Su artefacto hidrata
+- `mods/java/configurable-mob-spawners`, version `0.5.3` (WIP): bloque solido minable
+  visible como `Spawner Block` en el creativo normal. Abre primero una portada
+  CMS1 ligera con instrucciones, `Guardar y cerrar` y cancelacion sin cambios.
+  Un bloque recien colocado no tiene rol y permanece apagado hasta guardar o
+  importar una configuracion valida; los bloques existentes conservan su rol.
+  La exportacion solo aparece en el editor completo, que carga el catalogo NPC
+  y la preview 3D bajo demanda; conserva vida/armadura, suelo automatico, loot por filas,
+  importacion CMS1, velocidad relativa y escala nativa de modelo, hitboxes y
+  controladores de movimiento, modelo propio y VFX. Su tag persistente queda reservada
+  para una futura integracion de senales con Trigger Volumes. No expone un
+  interruptor manual: genera al cumplirse proximidad, luz y cadencia. El limite
+  de mobs vivos cuenta solo los generados por ese bloque que permanezcan dentro
+  de su radio de activacion. Su artefacto hidrata
   el arbol `Common/UI/Custom` desde la `Assets.zip` usada para compilar, porque
   el cliente pre.11 pierde documentos vanilla al recibir un pack Custom UI
   parcial. Esos assets externos solo viven en `.build` y nunca se versionan.
+  Los elites usan un ModelVFX violeta oscuro propio, refuerzan su nameplate
+  despues del comportamiento NPC y muestran un Event Title al entrar a 10
+  bloques, con cooldown por jugador.
+  CMS1 admite hasta 12 perfiles ponderados por spawner. Cada perfil puede tener
+  una variante elite con probabilidad, multiplicadores, equipo y loot adicional;
+  el editor completo multiperfil vive en la web y el editor del juego conserva
+  los perfiles importados aunque solo exponga los campos basicos de Mob 1.
+  Al entrar, cada jugador recibe en el chat la guia de instalacion y el enlace
+  clicable al configurador. El boton `Copiar URL` prepara la URL en el chat para
+  copiarla, ya que una Custom UI de servidor no accede al portapapeles cliente.
+  En `0.6.0-pre.13.1` y estable `0.6.2`, la consulta de luz usa los datos globales de la
+  seccion del bloque porque `BlockChunk.getBlockLightIntensity` y `getSkyLight`
+  fueron eliminados.
 
 `Player Entity Tags`, `Chest Labels` y el antiguo `Trigger Execute Command`
 standalone se conservan bajo `mods/java/deprecated` y no deben distribuirse.
@@ -87,8 +110,9 @@ Antes de sustituir un mod instalado:
 5. Reinicia o recarga la partida; sobrescribir el archivo no recarga las clases
    de un plugin ya iniciado.
 
-Para validar todos los plugins Java activos contra el runtime local de
-pre-release, ejecuta `scripts/Test-ActiveJavaMods.ps1`. La prueba de paquete de
+Para validar todos los plugins Java activos contra el runtime estable local,
+ejecuta `scripts/Test-ActiveJavaMods.ps1`. Los manifests publicables usan
+`>=0.6.2 <0.7.0`. La prueba de paquete de
 More Triggers comprueba tambien que conserva el registro `ExecuteCommand`.
 
 Los iconos del menu de mods no se declaran en `manifest.json`. El cliente
@@ -101,7 +125,7 @@ que registren los mismos IDs.
 
 ## Otros proyectos
 
-- `mods/java/build-battle`: prototipo `0.2.2`. `SuggestBuildTheme` abre una UI
+- `mods/java/build-battle`: prototipo `0.2.4`. `SuggestBuildTheme` abre una UI
   de una palabra y guarda en el propio volumen `theme_<palabra>=empty` y
   `points=0`. La regla `RestrictBuildBattleCreativeTools`, usada bajo
   `Always Active`, aplica una whitelist de Builder Tools por permisos e IDs de
@@ -120,13 +144,29 @@ que registren los mismos IDs.
   Requiere HyUI 0.9.8; la copia local `0.9.8-pre11` solo amplía el rango de
   compatibilidad del manifiesto después de comprobar que el plugin carga y se
   habilita. No forma parte de las releases propias de OrbGenesis.
-- `mods/java/more-triggers`: version `1.9.1`. `GiveRandomItem` entrega al
+- `mods/java/more-triggers`: version `1.10.5`. `PasteRandomPrefab` permite yaw
+  cardinal de 0, 90, 180 o 270 grados sin cambiar su ID ni los saves antiguos.
+  Hereda de `PastePrefabEffect` y expone al inspector sus getters para
+  reutilizar el boton vanilla Show/Hide Preview; previsualiza el primer prefab
+  configurado que pueda resolverse. El inspector pre.13.1 coloca la preview,
+  pero no renderiza su `Rotation`; el yaw si se aplica al pegado real. Desde
+  1.10.3 pre-rota una copia completa antes de pegar para evitar el bug vanilla
+  que desplaza entidades (incluidos Trigger Volumes) una celda al girar 90 o
+  270 grados y omite la composicion de su orientacion. Desde 1.10.4 puede
+  reservar la huella tridimensional ya rotada antes del pegado y evitar
+  solapamientos entre salas del mismo `OccupancyGroup`; las reservas se guardan
+  como Trigger Volumes tecnicos desactivados con la tag `procedural_room`.
+  `GiveRandomItem` entrega al
   jugador activador un bloque, mueble, banco, arma o herramienta elegible y
   excluye plantas, assets internos y herramientas creativas. `SendTagMessage` y
   `ShowTagEventTitle` sustituyen `{tag}` desde una fuente elegible:
   `SELF`, `EVENT` o `RADIUS`; no cambian los IDs de los efectos vanilla.
   Tambien incluye el HUD circular `/timer` y el efecto `ControlTimer`; el
   contorno radial usa 61 frames PNG y su estado solo vive durante la sesion.
+  `ControlSignalLoop` inicia y controla senales `SignalReceived` repetitivas
+  por mundo, con intervalo, limites, condicion por tag del volumen origen y
+  acciones `START`, `STOP`, `PAUSE`, `RESUME` y `PULSE_NOW`. El bucle persiste
+  al salir el actor del volumen, pero no tras reiniciar el servidor.
   Tambien registra `ExecuteCommand` con los IDs y campos del antiguo mod
   standalone. `NoMove` se registra como regla (no como efecto) para aparecer
   bajo `Always Active`; cancela la velocidad dentro del volumen y permite
@@ -141,7 +181,7 @@ que registren los mismos IDs.
 - `games/nexus-siege`: workspace del minijuego. Los NPCs reutilizables y
   efectos de Trigger Volumes para NPCs viven en `mods/asset-packs/raynor-npcs`;
   la carpeta `npcs/vanilla` conserva contratos y notas de diseno del juego.
-- `mods/java/scoreboards`: prototipo `2.0.10` reconstruido para 0.6.8. Usa
+- `mods/java/scoreboards`: prototipo `2.0.11` validado contra estable `0.6.2`. Usa
   `ObjectiveDataStore`, assets dinamicos y la tarea `OrbGenesisManualCount`;
   permite editar definiciones mediante `/scoreboard`, controlar instancias con
   comandos y usar `ControlScoreboard`, `ModifyScoreboardTask`,
@@ -152,14 +192,14 @@ que registren los mismos IDs.
   editables se publican al cliente como traducciones dinamicas antes de enviar
   los paquetes nativos de Objective.
 - `mods/asset-packs`: packs independientes relativamente limpios.
-- `mods/asset-packs/mechanisms`, version `1.1.1`: props accionables y la piedra
+- `mods/asset-packs/mechanisms`, version `1.1.2`: props accionables y la piedra
   `OrbGenesis_NoBuild_Stone`. Su volumen temporal usa `ModifyRules` con
   operacion `SET` en `VOLUME_CREATE` para insertar `NoBuild`, porque
   `SpawnTriggerVolume` 0.6.8 no copia directamente las reglas del asset. El
   volumen mide 10x10x10, retira `NoBuild` a los 10 segundos y usa
   `SpawnParticleShape` para mostrar fases roja y amarillo-naranja durante el
   bloqueo y una fase verde de desbloqueo en el segundo 10. Depende de Particle
-  Shape VFX 0.1.0.
+  Shape VFX 0.1.1.
 - `mods/asset-packs/roguelike-prefabs`: pack `tests:tests` con los mapas y
   prefabs usados por `test roguelike` y, de forma opcional, por el prototipo
   auxiliar Map Selector.
@@ -168,6 +208,10 @@ que registren los mismos IDs.
 
 ## Higiene del repositorio
 
+- La marca publica y la autoria de estos mods es `Raynor` / `Raynor Mods`.
+  `OrbGenesis` identifica colaboraciones e IDs tecnicos historicos; no renombrar
+  namespaces, paquetes ni assets persistentes hasta preparar una migracion
+  compatible y separada.
 - No versionar JARs, ZIPs, clases, outputs, logs, backups o saves directamente
   en Git. Publicar los snapshots de saves y binarios como GitHub Release
   artifacts y documentarlos bajo `snapshots/`.

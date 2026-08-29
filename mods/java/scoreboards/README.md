@@ -1,9 +1,10 @@
 # Scoreboards / Editable Objectives
 
 Mod para crear y controlar `Objectives` editables sobre el motor nativo de
-Hytale pre-release 0.6.8.
+Hytale Update 6 estable.
 
-Estado: prototipo funcional `2.0.10`, pendiente de smoke test dentro del juego.
+Estado: prototipo funcional `2.0.11`, compilado y validado contra Hytale
+`0.6.2`; sigue pendiente el smoke test completo dentro del juego.
 
 ## Funciones
 
@@ -84,10 +85,10 @@ al iniciar la instancia.
   -SourceRoot src `
   -PackageRoot . `
   -AssetsRoot assets `
-  -ArtifactName Scoreboards-2_0_10.jar
+  -ArtifactName Scoreboards-2_0_11.jar
 
 .\mods\java\scoreboards\tools\Test-Package.ps1 `
-  -ArchivePath .\mods\java\scoreboards\.build\dist\Scoreboards-2_0_10.jar
+  -ArchivePath .\mods\java\scoreboards\.build\dist\Scoreboards-2_0_11.jar
 
 .\mods\java\scoreboards\tools\Test-AssetThreading.ps1
 

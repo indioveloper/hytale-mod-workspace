@@ -32,6 +32,8 @@ Saves/
 # Editors and OS
 .idea/
 .vscode/
+**/.vercel/
+**/.env.local
 *.iml
 .DS_Store
 Thumbs.db

@@ -40,9 +40,9 @@ try {
   }
   if ($manifest.Group -ne "OrbGenesis" -or
       $manifest.Name -ne "Particle Shape VFX" -or
-      $manifest.Version -ne "0.1.0" -or
+      $manifest.Version -ne "0.1.1" -or
       $manifest.IncludesAssetPack -ne $true) {
-    throw "Archive manifest does not identify Particle Shape VFX 0.1.0."
+    throw "Archive manifest does not identify Particle Shape VFX 0.1.1."
   }
 } finally {
   $zip.Dispose()

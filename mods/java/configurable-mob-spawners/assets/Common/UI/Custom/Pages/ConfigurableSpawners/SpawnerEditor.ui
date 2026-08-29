@@ -17,9 +17,7 @@ $C.@PageOverlay {
       Padding: (Full: 16, Top: 10, Right: 24);
 
       Group { LayoutMode: Left; Anchor: (Bottom: 7, Height: 38);
-        $C.@CheckBox #EnabledCheck { Anchor: (Width: 34, Height: 34); }
-        Label { Anchor: (Left: 6, Width: 105); Text: %server.customUI.configurableSpawners.enabled; Style: (...$C.@DefaultLabelStyle, VerticalAlignment: Center); }
-        $C.@TextField #TagInput { @Anchor = (Left: 8, Width: 280); PlaceholderText: %server.customUI.configurableSpawners.tag.placeholder; }
+        $C.@TextField #TagInput { @Anchor = (Width: 280); PlaceholderText: %server.customUI.configurableSpawners.tag.placeholder; }
         $C.@TextField #RoleSearchInput { @Anchor = (Left: 8, Width: 250); PlaceholderText: %server.customUI.configurableSpawners.roleSearch.placeholder; }
         $C.@DropdownBox #RoleDropdown { Anchor: (Left: 8, Width: 300, Height: 32); }
       }
@@ -62,6 +60,20 @@ $C.@PageOverlay {
         }
         Label #ScaleValue { Anchor: (Left: 8, Width: 70); Text: "1.0x"; Style: (...$C.@DefaultLabelStyle, VerticalAlignment: Center, HorizontalAlignment: End); }
         Label { Anchor: (Left: 16); Text: %server.customUI.configurableSpawners.mobScale.tooltip; Style: (...$C.@DefaultLabelStyle, FontSize: 12, TextColor: #91a7bc, VerticalAlignment: Center); }
+      }
+
+      Group { LayoutMode: Left; Anchor: (Bottom: 10, Height: 34);
+        Label { Anchor: (Width: 180); Text: %server.customUI.configurableSpawners.mobSpeed; Style: (...@FieldLabel, VerticalAlignment: Center); }
+        FloatSlider #SpeedSlider {
+          Anchor: (Left: 8, Width: 300, Height: 3);
+          Style: (...$C.@DefaultSliderStyle, Background: (Color: #333333));
+          Min: 0.0;
+          Max: 3.0;
+          Step: 0.1;
+          Value: 1.0;
+        }
+        Label #SpeedValue { Anchor: (Left: 8, Width: 70); Text: "1.0x"; Style: (...$C.@DefaultLabelStyle, VerticalAlignment: Center, HorizontalAlignment: End); }
+        Label { Anchor: (Left: 16); Text: %server.customUI.configurableSpawners.mobSpeed.tooltip; Style: (...$C.@DefaultLabelStyle, FontSize: 12, TextColor: #91a7bc, VerticalAlignment: Center); }
       }
 
       Group { LayoutMode: Left; Anchor: (Bottom: 4, Height: 18);
@@ -132,8 +144,9 @@ $C.@PageOverlay {
       $C.@PanelSeparatorFancy { @Anchor = (Bottom: 8); }
       Label { Anchor: (Bottom: 4); Text: %server.customUI.configurableSpawners.importExport; Style: @FieldLabel; }
       Group { LayoutMode: Left; Anchor: (Bottom: 8, Height: 80);
-        $C.@MultilineTextField #ConfigStringInput { @Anchor = (Width: 790, Height: 80); PlaceholderText: %server.customUI.configurableSpawners.import.placeholder; }
+        $C.@MultilineTextField #ConfigStringInput { @Anchor = (Width: 600, Height: 80); PlaceholderText: %server.customUI.configurableSpawners.import.placeholder; }
         $C.@SecondaryTextButton #ImportButton { @Anchor = (Left: 8, Width: 190, Height: 36); Text: %server.customUI.configurableSpawners.import; }
+        $C.@SecondaryTextButton #ExportButton { @Anchor = (Left: 8, Width: 190, Height: 36); Text: %server.customUI.configurableSpawners.quickExport; }
       }
 
       Label #Status { Anchor: (Bottom: 7, Height: 22); Text: ""; Style: (...$C.@DefaultLabelStyle, TextColor: #ff9d8c, HorizontalAlignment: Center); }

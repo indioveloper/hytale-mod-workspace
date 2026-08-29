@@ -1,13 +1,15 @@
 {
   "Group": "OrbGenesis",
   "Name": "scoreboards",
-  "Version": "2.0.10",
+  "Version": "2.0.11",
   "Description": "Create, edit, persist, and control native Objectives from commands, UI, and Trigger Volumes.",
   "Authors": [
     {
-      "Name": "OrbGenesis"
+      "Name": "Raynor",
+      "Url": "https://raynor-mods.vercel.app"
     }
   ],
+  "Website": "https://raynor-mods.vercel.app/#mod-scoreboards",
   "DisabledByDefault": false,
   "IncludesAssetPack": true,
   "Dependencies": {
@@ -15,6 +17,6 @@
     "Hytale:TriggerVolumes": "*"
   },
   "OptionalDependencies": {},
-  "ServerVersion": ">=0.6.0-pre <0.7.0",
+  "ServerVersion": ">=0.6.2 <0.7.0",
   "Main": "gg.orbgenesis.scoreboards.ScoreboardsPlugin"
 }

@@ -41,6 +41,10 @@ $required = @(
   "customUI.triggerVolumeEffectEditor.field.GiveRandomItem.Quantity.placeholder"
   "customUI.triggerVolumeEffectEditor.field.GiveRandomItem.OverflowBehavior"
   "customUI.triggerVolumeEffectEditor.field.GiveRandomItem.OverflowBehavior.tooltip"
+  "customUI.triggerVolumeEffectEditor.effectType.PasteRandomPrefab"
+  "customUI.triggerVolumeEffectEditor.field.PasteRandomPrefab.Yaw"
+  "customUI.triggerVolumeEffectEditor.field.PasteRandomPrefab.Yaw.tooltip"
+  "customUI.triggerVolumeEffectEditor.field.PasteRandomPrefab.Yaw.placeholder"
   "customUI.triggerVolumeEffectEditor.effectType.SendTagMessage"
   "customUI.triggerVolumeEffectEditor.field.SendTagMessage.Message"
   "customUI.triggerVolumeEffectEditor.field.SendTagMessage.Message.tooltip"
@@ -69,6 +73,7 @@ $required = @(
   "customUI.triggerVolumeEffectEditor.field.ControlTimer.DurationSeconds.placeholder"
   "customUI.triggerVolumeEffectEditor.field.ControlTimer.Recipient"
   "customUI.triggerVolumeEffectEditor.field.ControlTimer.Recipient.tooltip"
+  "customUI.triggerVolumeEffectEditor.effectType.ControlSignalLoop"
   "customUI.triggerVolumeEffectEditor.effectType.ExecuteCommand"
   "customUI.triggerVolumeEffectEditor.field.ExecuteCommand.Command"
   "customUI.triggerVolumeEffectEditor.field.ExecuteCommand.Command.tooltip"
@@ -83,6 +88,22 @@ $required = @(
   "customUI.triggerVolumeEffectEditor.field.NoMove.ExcludedNpcRoles.tooltip"
 )
 
+foreach ($field in @(
+  "Action", "LoopId", "IntervalSeconds", "FirstPulse", "StartBehavior",
+  "DurationSeconds", "MaxPulses", "MatchKey", "MatchValue", "Radius", "Center",
+  "SignalKeys", "SignalValues", "ContinueTagKey", "ContinueTagValue"
+)) {
+  $required += "customUI.triggerVolumeEffectEditor.field.ControlSignalLoop.$field"
+  $required += "customUI.triggerVolumeEffectEditor.field.ControlSignalLoop.$field.tooltip"
+}
+
+foreach ($field in @(
+  "LoopId", "IntervalSeconds", "DurationSeconds", "MaxPulses", "MatchKey", "MatchValue",
+  "Radius", "ContinueTagKey", "ContinueTagValue"
+)) {
+  $required += "customUI.triggerVolumeEffectEditor.field.ControlSignalLoop.$field.placeholder"
+}
+
 foreach ($key in $required) {
   if (-not $english.ContainsKey($key) -or -not $spanish.ContainsKey($key)) {
     throw "Missing required localized key: $key"
@@ -93,6 +114,13 @@ foreach ($option in @("DROP_REMAINDER", "IGNORE_REMAINDER", "REQUIRE_FULL_STACK"
   $key = "customUI.triggerVolumeEffectEditor.field.GiveRandomItem.OverflowBehavior.option.$option"
   if (-not $english.ContainsKey($key) -or -not $spanish.ContainsKey($key)) {
     throw "Missing random item overflow option localization: $key"
+  }
+}
+
+foreach ($option in @("None", "Ninety", "OneEighty", "TwoSeventy")) {
+  $key = "customUI.triggerVolumeEffectEditor.field.PasteRandomPrefab.Yaw.option.$option"
+  if (-not $english.ContainsKey($key) -or -not $spanish.ContainsKey($key)) {
+    throw "Missing prefab yaw option localization: $key"
   }
 }
 
@@ -123,6 +151,34 @@ foreach ($recipient in @("TRIGGERING_PLAYER", "NEAREST_PLAYER", "PLAYERS_IN_VOLU
   $key = "customUI.triggerVolumeEffectEditor.field.ControlTimer.Recipient.option.$recipient"
   if (-not $english.ContainsKey($key) -or -not $spanish.ContainsKey($key)) {
     throw "Missing timer recipient option localization: $key"
+  }
+}
+
+foreach ($action in @("START", "STOP", "PAUSE", "RESUME", "PULSE_NOW")) {
+  $key = "customUI.triggerVolumeEffectEditor.field.ControlSignalLoop.Action.option.$action"
+  if (-not $english.ContainsKey($key) -or -not $spanish.ContainsKey($key)) {
+    throw "Missing signal loop action option localization: $key"
+  }
+}
+
+foreach ($firstPulse in @("IMMEDIATE", "AFTER_INTERVAL")) {
+  $key = "customUI.triggerVolumeEffectEditor.field.ControlSignalLoop.FirstPulse.option.$firstPulse"
+  if (-not $english.ContainsKey($key) -or -not $spanish.ContainsKey($key)) {
+    throw "Missing signal loop first-pulse option localization: $key"
+  }
+}
+
+foreach ($behavior in @("IGNORE_IF_RUNNING", "RESTART", "REPLACE")) {
+  $key = "customUI.triggerVolumeEffectEditor.field.ControlSignalLoop.StartBehavior.option.$behavior"
+  if (-not $english.ContainsKey($key) -or -not $spanish.ContainsKey($key)) {
+    throw "Missing signal loop start behavior localization: $key"
+  }
+}
+
+foreach ($center in @("VOLUME", "ENTITY", "EVENT")) {
+  $key = "customUI.triggerVolumeEffectEditor.field.ControlSignalLoop.Center.option.$center"
+  if (-not $english.ContainsKey($key) -or -not $spanish.ContainsKey($key)) {
+    throw "Missing signal loop center localization: $key"
   }
 }
 

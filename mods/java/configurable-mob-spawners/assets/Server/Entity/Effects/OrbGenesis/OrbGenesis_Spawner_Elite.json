@@ -1,0 +1,8 @@
+{
+  "ApplicationEffects": {
+    "ModelVFXId": "OrbGenesis_Spawner_Elite",
+    "EntityBottomTint": "#553b6c"
+  },
+  "OverlapBehavior": "Overwrite",
+  "Infinite": true
+}
