@@ -72,10 +72,6 @@
     themeToggle.setAttribute("aria-label", dark ? text("enableLight") : text("enableDark"));
   }
 
-  function projectUrl(path) {
-    return `${config.links.github}/tree/main/${path}`;
-  }
-
   function renderMods() {
     const arrow = '<span aria-hidden="true">↗</span>';
     document.querySelector("#mods-list").innerHTML = config.mods.map((mod) => {
@@ -96,7 +92,6 @@
           </div>
           <div class="mod-actions">
             <a class="button curseforge-link" href="${mod.curseforge}" target="_blank" rel="noreferrer" title="${text("curseforgeTitle")}">CurseForge ${arrow}</a>
-            <a class="button" href="${projectUrl(mod.source)}" target="_blank" rel="noreferrer">GitHub ${arrow}</a>
             ${mod.extraLink ? `<a class="button" href="${config.links[mod.extraLink.urlKey]}" target="_blank" rel="noreferrer">${configuratorLabel || text("configuratorButton")} ${arrow}</a>` : ""}
           </div>
         </article>

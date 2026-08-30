@@ -34,6 +34,9 @@ if ($config -notmatch 'https://www\.curseforge\.com/members/raynor_hytale/projec
 if ($index -match 'indioveloper') {
     throw 'A technical account name leaked into the public HTML.'
 }
+if ($index -match 'GitHub' -or $app -match 'GitHub' -or $config -match 'github|releases|source:|build-battle|Build Battle') {
+    throw 'The public portal must not expose GitHub links or the internal Build Battle project.'
+}
 if ($index -match '\bTODO\b|\bPLACEHOLDER\b') {
   throw 'The page contains unfinished placeholder copy.'
 }
@@ -49,7 +52,7 @@ if ($index -notmatch 'Asset packs <span>WIP</span>' -or $config -notmatch 'packs
 if ($index -notmatch 'data-language="es"' -or $index -notmatch 'data-language="en"' -or $app -notmatch 'params\.get\("lang"\)') {
     throw 'The bilingual ES/EN selector or shareable language query is missing.'
 }
-foreach ($version in @('0.5.3', '1.10.5', '1.3.2', '0.2.4', '0.1.1', '2.0.11')) {
+foreach ($version in @('0.5.3', '1.10.5', '1.3.2', '0.1.1', '2.0.11')) {
     if ($config -notmatch [regex]::Escape("version: `"$version`"")) {
         throw "Updated mod version is missing from the portal: $version"
     }
@@ -63,8 +66,8 @@ foreach ($script in @('portal-config.js', 'app.js')) {
 }
 
 $icons = [regex]::Matches($config, 'icon:\s*"([^"]+)"') | ForEach-Object { $_.Groups[1].Value }
-if ($icons.Count -ne 6) {
-    throw "Expected 6 mod icons, found $($icons.Count)."
+if ($icons.Count -ne 5) {
+    throw "Expected 5 public mod icons, found $($icons.Count)."
 }
 foreach ($icon in $icons) {
     if (-not (Test-Path -LiteralPath (Join-Path $root $icon) -PathType Leaf)) {
@@ -72,25 +75,19 @@ foreach ($icon in $icons) {
     }
 }
 
-$sourcePaths = [regex]::Matches($config, 'source:\s*"([^"]+)"') | ForEach-Object { $_.Groups[1].Value }
-if ($sourcePaths.Count -ne 6) {
-    throw "Expected only 6 public mod sources, found $($sourcePaths.Count)."
-}
-foreach ($sourcePath in $sourcePaths) {
-    $workspacePath = Join-Path (Split-Path (Split-Path $root -Parent) -Parent) $sourcePath
-    if (-not (Test-Path -LiteralPath $workspacePath)) {
-        throw "Catalog source does not exist: $sourcePath"
-    }
+$modSlugs = [regex]::Matches($config, 'slug:\s*"([^"]+)"')
+if ($modSlugs.Count -ne 5) {
+    throw "Expected 5 public mods, found $($modSlugs.Count)."
 }
 
 $curseforgeLinks = [regex]::Matches($config, 'curseforge:\s*"https://www\.curseforge\.com/members/raynor_hytale/projects"')
-if ($curseforgeLinks.Count -ne 7 -or $app -notmatch 'mod\.curseforge') {
+if ($curseforgeLinks.Count -ne 6 -or $app -notmatch 'mod\.curseforge') {
     throw 'Every public mod must expose an editable CurseForge placeholder link.'
 }
 $englishSummaries = [regex]::Matches($config, 'summaryEn:\s*"[^"]+"')
 $englishStatuses = [regex]::Matches($config, 'statusEn:\s*"[^"]+"')
-if ($englishSummaries.Count -ne 6 -or $englishStatuses.Count -ne 6 -or $app -notmatch 'en:\s*\{') {
+if ($englishSummaries.Count -ne 5 -or $englishStatuses.Count -ne 5 -or $app -notmatch 'en:\s*\{') {
     throw 'Every public mod and interface section must have English copy.'
 }
 
-Write-Host 'Raynor Mods bilingual portal OK: ES/EN, 6 mods, CurseForge placeholders present, private asset packs hidden.'
+Write-Host 'Raynor Mods bilingual portal OK: ES/EN, 5 public mods, CurseForge placeholders present, private asset packs hidden.'

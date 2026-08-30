@@ -5,8 +5,6 @@
  */
 window.RAYNOR_PORTAL = {
   links: {
-    github: "https://github.com/indioveloper/hytale-mod-workspace",
-    releases: "https://github.com/indioveloper/hytale-mod-workspace/releases",
     curseforge: "https://www.curseforge.com/members/raynor_hytale/projects",
     configurator: "https://hytale-mob-spawner-configurator.vercel.app"
   },
@@ -24,7 +22,6 @@ window.RAYNOR_PORTAL = {
       statusEn: "WIP · Update 6",
       features: ["Editor web con código CMS1", "NPC, equipo, loot y comportamiento", "Preview y configuración persistente"],
       curseforge: "https://www.curseforge.com/members/raynor_hytale/projects",
-      source: "mods/java/configurable-mob-spawners",
       extraLink: { label: "Abrir configurador", labelEn: "Open configurator", urlKey: "configurator" }
     },
     {
@@ -39,8 +36,7 @@ window.RAYNOR_PORTAL = {
       summaryEn: "A general-purpose toolbox for taking Trigger Volumes much further.",
       statusEn: "Update 6 · Active",
       features: ["Comandos, mensajes y tags", "Timer circular por jugador", "Objetos aleatorios y regla NoMove"],
-      curseforge: "https://www.curseforge.com/members/raynor_hytale/projects",
-      source: "mods/java/more-triggers"
+      curseforge: "https://www.curseforge.com/members/raynor_hytale/projects"
     },
     {
       slug: "entity-motion-triggers",
@@ -54,23 +50,7 @@ window.RAYNOR_PORTAL = {
       summaryEn: "Create props, convert blocks and move platforms from Trigger Volumes.",
       statusEn: "Update 6 · Active",
       features: ["Movimiento y rotación", "Colisión para plataformas", "Partículas ancladas a entidades"],
-      curseforge: "https://www.curseforge.com/members/raynor_hytale/projects",
-      source: "mods/java/entity-motion-triggers"
-    },
-    {
-      slug: "build-battle",
-      name: "Build Battle",
-      version: "0.2.4",
-      status: "Update 6 · Prototipo",
-      maturity: "prototype",
-      icon: "assets/build-battle.png",
-      accent: "pink",
-      summary: "Sugerencias de temas y control seguro de herramientas creativas por parcela.",
-      summaryEn: "Theme suggestions and safe control of creative tools for each plot.",
-      statusEn: "Update 6 · Prototype",
-      features: ["Temas guardados como tags", "Whitelist de Builder Tools", "Restauración al salir del plot"],
-      curseforge: "https://www.curseforge.com/members/raynor_hytale/projects",
-      source: "mods/java/build-battle"
+      curseforge: "https://www.curseforge.com/members/raynor_hytale/projects"
     },
     {
       slug: "particle-shape-vfx",
@@ -84,8 +64,7 @@ window.RAYNOR_PORTAL = {
       summaryEn: "Draw precise particle shapes from any Trigger Volume.",
       statusEn: "Update 6 · Prototype",
       features: ["Cubos, esferas y líneas", "Coordenadas absolutas o relativas", "Densidad y coste controlables"],
-      curseforge: "https://www.curseforge.com/members/raynor_hytale/projects",
-      source: "mods/java/particle-shape-vfx"
+      curseforge: "https://www.curseforge.com/members/raynor_hytale/projects"
     },
     {
       slug: "scoreboards",
@@ -99,8 +78,7 @@ window.RAYNOR_PORTAL = {
       summaryEn: "Native, editable and persistent Objectives controlled by commands, UI and triggers.",
       statusEn: "Update 6 · Smoke test pending",
       features: ["Hasta cinco tareas", "Progreso individual o compartido", "Control completo desde Trigger Volumes"],
-      curseforge: "https://www.curseforge.com/members/raynor_hytale/projects",
-      source: "mods/java/scoreboards"
+      curseforge: "https://www.curseforge.com/members/raynor_hytale/projects"
     }
   ],
   packs: []
