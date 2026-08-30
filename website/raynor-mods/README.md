@@ -11,8 +11,10 @@ porque el proyecto compile.
 La interfaz publica es deliberadamente minimalista y sigue la linea visual del
 configurador de spawners: fondo calido, filas compactas y modo claro/oscuro. Los
 asset packs permanecen ocultos tras una etiqueta WIP mientras sean privados.
-Cada mod tiene un campo `curseforge` independiente; hasta recibir las fichas
-definitivas, esos enlaces apuntan provisionalmente al perfil general de Raynor.
+Cada mod tiene un campo `curseforge` independiente que apunta a su ficha publica,
+y un campo `download` servido desde el dominio del portal. Los JAR se publican
+como artefactos de una release y las rutas del portal los reenvian sin exponer
+enlaces de navegacion al repositorio.
 El selector ES/EN conserva la preferencia en el navegador y la versión inglesa
 se puede compartir directamente con `?lang=en`.
 

@@ -31,7 +31,8 @@
       lightMode: "Modo claro",
       enableDark: "Activar modo oscuro",
       enableLight: "Activar modo claro",
-      curseforgeTitle: "Enlace provisional al perfil de Raynor en CurseForge",
+      curseforgeTitle: "Página de este mod en CurseForge",
+      downloadMod: "Descargar JAR",
       configuratorButton: "Configurador"
     },
     en: {
@@ -53,7 +54,8 @@
       lightMode: "Light mode",
       enableDark: "Enable dark mode",
       enableLight: "Enable light mode",
-      curseforgeTitle: "Temporary link to Raynor's CurseForge profile",
+      curseforgeTitle: "This mod's CurseForge page",
+      downloadMod: "Download JAR",
       configuratorButton: "Configurator"
     }
   };
@@ -91,6 +93,7 @@
             <p>${summary}</p>
           </div>
           <div class="mod-actions">
+            <a class="button download-link" href="${mod.download}" download>${text("downloadMod")} <span aria-hidden="true">↓</span></a>
             <a class="button curseforge-link" href="${mod.curseforge}" target="_blank" rel="noreferrer" title="${text("curseforgeTitle")}">CurseForge ${arrow}</a>
             ${mod.extraLink ? `<a class="button" href="${config.links[mod.extraLink.urlKey]}" target="_blank" rel="noreferrer">${configuratorLabel || text("configuratorButton")} ${arrow}</a>` : ""}
           </div>

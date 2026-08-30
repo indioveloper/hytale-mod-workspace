@@ -80,9 +80,24 @@ if ($modSlugs.Count -ne 5) {
     throw "Expected 5 public mods, found $($modSlugs.Count)."
 }
 
-$curseforgeLinks = [regex]::Matches($config, 'curseforge:\s*"https://www\.curseforge\.com/members/raynor_hytale/projects"')
-if ($curseforgeLinks.Count -ne 6 -or $app -notmatch 'mod\.curseforge') {
-    throw 'Every public mod must expose an editable CurseForge placeholder link.'
+$curseforgePages = @(
+    'https://www.curseforge.com/hytale/mods/configurable-mob-spawners/preview',
+    'https://www.curseforge.com/hytale/mods/more-triggers/preview',
+    'https://www.curseforge.com/hytale/mods/entity-motion-triggers/preview',
+    'https://www.curseforge.com/hytale/mods/particle-shape-vfx/preview',
+    'https://www.curseforge.com/hytale/mods/editable-objectives-scoreboards/preview'
+)
+foreach ($page in $curseforgePages) {
+    if ($config -notmatch [regex]::Escape($page)) {
+        throw "Missing public CurseForge page: $page"
+    }
+}
+if ($app -notmatch 'mod\.curseforge') {
+    throw 'Every public mod must expose a CurseForge link.'
+}
+$downloads = [regex]::Matches($config, 'download:\s*"downloads/[^"/]+\.jar"')
+if ($downloads.Count -ne 5 -or $app -notmatch 'mod\.download') {
+    throw 'Every public mod must expose a direct JAR download.'
 }
 $englishSummaries = [regex]::Matches($config, 'summaryEn:\s*"[^"]+"')
 $englishStatuses = [regex]::Matches($config, 'statusEn:\s*"[^"]+"')
@@ -90,4 +105,4 @@ if ($englishSummaries.Count -ne 5 -or $englishStatuses.Count -ne 5 -or $app -not
     throw 'Every public mod and interface section must have English copy.'
 }
 
-Write-Host 'Raynor Mods bilingual portal OK: ES/EN, 5 public mods, CurseForge placeholders present, private asset packs hidden.'
+Write-Host 'Raynor Mods bilingual portal OK: ES/EN, 5 public mods, CurseForge pages and direct downloads configured, private asset packs hidden.'

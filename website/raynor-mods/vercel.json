@@ -1,0 +1,24 @@
+{
+  "rewrites": [
+    {
+      "source": "/downloads/ConfigurableMobSpawners-0.5.3.jar",
+      "destination": "https://github.com/indioveloper/hytale-mod-workspace/releases/download/raynor-mods-0.6.2/ConfigurableMobSpawners-0.5.3.jar"
+    },
+    {
+      "source": "/downloads/More_Triggers-1_10_5.jar",
+      "destination": "https://github.com/indioveloper/hytale-mod-workspace/releases/download/raynor-mods-0.6.2/More_Triggers-1_10_5.jar"
+    },
+    {
+      "source": "/downloads/Entity_Motion_Triggers-1_3_2.jar",
+      "destination": "https://github.com/indioveloper/hytale-mod-workspace/releases/download/raynor-mods-0.6.2/Entity_Motion_Triggers-1_3_2.jar"
+    },
+    {
+      "source": "/downloads/Particle_Shape_VFX-0_1_1.jar",
+      "destination": "https://github.com/indioveloper/hytale-mod-workspace/releases/download/raynor-mods-0.6.2/Particle_Shape_VFX-0_1_1.jar"
+    },
+    {
+      "source": "/downloads/Scoreboards-2_0_11.jar",
+      "destination": "https://github.com/indioveloper/hytale-mod-workspace/releases/download/raynor-mods-0.6.2/Scoreboards-2_0_11.jar"
+    }
+  ]
+}

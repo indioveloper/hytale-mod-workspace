@@ -1,7 +1,7 @@
 /*
  * Único punto de edición para versiones, estados y URLs públicas.
- * Los enlaces `curseforge` de cada mod apuntan provisionalmente al perfil
- * general. Sustituyelos por las fichas individuales cuando esten publicadas.
+ * Los enlaces `curseforge` apuntan a las fichas publicas de cada mod.
+ * Las rutas `download` son URLs publicas del portal para descargar cada JAR.
  */
 window.RAYNOR_PORTAL = {
   links: {
@@ -21,7 +21,8 @@ window.RAYNOR_PORTAL = {
       summaryEn: "A configurable spawner block for building complete waves without programming.",
       statusEn: "WIP · Update 6",
       features: ["Editor web con código CMS1", "NPC, equipo, loot y comportamiento", "Preview y configuración persistente"],
-      curseforge: "https://www.curseforge.com/members/raynor_hytale/projects",
+      curseforge: "https://www.curseforge.com/hytale/mods/configurable-mob-spawners/preview",
+      download: "downloads/ConfigurableMobSpawners-0.5.3.jar",
       extraLink: { label: "Abrir configurador", labelEn: "Open configurator", urlKey: "configurator" }
     },
     {
@@ -36,7 +37,8 @@ window.RAYNOR_PORTAL = {
       summaryEn: "A general-purpose toolbox for taking Trigger Volumes much further.",
       statusEn: "Update 6 · Active",
       features: ["Comandos, mensajes y tags", "Timer circular por jugador", "Objetos aleatorios y regla NoMove"],
-      curseforge: "https://www.curseforge.com/members/raynor_hytale/projects"
+      curseforge: "https://www.curseforge.com/hytale/mods/more-triggers/preview",
+      download: "downloads/More_Triggers-1_10_5.jar"
     },
     {
       slug: "entity-motion-triggers",
@@ -50,7 +52,8 @@ window.RAYNOR_PORTAL = {
       summaryEn: "Create props, convert blocks and move platforms from Trigger Volumes.",
       statusEn: "Update 6 · Active",
       features: ["Movimiento y rotación", "Colisión para plataformas", "Partículas ancladas a entidades"],
-      curseforge: "https://www.curseforge.com/members/raynor_hytale/projects"
+      curseforge: "https://www.curseforge.com/hytale/mods/entity-motion-triggers/preview",
+      download: "downloads/Entity_Motion_Triggers-1_3_2.jar"
     },
     {
       slug: "particle-shape-vfx",
@@ -64,7 +67,8 @@ window.RAYNOR_PORTAL = {
       summaryEn: "Draw precise particle shapes from any Trigger Volume.",
       statusEn: "Update 6 · Prototype",
       features: ["Cubos, esferas y líneas", "Coordenadas absolutas o relativas", "Densidad y coste controlables"],
-      curseforge: "https://www.curseforge.com/members/raynor_hytale/projects"
+      curseforge: "https://www.curseforge.com/hytale/mods/particle-shape-vfx/preview",
+      download: "downloads/Particle_Shape_VFX-0_1_1.jar"
     },
     {
       slug: "scoreboards",
@@ -78,7 +82,8 @@ window.RAYNOR_PORTAL = {
       summaryEn: "Native, editable and persistent Objectives controlled by commands, UI and triggers.",
       statusEn: "Update 6 · Smoke test pending",
       features: ["Hasta cinco tareas", "Progreso individual o compartido", "Control completo desde Trigger Volumes"],
-      curseforge: "https://www.curseforge.com/members/raynor_hytale/projects"
+      curseforge: "https://www.curseforge.com/hytale/mods/editable-objectives-scoreboards/preview",
+      download: "downloads/Scoreboards-2_0_11.jar"
     }
   ],
   packs: []
