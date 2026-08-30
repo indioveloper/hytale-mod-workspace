@@ -93,6 +93,7 @@ footer div {
 }
 .site-header a,
 .theme-toggle,
+.language-button,
 footer a {
   color: var(--muted);
   font-size: 13px;
@@ -109,6 +110,21 @@ footer a:hover { color: var(--text); }
   color: var(--page);
   cursor: pointer;
 }
+.language-switch {
+  display: flex;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: 4px;
+}
+.language-button {
+  min-width: 34px;
+  padding: 6px 8px;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+}
+.language-button + .language-button { border-left: 1px solid var(--line); }
+.language-button.is-active { background: var(--surface-alt); color: var(--text); }
 html[data-theme="dark"] .theme-toggle {
   background: #f2efe7;
   color: #242620;

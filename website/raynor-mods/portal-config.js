@@ -20,10 +20,12 @@ window.RAYNOR_PORTAL = {
       icon: "assets/configurable-mob-spawners.png",
       accent: "cyan",
       summary: "Un bloque de spawner diseñado para controlar oleadas completas sin programar.",
+      summaryEn: "A configurable spawner block for building complete waves without programming.",
+      statusEn: "WIP · Update 6",
       features: ["Editor web con código CMS1", "NPC, equipo, loot y comportamiento", "Preview y configuración persistente"],
       curseforge: "https://www.curseforge.com/members/raynor_hytale/projects",
       source: "mods/java/configurable-mob-spawners",
-      extraLink: { label: "Abrir configurador", urlKey: "configurator" }
+      extraLink: { label: "Abrir configurador", labelEn: "Open configurator", urlKey: "configurator" }
     },
     {
       slug: "more-triggers",
@@ -34,6 +36,8 @@ window.RAYNOR_PORTAL = {
       icon: "assets/more-triggers.png",
       accent: "violet",
       summary: "Una caja de herramientas general para llevar los Trigger Volumes mucho más lejos.",
+      summaryEn: "A general-purpose toolbox for taking Trigger Volumes much further.",
+      statusEn: "Update 6 · Active",
       features: ["Comandos, mensajes y tags", "Timer circular por jugador", "Objetos aleatorios y regla NoMove"],
       curseforge: "https://www.curseforge.com/members/raynor_hytale/projects",
       source: "mods/java/more-triggers"
@@ -47,6 +51,8 @@ window.RAYNOR_PORTAL = {
       icon: "assets/entity-motion-triggers.png",
       accent: "orange",
       summary: "Crea props, convierte bloques y mueve plataformas desde Trigger Volumes.",
+      summaryEn: "Create props, convert blocks and move platforms from Trigger Volumes.",
+      statusEn: "Update 6 · Active",
       features: ["Movimiento y rotación", "Colisión para plataformas", "Partículas ancladas a entidades"],
       curseforge: "https://www.curseforge.com/members/raynor_hytale/projects",
       source: "mods/java/entity-motion-triggers"
@@ -60,6 +66,8 @@ window.RAYNOR_PORTAL = {
       icon: "assets/build-battle.png",
       accent: "pink",
       summary: "Sugerencias de temas y control seguro de herramientas creativas por parcela.",
+      summaryEn: "Theme suggestions and safe control of creative tools for each plot.",
+      statusEn: "Update 6 · Prototype",
       features: ["Temas guardados como tags", "Whitelist de Builder Tools", "Restauración al salir del plot"],
       curseforge: "https://www.curseforge.com/members/raynor_hytale/projects",
       source: "mods/java/build-battle"
@@ -73,6 +81,8 @@ window.RAYNOR_PORTAL = {
       icon: "assets/particle-shape-vfx.png",
       accent: "green",
       summary: "Dibuja formas precisas con partículas desde cualquier Trigger Volume.",
+      summaryEn: "Draw precise particle shapes from any Trigger Volume.",
+      statusEn: "Update 6 · Prototype",
       features: ["Cubos, esferas y líneas", "Coordenadas absolutas o relativas", "Densidad y coste controlables"],
       curseforge: "https://www.curseforge.com/members/raynor_hytale/projects",
       source: "mods/java/particle-shape-vfx"
@@ -86,6 +96,8 @@ window.RAYNOR_PORTAL = {
       icon: "assets/scoreboards.png",
       accent: "gold",
       summary: "Objectives nativos, editables y persistentes con comandos, interfaz y triggers.",
+      summaryEn: "Native, editable and persistent Objectives controlled by commands, UI and triggers.",
+      statusEn: "Update 6 · Smoke test pending",
       features: ["Hasta cinco tareas", "Progreso individual o compartido", "Control completo desde Trigger Volumes"],
       curseforge: "https://www.curseforge.com/members/raynor_hytale/projects",
       source: "mods/java/scoreboards"

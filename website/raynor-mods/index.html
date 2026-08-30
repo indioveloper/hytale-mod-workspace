@@ -16,11 +16,15 @@
     <header class="site-header">
       <a class="brand" href="#inicio">Raynor Mods <span>WIP</span></a>
       <nav aria-label="Navegación principal">
-        <a href="#mods">Mods</a>
-        <a href="#configurador">Configurador</a>
-        <a href="#asset-packs">Asset packs</a>
+        <a href="#mods" data-i18n="navMods">Mods</a>
+        <a href="#configurador" data-i18n="navConfigurator">Configurador</a>
+        <a href="#asset-packs" data-i18n="navPacks">Asset packs</a>
       </nav>
       <div class="header-actions">
+        <div class="language-switch" role="group" aria-label="Idioma / Language">
+          <button class="language-button" type="button" data-language="es" aria-pressed="true">ES</button>
+          <button class="language-button" type="button" data-language="en" aria-pressed="false">EN</button>
+        </div>
         <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Activar modo oscuro">Modo oscuro</button>
         <a data-link="curseforge" target="_blank" rel="noreferrer">CurseForge ↗</a>
       </div>
@@ -29,32 +33,32 @@
     <main id="inicio">
       <section class="intro" aria-labelledby="page-title">
         <p class="overline">Hytale 0.6.x</p>
-        <h1 id="page-title">Mods de Raynor</h1>
-        <p>Proyectos en desarrollo para construir mapas, eventos y sistemas de juego.</p>
+        <h1 id="page-title" data-i18n="pageTitle">Mods de Raynor</h1>
+        <p data-i18n="intro">Proyectos en desarrollo para construir mapas, eventos y sistemas de juego.</p>
       </section>
 
       <section class="configurator-callout" id="configurador" aria-labelledby="configurator-title">
         <div>
-          <p class="overline">Herramienta web · WIP</p>
-          <h2 id="configurator-title">Configurador de Mob Spawners</h2>
-          <p>Configura un spawner en el navegador y copia el código resultante para importarlo dentro del juego.</p>
+          <p class="overline" data-i18n="webTool">Herramienta web · WIP</p>
+          <h2 id="configurator-title" data-i18n="configuratorTitle">Configurador de Mob Spawners</h2>
+          <p data-i18n="configuratorDescription">Configura un spawner en el navegador y copia el código resultante para importarlo dentro del juego.</p>
         </div>
         <div class="callout-actions">
-          <a class="button primary" data-link="configurator" target="_blank" rel="noreferrer">Abrir configurador ↗</a>
-          <a class="button" href="#mod-configurable-mob-spawners">Ver mod</a>
+          <a class="button primary" data-link="configurator" target="_blank" rel="noreferrer" data-i18n="openConfigurator">Abrir configurador ↗</a>
+          <a class="button" href="#mod-configurable-mob-spawners" data-i18n="viewMod">Ver mod</a>
         </div>
       </section>
 
       <section class="catalog" id="mods" aria-labelledby="mods-title">
         <div class="section-title">
           <h2 id="mods-title">Mods</h2>
-          <p>Cada proyecto indica su versión y estado actual.</p>
+          <p data-i18n="modsDescription">Cada proyecto indica su versión y estado actual.</p>
         </div>
         <div class="mod-list" id="mods-list"></div>
       </section>
 
       <section class="private-packs" id="asset-packs" aria-labelledby="packs-title">
-        <p class="overline">Contenido privado</p>
+        <p class="overline" data-i18n="privateContent">Contenido privado</p>
         <h2 id="packs-title">Asset packs <span>WIP</span></h2>
       </section>
     </main>

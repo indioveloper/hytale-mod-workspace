@@ -13,6 +13,8 @@ configurador de spawners: fondo calido, filas compactas y modo claro/oscuro. Los
 asset packs permanecen ocultos tras una etiqueta WIP mientras sean privados.
 Cada mod tiene un campo `curseforge` independiente; hasta recibir las fichas
 definitivas, esos enlaces apuntan provisionalmente al perfil general de Raynor.
+El selector ES/EN conserva la preferencia en el navegador y la versión inglesa
+se puede compartir directamente con `?lang=en`.
 
 ## Editar catálogo y enlaces
 

@@ -46,6 +46,9 @@ if ($index -match 'Más posibilidades|Menos límites|Prueba\. Construye|descarga
 if ($index -notmatch 'Asset packs <span>WIP</span>' -or $config -notmatch 'packs:\s*\[\]') {
     throw 'Private asset packs must remain hidden behind a WIP label.'
 }
+if ($index -notmatch 'data-language="es"' -or $index -notmatch 'data-language="en"' -or $app -notmatch 'params\.get\("lang"\)') {
+    throw 'The bilingual ES/EN selector or shareable language query is missing.'
+}
 foreach ($version in @('0.5.3', '1.10.5', '1.3.2', '0.2.4', '0.1.1', '2.0.11')) {
     if ($config -notmatch [regex]::Escape("version: `"$version`"")) {
         throw "Updated mod version is missing from the portal: $version"
@@ -84,5 +87,10 @@ $curseforgeLinks = [regex]::Matches($config, 'curseforge:\s*"https://www\.cursef
 if ($curseforgeLinks.Count -ne 7 -or $app -notmatch 'mod\.curseforge') {
     throw 'Every public mod must expose an editable CurseForge placeholder link.'
 }
+$englishSummaries = [regex]::Matches($config, 'summaryEn:\s*"[^"]+"')
+$englishStatuses = [regex]::Matches($config, 'statusEn:\s*"[^"]+"')
+if ($englishSummaries.Count -ne 6 -or $englishStatuses.Count -ne 6 -or $app -notmatch 'en:\s*\{') {
+    throw 'Every public mod and interface section must have English copy.'
+}
 
-Write-Host 'Raynor Mods minimal portal OK: 6 mods, CurseForge placeholders present, private asset packs hidden.'
+Write-Host 'Raynor Mods bilingual portal OK: ES/EN, 6 mods, CurseForge placeholders present, private asset packs hidden.'
