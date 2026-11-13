@@ -1,5 +1,10 @@
 # Contexto para agentes
 
+Actualizacion 2026-09-04: Raynor Holograms forma parte de la suite publica
+(experimental). Release 0.8.3; rama codex/update7-pre-release: 0.8.4-u7pre.1,
+ServerVersion =0.7.0-pre.1. Matrices y exportadores incluyen seis mods.
+Web con dos descargas Holograms separadas; no instalar ambas juntas.
+
 Este repositorio es el punto de entrada canonico para el desarrollo Hytale de
 OrbGenesis/Raynor. Lee primero `README.md` y despues el README o handoff del
 proyecto concreto. No uses las antiguas carpetas de staging del PC como fuente
@@ -7,9 +12,9 @@ de verdad.
 
 ## Estado de referencia
 
-- Fecha de la ultima validacion: 2026-08-30.
-- Runtime de trabajo y publicacion: Hytale estable `0.6.2` (Update 6), revision
-  `bb28fc642e147a39b1ce7e952903235e43f5afe8`.
+- Fecha de la ultima validacion: 2026-09-16.
+- Runtime de trabajo y publicacion: Hytale estable `0.6.6` (Update 6), revision
+  `ad11b033782bd8f5e715d2e8497d491f5780640c`.
 - Referencia de API: `HypixelStudios/hytale-shared-source`, rama `pre-release`,
   commit local validado `634880ce888e66922881597667fb87fbc0851e12`.
 - JDK usado en los builds recientes: Java 25.
@@ -19,19 +24,42 @@ de verdad.
 
 ## Proyectos activos tras la consolidacion
 
-- `mods/java/more-triggers`, version `1.10.5`: utilidades generales de Trigger
+- `mods/java/more-triggers`, version `1.10.6`: utilidades generales de Trigger
   Volumes. Integra `ExecuteCommand`, la regla `NoMove` y bucles de senales
   persistentes; el antiguo mod standalone esta deprecated.
-- `mods/java/entity-motion-triggers`, version `1.3.2`: crea, convierte y mueve
+- `mods/java/entity-motion-triggers`, version `1.3.3`: crea, convierte y mueve
   entidades, gestiona colision de plataforma y ancla particulas moviles.
-- `mods/java/particle-shape-vfx`, version `0.1.1`: registra
+- `mods/java/particle-shape-vfx`, version `0.1.2`: registra
   `SpawnParticleShape` para cubos, superficies esfericas y lineas de
   particulas calculadas en coordenadas exactas.
-- `mods/java/scoreboards`, version `2.0.11`: sistema independiente de
+- `mods/java/raynor-holograms`, version `0.8.3` (MVP experimental): sistema
+  clean-room de hologramas persistentes de texto nativo o enriquecido, imagenes
+  locales/remotas y GIF. Cada holograma completo usa una unica entidad de red y
+  sigue siendo seleccionable, movible, rotatable, escalable y clonable con la
+  Entity Tool. Admite placeholders, alineacion y billboard fijo, horizontal o
+  completo. Update 6 requiere atlas estaticos preparados al entrar o solicitar
+  expresamente la reconstruccion del Common asset tras publicar el atlas de
+  medios generado. La 0.8.1 evita documentos UI obsoletos usando
+  `HologramEditorV081.ui`; la 0.8.2 corrige la desconexion restante haciendo que
+  `#NativePreview.Text` reciba un `String` en vez de un `Message`, como exige
+  Update 6. La prueba de paquete verifica selectores y este contrato de tipo.
+  La 0.8.3 crea el ancla de imagen inmediatamente y prepara/recarga los assets
+  de imagen o GIF en `HytaleServer.SCHEDULED_EXECUTOR`; el sistema del mundo
+  activa la particula solo al completar esa fase, evitando bloquear el tick.
+  `Samples/prueba.gif` debe incluirse en el JAR. Los detalles y limites viven en
+  `mods/java/raynor-holograms/DEVELOPMENT_LEARNINGS.md`.
+- `mods/java/scoreboards`, version `2.0.12`: sistema independiente de
   Objectives y scoreboards.
-- `mods/java/build-battle`, version `0.2.4`: logica independiente del modo de
-  juego.
-- `mods/java/configurable-mob-spawners`, version `0.5.3` (WIP): bloque solido minable
+- `mods/java/trigger-volume-effect-browser`, version `0.1.6` (experimental):
+  herramienta clon de Trigger Volumes con catalogo de efectos, condiciones y
+  reglas. Conserva el `BuilderTool.Id=TriggerVolume`; como el cliente asigna E
+  directamente a `/triggervolume effects`, sustituye de forma reversible ese
+  subcomando y solo abre el inspector ampliado cuando el item clon esta en la
+  mano. La herramienta vanilla mantiene su interfaz vanilla.
+- `mods/java/build-battle`, version `0.3.0` (WIP jugable): rondas individuales
+  o por equipos, temas JSON, parcelas protegidas, creativo sin Builder Tools,
+  votacion de tema/construcciones y reinicio opcional desde prefab base.
+- `mods/java/configurable-mob-spawners`, version `0.5.7` (WIP): bloque solido minable
   visible como `Spawner Block` en el creativo normal. Abre primero una portada
   CMS1 ligera con instrucciones, `Guardar y cerrar` y cancelacion sin cambios.
   Un bloque recien colocado no tiene rol y permanece apagado hasta guardar o
@@ -39,11 +67,15 @@ de verdad.
   La exportacion solo aparece en el editor completo, que carga el catalogo NPC
   y la preview 3D bajo demanda; conserva vida/armadura, suelo automatico, loot por filas,
   importacion CMS1, velocidad relativa y escala nativa de modelo, hitboxes y
-  controladores de movimiento, modelo propio y VFX. Su tag persistente queda reservada
-  para una futura integracion de senales con Trigger Volumes. No expone un
-  interruptor manual: genera al cumplirse proximidad, luz y cadencia. El limite
-  de mobs vivos cuenta solo los generados por ese bloque que permanezcan dentro
-  de su radio de activacion. Su artefacto hidrata
+  controladores de movimiento, modelo propio y VFX. Los elites refuerzan el
+  nameplate y los avisos, pero no aplican actualmente el ModelVFX violeta; sus
+  assets y el contexto para retomarlo viven en `ELITE_VFX_DEFERRED.md`. Sus tags persistentes identifican
+  el bloque para `TriggerSpawnerWave` desde Trigger Volumes. No expone un
+  interruptor manual: genera al cumplirse proximidad, luz y cadencia. Con radio
+  de activacion `0`, desactiva la proximidad y solo responde a TriggerSpawnerWave;
+  entonces el limite de mobs vivos cuenta todos los generados por ese bloque.
+  Con radio mayor que cero, el limite cuenta solo los generados por ese bloque que
+  permanezcan dentro de su radio de activacion. Su artefacto hidrata
   el arbol `Common/UI/Custom` desde la `Assets.zip` usada para compilar, porque
   el cliente pre.11 pierde documentos vanilla al recibir un pack Custom UI
   parcial. Esos assets externos solo viven en `.build` y nunca se versionan.
@@ -57,7 +89,10 @@ de verdad.
   Al entrar, cada jugador recibe en el chat la guia de instalacion y el enlace
   clicable al configurador. El boton `Copiar URL` prepara la URL en el chat para
   copiarla, ya que una Custom UI de servidor no accede al portapapeles cliente.
-  En `0.6.0-pre.13.1` y estable `0.6.2`, la consulta de luz usa los datos globales de la
+  `TriggerSpawnerWave` registra un efecto de Trigger Volumes que busca tags
+  exactas entre spawners cargados. `SIGNAL_ONLY` permite raids bajo Tag Added o
+  Signal Received sin cadencia ni proximidad, manteniendo luz, suelo y máximo
+  de vivos. En `0.6.0-pre.13.1` y estable `0.6.2`, la consulta de luz usa los datos globales de la
   seccion del bloque porque `BlockChunk.getBlockLightIntensity` y `getSkyLight`
   fueron eliminados.
 
@@ -125,13 +160,13 @@ que registren los mismos IDs.
 
 ## Otros proyectos
 
-- `mods/java/build-battle`: prototipo `0.2.4`. `SuggestBuildTheme` abre una UI
-  de una palabra y guarda en el propio volumen `theme_<palabra>=empty` y
-  `points=0`. La regla `RestrictBuildBattleCreativeTools`, usada bajo
-  `Always Active`, aplica una whitelist de Builder Tools por permisos e IDs de
-  items y conserva el acceso a los Technical Block Sets. Desde 0.2.2 solo se
-  registra como regla; el save `Trigger Volumes` se migro de `Effects` a
-  `Rules`.
+- `mods/java/build-battle`: WIP jugable `0.3.0`. `/buildbattle` gestiona lobby,
+  rondas solo/equipos, votacion de temas JSON, construccion dentro de parcelas,
+  visita/votacion de builds y resultados. Durante la construccion bloquea todas
+  las Builder Tools; cada parcela puede restaurarse desde un prefab base que
+  incluya el aire necesario para limpiar la ronda anterior. Conserva los IDs
+  heredados `SuggestBuildTheme` y `RestrictBuildBattleCreativeTools`; el
+  primero sigue guardando `theme_<palabra>=empty` y `points=0` en el volumen.
 - `mods/java/entity-motion-triggers`: efectos de creacion, conversion y
   movimiento de entidades, colision de plataforma y particulas ancladas.
 - `auxiliary/java/map-selector`: codigo auxiliar `0.1.1` creado para ayudar a
@@ -144,7 +179,7 @@ que registren los mismos IDs.
   Requiere HyUI 0.9.8; la copia local `0.9.8-pre11` solo amplía el rango de
   compatibilidad del manifiesto después de comprobar que el plugin carga y se
   habilita. No forma parte de las releases propias de OrbGenesis.
-- `mods/java/more-triggers`: version `1.10.5`. `PasteRandomPrefab` permite yaw
+- `mods/java/more-triggers`: version `1.10.6`. `PasteRandomPrefab` permite yaw
   cardinal de 0, 90, 180 o 270 grados sin cambiar su ID ni los saves antiguos.
   Hereda de `PastePrefabEffect` y expone al inspector sus getters para
   reutilizar el boton vanilla Show/Hide Preview; previsualiza el primer prefab
@@ -181,7 +216,54 @@ que registren los mismos IDs.
 - `games/nexus-siege`: workspace del minijuego. Los NPCs reutilizables y
   efectos de Trigger Volumes para NPCs viven en `mods/asset-packs/raynor-npcs`;
   la carpeta `npcs/vanilla` conserva contratos y notas de diseno del juego.
-- `mods/java/scoreboards`: prototipo `2.0.11` validado contra estable `0.6.2`. Usa
+- `games/desert-survival`: prototipos aislados del modo de supervivencia.
+  Continuacion del 2026-11-12 (noche) y punto de entrada para retomar:
+  `DESERT_SURVIVAL_CONTINUATION_2026-11-12.md` en la raiz.
+  `research-tree` 0.1.5 tiene 48 nodos, Intel persistente y un borrador de UI
+  radial con cinco sectores, tres anillos y detalle a la derecha. Investigar
+  depende de Intel y prerrequisitos, no del material alcanzado. El ultimo par
+  que entro correctamente en `dune1` fue Research 0.1.1 + Vitals 0.2.2 y sigue
+  instalado; 0.1.2-0.1.4 junto con Vitals 0.2.3-0.2.6 provocaron desconexion
+  por `Hud/ReturnToHubButton.ui` del CreativeHub vanilla. El nuevo 0.1.5
+  compila y pasa tests de paquete/catalogo contra el servidor 0.7.7 instalado.
+  El intento con 0.1.5 en `dune1` tambien desconecto al cliente por
+  `Hud/ReturnToHubButton.ui`; se retiro y quedo archivado como `.jar.failed-ui`.
+  El Research global 0.1.1 volvio a estar activo y Vitals 0.2.2 sigue activo.
+  La UI radial queda en fuentes, sin despliegue. No declarar resuelto el fallo
+  de entrada sin una prueba posterior a la restauracion.
+  Diagnostico 2026-11-12 (noche): el log `21-04-21` confirma que la
+  restauracion 0.1.1 + Vitals 0.2.2 entra en `dune1`. Research 0.1.6 retiro
+  el PNG duplicado `IntelIcon.png` y siguio fallando, asi que el contenido
+  duplicado no es la causa. El unico fichero comun a todas las builds que
+  fallaron (0.1.2-0.1.6 y Vitals 0.2.5-0.2.6) es `ResearchNodeRow.ui` en su
+  revision 0.1.2, que usa `HorizontalAlignment: Right`; vanilla solo usa
+  `Start`, `Center` y `End`. Research 0.1.7 lo saca del paquete (queda en
+  `legacy/`), usa `$C.@CircularProgressBar` para los anillos y su
+  `Test-Package.ps1` rechaza enums ajenos a vanilla, ficheros no `.ui` bajo
+  `Common/UI/Custom` y assets Common duplicados. Smoke test 2026-11-12 22:22: 0.1.7 + Vitals 0.2.2
+  entra en `dune1`; es la combinacion activa en `UserData/Mods` (0.1.1 y 0.1.6
+  archivados). Regla confirmada: un solo documento Custom UI con un valor que
+  el cliente no reconoce anula todo el conjunto de documentos, incluido el
+  vanilla, y el error visible es el primer `Append` vanilla. Con 0.1.7 `/research` desconecto por el selector
+  `#RingNodes[0] #RingNode`: el raiz de un documento anadido se direcciona
+  como `#Lista[i]`, sin repetir su id. Research 0.1.8 lo corrige: `/research`
+  abre y es usable. 0.2.0 pasa a una rueda unica: imagen
+  `ResearchWheel.png` generada por `tools/Generate-ResearchWheel.ps1` (sin
+  rotacion en el motor UI), cinco cunas de 72 grados por rama, tres bandas
+  por tier y los 48 nodos a la vez colocados por `ringAnchor`; instalado,
+  revision visual pendiente.
+  Research 0.2.1 en fuentes: Intel insertado directamente en inventario se
+  consume y suma al saldo persistente; la rueda usa nodos cuadrados con imagen
+  placeholder. Oculta Intel historico y tier de material. Compilado y validado
+  contra 0.7.7, instalado en `UserData/Mods` con SHA-256 igual al build;
+  pendiente de smoke test del usuario. 0.2.0 se archivo como `.jar.replaced`.
+  Research 0.2.2 en fuentes: tres estados visuales de nodo (azul disponible,
+  gris bloqueado, verde investigado), 37 enlaces de prerrequisitos dibujados
+  desde `ResearchCatalog`, coste como unico metadato en el detalle, correccion
+  de Combate y tildes, sin leyenda de tiers ni confirmacion de seleccion.
+  Compila y pasa tests contra 0.7.7; instalado en `UserData/Mods`, pendiente
+  de smoke test del usuario. 0.2.1 se archivo como `.jar.replaced`.
+- `mods/java/scoreboards`: prototipo `2.0.12` validado contra estable `0.6.2`. Usa
   `ObjectiveDataStore`, assets dinamicos y la tarea `OrbGenesisManualCount`;
   permite editar definiciones mediante `/scoreboard`, controlar instancias con
   comandos y usar `ControlScoreboard`, `ModifyScoreboardTask`,
@@ -192,6 +274,22 @@ que registren los mismos IDs.
   editables se publican al cliente como traducciones dinamicas antes de enviar
   los paquetes nativos de Objective.
 - `mods/asset-packs`: packs independientes relativamente limpios.
+- `mods/asset-packs/metalwork-flat-roofs`, version `0.1.3`: Void y nuevas copias
+  de Iron/Copper usan SeamSafe_Roof_Flat: pieza unica sin overhang ni tilt,
+  huella 31.984x31.984 y altura 6; texturas vanilla referenciadas.
+  Anade Void ornamentado,
+  Raynor_Metal_Void_Roof_Flat, heredado de Metal_Iron_Roof_Flat con modelo
+  vanilla referenciado y atlas propio opaco 160x352. Adamantite corrige
+  las UV para usar solo los 13x13 pixeles opacos de Metalwork y stretch para
+  ocupar 32x4x32 unidades. Las otras ocho variantes necesitan corregir sus UV.
+  Instalado en Anima 0.6.X/mods. El pack anade nueve
+  tejados planos metalicos (Adamantite, Cobalt, Gold, Mithril, Onyxium,
+  Prisma, Refined Iron, Silver y Thorium). Cada item hereda el comportamiento
+  de `Rock_Stone_Brick_Roof_Flat`, usa un modelo propio de bloque completo y
+  reutiliza bajo GPL-3.0-only las texturas e iconos de Metalwork 1.0.0 de
+  Lordimass. No copia modelos ni atlas vanilla; Bronze, Copper, Iron y Zinc se
+  omiten porque ya existen en Hytale. Las recetas estan desactivadas y los
+  bloques se obtienen desde `Blocks.Metal` en creativo.
 - `mods/asset-packs/mechanisms`, version `1.1.2`: props accionables y la piedra
   `OrbGenesis_NoBuild_Stone`. Su volumen temporal usa `ModifyRules` con
   operacion `SET` en `VOLUME_CREATE` para insertar `NoBuild`, porque
@@ -205,8 +303,45 @@ que registren los mismos IDs.
   auxiliar Map Selector.
 - `experiments/asset-packs`: material de laboratorio. Puede sobreescribir IDs
   vanilla y combinar varias pruebas incompatibles; inspeccionar antes de usar.
+- `experiments/asset-packs/worldgen-v2-lab`: laboratorio WorldGen V2 `0.3.0`
+  fijado a `0.7.0-pre.1`. La cadena canonica es Instance `HytaleGenerator` ->
+  WorldStructure -> Biome -> Density/Material/Props. Incluye las instancias
+  efimeras `Raynor_Lab_Rolling_Hills` y `Raynor_Sky_Gardens`; esta ultima usa
+  tres poblaciones 3D independientes, spawn entre centros naturales, lagunas y
+  vegetacion por bloques Manual, todavia sin prefabs. La interfaz experimental
+  `IWorldGen.Cubic` ya permite proveedores
+  con altura/profundidad infinitas, pero en pre.1 el `Handle` de
+  `HytaleGenerator` aun implementa la ruta columnar `IWorldGen` (Y 0..319), por
+  lo que un Biome V2 todavia no puede poblar un mundo cubico completo. Incluye
+  brief de prompt, registro de iteraciones, inventario de la instalacion y
+  validacion/build. Los assets V2 oficiales se consultan desde `Assets.zip`
+  bajo `Server/HytaleGenerator` y el codigo desde
+  `HytaleServer/builtin/HytaleGenerator`; nunca se copian al repo.
 
 ## Higiene del repositorio
+
+- `auxiliary/minecraft-bedrock/admin-menu`, version `1.2.0`: add-on familiar de
+  Minecraft Bedrock (no Hytale). Mantiene `raynor:admin_menu` y UUID de 1.0.0;
+  ahora usa reloj, menus con iconos y botones +/-, catalogo de efectos beneficiosos
+  infinitos sin particulas y encantamientos sin maldiciones de inventario/armadura.
+  Los botones +/- aplican inmediatamente; nivel 0 retira el efecto o encantamiento. Los efectos
+  instantaneos se repiten cada segundo mientras esten activados. Se distribuye
+  como `.mcaddon` con BP y RP enlazados; compilar con su `tools/Build-Pack.ps1`.
+  Requiere Bedrock 26.40, server 2.9.0 y server-ui 2.1.0. Pruebas automaticas
+  correctas; smoke test de 1.2.0 pendiente. Ver su README para limites e instalacion.
+
+- `auxiliary/minecraft-bedrock/mob-buckets`, version `1.0.0`: add-on Bedrock
+  independiente con `raynor:mob_bucket`. Captura por interaccion y libera al usar
+  el cubo; conserva el tipo, pero no el estado completo del mob. Excluye mascotas,
+  criaturas con nombre o inventario, jugadores y jefes. Se distribuye como
+  `.mcaddon` de un unico behavior pack; compilar con `tools/Build-Pack.ps1`.
+
+- `auxiliary/minecraft-bedrock/diamond-walker`, version `1.0.2`: add-on Bedrock
+  independiente. `/function diamantes` marca al ejecutor y el script alterna por
+  jugador un camino que convierte
+  el bloque no vacio directamente bajo sus pies en `minecraft:diamond_block`.
+  El estado persiste como dynamic property y los cambios del terreno no se
+  revierten. Se distribuye como `.mcaddon` de un unico behavior pack.
 
 - La marca publica y la autoria de estos mods es `Raynor` / `Raynor Mods`.
   `OrbGenesis` identifica colaboraciones e IDs tecnicos historicos; no renombrar
@@ -223,3 +358,12 @@ que registren los mismos IDs.
   procedimiento de build, ruta de despliegue o limitaciones conocidas.
 - Tras crear una version de mod, comprobar especialmente plugin duplicado,
   traducciones sin resolver y que el selector de assets devuelve resultados.
+
+## Revalidacion de mods publicos - 2026-09-03
+
+Los cinco mods de `website/raynor-mods/portal-config.js` se han recompilado
+contra release `0.6.3`. `scripts/Test-ActiveJavaMods.ps1 -PublishedOnly`
+excluye Build Battle y Raynor NPCs; pasa el JAR estable tambien a los tests.
+El build comun usa release por defecto; pre-release requiere `-ServerJar`.
+Ver [informe y limites](docs/UPDATE_6_3_PUBLIC_MODS.md). La web y CurseForge
+siguen con las versiones anteriores hasta publicar estos artefactos.

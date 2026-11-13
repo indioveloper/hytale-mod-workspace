@@ -1,6 +1,7 @@
 package gg.orbgenesis.configurablespawners;
 
 import com.hypixel.hytale.component.Ref;
+import com.hypixel.hytale.builtin.triggervolumes.TriggerVolumesPlugin;
 import com.hypixel.hytale.protocol.packets.interface_.CustomPageLifetime;
 import com.hypixel.hytale.server.core.Message;
 import com.hypixel.hytale.server.core.event.events.player.PlayerReadyEvent;
@@ -17,6 +18,12 @@ import javax.annotation.Nonnull;
 public final class ConfigurableMobSpawnersPlugin extends JavaPlugin {
   static final String CONFIGURATOR_URL =
       "https://hytale-mob-spawner-configurator.vercel.app";
+  private static final SpawnerWaveActivationManager WAVE_ACTIVATION_MANAGER =
+      new SpawnerWaveActivationManager();
+
+  static SpawnerWaveActivationManager getWaveActivationManager() {
+    return WAVE_ACTIVATION_MANAGER;
+  }
 
   public ConfigurableMobSpawnersPlugin(@Nonnull JavaPluginInit init) {
     super(init);
@@ -41,6 +48,8 @@ public final class ConfigurableMobSpawnersPlugin extends JavaPlugin {
     getEntityStoreRegistry().registerSystem(new SpawnerAttitudeSystem());
     getEntityStoreRegistry().registerSystem(new SpawnerRetaliationSystem());
     getEntityStoreRegistry().registerSystem(new SpawnerLootSystem());
+    TriggerVolumesPlugin.get().registerEffectType(
+        "TriggerSpawnerWave", TriggerSpawnerWaveEffect.class, TriggerSpawnerWaveEffect.CODEC);
 
     OpenCustomUIInteraction.registerBlockEntityCustomPage(
         this,
@@ -53,6 +62,12 @@ public final class ConfigurableMobSpawnersPlugin extends JavaPlugin {
         "Tienes instalado el mod de spawners configurables! "
             + "Busca en creativo el bloque \"Spawner Block\" e importa tu spawner desde la web: "
             + CONFIGURATOR_URL);
+  }
+
+  @Override
+  protected void shutdown() {
+    WAVE_ACTIVATION_MANAGER.clear();
+    super.shutdown();
   }
 
   private void onPlayerReady(PlayerReadyEvent event) {

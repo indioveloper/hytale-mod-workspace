@@ -1,0 +1,29 @@
+{
+  "nodes": [
+    {
+      "id": "root",
+      "name": "Raynor Hologram Banner",
+      "children": [],
+      "position": { "x": 0, "y": 0, "z": 0 },
+      "orientation": { "x": 0, "y": 0, "z": 0, "w": 1 },
+      "shape": {
+        "type": "quad",
+        "offset": { "x": 0, "y": 0, "z": 0 },
+        "stretch": { "x": 0.125, "y": 0.125, "z": 1 },
+        "settings": { "size": { "x": 512, "y": 288 } },
+        "visible": true,
+        "doubleSided": true,
+        "shadingMode": "flat",
+        "unwrapMode": "custom",
+        "textureLayout": {
+          "front": {
+            "offset": { "x": 0, "y": 0 },
+            "mirror": { "x": false, "y": false },
+            "angle": 0
+          }
+        }
+      }
+    }
+  ],
+  "lod": "auto"
+}

@@ -7,3 +7,8 @@ customUI.buildBattle.theme.placeholder = ej. castillo
 customUI.buildBattle.theme.error = Escribe una palabra de hasta 32 letras o numeros. Se permiten guiones y guiones bajos.
 customUI.buildBattle.theme.suggest = SUGERIR
 customUI.buildBattle.theme.cancel = CANCELAR
+
+customUI.buildBattle.voteTheme.title = VOTA UN TEMA
+customUI.buildBattle.voteTheme.prompt = Elige el tema que construiran todos. Puedes votar una vez y cambiar el voto con /bb votetheme.
+customUI.buildBattle.voteBuild.title = PUNTUA ESTA BUILD
+customUI.buildBattle.voteBuild.prompt = Elige una nota del 1 al 5. No puedes votar la build de tu propio equipo.

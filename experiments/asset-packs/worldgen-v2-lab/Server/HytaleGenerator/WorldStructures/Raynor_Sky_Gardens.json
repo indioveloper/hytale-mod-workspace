@@ -1,0 +1,77 @@
+{
+  "$Comment": "Sky Gardens prototype. WorldGen V2 is horizontally unbounded; in 0.7.0-pre.1 its HytaleGenerator adapter still generates the legacy 0..319 column.",
+  "Type": "NoiseRange",
+  "Biomes": [],
+  "DefaultBiome": "Raynor_Sky_Gardens",
+  "DefaultTransitionDistance": 16,
+  "MaxBiomeEdgeDistance": 0,
+  "Density": {
+    "Type": "Constant",
+    "Value": 0
+  },
+  "SpawnPositions": {
+    "$Comment": "Finite window of the same procedural island centers used by the Biome. IndividualSpawnProvider selects one deterministically per player and FitToHeightMap moves it onto the natural surface.",
+    "Type": "Bound",
+    "Bounds": {
+      "PointA": { "X": -900, "Y": 24, "Z": -900 },
+      "PointB": { "X": 900, "Y": 296, "Z": 900 }
+    },
+    "Positions": {
+      "Type": "Union",
+      "Positions": [
+        {
+          "Type": "Occurrence", "Seed": "Raynor_Sky_Gardens_Large_Occurrence",
+          "FieldFunction": { "Type": "Constant", "Value": 0.78 },
+          "Positions": {
+            "Type": "Jitter3d", "Magnitude": 165, "Seed": "Raynor_Sky_Gardens_Large_Jitter",
+            "Positions": {
+              "Type": "Offset", "Offset": { "X": 92, "Y": 66, "Z": -71 }, "OffsetX": 0, "OffsetY": 0, "OffsetZ": 0,
+              "Positions": { "Type": "Scaler", "Scale": { "X": 430, "Y": 126, "Z": 390 }, "Positions": { "Type": "SquareGrid3d" } }
+            }
+          }
+        },
+        {
+          "Type": "Occurrence", "Seed": "Raynor_Sky_Gardens_Medium_Occurrence",
+          "FieldFunction": { "Type": "Constant", "Value": 0.84 },
+          "Positions": {
+            "Type": "Jitter3d", "Magnitude": 108, "Seed": "Raynor_Sky_Gardens_Medium_Jitter",
+            "Positions": {
+              "Type": "Offset", "Offset": { "X": -63, "Y": 31, "Z": 83 }, "OffsetX": 0, "OffsetY": 0, "OffsetZ": 0,
+              "Positions": { "Type": "Scaler", "Scale": { "X": 262, "Y": 94, "Z": 237 }, "Positions": { "Type": "SquareGrid3d" } }
+            }
+          }
+        },
+        {
+          "Type": "Occurrence", "Seed": "Raynor_Sky_Gardens_Small_Occurrence",
+          "FieldFunction": { "Type": "Constant", "Value": 0.70 },
+          "Positions": {
+            "Type": "Jitter3d", "Magnitude": 66, "Seed": "Raynor_Sky_Gardens_Small_Jitter",
+            "Positions": {
+              "Type": "Offset", "Offset": { "X": 29, "Y": 9, "Z": -34 }, "OffsetX": 0, "OffsetY": 0, "OffsetZ": 0,
+              "Positions": { "Type": "Scaler", "Scale": { "X": 158, "Y": 68, "Z": 181 }, "Positions": { "Type": "SquareGrid3d" } }
+            }
+          }
+        }
+      ]
+    }
+  },
+  "Framework": [
+    {
+      "Type": "DecimalConstants",
+      "Entries": [
+        {
+          "Name": "Base",
+          "Value": 160
+        },
+        {
+          "Name": "Water",
+          "Value": -64
+        },
+        {
+          "Name": "Bedrock",
+          "Value": -128
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,42 @@
+$C = "../../Common.ui";
+
+Group #EffectBrowserHeader {
+  LayoutMode: Top;
+  Anchor: (Width: 560, Height: 68);
+
+  Group {
+    LayoutMode: Left;
+    Anchor: (Height: 32);
+
+    Label {
+      FlexWeight: 1;
+      Text: %server.customUI.triggerEffectBrowser.title;
+      Style: (...$C.@SubtitleStyle, FontSize: 18, VerticalAlignment: Center);
+    }
+
+    Label #EffectBrowserKind {
+      Anchor: (Width: 190);
+      Style: (...$C.@DefaultLabelStyle, FontSize: 12, HorizontalAlignment: End, VerticalAlignment: Center, TextColor: #7fa6c2);
+    }
+  }
+
+  Group {
+    LayoutMode: Left;
+    Anchor: (Top: 4, Height: 32);
+
+    $C.@SmallSecondaryTextButton #EffectBrowserModeAll {
+      Anchor: (Width: 120, Right: 5, Height: 28);
+      Text: %server.customUI.triggerEffectBrowser.mode.all;
+    }
+
+    $C.@SmallSecondaryTextButton #EffectBrowserModeCategory {
+      Anchor: (Width: 145, Right: 5, Height: 28);
+      Text: %server.customUI.triggerEffectBrowser.mode.category;
+    }
+
+    $C.@SmallSecondaryTextButton #EffectBrowserModeMod {
+      Anchor: (Width: 110, Height: 28);
+      Text: %server.customUI.triggerEffectBrowser.mode.mod;
+    }
+  }
+}

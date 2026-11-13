@@ -1,0 +1,38 @@
+{
+  "Layers": [
+    {
+      "Files": [
+        "Sounds/Weapons/Staff/Flame/Staff_Flame_Fireball_Impact_01.ogg",
+        "Sounds/Weapons/Staff/Flame/Staff_Flame_Fireball_Impact_03.ogg",
+        "Sounds/Weapons/Staff/Flame/Staff_Flame_Fireball_Impact_05.ogg"
+      ],
+      "Volume": -7.0,
+      "RandomSettings": {
+        "MinVolume": -1,
+        "MinPitch": -1,
+        "MaxPitch": 2
+      },
+      "RoundRobinHistorySize": 1,
+      "StartDelay": 0
+    },
+    {
+      "Files": [
+        "Sounds/Blocks/Stone/Stone_Hit_Mid_01.ogg",
+        "Sounds/Blocks/Stone/Stone_Hit_Debris_01.ogg",
+        "Sounds/Blocks/Stone/Stone_Hit_Debris_03.ogg"
+      ],
+      "Volume": -13.0,
+      "RandomSettings": {
+        "MinVolume": -2,
+        "MinPitch": -2,
+        "MaxPitch": 2
+      },
+      "RoundRobinHistorySize": 1,
+      "StartDelay": 0
+    }
+  ],
+  "Volume": -3.0,
+  "PreventSoundInterruption": true,
+  "AudioCategory": "AudioCat_Magic_Staff",
+  "Parent": "SFX_Attn_Moderate"
+}

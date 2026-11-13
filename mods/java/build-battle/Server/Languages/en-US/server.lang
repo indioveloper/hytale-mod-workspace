@@ -7,3 +7,8 @@ customUI.buildBattle.theme.placeholder = e.g. castle
 customUI.buildBattle.theme.error = Enter one word of up to 32 letters or numbers. Hyphens and underscores are allowed.
 customUI.buildBattle.theme.suggest = SUGGEST
 customUI.buildBattle.theme.cancel = CANCEL
+
+customUI.buildBattle.voteTheme.title = VOTE FOR A THEME
+customUI.buildBattle.voteTheme.prompt = Choose the theme everyone will build. You may vote once and change your vote with /bb votetheme.
+customUI.buildBattle.voteBuild.title = RATE THIS BUILD
+customUI.buildBattle.voteBuild.prompt = Choose a score from 1 to 5. You cannot vote for your own team.

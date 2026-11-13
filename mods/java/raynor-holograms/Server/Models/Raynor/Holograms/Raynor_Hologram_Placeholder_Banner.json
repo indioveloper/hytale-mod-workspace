@@ -1,0 +1,11 @@
+{
+  "Model": "Items/Raynor/Holograms/Placeholder_Banner.blockymodel",
+  "Texture": "Items/Raynor/Holograms/Placeholder_Banner.png",
+  "EyeHeight": 0,
+  "MinScale": 0.1,
+  "MaxScale": 16,
+  "HitBox": {
+    "Min": { "X": -0.5, "Y": -0.28125, "Z": -0.02 },
+    "Max": { "X": 0.5, "Y": 0.28125, "Z": 0.02 }
+  }
+}

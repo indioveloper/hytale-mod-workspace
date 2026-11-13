@@ -1,0 +1,19 @@
+@ThemeButtonLabel = LabelStyle(
+  FontSize: 17,
+  RenderBold: true,
+  HorizontalAlignment: Center,
+  VerticalAlignment: Center,
+  TextColor: #f4f8fc
+);
+
+@ThemeButtonStyle = TextButtonStyle(
+  Default: (Background: (Color: #315f8f), LabelStyle: @ThemeButtonLabel),
+  Hovered: (Background: (Color: #427bb5), LabelStyle: @ThemeButtonLabel),
+  Pressed: (Background: (Color: #24496e), LabelStyle: @ThemeButtonLabel)
+);
+
+TextButton #ThemeButton {
+  Anchor: (Height: 50, Bottom: 10);
+  Text: "Theme";
+  Style: @ThemeButtonStyle;
+}

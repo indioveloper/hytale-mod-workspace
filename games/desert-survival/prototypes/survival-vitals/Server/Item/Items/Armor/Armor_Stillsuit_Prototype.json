@@ -1,0 +1,20 @@
+{
+  "Parent": "Armor_Diving_Crude_Chest",
+  "TranslationProperties": {
+    "Name": "server.items.Armor_Stillsuit_Prototype.name",
+    "Description": "server.items.Armor_Stillsuit_Prototype.description"
+  },
+  "Quality": "Uncommon",
+  "ItemLevel": 10,
+  "Tags": {
+    "Type": [
+      "Armor"
+    ],
+    "Family": [
+      "Stillsuit",
+      "Stillsuit_Tier1",
+      "HeatResistance_5",
+      "WaterRecoveryPocket_500"
+    ]
+  }
+}

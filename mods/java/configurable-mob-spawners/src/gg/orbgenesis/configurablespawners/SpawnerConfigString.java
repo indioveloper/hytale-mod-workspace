@@ -21,6 +21,7 @@ final class SpawnerConfigString {
     JsonArray tags = new JsonArray();
     for (String tag : config.tags) tags.add(tag);
     root.add("tags", tags);
+    root.addProperty("activationMode", config.activationMode.name());
     root.addProperty("role", config.roleId);
     root.addProperty("name", config.mobName);
     root.addProperty("health", config.maxHealth);
@@ -81,9 +82,11 @@ final class SpawnerConfigString {
       result.tag = string(root, "tag", "");
       if (root.has("tags") && root.get("tags").isJsonArray()) {
         JsonArray tags = root.getAsJsonArray("tags");
-        result.tags = new String[tags.size()];
+      result.tags = new String[tags.size()];
         for (int i = 0; i < tags.size(); i++) result.tags[i] = tags.get(i).getAsString();
       }
+      result.activationMode = SpawnerActivationMode.valueOf(
+          string(root, "activationMode", SpawnerActivationMode.AUTOMATIC.name()));
       result.roleId = string(root, "role", "Skeleton");
       result.mobName = string(root, "name", "");
       result.maxHealth = number(root, "health", 0.0);

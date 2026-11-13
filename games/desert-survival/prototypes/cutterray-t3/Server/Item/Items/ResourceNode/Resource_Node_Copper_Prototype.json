@@ -1,0 +1,56 @@
+{
+  "TranslationProperties": {
+    "Name": "server.items.Resource_Node_Copper_Prototype.name",
+    "Description": "server.items.Resource_Node_Copper_Prototype.description"
+  },
+  "Icon": "Icons/Items/Raynor/Resource_Node_Copper_Prototype.png",
+  "Categories": [
+    "Blocks.Ores"
+  ],
+  "SubCategory": "Ore",
+  "BlockType": {
+    "Material": "Solid",
+    "DrawType": "Model",
+    "Opacity": "Transparent",
+    "CustomModel": "Blocks/Raynor/ResourceNodes/Copper_Node_Prototype.blockymodel",
+    "CustomModelTexture": [
+      {
+        "Texture": "Blocks/Raynor/ResourceNodes/Copper_Node_Prototype_Texture.png",
+        "Weight": 1
+      }
+    ],
+    "Group": "Stone",
+    "HitboxType": "Cutterray_Copper_Node",
+    "Flags": {},
+    "RandomRotation": "YawStep90",
+    "Gathering": {
+      "Breaking": {
+        "GatherType": "CutterrayCopper"
+      }
+    },
+    "BlockParticleSetId": "Ore",
+    "Support": {
+      "Down": [
+        {
+          "FaceType": "Full"
+        }
+      ]
+    },
+    "ParticleColor": "#d9783c",
+    "BlockSoundSetId": "Ore",
+    "PhysicalMaterialId": "Stone",
+    "TextureComputedColor": "#936044"
+  },
+  "PlayerAnimationsId": "Block",
+  "Tags": {
+    "Type": [
+      "Ore",
+      "ResourceNode"
+    ],
+    "Family": [
+      "Copper"
+    ]
+  },
+  "MaxStack": 10,
+  "ItemSoundSetId": "ISS_Blocks_Stone"
+}

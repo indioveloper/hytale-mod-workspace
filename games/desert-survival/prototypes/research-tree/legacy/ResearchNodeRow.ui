@@ -1,0 +1,53 @@
+$C = "../../Common.ui";
+
+Group {
+  LayoutMode: Top;
+  Anchor: (Height: 142, Bottom: 8);
+  Background: (Color: #081923(0.94));
+  Padding: (Horizontal: 10, Vertical: 8);
+
+  Group {
+    LayoutMode: Left;
+    Anchor: (Height: 25);
+
+    Label #NodeName {
+      FlexWeight: 1;
+      Text: "Nodo";
+      Style: (
+        ...$C.@SubtitleStyle,
+        FontSize: 13,
+        Wrap: true,
+        VerticalAlignment: Center
+      );
+    }
+
+    Label #NodeMeta {
+      Anchor: (Width: 96);
+      Text: "AG-0.1 | GRATIS";
+      Style: (
+        ...$C.@DefaultLabelStyle,
+        FontSize: 10,
+        TextColor: #f5c65b,
+        HorizontalAlignment: End,
+        VerticalAlignment: Center
+      );
+    }
+  }
+
+  Label #NodeDescription {
+    Anchor: (Height: 34, Top: 3);
+    Text: "Descripcion";
+    Style: (...$C.@DefaultLabelStyle, FontSize: 10, Wrap: true);
+  }
+
+  Label #NodeStatus {
+    Anchor: (Height: 18, Top: 2);
+    Text: "DISPONIBLE";
+    Style: (...$C.@DefaultLabelStyle, FontSize: 10, TextColor: #75dce7);
+  }
+
+  $C.@TextButton #ResearchButton {
+    @Anchor = (Height: 34, Top: 4);
+    @Text = "Investigar";
+  }
+}

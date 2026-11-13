@@ -1,0 +1,15 @@
+// Researched: green, still selectable to inspect its details.
+@NodeStyle = ButtonStyle(
+  Default: (Background: (Color: #237a52)),
+  Hovered: (Background: (Color: #35a875)),
+  Pressed: (Background: (Color: #17563b))
+);
+
+Button #RingNode {
+  Anchor: (Width: 32, Height: 32);
+  Style: @NodeStyle;
+  Group {
+    Anchor: (Width: 24, Height: 24);
+    Background: (TexturePath: "ResearchNodePlaceholder.png", Color: #a7ffd0);
+  }
+}

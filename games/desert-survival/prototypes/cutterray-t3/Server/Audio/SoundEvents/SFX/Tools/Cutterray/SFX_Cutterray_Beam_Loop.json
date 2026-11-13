@@ -1,0 +1,34 @@
+{
+  "Layers": [
+    {
+      "Files": [
+        "Sounds/Abilities/Wind_Strike/Ability_Wind_Strike_Imbued_Loop_01.ogg"
+      ],
+      "Volume": -4.0,
+      "RandomSettings": {
+        "MinPitch": -1,
+        "MaxPitch": 1
+      },
+      "StartDelay": 0,
+      "Looping": true
+    },
+    {
+      "Files": [
+        "Sounds/Magic/Portals/Portal_Loop_Layer_2_01.ogg"
+      ],
+      "Volume": -12.0,
+      "RandomSettings": {
+        "MinPitch": -1,
+        "MaxPitch": 1
+      },
+      "StartDelay": 0,
+      "Looping": true
+    }
+  ],
+  "MaxInstance": 8,
+  "Volume": -3.0,
+  "PreventSoundInterruption": true,
+  "AudioCategory": "AudioCat_Magic_Staff",
+  "Parent": "SFX_Attn_Moderate",
+  "SpatialBlend": 1.0
+}

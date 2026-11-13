@@ -1,0 +1,15 @@
+// Blocked by a prerequisite or insufficient Intel: gray, still selectable.
+@NodeStyle = ButtonStyle(
+  Default: (Background: (Color: #414b56)),
+  Hovered: (Background: (Color: #596775)),
+  Pressed: (Background: (Color: #343d46))
+);
+
+Button #RingNode {
+  Anchor: (Width: 32, Height: 32);
+  Style: @NodeStyle;
+  Group {
+    Anchor: (Width: 24, Height: 24);
+    Background: (TexturePath: "ResearchNodePlaceholder.png", Color: #929da5);
+  }
+}

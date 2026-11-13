@@ -1,0 +1,20 @@
+{
+  "Parent": "Metal_Iron_Roof_Flat",
+  "TranslationProperties": {
+    "Name": "server.items.Raynor_Metal_Iron_Roof_Flat.name"
+  },
+  "Icon": "Icons/ItemsGenerated/Metal_Iron_Roof_Flat.png",
+  "Categories": [
+    "Blocks.Metal"
+  ],
+  "BlockType": {
+    "CustomModel": "Blocks/Raynor/MetalworkFlatRoofs/SeamSafe_Roof_Flat.blockymodel",
+    "CustomModelTexture": [
+      {
+        "Texture": "Blocks/Structures/Roofs/Metal_Roofs/Metal_Iron.png",
+        "Weight": 1
+      }
+    ],
+    "VariantRotation": "UpDownNESW"
+  }
+}

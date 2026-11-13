@@ -1,8 +1,8 @@
 {
   "Group": "OrbGenesis",
   "Name": "Build Battle",
-  "Version": "0.2.4",
-  "Description": "Adds Build Battle theme suggestions and plot-safe creative tool restrictions.",
+  "Version": "0.3.0",
+  "Description": "Complete solo and team Build Battle rounds with JSON themes, plots and voting.",
   "Authors": [
     {
       "Name": "Raynor",

@@ -1,0 +1,32 @@
+{
+  "$Comment": "Ephemeral creative instance for rapid WorldGen V2 iteration.",
+  "RequiredPlugins": {},
+  "ChunkStorage": {
+    "Type": "Hytale"
+  },
+  "GameMode": "Creative",
+  "IsPvpEnabled": false,
+  "IsSpawningNPC": false,
+  "GameTime": "0001-01-01T09:00:00Z",
+  "UUID": {
+    "$binary": "kdnljcEPuk204fYaNdXTUw==",
+    "$type": "04"
+  },
+  "GameplayConfig": "Default",
+  "IsCompassUpdating": true,
+  "IsTicking": true,
+  "IsGameTimePaused": true,
+  "IsObjectiveMarkersEnabled": false,
+  "IsAllNPCFrozen": false,
+  "IsSavingPlayers": false,
+  "IsSavingChunks": false,
+  "SaveNewChunks": false,
+  "WorldGen": {
+    "Type": "HytaleGenerator",
+    "WorldStructure": "Raynor_Lab_Rolling_Hills",
+    "SeedOverride": "raynor-worldgen-v2-lab-rolling-hills-v1"
+  },
+  "IsSpawnMarkersEnabled": false,
+  "DeleteOnRemove": true,
+  "Version": 2
+}

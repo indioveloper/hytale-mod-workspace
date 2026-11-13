@@ -73,13 +73,20 @@ final class SpawnerTickSystem extends EntityTickingSystem<ChunkStore> {
       config.maintenanceSeconds = 0.0;
       pruneTracked(config, world);
     }
-    PlayerRef activator = nearestPlayer(world, center, config.activationRadius);
-    if (activator == null) {
+    boolean signalRequested = ConfigurableMobSpawnersPlugin.getWaveActivationManager()
+        .consumeNext(world, config);
+    PlayerRef activator = config.activationRadius <= 0.0
+        ? null
+        : nearestPlayer(world, center, config.activationRadius);
+    if (!signalRequested
+        && (config.activationMode == SpawnerActivationMode.SIGNAL_ONLY || activator == null)) {
       return;
     }
 
-    config.cooldownSeconds -= dt;
-    if (config.cooldownSeconds > 0.0) return;
+    if (!signalRequested) {
+      config.cooldownSeconds -= dt;
+      if (config.cooldownSeconds > 0.0) return;
+    }
 
     int capacity = config.maxAlive - countTrackedWithinRadius(config, world, center);
     if (capacity <= 0) {
@@ -115,9 +122,10 @@ final class SpawnerTickSystem extends EntityTickingSystem<ChunkStore> {
         ParticleUtil.spawnParticleEffect(
             ELITE_PARTICLE, new Vector3d(position).add(0.0, 1.0, 0.0),
             0.0f, 0.0f, 0.0f, 1.35f, 2.0f, entityStore);
-        broadcast(world, "¡" + activator.getUsername() + " se enfrenta a un "
-            + profile.effectiveBaseName() + " " + profile.elitePrefix.toLowerCase(java.util.Locale.ROOT)
-            + "!");
+        String eliteName = profile.eliteDisplayName();
+        broadcast(world, activator == null
+            ? "¡Ha aparecido " + eliteName + "!"
+            : "¡" + activator.getUsername() + " se enfrenta a " + eliteName + "!");
       }
       spawned++;
     }
@@ -170,6 +178,7 @@ final class SpawnerTickSystem extends EntityTickingSystem<ChunkStore> {
 
   private static int countTrackedWithinRadius(
       ConfigurableSpawnerComponent config, World world, Vector3d center) {
+    boolean countAllTrackedMobs = config.activationRadius <= 0.0;
     double radiusSquared = config.activationRadius * config.activationRadius;
     int count = 0;
     for (UUID uuid : config.trackedMobs) {
@@ -180,7 +189,8 @@ final class SpawnerTickSystem extends EntityTickingSystem<ChunkStore> {
       }
       TransformComponent transform = ref.getStore().getComponent(
           ref, TransformComponent.getComponentType());
-      if (transform != null && transform.getPosition().distanceSquared(center) <= radiusSquared) {
+      if (transform != null && (countAllTrackedMobs
+          || transform.getPosition().distanceSquared(center) <= radiusSquared)) {
         count++;
       }
     }

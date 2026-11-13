@@ -1,0 +1,112 @@
+@ValueStyle = LabelStyle(
+  FontSize: 12,
+  RenderBold: true,
+  VerticalAlignment: Center,
+  TextColor: #edf7ff
+);
+
+Group #SurvivalVitalsRoot {
+  Anchor: (Right: 36, Top: 154, Width: 250, Height: 238);
+  LayoutMode: Top;
+  Padding: (Full: 10);
+  Background: (Color: #071018(0.84));
+
+  Label #HydrationValue {
+    Anchor: (Height: 18, Bottom: 3);
+    Text: "HIDRATACION 1500/1500 ml - OPTIMO";
+    Style: (...@ValueStyle, TextColor: #7ce4ff);
+  }
+  Group {
+    Anchor: (Width: 200, Height: 10, Bottom: 8);
+    Background: (Color: #152c3b);
+    Panel #HydrationFill {
+      Anchor: (Width: 200, Height: 10);
+      Background: (Color: #36bde8);
+    }
+    Panel #HealthCapUnavailable {
+      Anchor: (Left: 66, Width: 2, Height: 10);
+      Background: (Color: #eaf9ff(0.9));
+    }
+    Panel #HealthCapMarker {
+      Anchor: (Left: 133, Width: 2, Height: 10);
+      Background: (Color: #eaf9ff(0.9));
+    }
+  }
+
+  Label #SunValue {
+    Anchor: (Height: 18);
+    Text: "SOMBRA";
+    Style: (...@ValueStyle, TextColor: #ffd269);
+  }
+  Label #ExposureValue {
+    Anchor: (Height: 18, Bottom: 3);
+    Text: "EXPOSICION 0%";
+    Style: (...@ValueStyle, TextColor: #ffad54);
+  }
+  Group {
+    Anchor: (Width: 200, Height: 8, Bottom: 8);
+    Background: (Color: #3a2318);
+    Panel #ExposureFill {
+      Anchor: (Width: 0, Height: 8);
+      Background: (Color: #ff6c35);
+    }
+    Panel {
+      Anchor: (Left: 180, Width: 2, Height: 8);
+      Background: (Color: #fff0cf);
+    }
+  }
+
+  Label #HeatValue {
+    Anchor: (Height: 18);
+    Text: "CALOR 1 (ZONA 1)  |  RESISTENCIA 0";
+    Style: (...@ValueStyle, TextColor: #ffb05a);
+  }
+  Label #LossValue {
+    Anchor: (Height: 18, Bottom: 8);
+    Text: "PERDIDA 1.00 ml/s";
+    Style: (...@ValueStyle, TextColor: #ffdc9b);
+  }
+  Label #HealthCapValue {
+    Anchor: (Height: 18, Bottom: 5);
+    Text: "TOPE DE VIDA 50%";
+    Style: (...@ValueStyle, TextColor: #ff6b63);
+  }
+
+  Group #ReservoirRow {
+    Anchor: (Height: 48);
+    LayoutMode: Top;
+    Label #ReservoirValue {
+      Anchor: (Height: 28, Bottom: 3);
+      Text: "BOLSILLO 0/500 ml";
+      Style: (...@ValueStyle, TextColor: #9fe9ff);
+    }
+    Group {
+      Anchor: (Width: 200, Height: 8);
+      Background: (Color: #19303b);
+      Panel #ReservoirFill {
+        Anchor: (Width: 0, Height: 8);
+        Background: (Color: #7ce4ff);
+      }
+    }
+  }
+}
+
+// Overlay aligned with the vanilla health bar. The dark half is unavailable
+// health and the bright vertical line is the active dehydration cap.
+Group #HealthCapOverlay {
+  Anchor: (Bottom: 154, Height: 18);
+  LayoutMode: Center;
+  Group {
+    // The vanilla life and stamina bars occupy an approximately 900 px pair
+    // centered over the hotbar. Life is the left 450 px half.
+    Anchor: (Width: 900, Height: 18);
+    Panel {
+      Anchor: (Left: 225, Width: 225, Height: 18);
+      Background: (Color: #120a0a(0.72));
+    }
+    Panel {
+      Anchor: (Left: 221, Width: 4, Height: 18);
+      Background: (Color: #ffb0a8);
+    }
+  }
+}

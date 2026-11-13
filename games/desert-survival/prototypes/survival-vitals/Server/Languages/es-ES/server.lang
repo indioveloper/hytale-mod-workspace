@@ -1,0 +1,12 @@
+items.Water_Flask_Prototype.name = Frasco de agua (prototipo)
+items.Water_Flask_Prototype.description = Bebe con uso secundario para recuperar hasta 500 ml de hidratacion.
+items.Water_Flask_Empty_Prototype.name = Frasco vacio (prototipo)
+items.Water_Flask_Empty_Prototype.description = Recipiente vacio. El rellenado se implementara mas adelante.
+items.Armor_Stillsuit_Prototype.name = Pechera de destiltraje T1 (prototipo)
+items.Armor_Stillsuit_Prototype.description = Aporta 5 de resistencia y recupera 1 ml por cada 3 ml perdidos en un bolsillo de 500 ml.
+items.Armor_Stillsuit_T1_Head_Prototype.name = Capucha de destiltraje T1 (prototipo)
+items.Armor_Stillsuit_T1_Head_Prototype.description = Aporta 5 puntos de resistencia al calor.
+items.Armor_Stillsuit_T1_Hands_Prototype.name = Guantes de destiltraje T1 (prototipo)
+items.Armor_Stillsuit_T1_Hands_Prototype.description = Aportan 5 puntos de resistencia al calor.
+items.Armor_Stillsuit_T1_Legs_Prototype.name = Botas de destiltraje T1 (prototipo)
+items.Armor_Stillsuit_T1_Legs_Prototype.description = Aportan 5 puntos de resistencia al calor.

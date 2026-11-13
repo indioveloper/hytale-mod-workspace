@@ -13,7 +13,11 @@ $requiredKeys = @(
   'customUI.buildBattle.theme.placeholder',
   'customUI.buildBattle.theme.error',
   'customUI.buildBattle.theme.suggest',
-  'customUI.buildBattle.theme.cancel'
+  'customUI.buildBattle.theme.cancel',
+  'customUI.buildBattle.voteTheme.title',
+  'customUI.buildBattle.voteTheme.prompt',
+  'customUI.buildBattle.voteBuild.title',
+  'customUI.buildBattle.voteBuild.prompt'
 )
 
 foreach ($file in $files) {

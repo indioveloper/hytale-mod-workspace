@@ -1,0 +1,10 @@
+# Vista previa 1.2.0
+
+Imagen ilustrativa generada con image_gen integrado (no CLI), no captura del juego.
+`menu-v1.2.0.png` muestra pantallas separadas de ejemplo, no un unico formulario.
+Los controles se cotejaron con main.js; el cliente puede cambiar fuentes, espaciado
+y escala. La descripcion larga del efecto se resume en la imagen por legibilidad.
+
+## Prompt
+
++Use case: ui-mockup. Create one clear widescreen comparison image showing THREE Minecraft Bedrock native ActionForm-style UI screens side by side on a dark neutral background. This is an illustrative preview, NOT a game screenshot. At top put exactly "VISTA PREVIA · MENU MAGICO v1.2.0" and below it "Ilustracion del menu; no es una captura del juego". Use rectangular charcoal-gray panels, light gray bevel borders, white blocky pixel-font text, large vertically stacked gray buttons, small pixel-art icons on every button. No sliders, no toggle switches, no Activar button, no Apply confirmation. Three screens are separate alternative screens, NOT one in-game page. Panel 1 title "Menu magico v1.2.0", body "Elige una opcion". Exactly four vertically stacked buttons: diamond sword icon "Modo de juego"; purple potion icon "Efectos de pocion"; enchanting table icon "Encantar objeto"; milk bucket icon "Quitar todos los efectos". Panel 2 title "Velocidad", body text lines "Duracion: infinita. Sin particulas." then "Estado: ACTIVO" green and "Nivel: 2" white, then "Los cambios se aplican al pulsar." and "Nivel 0 lo quita.". Exactly four buttons: plus icon "+ Aumentar nivel"; minus icon "- Reducir nivel"; X icon "Quitar efecto"; left arrow icon "Volver". Panel 3 title "Filo", body "Nivel: 3 / 5", "Aplicado", "Los cambios se aplican al pulsar.", "Nivel 0 lo elimina.". Exactly four buttons: plus icon "+ Aumentar nivel"; minus icon "- Reducir nivel"; X icon "Quitar encantamiento"; left arrow icon "Volver". Footer outside panels exactly "Solo efectos beneficiosos · Sin maldiciones · + aplica inmediatamente · - hasta 0 elimina". Maintain legibility, no extra buttons, no invented UI controls, faithfully depict the described layout.

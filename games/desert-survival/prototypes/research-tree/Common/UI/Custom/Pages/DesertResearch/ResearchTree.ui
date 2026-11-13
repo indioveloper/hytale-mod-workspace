@@ -1,0 +1,126 @@
+$C = "../../Common.ui";
+
+$C.@PageOverlay {
+  LayoutMode: Middle;
+  $C.@DecoratedContainer {
+    @CloseButton = false;
+    Anchor: (Width: 1240, Height: 800);
+    #Title {
+      $C.@Title { @Text = "ARCHIVO DE INVESTIGACIÓN"; }
+    }
+    #Content {
+      LayoutMode: Top;
+      Padding: (Horizontal: 16, Vertical: 10);
+
+      Group {
+        LayoutMode: Left;
+        Anchor: (Height: 40, Bottom: 6);
+        Label #IntelValue {
+          Anchor: (Width: 170, Height: 36, Right: 12);
+          Text: "INTEL 0";
+          Style: (FontSize: 21, RenderBold: true, TextColor: #f5c65b, VerticalAlignment: Center);
+        }
+        Label #ResearchCount {
+          Anchor: (Width: 180, Height: 36, Right: 12);
+          Text: "0/48 investigados";
+          Style: (FontSize: 14, TextColor: #b7cbd4, VerticalAlignment: Center);
+        }
+      }
+
+      Group {
+        LayoutMode: Left;
+        FlexWeight: 1;
+
+        // Wheel: ResearchWheel.png is 580 px with outer radius 288, drawn so the
+        // hub sits at (395, 310) of this 790x620 group. Sector k owns the wedge
+        // starting at -90 + 72k degrees (k = 0 Agua, 1 Combate, 2 Fabricación,
+        // 3 Exploración, 4 Vehículos). Nodes are appended into #RingNodes with
+        // anchors computed by ResearchTreePage.ringAnchor().
+        Group {
+          Anchor: (Width: 790, Right: 12);
+          Background: (Color: #081923(0.96));
+          Group {
+            Anchor: (Left: 105, Top: 20, Width: 580, Height: 580);
+            Background: "ResearchWheel.png";
+          }
+          Group {
+            Anchor: (Left: 105, Top: 20, Width: 580, Height: 580);
+            Background: "ResearchLinks.png";
+          }
+          Label #SectorAG {
+            Anchor: (Left: 500, Top: 4, Width: 245, Height: 18);
+            Text: "DISCIPLINA DEL AGUA";
+            Style: (FontSize: 12, RenderBold: true, TextColor: #7bdbe7);
+          }
+          Label #SectorCO {
+            Anchor: (Left: 698, Top: 300, Width: 86, Height: 18);
+            Text: "COMBATE";
+            Style: (FontSize: 12, RenderBold: true, TextColor: #7bdbe7);
+          }
+          Label #SectorCN {
+            Anchor: (Left: 500, Top: 594, Width: 150, Height: 18);
+            Text: "FABRICACIÓN";
+            Style: (FontSize: 12, RenderBold: true, TextColor: #7bdbe7);
+          }
+          Label #SectorEX {
+            Anchor: (Left: 20, Top: 520, Width: 150, Height: 18);
+            Text: "EXPLORACIÓN";
+            Style: (FontSize: 12, RenderBold: true, TextColor: #7bdbe7);
+          }
+          Label #SectorVE {
+            Anchor: (Left: 40, Top: 60, Width: 150, Height: 18);
+            Text: "VEHÍCULOS";
+            Style: (FontSize: 12, RenderBold: true, TextColor: #7bdbe7);
+          }
+          Group #RingNodes {}
+        }
+
+        Group {
+          Anchor: (Width: 382);
+          LayoutMode: Top;
+          Padding: (Full: 16);
+          Background: (Color: #0c1b27(0.98));
+          Label {
+            Anchor: (Height: 24, Bottom: 12);
+            Text: "NODO SELECCIONADO";
+            Style: (FontSize: 15, RenderBold: true, TextColor: #7bdbe7);
+          }
+          Label #NodeName {
+            Anchor: (Height: 70, Bottom: 8);
+            Text: "Selecciona un nodo";
+            Style: (FontSize: 24, RenderBold: true, TextColor: #f0e2bd, Wrap: true);
+          }
+          Label #NodeMeta {
+            Anchor: (Height: 44, Bottom: 14);
+            Text: "";
+            Style: (FontSize: 13, TextColor: #d4b16b, Wrap: true);
+          }
+          Label #NodeDescription {
+            Anchor: (Height: 100, Bottom: 16);
+            Text: "";
+            Style: (FontSize: 16, TextColor: #c2d0d6, Wrap: true);
+          }
+          Label #NodeStatus {
+            Anchor: (Height: 36, Bottom: 12);
+            Text: "";
+            Style: (FontSize: 16, RenderBold: true, TextColor: #7bdbe7);
+          }
+          $C.@SecondaryTextButton #ResearchButton {
+            @Anchor = (Height: 44);
+            @Text = "Investigar";
+          }
+          Label #Feedback {
+            Anchor: (Height: 70, Top: 18);
+            Text: "";
+            Style: (FontSize: 13, TextColor: #e3c786, Wrap: true);
+          }
+        }
+      }
+
+      $C.@CancelTextButton #CloseButton {
+        @Anchor = (Height: 42, Top: 8);
+        @Text = "Cerrar";
+      }
+    }
+  }
+}

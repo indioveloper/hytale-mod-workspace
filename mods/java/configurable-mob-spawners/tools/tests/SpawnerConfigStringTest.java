@@ -13,6 +13,8 @@ public final class SpawnerConfigStringTest {
     source.roleId = "Skeleton_Soldier";
     source.mobName = "Guardián del puente";
     source.tags = new String[] {"arena", "wave.one"};
+    source.activationMode = SpawnerActivationMode.SIGNAL_ONLY;
+    source.activationRadius = 0.0;
     source.maxHealth = 42.5;
     source.mobScale = 1.7;
     source.mobSpeed = 2.4;
@@ -46,6 +48,8 @@ public final class SpawnerConfigStringTest {
     require(decoded.roleId.equals(source.roleId), "role");
     require(decoded.mobName.equals(source.mobName), "mob name");
     require(decoded.tags.length == 2 && decoded.tags[1].equals("wave.one"), "tags");
+    require(decoded.activationMode == SpawnerActivationMode.SIGNAL_ONLY, "activation mode");
+    require(decoded.activationRadius == 0.0, "zero activation radius");
     require(decoded.maxHealth == source.maxHealth, "health");
     require(decoded.mobScale == source.mobScale, "scale");
     require(decoded.mobSpeed == source.mobSpeed, "speed");
@@ -70,6 +74,10 @@ public final class SpawnerConfigStringTest {
     require(decoded.mobProfiles[1].eliteLootEntries[0].minQuantity == 4, "elite loot");
     require(decoded.selectProfile(0.10).roleId.equals("Skeleton_Soldier"), "weighted first range");
     require(decoded.selectProfile(0.50).roleId.equals("Trork_Warrior"), "weighted second range");
+    require(SpawnerWaveActivationManager.matches(new String[] {"raid.bridge", "boss"}, "raid.bridge"),
+        "exact raid tag match");
+    require(!SpawnerWaveActivationManager.matches(new String[] {"raid.bridge"}, "raid"),
+        "partial raid tag must not match");
 
     ConfigurableSpawnerComponent fourMobSource = new ConfigurableSpawnerComponent();
     fourMobSource.mobProfiles = new SpawnerMobProfile[] {
@@ -103,6 +111,8 @@ public final class SpawnerConfigStringTest {
     ConfigurableSpawnerComponent legacyConfig = SpawnerConfigString.decode(legacy);
     require(legacyConfig.mobSpeed == 1.0, "legacy speed default");
     require(legacyConfig.enabled, "legacy manual disable is ignored");
+    require(legacyConfig.activationMode == SpawnerActivationMode.AUTOMATIC,
+        "legacy activation defaults to automatic");
     require(legacyConfig.mobProfiles.length == 1
         && legacyConfig.mobProfiles[0].roleId.equals("Skeleton"), "legacy profile migration");
     require(!SpawnerConfigString.encode(legacyConfig).contains("enabled"), "enabled omitted from CMS1");

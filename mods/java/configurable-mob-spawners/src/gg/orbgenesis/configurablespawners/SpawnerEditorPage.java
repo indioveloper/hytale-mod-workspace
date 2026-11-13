@@ -103,6 +103,7 @@ public final class SpawnerEditorPage extends InteractiveCustomUIPage<SpawnerEdit
 
   private void populate(UICommandBuilder cmd) {
     cmd.set("#TagInput.Value", String.join(", ", draft.tags));
+    cmd.set("#ActivationModeDropdown.Value", draft.activationMode.name());
     cmd.set("#RoleSearchInput.Value", roleSearch);
     cmd.set("#RoleDropdown.Entries", roleEntries(roleSearch, draft.roleId));
     cmd.set("#RoleDropdown.Value", draft.roleId);
@@ -171,6 +172,7 @@ public final class SpawnerEditorPage extends InteractiveCustomUIPage<SpawnerEdit
     EventData data = new EventData()
         .append(PageData.ACTION, action)
         .append(PageData.TAG, "#TagInput.Value")
+        .append(PageData.ACTIVATION_MODE, "#ActivationModeDropdown.Value")
         .append(PageData.ROLE, "#RoleDropdown.Value")
         .append(PageData.MOB_NAME, "#MobNameInput.Value")
         .append(PageData.CADENCE_MIN, "#CadenceMinInput.Value")
@@ -344,6 +346,7 @@ public final class SpawnerEditorPage extends InteractiveCustomUIPage<SpawnerEdit
     try {
       draft.tag = text(data.tag);
       draft.tags = splitTags(draft.tag);
+      draft.activationMode = SpawnerActivationMode.valueOf(text(data.activationMode));
       draft.roleId = text(data.role);
       draft.mobName = text(data.mobName);
       draft.cadenceMinSeconds = number(data.cadenceMin);
@@ -476,6 +479,7 @@ public final class SpawnerEditorPage extends InteractiveCustomUIPage<SpawnerEdit
     static final String SEARCH = "@Search";
     static final String CONFIG = "@Config";
     static final String TAG = "@Tag";
+    static final String ACTIVATION_MODE = "@ActivationMode";
     static final String ROLE = "@Role";
     static final String MOB_NAME = "@MobName";
     static final String CADENCE_MIN = "@CadenceMin";
@@ -507,6 +511,7 @@ public final class SpawnerEditorPage extends InteractiveCustomUIPage<SpawnerEdit
         .append(new KeyedCodec<>(SEARCH, Codec.STRING, false), (d, v) -> d.search = v, d -> d.search).add()
         .append(new KeyedCodec<>(CONFIG, Codec.STRING, false), (d, v) -> d.config = v, d -> d.config).add()
         .append(new KeyedCodec<>(TAG, Codec.STRING, false), (d, v) -> d.tag = v, d -> d.tag).add()
+        .append(new KeyedCodec<>(ACTIVATION_MODE, Codec.STRING, false), (d, v) -> d.activationMode = v, d -> d.activationMode).add()
         .append(new KeyedCodec<>(ROLE, Codec.STRING, false), (d, v) -> d.role = v, d -> d.role).add()
         .append(new KeyedCodec<>(MOB_NAME, Codec.STRING, false), (d, v) -> d.mobName = v, d -> d.mobName).add()
         .append(new KeyedCodec<>(CADENCE_MIN, Codec.STRING, false), (d, v) -> d.cadenceMin = v, d -> d.cadenceMin).add()
@@ -549,7 +554,7 @@ public final class SpawnerEditorPage extends InteractiveCustomUIPage<SpawnerEdit
         .append(new KeyedCodec<>(lootChanceKey(4), Codec.STRING, false), (d, v) -> d.lootChance[4] = v, d -> d.lootChance[4]).add()
         .build();
 
-    String action, search, config, tag, role, mobName, cadenceMin, cadenceMax, countMin, countMax;
+    String action, search, config, tag, activationMode, role, mobName, cadenceMin, cadenceMax, countMin, countMax;
     String maxAlive, activation, maxHealth, horizontal, maxLight, heldItem;
     Float scale, speed;
     String aggression, lootMode, armorHead, armorChest, armorHands, armorLegs;

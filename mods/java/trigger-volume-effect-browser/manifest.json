@@ -1,0 +1,21 @@
+{
+  "Group": "Raynor",
+  "Name": "Trigger Volume Effect Browser",
+  "Version": "0.1.6",
+  "Description": "Experimental searchable effect catalogue and companion tool for the vanilla Trigger Volume inspector.",
+  "Authors": [
+    {
+      "Name": "Raynor",
+      "Url": "https://raynor-mods.vercel.app"
+    }
+  ],
+  "Website": "https://raynor-mods.vercel.app",
+  "DisabledByDefault": false,
+  "IncludesAssetPack": true,
+  "Dependencies": {
+    "Hytale:TriggerVolumes": "*"
+  },
+  "OptionalDependencies": {},
+  "ServerVersion": ">=0.6.2 <0.7.0",
+  "Main": "gg.raynor.triggervolumebrowser.TriggerVolumeEffectBrowserPlugin"
+}

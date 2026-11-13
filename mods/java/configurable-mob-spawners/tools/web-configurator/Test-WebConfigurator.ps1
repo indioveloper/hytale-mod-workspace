@@ -81,6 +81,14 @@ if (-not $lightEntry.Contains('Configurador%20Spawner%20de%20Mobs.html?theme=sof
   throw "Soft-light entry point does not target the renamed configurator."
 }
 if ($html.Contains('id="lightMin"')) { throw "Minimum light must not be exposed by the web configurator." }
+foreach ($requiredSignalControl in @('id="activationMode"', 'value="SIGNAL_ONLY"', 'activationMode:s(''activationMode'')')) {
+  if (-not $html.Contains($requiredSignalControl)) {
+    throw "Trigger Volume activation mode is missing from the web configurator: $requiredSignalControl"
+  }
+}
+if (-not $html.Contains('id="activation" type="number" min="0"')) {
+  throw "Activation radius must allow zero for Trigger Volume-only waves."
+}
 
 $scriptMatches = [regex]::Matches($html, '<script(?![^>]*\bsrc=)[^>]*>([\s\S]*?)</script>')
 if ($scriptMatches.Count -eq 0) { throw "Inline web configurator script not found." }

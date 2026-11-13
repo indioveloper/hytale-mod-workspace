@@ -53,7 +53,7 @@ public final class CreativeToolRestrictionRuleSystem
 
     if (isRestricted) {
       restrictionManager.refresh(playerRef, entityRef, store);
-    } else {
+    } else if (!restrictionManager.isGameRestricted(playerRef.getUuid())) {
       restrictionManager.restore(playerRef.getUuid());
     }
   }

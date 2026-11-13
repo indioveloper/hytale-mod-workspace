@@ -1,0 +1,6 @@
+items.Tool_Cutterray_T3_Prototype.name = Industrial Cutterray T3 (Prototype)
+items.Tool_Cutterray_T3_Prototype.description = Playable prototype with drill animation and a short extraction beam.
+items.Resource_Node_Copper_Prototype.name = Copper Resource Node (Prototype)
+items.Resource_Node_Copper_Prototype.description = Large copper deposit for cutterray testing. Sustained contact extracts copper over five seconds.
+items.Resource_Node_Iron_Prototype.name = Iron Resource Node (Prototype)
+items.Resource_Node_Iron_Prototype.description = Iron deposit for tier 2 or higher cutterrays. Sustained contact extracts iron over five seconds.

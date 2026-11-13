@@ -1,0 +1,32 @@
+{
+  "$Comment": "Ephemeral creative instance for the prefab-free Sky Gardens terrain prototype.",
+  "RequiredPlugins": {},
+  "ChunkStorage": {
+    "Type": "Hytale"
+  },
+  "GameMode": "Creative",
+  "IsPvpEnabled": false,
+  "IsSpawningNPC": false,
+  "GameTime": "0001-01-01T08:30:00Z",
+  "UUID": {
+    "$binary": "xUjTwWP6T12bapdmIpQ6Lg==",
+    "$type": "04"
+  },
+  "GameplayConfig": "Default",
+  "IsCompassUpdating": true,
+  "IsTicking": true,
+  "IsGameTimePaused": true,
+  "IsObjectiveMarkersEnabled": false,
+  "IsAllNPCFrozen": false,
+  "IsSavingPlayers": false,
+  "IsSavingChunks": false,
+  "SaveNewChunks": false,
+  "WorldGen": {
+    "Type": "HytaleGenerator",
+    "WorldStructure": "Raynor_Sky_Gardens",
+    "SeedOverride": "raynor-sky-gardens-v1"
+  },
+  "IsSpawnMarkersEnabled": false,
+  "DeleteOnRemove": true,
+  "Version": 2
+}

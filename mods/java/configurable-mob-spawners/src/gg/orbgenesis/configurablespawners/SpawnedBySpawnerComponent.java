@@ -76,7 +76,7 @@ public final class SpawnedBySpawnerComponent implements Component<EntityStore> {
     this.baseMobName = profile.effectiveBaseName();
     this.elitePrefix = profile.elitePrefix;
     this.aggressionMode = elite ? AggressionMode.HOSTILE : profile.aggressionMode;
-    this.mobName = elite ? profile.elitePrefix + " " + baseMobName : profile.mobName;
+    this.mobName = elite ? profile.eliteDisplayName() : profile.mobName;
     boolean override = elite && profile.eliteOverrideEquipment;
     this.heldItemId = override ? profile.eliteHeldItemId : profile.heldItemId;
     this.maxHealth = profile.maxHealth;
@@ -99,6 +99,10 @@ public final class SpawnedBySpawnerComponent implements Component<EntityStore> {
 
   public static void setComponentType(ComponentType<EntityStore, SpawnedBySpawnerComponent> type) {
     componentType = type;
+  }
+
+  String displayName() {
+    return mobName.isBlank() ? elitePrefix + " " + baseMobName : mobName;
   }
 
   @Override

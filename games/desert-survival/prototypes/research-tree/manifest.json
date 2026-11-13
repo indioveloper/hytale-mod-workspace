@@ -1,0 +1,22 @@
+{
+  "Group": "RaynorMods",
+  "Name": "Desert Survival Research Prototype",
+  "Version": "0.2.2",
+  "Description": "Prototype radial research tree, persistent Intel economy and dungeon Intel pickups.",
+  "Authors": [
+    {
+      "Name": "Raynor",
+      "Url": "https://raynor-mods.vercel.app"
+    }
+  ],
+  "ServerVersion": ">=0.7.0 <0.8.0",
+  "Main": "gg.raynormods.desertsurvival.research.ResearchPrototypePlugin",
+  "Dependencies": {
+    "RaynorMods:Desert Survival Vitals Prototype": ">=0.2.2 <0.3.0"
+  },
+  "OptionalDependencies": {},
+  "LoadBefore": {},
+  "DisabledByDefault": false,
+  "IncludesAssetPack": true,
+  "SubPlugins": []
+}

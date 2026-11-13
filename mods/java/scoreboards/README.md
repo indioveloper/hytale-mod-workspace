@@ -1,9 +1,18 @@
 # Scoreboards / Editable Objectives
 
+## Mantenimiento Update 6 - 2026-09-03
+
+Version 2.0.12: recompilada contra Hytale estable `0.6.3` con Java 25.
+Pruebas automaticas y carga conjunta de los cinco mods publicos correctas.
+Sin cambios de IDs ni de mecanicas; la prueba manual en cliente sigue pendiente.
+Ejecutar `scripts/Test-ActiveJavaMods.ps1 -PublishedOnly` desde la raiz.
+Ver `docs/UPDATE_6_3_PUBLIC_MODS.md` para artefactos, hashes y limites.
+
+
 Mod para crear y controlar `Objectives` editables sobre el motor nativo de
 Hytale Update 6 estable.
 
-Estado: prototipo funcional `2.0.11`, compilado y validado contra Hytale
+Estado: prototipo funcional `2.0.12`, compilado y validado contra Hytale
 `0.6.2`; sigue pendiente el smoke test completo dentro del juego.
 
 ## Funciones
@@ -85,10 +94,10 @@ al iniciar la instancia.
   -SourceRoot src `
   -PackageRoot . `
   -AssetsRoot assets `
-  -ArtifactName Scoreboards-2_0_11.jar
+  -ArtifactName Scoreboards-2_0_12.jar
 
 .\mods\java\scoreboards\tools\Test-Package.ps1 `
-  -ArchivePath .\mods\java\scoreboards\.build\dist\Scoreboards-2_0_11.jar
+  -ArchivePath .\mods\java\scoreboards\.build\dist\Scoreboards-2_0_12.jar
 
 .\mods\java\scoreboards\tools\Test-AssetThreading.ps1
 

@@ -1,0 +1,35 @@
+{
+  "format_version": 2,
+  "header": {
+    "name": "Menu magico familiar v1.2.0",
+    "description": "Objeto con menu para cambiar el modo de juego, aplicar efectos y encantar objetos.",
+    "uuid": "53d91957-cd2c-4c89-8396-262e9827efdd",
+    "version": [1, 2, 0],
+    "min_engine_version": [1, 26, 40]
+  },
+  "modules": [
+    {
+      "type": "data",
+      "uuid": "df63be4c-f212-49bd-ab1f-9eba4a712baa",
+      "version": [1, 2, 0]
+    },
+    {
+      "type": "script",
+      "language": "javascript",
+      "entry": "scripts/main.js",
+      "uuid": "bc46de7e-09b3-4e66-afd7-155b0077b95d",
+      "version": [1, 2, 0]
+    }
+  ],
+  "dependencies": [
+    { "uuid": "52186214-2d5d-4a81-9917-329acbb5a30f", "version": [1, 2, 0] },
+    {
+      "module_name": "@minecraft/server",
+      "version": "2.9.0"
+    },
+    {
+      "module_name": "@minecraft/server-ui",
+      "version": "2.1.0"
+    }
+  ]
+}

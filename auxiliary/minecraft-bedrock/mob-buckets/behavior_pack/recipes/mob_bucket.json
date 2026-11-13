@@ -1,0 +1,17 @@
+{
+  "format_version": "1.20.10",
+  "minecraft:recipe_shapeless": {
+    "description": {
+      "identifier": "raynor:mob_bucket"
+    },
+    "tags": ["crafting_table"],
+    "ingredients": [
+      { "item": "minecraft:bucket" },
+      { "item": "minecraft:slime_ball" }
+    ],
+    "result": {
+      "item": "raynor:mob_bucket",
+      "count": 1
+    }
+  }
+}

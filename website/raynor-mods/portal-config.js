@@ -10,6 +10,22 @@ window.RAYNOR_PORTAL = {
   },
   mods: [
     {
+      slug: "raynor-holograms",
+      name: "Raynor Holograms",
+      version: "0.8.3",
+      status: "WIP · Experimental",
+      statusEn: "WIP · Experimental",
+      maturity: "prototype",
+      icon: "assets/raynor-holograms.png",
+      summary: "Hologramas de texto, imágenes y GIF. Editor con /hologram, colores, escala y seguimiento del jugador.",
+      summaryEn: "Text, image and GIF holograms. Use /hologram to edit colors, scale and player-facing rotation.",
+      curseforge: null,
+      download: "downloads/Raynor_Holograms-0.8.3.jar",
+      downloadLabel: "Release 0.6 · v0.8.3",
+      prereleaseDownload: "downloads/Raynor_Holograms-0.8.4-u7pre.1-Hytale-0.7.0-pre.1.jar",
+      prereleaseVersion: "0.8.4-u7pre.1"
+    },
+    {
       slug: "configurable-mob-spawners",
       name: "Configurable Mob Spawners",
       version: "0.5.3",

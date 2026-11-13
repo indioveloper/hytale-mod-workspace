@@ -1,0 +1,20 @@
+{
+  "Group": "RaynorMods",
+  "Name": "Desert Survival Vitals Prototype",
+  "Version": "0.2.6",
+  "Description": "Prototype heat, sunlight exposure, hydration and stillsuit recycling systems.",
+  "Authors": [
+    {
+      "Name": "Raynor",
+      "Url": "https://raynor-mods.vercel.app"
+    }
+  ],
+  "ServerVersion": ">=0.7.0 <0.8.0",
+  "Main": "gg.raynormods.desertsurvival.vitals.SurvivalVitalsPlugin",
+  "Dependencies": {},
+  "OptionalDependencies": {},
+  "LoadBefore": {},
+  "DisabledByDefault": false,
+  "IncludesAssetPack": true,
+  "SubPlugins": []
+}

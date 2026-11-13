@@ -1,5 +1,62 @@
 # Configurable Mob Spawners
 
+## Versión 0.5.7
+
+- los élites ya no aplican el `ModelVFX` violeta, que podía ocultar la textura
+  de algunos roles; los assets se conservan sin referenciar para retomarlos;
+- nameplate, mensaje de aparición y mensaje de derrota usan el mismo nombre:
+  `Prefijo Nombre`;
+- el Event Title sigue siendo individual al entrar a 10 bloques, y los mensajes
+  de aparición y derrota siguen anunciándose al mundo.
+
+Consulta [ELITE_VFX_DEFERRED.md](ELITE_VFX_DEFERRED.md) antes de reactivar el
+efecto visual.
+
+## Versión 0.5.6
+
+- `Radio de activación = 0` desactiva las oleadas por proximidad incluso en el
+  modo `AUTOMATIC`; el bloque solo puede generar cuando un Trigger Volume
+  ejecuta `TriggerSpawnerWave`;
+- para evitar oleadas sin límite, con radio `0` el máximo de vivos cuenta todos
+  los mobs vivos generados por ese bloque, aunque se alejen de él;
+- el configurador web permite guardar `0` y explica este uso para raids.
+
+## Versión 0.5.5
+
+- añade el efecto de Trigger Volumes `TriggerSpawnerWave`, que inicia una sola
+  oleada en cada spawner cargado cuya tag coincida exactamente;
+- el modo `AUTOMATIC` conserva las oleadas por proximidad y también responde al
+  efecto; `SIGNAL_ONLY` espera únicamente a `TriggerSpawnerWave`;
+- una oleada por señal omite cadencia y proximidad para permitir raids
+  coordinadas, pero conserva el máximo de vivos, la luz máxima, el suelo válido
+  y las posiciones de spawn configuradas;
+- `ActivationMode` se guarda en el bloque y en CMS1. Los códigos anteriores
+  se importan como `AUTOMATIC`.
+
+### Raid con Trigger Volumes
+
+1. Configura el bloque con una tag, por ejemplo `raid.puente`, y selecciona
+   **Solo Trigger Volumes** o usa `Radio de activación = 0` si no quieres
+   oleadas automáticas.
+2. En el volumen que controle la oleada, usa la condición vanilla **Tag Added**
+   o **Signal Received**.
+3. Añade el efecto `TriggerSpawnerWave` y escribe la misma tag:
+   `raid.puente`.
+
+Cada ejecución del efecto solicita una oleada para todos los spawners con esa
+tag que estén cargados. Si el máximo de vivos ya está ocupado o no se encuentra
+un suelo válido con la luz permitida, esa ejecución no crea mobs y deberá llegar
+otra señal. Las tags distinguen mayúsculas de minúsculas.
+
+## Mantenimiento Update 6 - 2026-09-03
+
+Version 0.5.4: recompilada contra Hytale estable `0.6.3` con Java 25.
+Pruebas automaticas y carga conjunta de los cinco mods publicos correctas.
+Sin cambios de IDs ni de mecanicas; la prueba manual en cliente sigue pendiente.
+Ejecutar `scripts/Test-ActiveJavaMods.ps1 -PublishedOnly` desde la raiz.
+Ver `docs/UPDATE_6_3_PUBLIC_MODS.md` para artefactos, hashes y limites.
+
+
 El estado de la prueba más reciente y las tareas concretas para retomar el
 desarrollo están en [HANDOFF.md](HANDOFF.md).
 
@@ -205,8 +262,8 @@ cadencia aleatoria dentro de los valores configurados.
   -PackageRoot . `
   -AssetsRoot assets `
   -VanillaCustomUiAssetsZip "$env:APPDATA\Hytale\install\release\package\game\latest\Assets.zip" `
-  -ArtifactName ConfigurableMobSpawners-0.5.3.jar
-.\tools\Test-Package.ps1 -ArchivePath .\.build\dist\ConfigurableMobSpawners-0.5.3.jar `
+  -ArtifactName ConfigurableMobSpawners-0.5.7.jar
+.\tools\Test-Package.ps1 -ArchivePath .\.build\dist\ConfigurableMobSpawners-0.5.7.jar `
   -AssetsZip "$env:APPDATA\Hytale\install\release\package\game\latest\Assets.zip"
 ```
 
@@ -227,9 +284,6 @@ Para una release pública, compila siempre contra el `HytaleServer.jar` de la
 instalación estable que se vaya a publicar. El
 campo persistente antiguo `VerticalRadius` se conserva únicamente para poder
 leer bloques 0.1.x; la versión 0.2.x ya no lo muestra ni lo usa.
-
-La integración con `Send Signal` de Trigger Volumes queda para una versión
-posterior; la tag ya forma parte del formato persistente.
 
 Las versiones 0.1.4-0.1.8 corrigieron, respectivamente, el árbol Custom UI
 vanilla requerido por pre.11, la sintaxis de desplegables, textos raw, la clave

@@ -1,0 +1,143 @@
+$C = "../../Common.ui";
+
+@FieldLabel = LabelStyle(
+  FontSize: 12,
+  RenderUppercase: true,
+  TextColor: #9fb2c8
+);
+
+$C.@PageOverlay {
+  LayoutMode: Middle;
+
+  $C.@DecoratedContainer {
+    @CloseButton = false;
+    Anchor: (Width: 900, Height: 1010);
+
+    #Title { $C.@Title { @Text = %server.customUI.raynorHolograms.title; } }
+
+    #Content {
+      LayoutMode: Top;
+      Padding: (Full: 24, Top: 16);
+
+      Label {
+        Anchor: (Bottom: 12, Height: 34);
+        Text: %server.customUI.raynorHolograms.intro;
+        Style: (...$C.@DefaultLabelStyle, FontSize: 13, TextColor: #aebfd2, Wrap: true, VerticalAlignment: Center);
+      }
+
+      Group {
+        LayoutMode: Left;
+        Anchor: (Bottom: 10, Height: 62);
+        Group {
+          LayoutMode: Top;
+          Anchor: (Width: 300, Height: 62);
+          Label { Anchor: (Bottom: 4, Height: 18); Text: %server.customUI.raynorHolograms.key; Style: @FieldLabel; }
+          $C.@TextField #KeyInput { @Anchor = (Height: 40); PlaceholderText: "spawn_welcome"; }
+        }
+        Group {
+          LayoutMode: Top;
+          Anchor: (Left: 14, Width: 225, Height: 62);
+          Label { Anchor: (Bottom: 4, Height: 18); Text: %server.customUI.raynorHolograms.rotation; Style: @FieldLabel; }
+          $C.@DropdownBox #BillboardDropdown { Anchor: (Height: 40); }
+        }
+        Group {
+          LayoutMode: Top;
+          Anchor: (Left: 14, Width: 215, Height: 62);
+          Label { Anchor: (Bottom: 4, Height: 18); Text: %server.customUI.raynorHolograms.alignment; Style: @FieldLabel; }
+          $C.@DropdownBox #AlignmentDropdown { Anchor: (Height: 40); }
+        }
+      }
+
+      Label { Anchor: (Bottom: 4, Height: 18); Text: %server.customUI.raynorHolograms.coordinates; Style: @FieldLabel; }
+      Group {
+        LayoutMode: Left;
+        Anchor: (Bottom: 8, Height: 40);
+        Label { Anchor: (Width: 20, Height: 40); Text: "X"; Style: (...$C.@DefaultLabelStyle, VerticalAlignment: Center); }
+        $C.@TextField #XInput { @Anchor = (Left: 4, Width: 220, Height: 40); PlaceholderText: "0.00"; }
+        Label { Anchor: (Left: 12, Width: 20, Height: 40); Text: "Y"; Style: (...$C.@DefaultLabelStyle, VerticalAlignment: Center); }
+        $C.@TextField #YInput { @Anchor = (Left: 4, Width: 220, Height: 40); PlaceholderText: "0.00"; }
+        Label { Anchor: (Left: 12, Width: 20, Height: 40); Text: "Z"; Style: (...$C.@DefaultLabelStyle, VerticalAlignment: Center); }
+        $C.@TextField #ZInput { @Anchor = (Left: 4, Width: 220, Height: 40); PlaceholderText: "0.00"; }
+      }
+
+      Label {
+        Anchor: (Bottom: 9, Height: 28);
+        Text: %server.customUI.raynorHolograms.coordinates.help;
+        Style: (...$C.@DefaultLabelStyle, FontSize: 12, TextColor: #7f94aa, Wrap: true);
+      }
+      $C.@PanelSeparatorFancy { @Anchor = (Bottom: 10); }
+
+      Label { Anchor: (Bottom: 5, Height: 22); Text: %server.customUI.raynorHolograms.text.section; Style: (...$C.@SubtitleStyle, FontSize: 16); }
+      $C.@MultilineTextField #TextInput { @Anchor = (Bottom: 7, Height: 102); PlaceholderText: %server.customUI.raynorHolograms.text.placeholder; }
+      Label {
+        Anchor: (Bottom: 6, Height: 42);
+        Text: %server.customUI.raynorHolograms.text.formatHelp;
+        Style: (...$C.@DefaultLabelStyle, FontSize: 12, TextColor: #7f94aa, Wrap: true);
+      }
+      Group {
+        LayoutMode: Left;
+        Anchor: (Bottom: 7, Height: 40);
+        Label { Anchor: (Width: 64, Height: 40); Text: %server.customUI.raynorHolograms.text.color; Style: (...@FieldLabel, VerticalAlignment: Center); }
+        $C.@TextField #ColorInput { @Anchor = (Left: 5, Width: 100, Height: 40); PlaceholderText: "ff55ff"; }
+        Label { Anchor: (Left: 8, Width: 32, Height: 40); Text: "→"; Style: (...$C.@DefaultLabelStyle, FontSize: 18, HorizontalAlignment: Center, VerticalAlignment: Center); }
+        $C.@TextField #Color2Input { @Anchor = (Left: 4, Width: 100, Height: 40); PlaceholderText: "55ffff"; }
+        Label { Anchor: (Left: 10, Width: 70, Height: 40); Text: %server.customUI.raynorHolograms.text.effect; Style: (...@FieldLabel, VerticalAlignment: Center); }
+        $C.@DropdownBox #EffectDropdown { Anchor: (Left: 5, Width: 145, Height: 40); }
+        $C.@TextButton #ApplyStyleButton { @Anchor = (Left: 9, Width: 150, Height: 40); Text: %server.customUI.raynorHolograms.text.applyStyle; }
+        $C.@CancelTextButton #ClearStyleButton { @Anchor = (Left: 7, Width: 125, Height: 40); @Text = %server.customUI.raynorHolograms.text.clearStyle; }
+      }
+      Group {
+        Anchor: (Bottom: 7, Height: 64);
+        Background: $C.@InputBoxBackground;
+        Padding: (Horizontal: 14, Vertical: 8);
+        Label #NativePreview {
+          Anchor: (Full: 0);
+          Text: "";
+          Style: (...$C.@DefaultLabelStyle, FontSize: 20, TextColor: #ffffff, Wrap: true, HorizontalAlignment: Center, VerticalAlignment: Center);
+        }
+      }
+      Label {
+        Anchor: (Bottom: 6, Height: 28);
+        Text: %server.customUI.raynorHolograms.text.previewHelp;
+        Style: (...$C.@DefaultLabelStyle, FontSize: 11, TextColor: #70879d, Wrap: true, HorizontalAlignment: Center);
+      }
+      Group {
+        LayoutMode: Left;
+        Anchor: (Bottom: 7, Height: 40);
+        Label { Anchor: (Width: 205, Height: 40); Text: %server.customUI.raynorHolograms.text.size; Style: (...@FieldLabel, VerticalAlignment: Center); }
+        $C.@TextField #TextSizeInput { @Anchor = (Left: 8, Width: 120, Height: 40); PlaceholderText: "1"; }
+        Label { Anchor: (Left: 18, Width: 150, Height: 40); Text: "Renderer"; Style: (...@FieldLabel, VerticalAlignment: Center); }
+        $C.@DropdownBox #TextModeDropdown { Anchor: (Left: 8, Width: 220, Height: 40); }
+      }
+      Group {
+        LayoutMode: Left;
+        Anchor: (Bottom: 10, Height: 42);
+        $C.@TextButton #Preview3DButton { @Anchor = (Width: 300, Height: 42); Text: %server.customUI.raynorHolograms.text.preview3d; }
+        $C.@TextButton #CreateTextButton { @Anchor = (Left: 12, Width: 516, Height: 42); Text: %server.customUI.raynorHolograms.text.create; }
+      }
+
+      $C.@PanelSeparatorFancy { @Anchor = (Bottom: 10); }
+      Label { Anchor: (Bottom: 5, Height: 22); Text: %server.customUI.raynorHolograms.image.section; Style: (...$C.@SubtitleStyle, FontSize: 16); }
+      $C.@TextField #SourceInput { @Anchor = (Bottom: 5, Height: 40); PlaceholderText: "https://... / local:logo.png / local:animacion.gif / builtin:orb"; }
+      Label {
+        Anchor: (Bottom: 6, Height: 34);
+        Text: %server.customUI.raynorHolograms.image.help;
+        Style: (...$C.@DefaultLabelStyle, FontSize: 12, TextColor: #7f94aa, Wrap: true);
+      }
+      Group {
+        LayoutMode: Left;
+        Anchor: (Bottom: 7, Height: 40);
+        Label { Anchor: (Width: 205, Height: 40); Text: %server.customUI.raynorHolograms.image.size; Style: (...@FieldLabel, VerticalAlignment: Center); }
+        $C.@TextField #ImageSizeInput { @Anchor = (Left: 8, Width: 120, Height: 40); PlaceholderText: "2"; }
+      }
+      $C.@TextButton #CreateImageButton { @Anchor = (Bottom: 8, Height: 42); Text: %server.customUI.raynorHolograms.image.create; }
+
+      Label #Status {
+        Anchor: (Bottom: 7, Height: 28);
+        Text: "";
+        Style: (...$C.@DefaultLabelStyle, FontSize: 13, TextColor: #ffcf70, Wrap: true, HorizontalAlignment: Center, VerticalAlignment: Center);
+      }
+      $C.@CancelTextButton #CloseButton { @Anchor = (Height: 42); @Text = %server.customUI.raynorHolograms.close; }
+    }
+  }
+}

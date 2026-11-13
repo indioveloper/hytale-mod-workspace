@@ -1,0 +1,8 @@
+{
+  "Parent": "Potion_Empty",
+  "TranslationProperties": {
+    "Name": "server.items.Water_Flask_Empty_Prototype.name",
+    "Description": "server.items.Water_Flask_Empty_Prototype.description"
+  },
+  "MaxStack": 1
+}

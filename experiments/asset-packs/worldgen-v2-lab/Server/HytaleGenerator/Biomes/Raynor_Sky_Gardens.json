@@ -1,0 +1,288 @@
+{
+  "$Comment": "Organic floating-island prototype. Three independent populations replace the visible grid; all detail is procedural and uses no prefabs.",
+  "Name": "Raynor_Sky_Gardens",
+  "Terrain": {
+    "Type": "DAOTerrain",
+    "Density": {
+      "Type": "Sum",
+      "Inputs": [
+        {
+          "Type": "Max",
+          "Inputs": [
+            {
+              "Type": "PositionsCellNoise",
+              "MaxDistance": 150,
+              "Positions": {
+                "Type": "Occurrence", "Seed": "Raynor_Sky_Gardens_Large_Occurrence",
+                "FieldFunction": { "Type": "Constant", "Value": 0.78 },
+                "Positions": {
+                  "Type": "Jitter3d", "Magnitude": 165, "Seed": "Raynor_Sky_Gardens_Large_Jitter",
+                  "Positions": {
+                    "Type": "Offset", "Offset": { "X": 92, "Y": 66, "Z": -71 }, "OffsetX": 0, "OffsetY": 0, "OffsetZ": 0,
+                    "Positions": { "Type": "Scaler", "Scale": { "X": 430, "Y": 126, "Z": 390 }, "Positions": { "Type": "SquareGrid3d" } }
+                  }
+                }
+              },
+              "ReturnType": {
+                "Type": "Density", "ChoiceDensity": { "Type": "WhiteNoise", "Seed": "Raynor_Sky_Gardens_Large_Size" },
+                "Delimiters": [
+                  {
+                    "From": -1, "To": 0.25,
+                    "Density": {
+                      "Type": "Anchor",
+                      "Inputs": [
+                        {
+                          "Type": "Min",
+                          "Inputs": [
+                            { "Type": "Ellipsoid", "Scale": { "X": 132, "Y": 38, "Z": 102 }, "Curve": { "Type": "Manual", "Points": [ { "In": 0, "Out": 1 }, { "In": 1, "Out": -1 } ] } },
+                            { "Type": "Plane", "IsAnchored": false, "PlaneNormal": { "X": 0, "Y": 1, "Z": 0 }, "Curve": { "Type": "Manual", "Points": [ { "In": 8, "Out": 1 }, { "In": 11, "Out": -1 } ] } }
+                          ]
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "From": 0.25, "To": 1.01,
+                    "Density": {
+                      "Type": "Anchor",
+                      "Inputs": [
+                        {
+                          "Type": "Min",
+                          "Inputs": [
+                            {
+                              "Type": "Min",
+                              "Inputs": [
+                                { "Type": "Ellipsoid", "Scale": { "X": 194, "Y": 54, "Z": 148 }, "Curve": { "Type": "Manual", "Points": [ { "In": 0, "Out": 1 }, { "In": 1, "Out": -1 } ] } },
+                                { "Type": "Plane", "IsAnchored": false, "PlaneNormal": { "X": 0, "Y": 1, "Z": 0 }, "Curve": { "Type": "Manual", "Points": [ { "In": 11, "Out": 1 }, { "In": 14, "Out": -1 } ] } }
+                              ]
+                            },
+                            {
+                              "Type": "Inverter",
+                              "Inputs": [
+                                {
+                                  "Type": "VectorWarp", "WarpFactor": 9, "WarpVector": { "X": 0, "Y": -1, "Z": 0 },
+                                  "Inputs": [
+                                    { "Type": "Ellipsoid", "Scale": { "X": 48, "Y": 13, "Z": 36 }, "Curve": { "Type": "Manual", "Points": [ { "In": 0, "Out": 1 }, { "In": 1, "Out": -1 } ] } },
+                                    { "Type": "Constant", "Value": 1 }
+                                  ]
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  }
+                ],
+                "DefaultValue": -1
+              },
+              "DistanceFunction": { "Type": "Euclidean" }
+            },
+            {
+              "Type": "PositionsCellNoise", "MaxDistance": 105,
+              "Positions": {
+                "Type": "Occurrence", "Seed": "Raynor_Sky_Gardens_Medium_Occurrence",
+                "FieldFunction": { "Type": "Constant", "Value": 0.84 },
+                "Positions": {
+                  "Type": "Jitter3d", "Magnitude": 108, "Seed": "Raynor_Sky_Gardens_Medium_Jitter",
+                  "Positions": {
+                    "Type": "Offset", "Offset": { "X": -63, "Y": 31, "Z": 83 }, "OffsetX": 0, "OffsetY": 0, "OffsetZ": 0,
+                    "Positions": { "Type": "Scaler", "Scale": { "X": 262, "Y": 94, "Z": 237 }, "Positions": { "Type": "SquareGrid3d" } }
+                  }
+                }
+              },
+              "ReturnType": {
+                "Type": "Density", "ChoiceDensity": { "Type": "WhiteNoise", "Seed": "Raynor_Sky_Gardens_Medium_Size" },
+                "Delimiters": [
+                  {
+                    "From": -1, "To": 0.15,
+                    "Density": { "Type": "Anchor", "Inputs": [ { "Type": "Min", "Inputs": [
+                      { "Type": "Ellipsoid", "Scale": { "X": 62, "Y": 19, "Z": 48 }, "Curve": { "Type": "Manual", "Points": [ { "In": 0, "Out": 1 }, { "In": 1, "Out": -1 } ] } },
+                      { "Type": "Plane", "IsAnchored": false, "PlaneNormal": { "X": 0, "Y": 1, "Z": 0 }, "Curve": { "Type": "Manual", "Points": [ { "In": 4, "Out": 1 }, { "In": 6, "Out": -1 } ] } }
+                    ] } ] }
+                  },
+                  {
+                    "From": 0.15, "To": 1.01,
+                    "Density": { "Type": "Anchor", "Inputs": [ { "Type": "Min", "Inputs": [
+                      { "Type": "Ellipsoid", "Scale": { "X": 116, "Y": 31, "Z": 88 }, "Curve": { "Type": "Manual", "Points": [ { "In": 0, "Out": 1 }, { "In": 1, "Out": -1 } ] } },
+                      { "Type": "Plane", "IsAnchored": false, "PlaneNormal": { "X": 0, "Y": 1, "Z": 0 }, "Curve": { "Type": "Manual", "Points": [ { "In": 7, "Out": 1 }, { "In": 9, "Out": -1 } ] } }
+                    ] } ] }
+                  }
+                ],
+                "DefaultValue": -1
+              },
+              "DistanceFunction": { "Type": "Euclidean" }
+            },
+            {
+              "Type": "PositionsCellNoise", "MaxDistance": 72,
+              "Positions": {
+                "Type": "Occurrence", "Seed": "Raynor_Sky_Gardens_Small_Occurrence",
+                "FieldFunction": { "Type": "Constant", "Value": 0.70 },
+                "Positions": {
+                  "Type": "Jitter3d", "Magnitude": 66, "Seed": "Raynor_Sky_Gardens_Small_Jitter",
+                  "Positions": {
+                    "Type": "Offset", "Offset": { "X": 29, "Y": 9, "Z": -34 }, "OffsetX": 0, "OffsetY": 0, "OffsetZ": 0,
+                    "Positions": { "Type": "Scaler", "Scale": { "X": 158, "Y": 68, "Z": 181 }, "Positions": { "Type": "SquareGrid3d" } }
+                  }
+                }
+              },
+              "ReturnType": {
+                "Type": "Density", "ChoiceDensity": { "Type": "WhiteNoise", "Seed": "Raynor_Sky_Gardens_Small_Size" },
+                "Delimiters": [
+                  {
+                    "From": -1, "To": 0.2,
+                    "Density": { "Type": "Anchor", "Inputs": [ { "Type": "Ellipsoid", "Scale": { "X": 25, "Y": 9, "Z": 19 }, "Curve": { "Type": "Manual", "Points": [ { "In": 0, "Out": 1 }, { "In": 1, "Out": -1 } ] } } ] }
+                  },
+                  {
+                    "From": 0.2, "To": 1.01,
+                    "Density": { "Type": "Anchor", "Inputs": [ { "Type": "Min", "Inputs": [
+                      { "Type": "Ellipsoid", "Scale": { "X": 54, "Y": 16, "Z": 39 }, "Curve": { "Type": "Manual", "Points": [ { "In": 0, "Out": 1 }, { "In": 1, "Out": -1 } ] } },
+                      { "Type": "Plane", "IsAnchored": false, "PlaneNormal": { "X": 0, "Y": 1, "Z": 0 }, "Curve": { "Type": "Manual", "Points": [ { "In": 3, "Out": 1 }, { "In": 5, "Out": -1 } ] } }
+                    ] } ] }
+                  }
+                ],
+                "DefaultValue": -1
+              },
+              "DistanceFunction": { "Type": "Euclidean" }
+            }
+          ]
+        },
+        { "Type": "Multiplier", "Inputs": [ { "Type": "SimplexNoise3D", "Lacunarity": 2.1, "Persistence": 0.48, "Octaves": 3, "ScaleXZ": 67, "ScaleY": 29, "Seed": "Raynor_Sky_Gardens_Coarse_Erosion" }, { "Type": "Constant", "Value": 0.21 } ] },
+        { "Type": "Multiplier", "Inputs": [ { "Type": "SimplexNoise3D", "Lacunarity": 2, "Persistence": 0.52, "Octaves": 2, "ScaleXZ": 19, "ScaleY": 11, "Seed": "Raynor_Sky_Gardens_Fine_Erosion" }, { "Type": "Constant", "Value": 0.07 } ] }
+      ]
+    }
+  },
+  "MaterialProvider": {
+    "Type": "Solidity",
+    "Solid": {
+      "Type": "Queue",
+      "Queue": [
+        {
+          "Type": "SpaceAndDepth", "LayerContext": "DEPTH_INTO_FLOOR", "MaxExpectedDepth": 8,
+          "Layers": [
+            {
+              "Type": "ConstantThickness", "Thickness": 1,
+              "Material": {
+                "Type": "FieldFunction",
+                "FieldFunction": { "Type": "SimplexNoise2D", "Lacunarity": 2, "Persistence": 0.5, "Octaves": 2, "Scale": 54, "Seed": "Raynor_Sky_Gardens_Grass_Patches" },
+                "Delimiters": [
+                  { "From": -1, "To": -0.28, "Material": { "Type": "Constant", "Material": { "Solid": "Soil_Grass_Deep" } } },
+                  { "From": -0.28, "To": 0.42, "Material": { "Type": "Constant", "Material": { "Solid": "Soil_Grass" } } },
+                  { "From": 0.42, "To": 1.01, "Material": { "Type": "Constant", "Material": { "Solid": "Soil_Grass_Sunny" } } }
+                ]
+              }
+            },
+            {
+              "Type": "ConstantThickness", "Thickness": 5,
+              "Material": {
+                "Type": "Weighted", "Seed": "Raynor_Sky_Gardens_Subsoil", "SkipChance": 0,
+                "WeightedMaterials": [
+                  { "Weight": 7, "Material": { "Type": "Constant", "Material": { "Solid": "Soil_Dirt" } } },
+                  { "Weight": 2, "Material": { "Type": "Constant", "Material": { "Solid": "Soil_Dirt_Lush" } } },
+                  { "Weight": 1, "Material": { "Type": "Constant", "Material": { "Solid": "Soil_Dirt_Wet" } } }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "Type": "Weighted", "Seed": "Raynor_Sky_Gardens_Stone", "SkipChance": 0,
+          "WeightedMaterials": [
+            { "Weight": 8, "Material": { "Type": "Constant", "Material": { "Solid": "Rock_Stone" } } },
+            { "Weight": 2, "Material": { "Type": "Constant", "Material": { "Solid": "Rock_Stone_Mossy" } } }
+          ]
+        }
+      ]
+    },
+    "Empty": {
+      "Type": "Queue",
+      "Queue": [
+        {
+          "Type": "FieldFunction",
+          "FieldFunction": {
+            "Type": "PositionsCellNoise", "MaxDistance": 150,
+            "Positions": {
+              "Type": "Occurrence", "Seed": "Raynor_Sky_Gardens_Large_Occurrence",
+              "FieldFunction": { "Type": "Constant", "Value": 0.78 },
+              "Positions": {
+                "Type": "Jitter3d", "Magnitude": 165, "Seed": "Raynor_Sky_Gardens_Large_Jitter",
+                "Positions": {
+                  "Type": "Offset", "Offset": { "X": 92, "Y": 66, "Z": -71 }, "OffsetX": 0, "OffsetY": 0, "OffsetZ": 0,
+                  "Positions": { "Type": "Scaler", "Scale": { "X": 430, "Y": 126, "Z": 390 }, "Positions": { "Type": "SquareGrid3d" } }
+                }
+              }
+            },
+            "ReturnType": {
+              "Type": "Density", "ChoiceDensity": { "Type": "WhiteNoise", "Seed": "Raynor_Sky_Gardens_Large_Size" },
+              "Delimiters": [
+                {
+                  "From": 0.25, "To": 1.01,
+                  "Density": {
+                    "Type": "Anchor",
+                    "Inputs": [
+                      {
+                        "Type": "VectorWarp", "WarpFactor": 8, "WarpVector": { "X": 0, "Y": -1, "Z": 0 },
+                        "Inputs": [
+                          { "Type": "Ellipsoid", "Scale": { "X": 39, "Y": 7, "Z": 29 }, "Curve": { "Type": "Manual", "Points": [ { "In": 0, "Out": 1 }, { "In": 1, "Out": -1 } ] } },
+                          { "Type": "Constant", "Value": 1 }
+                        ]
+                      }
+                    ]
+                  }
+                }
+              ],
+              "DefaultValue": -1
+            },
+            "DistanceFunction": { "Type": "Euclidean" }
+          },
+          "Delimiters": [ { "From": 0, "To": 1.01, "Material": { "Type": "Constant", "Material": { "Fluid": "Water_Source" } } } ]
+        },
+        { "Type": "Constant", "Material": { "Solid": "Empty" } }
+      ]
+    }
+  },
+  "Props": [
+    {
+      "$Comment": "Procedural meadow detail only: individual plant blocks, never prefab assets.",
+      "Runtime": 0,
+      "PropDistribution": {
+        "Type": "Constant",
+        "Positions": {
+          "Type": "Occurrence", "Seed": "Raynor_Sky_Gardens_Plants_Occurrence",
+          "FieldFunction": { "Type": "Constant", "Value": 0.34 },
+          "Positions": {
+            "Type": "Jitter3d", "Magnitude": 4.5, "Seed": "Raynor_Sky_Gardens_Plants_Jitter",
+            "Positions": { "Type": "Scaler", "Scale": { "X": 8, "Y": 72, "Z": 8 }, "Positions": { "Type": "SquareGrid3d" } }
+          }
+        },
+        "Prop": {
+          "Type": "Locator", "PlacementCap": 1,
+          "Scanner": { "Type": "Linear", "Axis": "Y", "Range": { "MinInclusive": -36, "MaxExclusive": 37 }, "Scanner": { "Type": "Origin" }, "AscendingOrder": false },
+          "Pattern": {
+            "Type": "Floor",
+            "Origin": { "Type": "BlockType", "Material": { "Solid": "Empty" } },
+            "Floor": {
+              "Type": "BlockSet",
+              "BlockSet": { "Inclusive": true, "Materials": [ { "Solid": "Soil_Grass" }, { "Solid": "Soil_Grass_Deep" }, { "Solid": "Soil_Grass_Sunny" } ] }
+            }
+          },
+          "Prop": {
+            "Type": "Weighted", "Seed": "Raynor_Sky_Gardens_Plant_Choice",
+            "Entries": [
+              { "Weight": 8, "Prop": { "Type": "Manual", "Blocks": [ { "Position": { "X": 0, "Y": 0, "Z": 0 }, "Material": { "Solid": "Plant_Grass_Lush_Short" } } ] } },
+              { "Weight": 5, "Prop": { "Type": "Manual", "Blocks": [ { "Position": { "X": 0, "Y": 0, "Z": 0 }, "Material": { "Solid": "Plant_Grass_Sharp" } } ] } },
+              { "Weight": 3, "Prop": { "Type": "Manual", "Blocks": [ { "Position": { "X": 0, "Y": 0, "Z": 0 }, "Material": { "Solid": "Plant_Grass_Sharp_Tall" } } ] } },
+              { "Weight": 1, "Prop": { "Type": "Manual", "Blocks": [ { "Position": { "X": 0, "Y": 0, "Z": 0 }, "Material": { "Solid": "Plant_Flower_Common_Red2" } } ] } },
+              { "Weight": 1, "Prop": { "Type": "Manual", "Blocks": [ { "Position": { "X": 0, "Y": 0, "Z": 0 }, "Material": { "Solid": "Plant_Flower_Common_Yellow2" } } ] } },
+              { "Weight": 0.8, "Prop": { "Type": "Manual", "Blocks": [ { "Position": { "X": 0, "Y": 0, "Z": 0 }, "Material": { "Solid": "Plant_Flower_Common_Cyan2" } } ] } },
+              { "Weight": 0.8, "Prop": { "Type": "Manual", "Blocks": [ { "Position": { "X": 0, "Y": 0, "Z": 0 }, "Material": { "Solid": "Plant_Flower_Common_Violet" } } ] } },
+              { "Weight": 0.6, "Prop": { "Type": "Manual", "Blocks": [ { "Position": { "X": 0, "Y": 0, "Z": 0 }, "Material": { "Solid": "Plant_Bush" } } ] } }
+            ]
+          }
+        }
+      }
+    }
+  ],
+  "EnvironmentProvider": { "Type": "Constant", "Environment": "Env_Zone1_Plains" },
+  "TintProvider": { "Type": "Constant", "Color": "#72a83c" }
+}

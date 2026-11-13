@@ -1,0 +1,27 @@
+{
+  "Parent": "Potion_Template",
+  "TranslationProperties": {
+    "Name": "server.items.Water_Flask_Prototype.name",
+    "Description": "server.items.Water_Flask_Prototype.description"
+  },
+  "Quality": "Common",
+  "ItemLevel": 1,
+  "Icon": "Icons/ItemsGenerated/Potion_Mana_Small.png",
+  "Interactions": {
+    "Secondary": "Drink_Water_Prototype"
+  },
+  "BlockType": {
+    "CustomModel": "Items/Consumables/Potions/Potion_Small.blockymodel",
+    "CustomModelTexture": [
+      {
+        "Texture": "Items/Consumables/Potions/Potion_Textures/Blue.png",
+        "Weight": 1
+      }
+    ],
+    "BlockParticleSetId": "GlassSmall",
+    "ParticleColor": "#68d8ff",
+    "TextureComputedColor": "#68d8ff"
+  },
+  "MaxStack": 1,
+  "DropOnDeath": true
+}

@@ -1,7 +1,7 @@
 {
   "Group": "OrbGenesis",
   "Name": "scoreboards",
-  "Version": "2.0.11",
+  "Version": "2.0.12",
   "Description": "Create, edit, persist, and control native Objectives from commands, UI, and Trigger Volumes.",
   "Authors": [
     {

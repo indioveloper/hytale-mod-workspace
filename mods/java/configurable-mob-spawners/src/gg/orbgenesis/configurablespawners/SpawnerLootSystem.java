@@ -43,8 +43,7 @@ final class SpawnerLootSystem extends DeathSystems.OnDeathSystem {
       for (PlayerRef player : store.getExternalData().getWorld().getPlayerRefs()) {
         if (player.getUuid().equals(tracker.lastPlayerAttacker)) {
           Message message = Message.raw("¡" + player.getUsername() + " ha derrotado a "
-              + tracker.baseMobName + " "
-              + tracker.elitePrefix.toLowerCase(java.util.Locale.ROOT) + "!");
+              + tracker.displayName() + "!");
           for (PlayerRef recipient : store.getExternalData().getWorld().getPlayerRefs()) {
             recipient.sendMessage(message);
           }

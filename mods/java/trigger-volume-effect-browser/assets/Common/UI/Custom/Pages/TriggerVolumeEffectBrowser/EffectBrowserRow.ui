@@ -1,0 +1,29 @@
+$C = "../../Common.ui";
+
+Group {
+  LayoutMode: Left;
+  Anchor: (Bottom: 5, Height: 54);
+  Background: (Color: #101b29(0.82));
+  Padding: (Horizontal: 10, Vertical: 6);
+
+  Group {
+    FlexWeight: 1;
+    LayoutMode: Top;
+
+    Label #EffectName {
+      Style: (...$C.@DefaultLabelStyle, FontSize: 14, RenderBold: true, TextColor: #c7d8e3);
+    }
+
+    Label #EffectId {
+      Style: (...$C.@DefaultLabelStyle, FontSize: 10, TextColor: #6f8798);
+    }
+
+  }
+
+  $C.@SmallSecondaryTextButton #AddButton {
+    Anchor: (Width: 88, Height: 32);
+    Text: %server.customUI.triggerEffectBrowser.add;
+    TooltipText: %server.customUI.triggerEffectBrowser.add.tooltip;
+    TextTooltipStyle: $C.@DefaultTextTooltipStyle;
+  }
+}

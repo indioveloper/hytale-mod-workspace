@@ -1,5 +1,11 @@
 # Raynor Mods portal
 
+Holograms se incorpora como sexto mod publico experimental: release 0.8.3 y
+Update 7 0.8.4-u7pre.1. Sus JARs se sirven como archivos estaticos desde
+downloads/ (ignorado en Git); preparar ambos archivos antes de desplegar.
+No hay ficha CurseForge confirmada para Holograms: el enlace se omite.
+Los otros cinco mods conservan sus descargas publicadas previamente.
+
 Portal estático del catálogo público de Raynor. Está aislado del código de los
 mods y se puede servir desde cualquier hosting de archivos estáticos.
 

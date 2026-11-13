@@ -1,0 +1,15 @@
+// Available: blue. Keep the appended Button as the document root.
+@NodeStyle = ButtonStyle(
+  Default: (Background: (Color: #286a9c)),
+  Hovered: (Background: (Color: #4095d0)),
+  Pressed: (Background: (Color: #19557e))
+);
+
+Button #RingNode {
+  Anchor: (Width: 32, Height: 32);
+  Style: @NodeStyle;
+  Group {
+    Anchor: (Width: 24, Height: 24);
+    Background: "ResearchNodePlaceholder.png";
+  }
+}

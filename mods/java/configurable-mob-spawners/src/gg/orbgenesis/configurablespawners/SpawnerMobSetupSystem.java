@@ -26,7 +26,6 @@ import javax.annotation.Nonnull;
 final class SpawnerMobSetupSystem extends EntityTickingSystem<EntityStore> {
   private static final String HEALTH_ID = "Health";
   private static final String HEALTH_MODIFIER = "OrbGenesis_Spawner_Max";
-  private static final String ELITE_PRESENTATION_EFFECT = "OrbGenesis_Spawner_Elite";
   private final Query<EntityStore> query = Query.and(
       SpawnedBySpawnerComponent.getComponentType(), NPCEntity.getComponentType());
 
@@ -81,7 +80,7 @@ final class SpawnerMobSetupSystem extends EntityTickingSystem<EntityStore> {
       tracker.physicalScaleApplied = true;
     }
     EffectControllerComponent effectController = null;
-    if (speedEffectRequired(tracker.mobSpeed) || tracker.elite) {
+    if (speedEffectRequired(tracker.mobSpeed)) {
       effectController = commandBuffer.getComponent(
           ref, EffectControllerComponent.getComponentType());
       if (effectController == null) {
@@ -91,9 +90,6 @@ final class SpawnerMobSetupSystem extends EntityTickingSystem<EntityStore> {
       }
     }
     applySpeed(ref, npc, tracker.mobSpeed, effectController, commandBuffer);
-    if (tracker.elite) {
-      applyInfiniteEffect(ref, ELITE_PRESENTATION_EFFECT, effectController, commandBuffer);
-    }
     if (tracker.customArmor) {
       applyArmor(archetypeChunk.getReferenceTo(index), npc, tracker.armorHeadId, commandBuffer);
       applyArmor(archetypeChunk.getReferenceTo(index), npc, tracker.armorChestId, commandBuffer);

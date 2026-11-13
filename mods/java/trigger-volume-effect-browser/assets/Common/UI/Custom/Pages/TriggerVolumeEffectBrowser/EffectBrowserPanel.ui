@@ -1,0 +1,41 @@
+$C = "../../Common.ui";
+
+Group #EffectBrowserPanel {
+  FlexWeight: 1;
+  LayoutMode: Top;
+  Padding: (Full: 8);
+
+  Group #EffectBrowserSubFilters {
+    Visible: false;
+    LayoutMode: LeftWrap;
+    Anchor: (Bottom: 4, Height: 140);
+  }
+
+  $C.@TextField #EffectBrowserSearch {
+    Anchor: (Bottom: 6, Height: 34);
+    Style: (...$C.@DefaultInputFieldStyle, FontSize: 13, TextColor: #b7cedd);
+    Padding: (Horizontal: 8);
+    PlaceholderText: %server.customUI.triggerEffectBrowser.search.placeholder;
+  }
+
+  Label {
+    Anchor: (Bottom: 8, Height: 34);
+    Text: %server.customUI.triggerEffectBrowser.help;
+    Style: (...$C.@DefaultLabelStyle, FontSize: 12, TextColor: #8195a6, Wrap: true);
+  }
+
+  Label #EffectBrowserEmpty {
+    Visible: false;
+    Anchor: (Top: 16);
+    Text: %server.customUI.triggerEffectBrowser.empty;
+    Style: (...$C.@DefaultLabelStyle, FontSize: 13, HorizontalAlignment: Center, TextColor: #637789);
+  }
+
+  Group #EffectBrowserList {
+    FlexWeight: 1;
+    LayoutMode: TopScrolling;
+    ScrollbarStyle: $C.@DefaultScrollbarStyle;
+    Background: (Color: #000000(0.11));
+    Padding: (Full: 5);
+  }
+}

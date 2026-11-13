@@ -1,8 +1,17 @@
 # Entity Motion Triggers
 
+## Mantenimiento Update 6 - 2026-09-03
+
+Version 1.3.3: recompilada contra Hytale estable `0.6.3` con Java 25.
+Pruebas automaticas y carga conjunta de los cinco mods publicos correctas.
+Sin cambios de IDs ni de mecanicas; la prueba manual en cliente sigue pendiente.
+Ejecutar `scripts/Test-ActiveJavaMods.ps1 -PublishedOnly` desde la raiz.
+Ver `docs/UPDATE_6_3_PUBLIC_MODS.md` para artefactos, hashes y limites.
+
+
 Mod independiente que agrupa los efectos para crear, convertir, mover y
-configurar entidades usadas como props o plataformas. La version `1.3.2` esta
-compilada y validada con Hytale Update 6 estable `0.6.2`.
+configurar entidades usadas como props o plataformas. La version `1.3.3` esta
+compilada y validada con Hytale Update 6 estable `0.6.3`.
 
 ## Efectos incluidos
 
@@ -66,7 +75,7 @@ emisor sigue ese punto animado; vacio usa la raiz de la entidad.
   -ProjectPath .\mods\java\entity-motion-triggers `
   -SourceRoot src `
   -PackageRoot src `
-  -ArtifactName Entity_Motion_Triggers-1_3_2.jar
+  -ArtifactName Entity_Motion_Triggers-1_3_3.jar
 ```
 
 Antes de instalar, retira cualquier JAR anterior con el mismo `Group:Name` y

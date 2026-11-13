@@ -1,0 +1,44 @@
+@TitleStyle = LabelStyle(
+  FontSize: 25,
+  RenderBold: true,
+  HorizontalAlignment: Center,
+  VerticalAlignment: Center,
+  TextColor: #f5d77a
+);
+
+@BodyStyle = LabelStyle(
+  FontSize: 15,
+  Wrap: true,
+  HorizontalAlignment: Center,
+  VerticalAlignment: Center,
+  TextColor: #d6e0ea
+);
+
+Group #BuildBattleThemeOverlay {
+  Background: (Color: #000000(0.78));
+  LayoutMode: Middle;
+
+  Group {
+    Anchor: (Width: 520, Height: 460);
+    Background: (Color: #172331);
+    LayoutMode: Top;
+    Padding: (Full: 24);
+
+    Label {
+      Anchor: (Height: 44, Bottom: 10);
+      Text: %server.customUI.buildBattle.voteTheme.title;
+      Style: @TitleStyle;
+    }
+
+    Label {
+      Anchor: (Height: 44, Bottom: 14);
+      Text: %server.customUI.buildBattle.voteTheme.prompt;
+      Style: @BodyStyle;
+    }
+
+    Group #ThemeList {
+      FlexWeight: 1;
+      LayoutMode: Top;
+    }
+  }
+}

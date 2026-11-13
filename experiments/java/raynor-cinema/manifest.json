@@ -1,0 +1,17 @@
+{
+  "Group": "RaynorMods",
+  "Name": "RaynorCinema",
+  "Version": "0.1.0",
+  "Description": "Experimental synchronized watch-party session core for a future in-world cinema.",
+  "Authors": [
+    {
+      "Name": "Raynor"
+    }
+  ],
+  "ServerVersion": ">=0.6.2 <0.7.0",
+  "Dependencies": {},
+  "OptionalDependencies": {},
+  "DisabledByDefault": false,
+  "Main": "gg.raynormods.cinema.RaynorCinemaPlugin",
+  "IncludesAssetPack": false
+}

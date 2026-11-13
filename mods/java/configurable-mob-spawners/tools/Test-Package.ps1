@@ -19,6 +19,9 @@ $required = @(
   "gg/orbgenesis/configurablespawners/SpawnerVisualState.class"
   "gg/orbgenesis/configurablespawners/SpawnerLightLevel.class"
   "gg/orbgenesis/configurablespawners/SpawnerConfigString.class"
+  "gg/orbgenesis/configurablespawners/SpawnerActivationMode.class"
+  "gg/orbgenesis/configurablespawners/SpawnerWaveActivationManager.class"
+  "gg/orbgenesis/configurablespawners/TriggerSpawnerWaveEffect.class"
   "gg/orbgenesis/configurablespawners/SpawnerMobProfile.class"
   "gg/orbgenesis/configurablespawners/SpawnerMobScale.class"
   "gg/orbgenesis/configurablespawners/SpawnerElitePresentationSystem.class"
@@ -188,6 +191,7 @@ if ($pageSource.Contains('EntityScaleComponent')) {
 }
 $componentSource = Get-Content -Raw -LiteralPath (Join-Path $PSScriptRoot "..\src\gg\orbgenesis\configurablespawners\ConfigurableSpawnerComponent.java")
 $tickSource = Get-Content -Raw -LiteralPath (Join-Path $PSScriptRoot "..\src\gg\orbgenesis\configurablespawners\SpawnerTickSystem.java")
+$waveActivationSource = Get-Content -Raw -LiteralPath (Join-Path $PSScriptRoot "..\src\gg\orbgenesis\configurablespawners\SpawnerWaveActivationManager.java")
 if (-not $componentSource.Contains('String roleId = "";') -or
     -not $tickSource.Contains('if (!configured) return;')) {
   throw "New spawner blocks must remain unconfigured and inactive until a role is saved."
@@ -203,9 +207,24 @@ foreach ($requiredRadiusLimit in @('countTrackedWithinRadius', 'TransformCompone
     throw "Max alive must count this spawner's living mobs inside its activation radius: $requiredRadiusLimit"
   }
 }
+$eliteEffectAsset = Join-Path $PSScriptRoot "..\assets\Server\Entity\Effects\OrbGenesis\OrbGenesis_Spawner_Elite.json"
+$eliteVfxAsset = Join-Path $PSScriptRoot "..\assets\Server\Entity\ModelVFX\OrbGenesis_Spawner_Elite.json"
+if (-not (Test-Path -LiteralPath $eliteEffectAsset -PathType Leaf) -or
+    -not (Test-Path -LiteralPath $eliteVfxAsset -PathType Leaf)) {
+  throw "The deferred elite VFX assets must remain available for a later implementation."
+}
+if ($setupSource.Contains('OrbGenesis_Spawner_Elite')) {
+  throw "Elite VFX must remain disabled until its visual behavior is reworked."
+}
+foreach ($requiredSignalRadiusSource in @('activationRadius = clamp(activationRadius, 0.0, 128.0)',
+    'config.activationRadius <= 0.0', 'countAllTrackedMobs')) {
+  if (-not ($componentSource + $tickSource).Contains($requiredSignalRadiusSource)) {
+    throw "Activation radius zero must disable automatic waves and preserve the live-mob limit: $requiredSignalRadiusSource"
+  }
+}
 foreach ($requiredCompoundSource in @('config.selectProfile(', 'profile.rollElite(',
     'new SpawnedBySpawnerComponent(config.spawnerId, profile, elite)',
-    'profile.elitePrefix.toLowerCase')) {
+    'profile.eliteDisplayName()')) {
   if (-not $tickSource.Contains($requiredCompoundSource)) {
     throw "Compound/elite spawning is missing: $requiredCompoundSource"
   }
@@ -233,6 +252,21 @@ if (-not $pluginSource.Contains('Busca en creativo el bloque \"Spawner Block\"')
 if (-not $pluginSource.Contains('registerGlobal(PlayerReadyEvent.class, this::onPlayerReady)') -or
     -not $pluginSource.Contains('Message.raw(CONFIGURATOR_URL).link(CONFIGURATOR_URL)')) {
   throw "Each ready player must receive the clickable install guidance in chat."
+}
+foreach ($requiredEliteNameSource in @('eliteDisplayName()', 'tracker.displayName()')) {
+  if (-not ($tickSource + $componentSource + (Get-Content -Raw -LiteralPath (Join-Path $PSScriptRoot "..\src\gg\orbgenesis\configurablespawners\SpawnerLootSystem.java"))).Contains($requiredEliteNameSource)) {
+    throw "Elite chat and nameplate text must use one display name: $requiredEliteNameSource"
+  }
+}
+foreach ($requiredSignalSource in @(
+    '"TriggerSpawnerWave", TriggerSpawnerWaveEffect.class',
+    'consumeNext(world, config)',
+    'SpawnerActivationMode.SIGNAL_ONLY',
+    'config.tags.length == 0'
+  )) {
+  if (-not ($pluginSource + $tickSource + $componentSource + $waveActivationSource).Contains($requiredSignalSource)) {
+    throw "Trigger Volume wave activation is missing: $requiredSignalSource"
+  }
 }
 if (-not $pageSource.Contains('new OpenChatWithCommand(ConfigurableMobSpawnersPlugin.CONFIGURATOR_URL)')) {
   throw "Copy URL must prepare the client chat field because server Custom UI cannot access the client clipboard."

@@ -1,0 +1,59 @@
+{
+  "Type": "Simple",
+  "Effects": {
+    "ItemAnimationId": "Drill"
+  },
+  "RunTime": 0.08,
+  "Next": {
+    "Type": "Parallel",
+    "Interactions": [
+      {
+        "Interactions": [
+          {
+            "Type": "CutterrayBeamOn",
+            "UseLatestTarget": true
+          },
+          {
+            "Type": "Simple",
+            "RunTime": 0.25
+          }
+        ]
+      },
+      {
+        "Interactions": [
+          {
+            "Type": "Selector",
+            "RunTime": 0.04,
+            "Selector": {
+              "Id": "Raycast",
+              "Offset": {
+                "Y": 1.6
+              },
+              "Distance": 8
+            },
+            "HitEntity": {
+              "Interactions": [
+                {
+                  "Type": "AttachBeam",
+                  "TargetEntity": "Target",
+                  "BeamConfig": "Cutterray_Cyan",
+                  "Scale": 0.21,
+                  "SourceNodeName": "R-Attachment"
+                },
+                {
+                  "Type": "Replace",
+                  "DefaultValue": {
+                    "Interactions": [
+                      "Drill_Mine_Damage"
+                    ]
+                  },
+                  "Var": "Drill_Mine_Damage"
+                }
+              ]
+            }
+          }
+        ]
+      }
+    ]
+  }
+}

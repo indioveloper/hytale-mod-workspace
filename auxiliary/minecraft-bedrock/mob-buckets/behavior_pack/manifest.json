@@ -1,0 +1,30 @@
+{
+  "format_version": 2,
+  "header": {
+    "name": "Cubos para mobs v1.0.0",
+    "description": "Captura criaturas en un cubo y vuelve a liberarlas.",
+    "uuid": "b834ab62-2685-4803-a22f-f07f7d43e08b",
+    "version": [1, 0, 0],
+    "min_engine_version": [1, 26, 40]
+  },
+  "modules": [
+    {
+      "type": "data",
+      "uuid": "bb4add78-a110-443e-b856-28d26fe8863c",
+      "version": [1, 0, 0]
+    },
+    {
+      "type": "script",
+      "language": "javascript",
+      "entry": "scripts/main.js",
+      "uuid": "0330c281-8831-4091-92ee-2951ef29045e",
+      "version": [1, 0, 0]
+    }
+  ],
+  "dependencies": [
+    {
+      "module_name": "@minecraft/server",
+      "version": "2.9.0"
+    }
+  ]
+}

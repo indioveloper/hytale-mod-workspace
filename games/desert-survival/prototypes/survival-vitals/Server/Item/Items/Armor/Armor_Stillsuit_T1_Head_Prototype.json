@@ -1,0 +1,13 @@
+{
+  "Parent": "Armor_Diving_Crude_Head",
+  "TranslationProperties": {
+    "Name": "server.items.Armor_Stillsuit_T1_Head_Prototype.name",
+    "Description": "server.items.Armor_Stillsuit_T1_Head_Prototype.description"
+  },
+  "Quality": "Uncommon",
+  "ItemLevel": 10,
+  "Tags": {
+    "Type": ["Armor"],
+    "Family": ["Stillsuit", "Stillsuit_Tier1", "HeatResistance_5"]
+  }
+}

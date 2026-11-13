@@ -113,6 +113,10 @@ final class SpawnerMobProfile {
     return value.isBlank() ? "mob" : value;
   }
 
+  String eliteDisplayName() {
+    return elitePrefix + " " + effectiveBaseName();
+  }
+
   SpawnerMobProfile copy() {
     SpawnerMobProfile copy = new SpawnerMobProfile();
     copy.roleId = roleId;

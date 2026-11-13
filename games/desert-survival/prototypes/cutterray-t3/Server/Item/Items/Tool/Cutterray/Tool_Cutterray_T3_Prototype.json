@@ -1,0 +1,100 @@
+{
+  "TranslationProperties": {
+    "Name": "server.items.Tool_Cutterray_T3_Prototype.name",
+    "Description": "server.items.Tool_Cutterray_T3_Prototype.description"
+  },
+  "Categories": [
+    "Items.Tools"
+  ],
+  "Quality": "Rare",
+  "ItemLevel": 30,
+  "PlayerAnimationsId": "Drill",
+  "Model": "Items/Raynor/Tools/Cutterray/T3_Industrial.blockymodel",
+  "Texture": "Items/Raynor/Tools/Cutterray/T3_Industrial_Texture.png",
+  "Icon": "Icons/Items/Raynor/Tool_Cutterray_T3_Prototype.png",
+  "Tool": {
+    "BreakShape": {
+      "Id": "Box",
+      "Centered": false,
+      "Depth": 1,
+      "Height": 1,
+      "Width": 1,
+      "Orientation": "View",
+      "Offset": {
+        "X": 0,
+        "Y": 0,
+        "Z": 0
+      }
+    },
+    "BreakShapeDurabilityMode": "PerBlock",
+    "Specs": [
+      {
+        "Power": 0.45,
+        "GatherType": "Rocks",
+        "Quality": 3
+      },
+      {
+        "Power": 0.8,
+        "GatherType": "Metals"
+      },
+      {
+        "Power": 0.3,
+        "GatherType": "OreCopper"
+      },
+      {
+        "Power": 0.02,
+        "GatherType": "CutterrayCopper",
+        "Quality": 3
+      },
+      {
+        "Power": 0.25,
+        "GatherType": "OreIron"
+      },
+      {
+        "Power": 0.02,
+        "GatherType": "CutterrayIron",
+        "Quality": 3
+      },
+      {
+        "Power": 0.2,
+        "GatherType": "OreSilver"
+      },
+      {
+        "Power": 0.2,
+        "GatherType": "OreGold"
+      }
+    ]
+  },
+  "InteractionConfig": {
+    "UseDistance": {
+      "Adventure": 8,
+      "Creative": 8
+    }
+  },
+  "Interactions": {
+    "Primary": {
+      "Cooldown": {
+        "Cooldown": 0.25
+      },
+      "Interactions": [
+        "Cutterray_T3_Mine"
+      ]
+    },
+    "Secondary": {
+      "Cooldown": {
+        "Cooldown": 0.25
+      },
+      "Interactions": [
+        "Cutterray_T3_Mine"
+      ]
+    }
+  },
+  "MaxDurability": 1200,
+  "MaxStack": 1,
+  "Tags": {
+    "Type": [
+      "Tool"
+    ]
+  },
+  "ItemSoundSetId": "ISS_Weapons_Wood"
+}

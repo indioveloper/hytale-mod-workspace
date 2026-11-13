@@ -1,0 +1,17 @@
+{
+  "Group": "RaynorMods",
+  "Name": "RaynorHolograms",
+  "Version": "0.8.3",
+  "Description": "Persistent rich-text, image and animated GIF holograms with placeholders, billboard modes and a native editor.",
+  "Authors": [
+    {
+      "Name": "Raynor"
+    }
+  ],
+  "ServerVersion": ">=0.6.2 <0.7.0",
+  "Dependencies": {},
+  "OptionalDependencies": {},
+  "DisabledByDefault": false,
+  "Main": "gg.raynormods.holograms.RaynorHologramsPlugin",
+  "IncludesAssetPack": true
+}

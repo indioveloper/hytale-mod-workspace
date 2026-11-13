@@ -1,0 +1,8 @@
+{
+  "Type": "Simple",
+  "Next": {
+    "Type": "RaynorHydrate",
+    "Source": "FLASK",
+    "Amount": 500
+  }
+}

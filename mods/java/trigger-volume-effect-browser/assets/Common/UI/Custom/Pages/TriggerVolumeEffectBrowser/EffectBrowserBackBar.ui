@@ -1,0 +1,14 @@
+$C = "../../Common.ui";
+
+Group #EffectBrowserBackBar {
+  Visible: false;
+  LayoutMode: Left;
+  Anchor: (Bottom: 6, Height: 34);
+
+  $C.@SmallSecondaryTextButton #EffectBrowserBackButton {
+    Anchor: (Width: 230, Height: 32);
+    Text: %server.customUI.triggerEffectBrowser.back;
+    TooltipText: %server.customUI.triggerEffectBrowser.back.tooltip;
+    TextTooltipStyle: $C.@DefaultTextTooltipStyle;
+  }
+}

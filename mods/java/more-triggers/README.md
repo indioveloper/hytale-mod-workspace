@@ -1,7 +1,16 @@
 # More Triggers
 
-Coleccion de utilidades generales para Trigger Volumes. La version `1.10.5`
-esta compilada y validada con Hytale Update 6 estable `0.6.2` e integra el antiguo mod Trigger
+## Mantenimiento Update 6 - 2026-09-03
+
+Version 1.10.6: recompilada contra Hytale estable `0.6.3` con Java 25.
+Pruebas automaticas y carga conjunta de los cinco mods publicos correctas.
+Sin cambios de IDs ni de mecanicas; la prueba manual en cliente sigue pendiente.
+Ejecutar `scripts/Test-ActiveJavaMods.ps1 -PublishedOnly` desde la raiz.
+Ver `docs/UPDATE_6_3_PUBLIC_MODS.md` para artefactos, hashes y limites.
+
+
+Coleccion de utilidades generales para Trigger Volumes. La version `1.10.6`
+esta compilada y validada con Hytale Update 6 estable `0.6.3` e integra el antiguo mod Trigger
 Execute Command.
 
 ## Efectos incluidos
@@ -181,14 +190,14 @@ registran ni se empaquetan con More Triggers.
   -ProjectPath .\mods\java\more-triggers `
   -SourceRoot src `
   -PackageRoot src `
-  -ArtifactName More_Triggers-1_10_5.jar
+  -ArtifactName More_Triggers-1_10_6.jar
 
 .\mods\java\more-triggers\tools\Test-TimerMath.ps1
 .\mods\java\more-triggers\tools\Test-SignalLoopSchedule.ps1
 .\mods\java\more-triggers\tools\Test-RoomOccupancyGeometry.ps1
 .\mods\java\more-triggers\tools\Test-RandomItemCandidateFilter.ps1
 .\mods\java\more-triggers\tools\Test-Package.ps1 `
-  -ArchivePath .\mods\java\more-triggers\.build\dist\More_Triggers-1_10_5.jar
+  -ArchivePath .\mods\java\more-triggers\.build\dist\More_Triggers-1_10_6.jar
 ```
 
 El contorno del timer usa 61 frames PNG porque la UI 0.6.x no expone un

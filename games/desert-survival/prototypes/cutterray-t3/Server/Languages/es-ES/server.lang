@@ -1,0 +1,6 @@
+items.Tool_Cutterray_T3_Prototype.name = Cutterray industrial T3 (prototipo)
+items.Tool_Cutterray_T3_Prototype.description = Prototipo jugable con animacion de taladro y rayo de extraccion corto.
+items.Resource_Node_Copper_Prototype.name = Nodo de cobre (prototipo)
+items.Resource_Node_Copper_Prototype.description = Deposito grande para probar el cutterray. El contacto continuo extrae cobre durante cinco segundos.
+items.Resource_Node_Iron_Prototype.name = Nodo de hierro (prototipo)
+items.Resource_Node_Iron_Prototype.description = Deposito de hierro para cutterray T2 o superior. El contacto continuo extrae hierro durante cinco segundos.

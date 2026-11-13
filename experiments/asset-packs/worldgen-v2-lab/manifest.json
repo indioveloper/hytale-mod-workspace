@@ -1,0 +1,20 @@
+{
+  "Group": "RaynorLabs",
+  "Name": "WorldGen V2 Lab",
+  "Version": "0.3.0",
+  "Description": "Experimental prompt-to-biome laboratory for Hytale WorldGen V2.",
+  "Authors": [
+    {
+      "Name": "Raynor",
+      "Url": "https://raynor-mods.vercel.app"
+    }
+  ],
+  "Website": "",
+  "ServerVersion": "=0.7.0-pre.1",
+  "Dependencies": {},
+  "OptionalDependencies": {},
+  "LoadBefore": {},
+  "DisabledByDefault": false,
+  "IncludesAssetPack": true,
+  "SubPlugins": []
+}

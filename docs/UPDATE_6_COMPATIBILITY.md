@@ -1,5 +1,9 @@
 # Compatibilidad con Hytale Update 6
 
+Revision posterior de los cinco mods publicos contra 0.6.3 (2026-09-03):
+[informe y artefactos nuevos](UPDATE_6_3_PUBLIC_MODS.md).
+El resto de este documento conserva la validacion historica de 0.6.2.
+
 Validacion realizada el 30 de agosto de 2026 para preparar las publicaciones de
 Raynor Mods en CurseForge.
 

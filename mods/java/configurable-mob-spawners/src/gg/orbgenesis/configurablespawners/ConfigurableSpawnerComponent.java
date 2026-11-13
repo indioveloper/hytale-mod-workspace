@@ -21,6 +21,7 @@ public final class ConfigurableSpawnerComponent implements Component<ChunkStore>
           .append(new KeyedCodec<>("SpawnerId", Codec.UUID_BINARY, false), (c, v) -> c.spawnerId = v, c -> c.spawnerId).add()
           .append(new KeyedCodec<>("Tag", Codec.STRING, false), (c, v) -> c.tag = v == null ? "" : v, c -> c.tag).add()
           .append(new KeyedCodec<>("Tags", new ArrayCodec<>(Codec.STRING, String[]::new), false), (c, v) -> c.tags = v == null ? new String[0] : v, c -> c.tags).add()
+          .append(new KeyedCodec<>("ActivationMode", new EnumCodec<>(SpawnerActivationMode.class), false), (c, v) -> c.activationMode = v == null ? SpawnerActivationMode.AUTOMATIC : v, c -> c.activationMode).add()
           .append(new KeyedCodec<>("Enabled", Codec.BOOLEAN, false), (c, v) -> c.enabled = v == null || v, c -> c.enabled).add()
           .append(new KeyedCodec<>("Role", Codec.STRING, false), (c, v) -> c.roleId = v == null ? "" : v, c -> c.roleId).add()
           .append(new KeyedCodec<>("MobName", Codec.STRING, false), (c, v) -> c.mobName = clean(v), c -> c.mobName).add()
@@ -55,6 +56,7 @@ public final class ConfigurableSpawnerComponent implements Component<ChunkStore>
   UUID spawnerId;
   String tag = "";
   String[] tags = new String[0];
+  SpawnerActivationMode activationMode = SpawnerActivationMode.AUTOMATIC;
   boolean enabled = true;
   String roleId = "";
   String mobName = "";
@@ -87,6 +89,7 @@ public final class ConfigurableSpawnerComponent implements Component<ChunkStore>
 
   transient double maintenanceSeconds;
   transient boolean invalidRoleLogged;
+  transient long lastSignalSequence;
 
   public static ComponentType<ChunkStore, ConfigurableSpawnerComponent> getComponentType() {
     return componentType;
@@ -108,6 +111,7 @@ public final class ConfigurableSpawnerComponent implements Component<ChunkStore>
     enabled = true;
     tags = normalizeTags(tag, tags);
     tag = tags.length == 0 ? "" : tags[0];
+    activationMode = activationMode == null ? SpawnerActivationMode.AUTOMATIC : activationMode;
     roleId = roleId == null ? "" : roleId.trim();
     mobName = clean(mobName);
     if (mobName.length() > 64) mobName = mobName.substring(0, 64);
@@ -132,7 +136,8 @@ public final class ConfigurableSpawnerComponent implements Component<ChunkStore>
     spawnCountMax = clamp(spawnCountMax, 1, 64);
     spawnCountMax = Math.max(spawnCountMin, spawnCountMax);
     maxAlive = clamp(maxAlive, 1, 256);
-    activationRadius = clamp(activationRadius, 1.0, 128.0);
+    // Zero deliberately disables proximity activation. TriggerSpawnerWave can still create a wave.
+    activationRadius = clamp(activationRadius, 0.0, 128.0);
     horizontalRadius = clamp(horizontalRadius, 0.0, 64.0);
     verticalRadius = clamp(verticalRadius, 0, 32);
     // Kept in the codec only so 0.3.0 can read blocks created by older builds.
@@ -154,6 +159,7 @@ public final class ConfigurableSpawnerComponent implements Component<ChunkStore>
   public void copyConfigurationFrom(ConfigurableSpawnerComponent source) {
     tag = source.tag;
     tags = source.tags == null ? new String[0] : Arrays.copyOf(source.tags, source.tags.length);
+    activationMode = source.activationMode;
     enabled = true;
     roleId = source.roleId;
     mobName = source.mobName;
@@ -199,6 +205,7 @@ public final class ConfigurableSpawnerComponent implements Component<ChunkStore>
     copy.trackedMobs = Arrays.copyOf(trackedMobs, trackedMobs.length);
     copy.maintenanceSeconds = maintenanceSeconds;
     copy.invalidRoleLogged = invalidRoleLogged;
+    copy.lastSignalSequence = lastSignalSequence;
     return copy;
   }
 

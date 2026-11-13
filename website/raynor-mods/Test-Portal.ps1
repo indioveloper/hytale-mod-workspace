@@ -66,8 +66,8 @@ foreach ($script in @('portal-config.js', 'app.js')) {
 }
 
 $icons = [regex]::Matches($config, 'icon:\s*"([^"]+)"') | ForEach-Object { $_.Groups[1].Value }
-if ($icons.Count -ne 5) {
-    throw "Expected 5 public mod icons, found $($icons.Count)."
+if ($icons.Count -ne 6) {
+    throw "Expected 6 public mod icons, found $($icons.Count)."
 }
 foreach ($icon in $icons) {
     if (-not (Test-Path -LiteralPath (Join-Path $root $icon) -PathType Leaf)) {
@@ -76,8 +76,8 @@ foreach ($icon in $icons) {
 }
 
 $modSlugs = [regex]::Matches($config, 'slug:\s*"([^"]+)"')
-if ($modSlugs.Count -ne 5) {
-    throw "Expected 5 public mods, found $($modSlugs.Count)."
+if ($modSlugs.Count -ne 6) {
+    throw "Expected 6 public mods, found $($modSlugs.Count)."
 }
 
 $curseforgePages = @(
@@ -96,13 +96,21 @@ if ($app -notmatch 'mod\.curseforge') {
     throw 'Every public mod must expose a CurseForge link.'
 }
 $downloads = [regex]::Matches($config, 'download:\s*"downloads/[^"/]+\.jar"')
-if ($downloads.Count -ne 5 -or $app -notmatch 'mod\.download') {
+if ($downloads.Count -ne 6 -or $app -notmatch 'mod\.download') {
     throw 'Every public mod must expose a direct JAR download.'
 }
 $englishSummaries = [regex]::Matches($config, 'summaryEn:\s*"[^"]+"')
 $englishStatuses = [regex]::Matches($config, 'statusEn:\s*"[^"]+"')
-if ($englishSummaries.Count -ne 5 -or $englishStatuses.Count -ne 5 -or $app -notmatch 'en:\s*\{') {
+if ($englishSummaries.Count -ne 6 -or $englishStatuses.Count -ne 6 -or $app -notmatch 'en:\s*\{') {
     throw 'Every public mod and interface section must have English copy.'
 }
 
-Write-Host 'Raynor Mods bilingual portal OK: ES/EN, 5 public mods, CurseForge pages and direct downloads configured, private asset packs hidden.'
+foreach ($artifact in @('Raynor_Holograms-0.8.3.jar', 'Raynor_Holograms-0.8.4-u7pre.1-Hytale-0.7.0-pre.1.jar')) {
+    if (-not (Test-Path -LiteralPath (Join-Path $root "downloads/$artifact"))) {
+        throw "Missing Holograms deployment artifact: $artifact"
+    }
+}
+if ($app -notmatch 'mod\.curseforge \?' -or $app -notmatch 'prereleaseHint') {
+    throw 'Optional CurseForge link and pre-release warning must be preserved.'
+}
+Write-Host 'Raynor Mods bilingual portal OK: ES/EN, 6 public mods, release/pre-release hologram downloads, private asset packs hidden.'

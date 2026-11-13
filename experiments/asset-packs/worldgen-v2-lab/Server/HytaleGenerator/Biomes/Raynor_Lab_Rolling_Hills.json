@@ -1,0 +1,99 @@
+{
+  "$Comment": "Runtime-first WorldGen V2 biome authored for the Raynor lab baseline.",
+  "Name": "Raynor_Lab_Rolling_Hills",
+  "Terrain": {
+    "Type": "DAOTerrain",
+    "Density": {
+      "Type": "Sum",
+      "Inputs": [
+        {
+          "Type": "SimplexNoise2D",
+          "Lacunarity": 2,
+          "Persistence": 0.5,
+          "Octaves": 4,
+          "Scale": 128,
+          "Seed": "Raynor_Lab_Hills"
+        },
+        {
+          "Type": "CurveMapper",
+          "Curve": {
+            "Type": "Manual",
+            "Points": [
+              {
+                "In": 0,
+                "Out": 1
+              },
+              {
+                "In": 64,
+                "Out": -1
+              }
+            ]
+          },
+          "Inputs": [
+            {
+              "Type": "BaseHeight",
+              "BaseHeightName": "Base",
+              "Distance": true
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "MaterialProvider": {
+    "Type": "Solidity",
+    "Solid": {
+      "Type": "Queue",
+      "Queue": [
+        {
+          "Type": "SpaceAndDepth",
+          "LayerContext": "DEPTH_INTO_FLOOR",
+          "MaxExpectedDepth": 6,
+          "Layers": [
+            {
+              "Type": "ConstantThickness",
+              "Thickness": 1,
+              "Material": {
+                "Type": "Constant",
+                "Material": {
+                  "Solid": "Soil_Grass"
+                }
+              }
+            },
+            {
+              "Type": "ConstantThickness",
+              "Thickness": 4,
+              "Material": {
+                "Type": "Constant",
+                "Material": {
+                  "Solid": "Soil_Dirt"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "Type": "Constant",
+          "Material": {
+            "Solid": "Rock_Stone"
+          }
+        }
+      ]
+    },
+    "Empty": {
+      "Type": "Constant",
+      "Material": {
+        "Solid": "Empty"
+      }
+    }
+  },
+  "Props": [],
+  "EnvironmentProvider": {
+    "Type": "Constant",
+    "Environment": "Env_Zone1_Plains"
+  },
+  "TintProvider": {
+    "Type": "Constant",
+    "Color": "#5b9e28"
+  }
+}

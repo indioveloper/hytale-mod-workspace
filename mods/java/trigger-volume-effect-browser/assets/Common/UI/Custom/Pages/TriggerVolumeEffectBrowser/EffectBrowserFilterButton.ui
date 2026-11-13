@@ -1,0 +1,6 @@
+$C = "../../Common.ui";
+
+$C.@SmallSecondaryTextButton #FilterButton {
+  Anchor: (Width: 250, Right: 5, Bottom: 5, Height: 28);
+  Padding: (Horizontal: 12);
+}

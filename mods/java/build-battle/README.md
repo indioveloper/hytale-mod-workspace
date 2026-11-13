@@ -1,72 +1,103 @@
 # Build Battle
 
-Mod Java para Hytale Update 6 estable que anade el efecto de Trigger Volume
-`SuggestBuildTheme` y la regla segura de herramientas creativas
-`RestrictBuildBattleCreativeTools`. El manifest acepta servidores
-`>=0.6.2 <0.7.0`; la version `0.2.4` compila y se ha validado con el
-runtime estable `0.6.2`.
+Mod Java para Hytale Update 6 estable. La version `0.3.0` ejecuta rondas
+completas individuales o por equipos, con temas editables, parcelas protegidas,
+votacion y resultados. El manifest acepta servidores `>=0.6.2 <0.7.0` y el
+artefacto se compila contra el runtime estable `0.6.6`.
 
-Al ejecutar el efecto sobre un jugador se abre una interfaz que solicita una
-sola palabra. Una sugerencia valida se normaliza a minusculas y se guarda en el
-propio Trigger Volume que ejecuto el efecto:
+## Flujo de partida
 
-- `theme_<palabra>` = `empty`
-- `points` = `0`
+1. Los jugadores entran al lobby con `/buildbattle join` o
+   `/buildbattle jointeam <equipo>`.
+2. Un administrador inicia modo individual o equipos. En equipos, los codigos
+   iguales agrupan jugadores hasta `teamSize`; los huecos restantes se
+   equilibran automaticamente.
+3. Se muestran varias opciones elegidas al azar desde `themes.json`. Cada
+   jugador puede cambiar su voto mientras la fase siga abierta.
+4. El tema ganador inicia la construccion. Cada equipo aparece en su parcela,
+   pasa a creativo y solo puede colocar o romper bloques dentro de sus limites.
+   El mod retira y bloquea todas las Builder Tools de edicion del mundo.
+5. Al terminar, los jugadores pasan a aventura y visitan todas las parcelas.
+   En cada una puntuan de 1 a 5; no pueden votar su propia construccion.
+6. Se anuncia la clasificacion por media y se restauran el modo de juego, la
+   posicion y la rotacion originales de cada jugador.
 
-Se aceptan letras y numeros, ademas de guion y guion bajo, con un maximo de 32
-caracteres. Los espacios y las entradas vacias se rechazan.
+La interfaz de votacion tambien tiene equivalentes por comando, utiles para
+probar el flujo si una Custom UI no puede abrirse.
 
-## Configurar el Trigger Volume
+## Comandos
 
-Anade `SuggestBuildTheme` a los efectos del evento deseado. Para el caso
-propuesto, configura el evento de colocacion de bloque del Trigger Volume. El
-evento determina cuando se abre la interfaz; el mod no escucha globalmente
-todas las colocaciones de bloques.
+- `/bb join`: entra al lobby del mundo actual.
+- `/bb jointeam <equipo>`: entra y solicita un equipo.
+- `/bb team <equipo>`: cambia la preferencia antes de iniciar.
+- `/bb leave`: abandona el lobby o la ronda.
+- `/bb status`: muestra fase, tema, tiempo y equipo.
+- `/bb votetheme <tema>`: vota una opcion exacta de tema.
+- `/bb vote <1-5>`: puntua la parcela visible.
+- `/bb startsolo`: inicia una ronda individual; requiere `hytale:WorldEditor`.
+- `/bb startteams`: inicia una ronda por equipos; requiere `hytale:WorldEditor`.
+- `/bb stop`: cancela y restaura a los participantes; requiere
+  `hytale:WorldEditor`.
+- `/bb reload`: recarga los dos JSON; requiere `hytale:WorldEditor`.
 
-Para limitar las herramientas durante la fase de construccion, anade
-`RestrictBuildBattleCreativeTools` en la seccion `Always Active` del plot.
-Mientras el jugador permanezca dentro, el catalogo de Builder Tools queda
-reducido a:
+## Configuracion
 
-- Entity, Paint y Sculpt;
-- Boulder, Cave, Mountain, Tentacle, Decoration, Forest, Grass, Hotsprings,
-  Path, River y Spiral Brush;
-- Noise, Revolve, Scatter, Tint y Layer.
+En el primer arranque se crean `build-battle.json` y `themes.json` en el
+directorio de datos del plugin. `themes.json` es una lista JSON de textos y se
+puede modificar sin recompilar. Ejecuta `/bb reload` despues de editarlo.
 
-Los bloques y los `Technical Block Sets` no son Builder Tools, por lo que la
-regla no los oculta ni los retira. Al salir del volumen, los permisos y el
-catalogo normales se restauran en el siguiente tick.
+`build-battle.json` controla:
 
-Desde la version 0.2.2 este tipo solo se registra como regla `Always Active` y
-no aparece en la lista de efectos `On Success`.
+- `minimumPlayers`, `teamSize` y `themeCandidates`;
+- `themeVoteSeconds`, `buildSeconds`, `secondsPerBuildVote` y `resultsSeconds`;
+- `plots`, con `id`, `world`, limites inclusivos `min`/`max`, punto `spawn`,
+  punto `view` y `yaw` en radianes.
 
-La restriccion usa los permisos nativos del servidor para rechazar las
-herramientas no autorizadas. Como varias Scripted Brushes comparten el permiso
-interno `Paint`, el mod tambien filtra el catalogo por ID exacto y retira
-Builder Tools no permitidas que el jugador intente conservar en sus
-inventarios. Un fichero de recuperacion permite restaurar los permisos si el
-servidor se cierra de forma inesperada.
+Cada parcela admite ademas `resetPrefab` y `resetOrigin`. Si `resetPrefab`
+contiene la ruta de un prefab disponible, el mod lo pega en `resetOrigin` al
+comenzar la construccion. La plantilla debe abarcar toda la parcela e incluir
+el aire necesario para borrar la construccion anterior. Si se deja vacio, el
+mod no modifica el terreno antes de la ronda. Ejemplo:
+
+```json
+{
+  "id": "plot-1",
+  "world": "default",
+  "min": [-64, 0, -64],
+  "max": [-1, 255, -1],
+  "spawn": [-32.5, 65, -32.5],
+  "view": [-32.5, 72, -72.5],
+  "yaw": 0,
+  "resetPrefab": "BuildBattle/Plots/EmptyPlot.prefab.json",
+  "resetOrigin": [-64, 0, -64]
+}
+```
+
+## Compatibilidad heredada
+
+Se conservan los IDs persistentes `SuggestBuildTheme` y
+`RestrictBuildBattleCreativeTools`. El primero mantiene la antigua UI de una
+palabra para guardar `theme_<palabra>=empty` y `points=0` en el Trigger Volume.
+La regla heredada puede usarse bajo `Always Active`; en 0.3.0 bloquea todas las
+Builder Tools, igual que la fase de construccion administrada por el mod.
 
 ## Dependencias
 
 - `Hytale:TriggerVolumes`
 - `Hytale:BuilderTools`
 
-## Compilar
+## Compilar y validar
 
 ```powershell
+.\mods\java\build-battle\tools\Test-PluginLocalization.ps1
+.\mods\java\build-battle\tools\Test-Core.ps1
 .\scripts\Build-JavaMod.ps1 `
   -ProjectPath .\mods\java\build-battle `
   -SourceRoot src `
   -PackageRoot . `
-  -ArtifactName Build_Battle-0_2_4.jar
+  -ArtifactName Build_Battle-0_3_0.jar
+.\mods\java\build-battle\tools\Test-Package.ps1
 ```
 
-Antes de empaquetar o desplegar, ejecuta:
-
-```powershell
-.\mods\java\build-battle\tools\Test-PluginLocalization.ps1
-```
-
-Instala el mod sin duplicar su `Group:Name` y reinicia o recarga la partida
-para que se registren las clases nuevas.
+Instala el JAR sin duplicar `OrbGenesis:Build Battle` y reinicia o recarga la
+partida para que se registren las clases nuevas.

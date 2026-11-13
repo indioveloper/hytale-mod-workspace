@@ -1,0 +1,11 @@
+{
+  "Model": "Items/Raynor/Holograms/Placeholder_Rune.blockymodel",
+  "Texture": "Items/Raynor/Holograms/Placeholder_Rune.png",
+  "EyeHeight": 0,
+  "MinScale": 0.1,
+  "MaxScale": 16,
+  "HitBox": {
+    "Min": { "X": -0.333008, "Y": -0.5, "Z": -0.02 },
+    "Max": { "X": 0.333008, "Y": 0.5, "Z": 0.02 }
+  }
+}

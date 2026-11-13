@@ -33,6 +33,7 @@
       enableLight: "Activar modo claro",
       curseforgeTitle: "Página de este mod en CurseForge",
       downloadMod: "Descargar JAR",
+      prereleaseHint: "Alpha: solo Hytale 0.7.0-pre.1. No instalar junto a la versión release.",
       configuratorButton: "Configurador"
     },
     en: {
@@ -56,6 +57,7 @@
       enableLight: "Enable light mode",
       curseforgeTitle: "This mod's CurseForge page",
       downloadMod: "Download JAR",
+      prereleaseHint: "Alpha: Hytale 0.7.0-pre.1 only. Do not install alongside the release version.",
       configuratorButton: "Configurator"
     }
   };
@@ -93,8 +95,9 @@
             <p>${summary}</p>
           </div>
           <div class="mod-actions">
-            <a class="button download-link" href="${mod.download}" download>${text("downloadMod")} <span aria-hidden="true">↓</span></a>
-            <a class="button curseforge-link" href="${mod.curseforge}" target="_blank" rel="noreferrer" title="${text("curseforgeTitle")}">CurseForge ${arrow}</a>
+            <a class="button download-link" href="${mod.download}" download>${mod.downloadLabel || text("downloadMod")} <span aria-hidden="true">↓</span></a>
+            ${mod.prereleaseDownload ? `<a class="button" href="${mod.prereleaseDownload}" download title="${text("prereleaseHint")}">Update 7 pre.1 · Alpha ↓</a><small>${text("prereleaseHint")}</small>` : ""}
+            ${mod.curseforge ? `<a class="button curseforge-link" href="${mod.curseforge}" target="_blank" rel="noreferrer" title="${text("curseforgeTitle")}">CurseForge ${arrow}</a>` : ""}
             ${mod.extraLink ? `<a class="button" href="${config.links[mod.extraLink.urlKey]}" target="_blank" rel="noreferrer">${configuratorLabel || text("configuratorButton")} ${arrow}</a>` : ""}
           </div>
         </article>

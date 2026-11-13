@@ -1,0 +1,20 @@
+{
+  "Group": "RaynorMods",
+  "Name": "Desert Survival Cutterray Prototype",
+  "Version": "0.1.8",
+  "Description": "Playable prototype for the tier 3 industrial cutterray and copper/iron resource nodes.",
+  "Authors": [
+    {
+      "Name": "Raynor",
+      "Url": "https://raynor-mods.vercel.app"
+    }
+  ],
+  "ServerVersion": ">=0.7.0 <0.8.0",
+  "Main": "gg.raynormods.desertsurvival.cutterray.CutterrayPrototypePlugin",
+  "Dependencies": {},
+  "OptionalDependencies": {},
+  "LoadBefore": {},
+  "DisabledByDefault": false,
+  "IncludesAssetPack": true,
+  "SubPlugins": []
+}

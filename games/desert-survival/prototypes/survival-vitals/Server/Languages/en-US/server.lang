@@ -1,0 +1,12 @@
+items.Water_Flask_Prototype.name = Water Flask (Prototype)
+items.Water_Flask_Prototype.description = Secondary use restores up to 500 ml of hydration.
+items.Water_Flask_Empty_Prototype.name = Empty Flask (Prototype)
+items.Water_Flask_Empty_Prototype.description = Empty container. Refilling will be implemented later.
+items.Armor_Stillsuit_Prototype.name = T1 Stillsuit Chest (Prototype)
+items.Armor_Stillsuit_Prototype.description = Adds 5 heat resistance and recovers 1 ml per 3 ml lost into its 500 ml pocket.
+items.Armor_Stillsuit_T1_Head_Prototype.name = T1 Stillsuit Hood (Prototype)
+items.Armor_Stillsuit_T1_Head_Prototype.description = Adds 5 heat resistance.
+items.Armor_Stillsuit_T1_Hands_Prototype.name = T1 Stillsuit Gloves (Prototype)
+items.Armor_Stillsuit_T1_Hands_Prototype.description = Adds 5 heat resistance.
+items.Armor_Stillsuit_T1_Legs_Prototype.name = T1 Stillsuit Boots (Prototype)
+items.Armor_Stillsuit_T1_Legs_Prototype.description = Adds 5 heat resistance.

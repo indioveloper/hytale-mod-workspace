@@ -1,0 +1,26 @@
+{
+  "Group": "RaynorMods",
+  "Name": "Metalwork Flat Roofs",
+  "Version": "0.1.3",
+  "Description": "Adds nine flat metal roof blocks using the color finishes from Metalwork.",
+  "Authors": [
+    {
+      "Name": "Raynor",
+      "Url": "https://raynor-mods.vercel.app"
+    },
+    {
+      "Name": "Lordimass",
+      "Url": "https://lordimass.net"
+    }
+  ],
+  "Website": "",
+  "ServerVersion": ">=0.6.2 <0.7.0",
+  "Dependencies": {
+    "Hytale:AssetModule": "*"
+  },
+  "OptionalDependencies": {},
+  "LoadBefore": {},
+  "DisabledByDefault": false,
+  "IncludesAssetPack": true,
+  "SubPlugins": []
+}

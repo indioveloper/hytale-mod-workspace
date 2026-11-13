@@ -1,0 +1,33 @@
+{
+  "Parent": "Potion_Template",
+  "TranslationProperties": {
+    "Name": "server.items.Intel_Pickup_Prototype.name",
+    "Description": "server.items.Intel_Pickup_Prototype.description"
+  },
+  "Quality": "Rare",
+  "ItemLevel": 1,
+  "Categories": [
+    "Items.Tools"
+  ],
+  "Icon": "Icons/Items/Raynor/Intel_Pickup_Prototype.png",
+  "Interactions": {
+    "Pickup": "Collect_Intel_Prototype"
+  },
+  "BlockType": {
+    "CustomModel": "Items/Consumables/Potions/Potion_Small.blockymodel",
+    "CustomModelTexture": [
+      {
+        "Texture": "Items/Consumables/Potions/Potion_Textures/Yellow.png",
+        "Weight": 1
+      }
+    ],
+    "BlockParticleSetId": "GlassSmall",
+    "ParticleColor": "#f3c95b",
+    "TextureComputedColor": "#f3c95b"
+  },
+  "MaxStack": 10,
+  "DropOnDeath": false,
+  "Tags": {
+    "Type": ["ResearchIntel"]
+  }
+}

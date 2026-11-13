@@ -1,0 +1,30 @@
+{
+  "format_version": 2,
+  "header": {
+    "name": "Camino de diamantes v1.0.2",
+    "description": "Convierte en diamante los bloques bajo tus pies al activar un comando.",
+    "uuid": "681885c2-5396-42a6-b977-925ad23caf98",
+    "version": [1, 0, 2],
+    "min_engine_version": [1, 26, 40]
+  },
+  "modules": [
+    {
+      "type": "data",
+      "uuid": "09918525-81b9-4aa7-ac6c-2d8fe7c771f9",
+      "version": [1, 0, 2]
+    },
+    {
+      "type": "script",
+      "language": "javascript",
+      "entry": "scripts/main.js",
+      "uuid": "f191b132-7c8b-46cc-bd75-7929cd675122",
+      "version": [1, 0, 2]
+    }
+  ],
+  "dependencies": [
+    {
+      "module_name": "@minecraft/server",
+      "version": "2.9.0"
+    }
+  ]
+}

@@ -1,0 +1,11 @@
+{
+  "Spawners": [
+    {
+      "SpawnerId": "Cutterray_Flow_Pulse_Dot"
+    }
+  ],
+  "LifeSpan": 0.35,
+  "CullDistance": 48.0,
+  "BoundingRadius": 0.2,
+  "IsImportant": false
+}

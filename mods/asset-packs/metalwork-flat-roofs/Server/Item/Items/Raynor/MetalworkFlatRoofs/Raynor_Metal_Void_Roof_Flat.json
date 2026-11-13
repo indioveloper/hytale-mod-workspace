@@ -1,0 +1,14 @@
+{
+  "Parent": "Metal_Iron_Roof_Flat",
+  "TranslationProperties": { "Name": "server.items.Raynor_Metal_Void_Roof_Flat.name" },
+  "Icon": "Icons/ItemsGenerated/Raynor_Metal_Void_Roof_Flat.png",
+  "Categories": ["Blocks.Metal"],
+  "Tags": { "Type": ["Metal"], "SubType": ["Roof"], "Family": ["Void"] },
+  "BlockType": {
+    "CustomModel": "Blocks/Raynor/MetalworkFlatRoofs/SeamSafe_Roof_Flat.blockymodel",
+    "CustomModelTexture": [{"Texture":"Blocks/Raynor/MetalworkFlatRoofs/Textures/Void_Ornament.png","Weight":1}],
+    "VariantRotation": "UpDownNESW",
+    "ParticleColor": "#603A8A",
+    "TextureComputedColor": "#603A8A"
+  }
+}

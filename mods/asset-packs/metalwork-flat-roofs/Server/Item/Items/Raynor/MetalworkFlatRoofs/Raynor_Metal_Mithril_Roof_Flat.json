@@ -1,0 +1,14 @@
+{
+  "Parent": "Rock_Stone_Brick_Roof_Flat", "ItemSoundSetId": "ISS_Items_Metal", "Recipe": null, "ResourceTypes": [],
+  "TranslationProperties": { "Name": "server.items.Raynor_Metal_Mithril_Roof_Flat.name" },
+  "Icon": "Icons/ItemsGenerated/Raynor_Metal_Mithril_Roof_Flat.png", "Categories": [ "Blocks.Metal" ],
+  "IconProperties": { "Scale": 0.58823, "Rotation": [ 22.5, 45, 22.5 ], "Translation": [ -1.1, -4.1 ] },
+  "Tags": { "Type": [ "Metal" ], "SubType": [ "Roof" ], "Family": [ "Mithril" ] },
+  "BlockType": {
+    "CustomModel": "Blocks/Raynor/MetalworkFlatRoofs/Metalwork_Roof_Flat.blockymodel",
+    "CustomModelTexture": [ { "Texture": "Blocks/Raynor/MetalworkFlatRoofs/Textures/Mithril.png", "Weight": 1 } ],
+    "VariantRotation": "UpDownNESW", "Gathering": { "Breaking": { "GatherType": "Rocks" } },
+    "BlockParticleSetId": "Metal", "BlockSoundSetId": "Metal", "PhysicalMaterialId": "Metal",
+    "ParticleColor": "#D5DBE0", "TextureComputedColor": "#D5DBE0"
+  }
+}

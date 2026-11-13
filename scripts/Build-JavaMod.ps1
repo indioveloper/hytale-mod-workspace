@@ -8,10 +8,16 @@ param(
 
   [string]$VanillaCustomUiAssetsZip,
 
+  [string[]]$AdditionalCustomUiRoots,
+
+  [string[]]$ForceCustomUiTransfer,
+
+  [switch]$ExcludeCustomUi,
+
   [Parameter(Mandatory = $true)]
   [string]$ArtifactName,
 
-  [string]$ServerJar = "$env:APPDATA\Hytale\install\pre-release\package\game\latest\Server\HytaleServer.jar"
+  [string]$ServerJar = "$env:APPDATA\Hytale\install\release\package\game\latest\Server\HytaleServer.jar"
 )
 
 $ErrorActionPreference = "Stop"
@@ -42,6 +48,10 @@ $project = (Resolve-Path -LiteralPath $ProjectPath).Path
 $source = (Resolve-Path -LiteralPath (Join-Path $project $SourceRoot)).Path
 $package = (Resolve-Path -LiteralPath (Join-Path $project $PackageRoot)).Path
 
+if ($ExcludeCustomUi -and ($VanillaCustomUiAssetsZip -or $AdditionalCustomUiRoots -or $ForceCustomUiTransfer)) {
+  throw "-ExcludeCustomUi cannot be combined with hydrated or additional Custom UI roots."
+}
+
 if (-not (Test-Path -LiteralPath $ServerJar -PathType Leaf)) {
   throw "HytaleServer.jar not found: $ServerJar"
 }
@@ -70,6 +80,13 @@ New-Item -ItemType Directory -Path $classes, $stage, $dist -Force | Out-Null
 & javac -encoding UTF-8 -cp $ServerJar -d $classes $javaSources.FullName
 if ($LASTEXITCODE -ne 0) {
   throw "javac failed with exit code $LASTEXITCODE"
+}
+
+# javac can exit 0 after an internal compiler exception (for example when the
+# sandbox denies access to a classpath JAR). Never package an empty classes tree.
+$compiledClasses = @(Get-ChildItem -LiteralPath $classes -Recurse -Filter *.class -File)
+if ($compiledClasses.Count -eq 0) {
+  throw "javac produced no .class files; refusing to package an invalid plugin."
 }
 
 Get-ChildItem -LiteralPath $classes -Force | ForEach-Object {
@@ -118,10 +135,21 @@ if ($VanillaCustomUiAssetsZip) {
   }
 }
 
-foreach ($assetDirectory in @("Common", "Server")) {
+foreach ($assetDirectory in @("Common", "Server", "Samples")) {
   $candidate = Join-Path $package $assetDirectory
   if (Test-Path -LiteralPath $candidate -PathType Container) {
     Copy-Item -LiteralPath $candidate -Destination $stage -Recurse -Force
+  }
+}
+
+if ($ExcludeCustomUi) {
+  $customUiToRemove = Join-Path $stage "Common\UI\Custom"
+  if (Test-Path -LiteralPath $customUiToRemove -PathType Container) {
+    $resolvedCustomUiToRemove = [System.IO.Path]::GetFullPath($customUiToRemove)
+    if (-not $resolvedCustomUiToRemove.StartsWith($stage + [System.IO.Path]::DirectorySeparatorChar)) {
+      throw "Refusing to remove Custom UI outside the build stage: $resolvedCustomUiToRemove"
+    }
+    Remove-Item -LiteralPath $resolvedCustomUiToRemove -Recurse -Force
   }
 }
 
@@ -132,6 +160,49 @@ if ($AssetsRoot) {
     if (Test-Path -LiteralPath $candidate -PathType Container) {
       Copy-Item -LiteralPath $candidate -Destination $stage -Recurse -Force
     }
+  }
+}
+
+if ($AdditionalCustomUiRoots) {
+  $customUiStage = Join-Path $stage "Common\UI\Custom"
+  New-Item -ItemType Directory -Path $customUiStage -Force | Out-Null
+  foreach ($customUiRoot in $AdditionalCustomUiRoots) {
+    $resolvedCustomUiRoot = (Resolve-Path -LiteralPath $customUiRoot).Path
+    if (-not (Test-Path -LiteralPath $resolvedCustomUiRoot -PathType Container)) {
+      throw "Additional Custom UI root not found: $customUiRoot"
+    }
+    Get-ChildItem -LiteralPath $resolvedCustomUiRoot -Force | ForEach-Object {
+      Copy-Item -LiteralPath $_.FullName -Destination $customUiStage -Recurse -Force
+    }
+  }
+}
+
+if ($ForceCustomUiTransfer) {
+  $customUiStage = [System.IO.Path]::GetFullPath((Join-Path $stage "Common\UI\Custom"))
+  foreach ($document in $ForceCustomUiTransfer) {
+    if ([System.IO.Path]::IsPathRooted($document)) {
+      throw "Forced Custom UI document must be relative to Common/UI/Custom: $document"
+    }
+    $normalizedDocument = $document.Replace("/", [System.IO.Path]::DirectorySeparatorChar)
+    $target = [System.IO.Path]::GetFullPath((Join-Path $customUiStage $normalizedDocument))
+    if (-not $target.StartsWith($customUiStage + [System.IO.Path]::DirectorySeparatorChar)) {
+      throw "Refusing to modify a Custom UI document outside the build stage: $document"
+    }
+    if (-not (Test-Path -LiteralPath $target -PathType Leaf)) {
+      throw "Forced Custom UI document not found in build stage: $document"
+    }
+    if ([System.IO.Path]::GetExtension($target) -ne ".ui") {
+      throw "Only .ui documents can be forced into Custom UI transfer: $document"
+    }
+
+    # Update 7.7 de-duplicates byte-identical vanilla documents before sending
+    # RequiredAssets. A trailing whitespace-only line preserves the markup while
+    # giving selected compatibility documents a distinct transport hash.
+    [System.IO.File]::AppendAllText(
+      $target,
+      "`r`n ",
+      [System.Text.UTF8Encoding]::new($false)
+    )
   }
 }
 

@@ -33,34 +33,12 @@ public final class CreativeToolRestrictionManager {
   private static final long EXPIRY_NANOS = 1_500_000_000L;
   private static final long CATALOG_REFRESH_NANOS = 1_000_000_000L;
 
-  private static final Set<String> ALLOWED_ITEM_IDS =
-      Set.of(
-          "EditorTool_Entity",
-          "EditorTool_Paint",
-          "EditorTool_Sculpt",
-          "EditorTool_Boulder",
-          "EditorTool_Cave",
-          "EditorTool_Mountain",
-          "EditorTool_Tentacle",
-          "EditorTool_Decoration",
-          "EditorTool_Forest",
-          "EditorTool_GrassBrush",
-          "EditorTool_Hotsprings",
-          "EditorTool_Path",
-          "EditorTool_River",
-          "EditorTool_Spiral",
-          "EditorTool_Noise",
-          "EditorTool_Revolve",
-          "EditorTool_Scatter",
-          "EditorTool_Tint",
-          "EditorTool_Layers");
-
-  private static final Set<String> ALLOWED_TOOL_IDS =
-      Set.of("Entity", "Paint", "Sculpt", "Noise", "Revolve", "Scatter", "Tint", "Layers");
+  private static final Set<String> ALLOWED_ITEM_IDS = Set.of();
 
   private final Path recoveryFile;
   private final HytaleLogger logger;
   private final Map<UUID, RestrictionState> active = new HashMap<>();
+  private final Set<UUID> gameRestricted = new HashSet<>();
 
   public CreativeToolRestrictionManager(Path dataDirectory, HytaleLogger logger) {
     this.recoveryFile = dataDirectory.resolve("active-creative-tool-restrictions.txt");
@@ -108,6 +86,21 @@ public final class CreativeToolRestrictionManager {
     }
   }
 
+  public synchronized void refreshForGame(
+      PlayerRef playerRef, Ref<EntityStore> entityRef, Store<EntityStore> store) {
+    gameRestricted.add(playerRef.getUuid());
+    refresh(playerRef, entityRef, store);
+  }
+
+  public synchronized boolean isGameRestricted(UUID playerId) {
+    return gameRestricted.contains(playerId);
+  }
+
+  public synchronized void releaseGame(UUID playerId) {
+    gameRestricted.remove(playerId);
+    restore(playerId);
+  }
+
   public synchronized void tick(Store<EntityStore> store) {
     long now = System.nanoTime();
     List<UUID> expired = new ArrayList<>();
@@ -129,6 +122,7 @@ public final class CreativeToolRestrictionManager {
   }
 
   public synchronized void restoreAll() {
+    gameRestricted.clear();
     for (UUID playerId : new ArrayList<>(active.keySet())) {
       restore(playerId);
     }
@@ -141,11 +135,6 @@ public final class CreativeToolRestrictionManager {
     Set<String> required = new HashSet<>();
     required.add("-" + HytalePermissions.BUILDER_TOOLS_EDITOR.getId());
     required.add("-" + HytalePermissions.toolPermission("*"));
-    required.add(HytalePermissions.EDITOR_BRUSH_USE.getId());
-    required.add(HytalePermissions.EDITOR_BRUSH_CONFIG.getId());
-    for (String toolId : ALLOWED_TOOL_IDS) {
-      required.add(HytalePermissions.toolPermission(toolId));
-    }
 
     Set<String> added = new HashSet<>(required);
     if (existing != null) {
