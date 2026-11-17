@@ -1,5 +1,11 @@
 # Research tree MVP
 
+This document describes the current five-sector, tier 0–2 prototype. The
+[2026-11-17 master plan](DESERT_SURVIVAL_MASTER_PLAN_2026-11-17.md) specifies a
+future seven-tab Codex: global wheel, five branch views and a separate Uniques
+catalog, scalable through tier 6. That UI and its unique blueprint permissions
+are not implemented by this MVP.
+
 ## Shape
 
 - Header: current available Intel and a custom Intel texture.

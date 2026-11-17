@@ -1,5 +1,11 @@
 # Borrador de generación del mapa desértico
 
+El [plan maestro del 2026-11-17](DESERT_SURVIVAL_MASTER_PLAN_2026-11-17.md)
+reemplaza el límite cerrado como objetivo futuro por cuatro anillos exteriores:
+dungeons sin especia, especia mediana y cuevas, especia abundante, y desierto
+profundo procedural infinito. Ninguno de esos anillos está implementado.
+El evento de gusano sigue siendo una idea exploratoria.
+
 Estado 2026-11-16: el pack `prototypes/desert-worldgen` 0.2.0 esta instalado
 y el usuario confirmo en `dune2` las cuatro zonas, los nodos y los prefabs
 vanilla. Este documento conserva el plan original; el estado operativo esta

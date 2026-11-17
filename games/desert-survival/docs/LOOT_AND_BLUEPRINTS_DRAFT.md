@@ -4,6 +4,9 @@ Historical first draft: its MVP paragraph below predates the implemented
 research prototype. The current research and crafting direction is in
 [`RESEARCH_TREE_MVP.md`](RESEARCH_TREE_MVP.md) and
 [`CRAFTING_MATERIALS_ZONES_AND_BUILDING.md`](CRAFTING_MATERIALS_ZONES_AND_BUILDING.md).
+The [2026-11-17 master plan](DESERT_SURVIVAL_MASTER_PLAN_2026-11-17.md) now
+defines the unique blueprint and imperial permit rules. This earlier draft
+is retained for its loot design context; its MVP boundary is obsolete.
 
 ## What Dune: Awakening does
 
@@ -73,12 +76,17 @@ Use a hybrid of permanent unlocks and limited permissions:
   useful. A permission is consumed only after crafting completes successfully.
 - The physical schematic is tradable until learned. Learned recipes and their
   permission balance are character-bound for the MVP.
+- Repair of a unique item requires at least one available permission for its
+  recipe, but does **not** spend that permission. Crafting spends one only
+  after successful completion. Holding a physical blueprint does not reveal
+  the recipe: consuming it reveals the recipe and grants one personal permit.
 - Final cooperative/boss chests use personal loot so one player cannot take
   another player's progression drop.
 
-The Codex should show recipe state, remaining permissions, material tier and a
-broad source hint such as `Testing Station - Zone 2`; it should not reveal the
-exact chest or percentage by default.
+The future Codex has a separate Uniques tab. An undiscovered entry shows only
+a generic black silhouette, without name, materials or statistics. Once its
+blueprint is consumed, it reveals the recipe and remaining permits. Exact
+source hints and drop rates are still open design decisions.
 
 For naming in Spanish:
 

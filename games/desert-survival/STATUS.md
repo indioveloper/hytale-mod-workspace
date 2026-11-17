@@ -9,6 +9,11 @@ PC y lo que el usuario ha confirmado dentro del juego. Detalle narrativo en
 Runtime: Hytale estable `0.7.7`. `UserData` = `%APPDATA%\Hytale\UserData`.
 El usuario hace los smoke tests; no abrir el juego desde el agente.
 
+El [plan maestro del 2026-11-17](docs/DESERT_SURVIVAL_MASTER_PLAN_2026-11-17.md)
+actualiza decisiones de diseño sobre cutterrays, permisos de blueprints,
+Códice y desierto profundo. Es planificación: no cambia las versiones,
+artefactos instalados ni pruebas confirmadas de la tabla siguiente.
+
 ## Tabla de estado
 
 | Prototipo | Fuentes | Instalado (donde) | SHA-256 instalado | Probado en juego |
