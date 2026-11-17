@@ -3,6 +3,14 @@
 Isolated prototype for the MVP technology tree and its Intel economy. It is not
 part of the public Raynor Mods release matrix.
 
+Design reconciliation (2026-11-17): the [master plan](../../docs/DESERT_SURVIVAL_MASTER_PLAN_2026-11-17.md)
+proposes seven Codex tabs (global, five branches, Uniques) and normal tiers
+0–6. This 0.2.8 build still has one fixed five-sector wheel with 48 nodes in
+tiers 0–2. Unique blueprint discovery and per-recipe permits do not exist in
+this plugin. Some recipes are taught by Research, but their game visibility
+requires the smoke test recorded in [STATUS](../../STATUS.md). Later biome
+missions may gate access to regions; they do not currently gate research.
+
 ## Player loop
 
 1. Enemy bases and dungeons place `Intel_Pickup_Prototype` as an end reward.

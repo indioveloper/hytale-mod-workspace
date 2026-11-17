@@ -5,6 +5,10 @@ This document describes the current five-sector, tier 0–2 prototype. The
 future seven-tab Codex: global wheel, five branch views and a separate Uniques
 catalog, scalable through tier 6. That UI and its unique blueprint permissions
 are not implemented by this MVP.
+The future Uniques tab will keep its own per-recipe blueprint/permit balance;
+spendable Intel does not replace those permits. Existing stable node IDs remain
+unchanged during any display-name or cutterray-tier migration. Biome missions
+are a later progression proposal, not a current gate on research.
 
 ## Shape
 

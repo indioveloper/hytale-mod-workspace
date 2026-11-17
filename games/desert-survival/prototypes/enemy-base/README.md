@@ -1,5 +1,13 @@
 # Base enemiga (prototipo 0.3.2)
 
+Conciliación 2026-11-17: las bases, cadáveres y llaves son prototipos; 0.3.2
+todavía requiere smoke test para prompt, orientación tras recargar chunk y
+obtención/consumo de llaves. El botín de cofres que se llama «plano» no otorga
+permisos de fabricación de únicos. Su integración con las blueprints físicas
+del [plan maestro](../../docs/DESERT_SURVIVAL_MASTER_PLAN_2026-11-17.md)
+queda pendiente, al igual que la persistencia del inventario/sangre del
+cadáver al reiniciar el servidor.
+
 Complemento Java del pack `desert-worldgen` 0.4.1 para Hytale 0.7.7.
 Solo procesa los roles `Desert_Raider_Swordsman` y `Desert_Raider_Gunner`.
 WorldGen debe estar activo en el save para que existan los puestos y NPC, pero

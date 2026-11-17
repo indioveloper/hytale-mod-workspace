@@ -54,3 +54,8 @@ denominado T3 no implementa por sí solo esta progresión completa.
 
 El acero se representará como lingotes, placas y componentes refinados. No tendrá
 nodo de extracción propio.
+
+El [borrador de materiales y recetas](CRAFTING_MATERIALS_ZONES_AND_BUILDING.md)
+conserva costes de balance propuestos, pero sus nombres «cutterray tier 1/2/3»
+preceden a esta escala. Research tiene nodos e IDs persistidos para esos
+nombres; falta decidir su correspondencia exacta sin romper personajes.

@@ -1,5 +1,12 @@
 # Desert Survival Build Selector Prototype 0.6.2
 
+Design reconciliation (2026-11-17): the current generator has a fixed 100-unit
+output and local purifier connection; the proposed shared base energy grid,
+priorities, blackouts and functional penta-shields are **not implemented**.
+Current costs use vanilla basalt as a placeholder. See
+[base power design](../../docs/BASE_POWER_GRID.md) and
+[STATUS](../../STATUS.md) before changing installations.
+
 Prototipo aislado para Hytale 0.7.7. No modifica Research, Vitals ni los
 otros mods. El catalogo contiene cuatro secciones de base y cinco maquinas:
 fabricador, purificador de sangre, generador y dos refinerias. Las maquinas

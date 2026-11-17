@@ -1,5 +1,13 @@
 # Resource node architecture
 
+Status (2026-11-17): this document describes a **proposed later architecture**.
+The playable 0.1.9 prototype uses a single large modeled block, without a
+separate visual entity or persistent hybrid anchor. WorldGen places that block
+with a `Column` prop. Do not describe the hybrid below as implemented. The
+[master plan](DESERT_SURVIVAL_MASTER_PLAN_2026-11-17.md) defines the future
+T0–T6 resource access order; its exact yield and energy matrices are still
+missing from this workspace. Five seconds remains a prototype timing rule.
+
 ## Decision for the MVP
 
 Use a hybrid node: one technical anchor block plus one visual model entity.

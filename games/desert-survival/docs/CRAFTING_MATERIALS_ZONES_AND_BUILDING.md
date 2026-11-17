@@ -9,6 +9,18 @@ Las recetas del árbol empiezan bloqueadas y se aprenden al investigar. El
 material y la estación se comprueban al fabricar; investigar no exige entrar
 antes en una zona.
 
+**Conciliación 2026-11-17:** los costes de abajo son hipótesis de balance y
+no equivalen a recetas implementadas. WorldGen 0.4.1 solo coloca fuel cells,
+cobre e hierro; no coloca aluminio, carbono, eritrita ni chatarra como nodo
+propio. El [plan maestro](DESERT_SURVIVAL_MASTER_PLAN_2026-11-17.md) fija la
+escala de cutterray T0 improvisado (cobre), T1 (hierro), T2
+(carbono/eritrita), T3 (basalto/aluminio), T4–T6. Los nombres «cutterray tier
+1/2/3» de este borrador son etiquetas heredadas de los nodos Research y no
+deben publicarse como escala final. Falta acordar su migración sin alterar IDs
+persistidos y recibir las matrices exactas de rendimiento/energía.
+Build Selector 0.6.2 revela estaciones investigadas en su selector, pero cobra
+basalto vanilla temporal; el fabricador y las refinerías no procesan aún.
+
 ## Referencias y criterios
 
 La wiki comunitaria documenta ejemplos de escala: extractor improvisado
@@ -35,15 +47,14 @@ cañón/mina sombreada: menos calor ambiental, enemigos y extracción más difí
 
 | Zona | Recurso exclusivo o principal | Recursos compartidos y fuentes secundarias | Función en la progresión |
 | --- | --- | --- | --- |
-| 1, refugio y ruinas (calor 1) | Chatarra recuperada, piedra común | Fibra vegetal, arena, agua escasa, piezas mecánicas en bases enemigas | Fabricar equipo básico, fabricador, refinería y cutterray tier 1. |
-| 2, dunas de cobre (calor 2) | Nodos de cobre, arena fina | Chatarra, fibra, piezas mecánicas y componentes eléctricos en ruinas | Obtener lingotes de cobre, silicona y equipo tier 1; preparar cutterray tier 2. |
-| 3, cañón/minas de hierro (calor 0) | Nodos de hierro | Piedra/basalto, fibra en oasis, chatarra y componentes eléctricos de bases más difíciles | Fabricar equipo tier 2 y cutterray tier 3. |
-| 4, desierto profundo (calor 3) | Nodos de aluminio, fuera de las recetas MVP | Chatarra rara y componentes avanzados de dungeons | Primera meta después del MVP. El cutterray tier 3 abre esta extracción. |
+| 1, refugio y ruinas (calor 1) | Chatarra recuperada y piedra común propuestas | Fibra vegetal, arena, agua escasa y piezas mecánicas propuestas; fuel cells colocadas actualmente | Equipo básico; cutterray improvisado T0 canónico. |
+| 2, dunas de cobre (calor 2) | Nodos de cobre colocados | Chatarra, fibra y componentes eléctricos propuestos; fuel cells colocadas | Cobre refinado y preparación del cutterray T1 canónico. |
+| 3, cañón/minas de hierro (calor 0) | Nodos de hierro colocados | Cobre colocado; otros componentes propuestos | Hierro y preparación de progresión posterior. |
+| 4, roca dura (calor 3) | Hierro colocado; aluminio aún no | Bases T3/T4 colocadas; materiales avanzados futuros | Desafío del mapa actual, no equivalente al tier 4 de cutterray. |
 
-Las zonas se implementarán como **configuración explícita del mapa** (volúmenes
-o biomas propios), no como una deducción de color o temperatura. Los depósitos
-de chatarra y cobre aún no están todos implementados; el prototipo jugable
-actual solo contiene nodos de cobre y hierro. Ninguna receta inicial debe
+Las zonas actuales están configuradas en biomas propios. Los depósitos
+de chatarra no están implementados; los nodos jugables son cobre, hierro y
+fuel cells. Ninguna receta inicial debe
 depender de un drop aleatorio único: los componentes de dungeon aceleran el
 progreso, pero tienen una vía de fabricación o una fuente garantizada.
 
@@ -133,15 +144,15 @@ propia. Propuesta de receta de arranque: `5 CH + 4 FV`, en Campo, capacidad
 | Investigación → salida | Coste propuesto | Dónde | Base de la adaptación |
 | --- | --- | --- | --- |
 | Power Pack básico → batería | 1 CH | Campo | Igual al improvisado de Dune; regeneración de energía por definir. |
-| Cutterray tier 1 → herramienta | 2 CH | Campo | Igual al cutter improvisado de Dune; corta chatarra y cobre en nuestro mapa. |
+| Cutterray tier 1 (nombre Research heredado) → T0 improvisado propuesto | 2 CH | Campo | Coste sugerido del cutter improvisado; acceso canónico a chatarra, granito y cobre. |
 | Fabricador → banco | 75 CH | Campo; se coloca | Igual al fabricador general de Dune. |
 | Refinería pequeña de mineral → máquina | 90 CH | F; se coloca | Igual a la pequeña de Dune. Sus procesos desbloquean CU y HI. |
 | Refinería química pequeña → máquina | 45 CU | F; se coloca | Igual a la pequeña de Dune; habilita SI. |
 | Power Pack tier 2 → batería | 5 CU + 3 CE | F | Dune usa 5 cobre + 3 capacitores para Mk1. |
-| Cutterray tier 2 → herramienta | 6 CU + 4 GE | F | Dune usa 6 cobre + 4 generadores EMF para Mk1; corta hierro en nuestro mapa. |
+| Cutterray tier 2 (nombre Research heredado) → T1 propuesto | 6 CU + 4 GE | F | Coste sugerido de Mk1; abre hierro. |
 | Cofre → bloque contenedor | 12 CU + 4 PM | F; se coloca | Adaptación: se movió a cobre para el MVP; el cofre de Dune pide hierro. |
 | Power Pack tier 3 → batería | 8 HI + 5 CE | F | Dune usa 8 hierro + 5 capacitores para Mk2. |
-| Cutterray tier 3 → herramienta | 10 HI + 7 GE | F | Dune usa 10 hierro + 7 generadores EMF para Mk2; corta aluminio en nuestro mapa. |
+| Cutterray tier 3 (nombre Research heredado) → T2 propuesto | 10 HI + 7 GE | F | Coste sugerido de Mk2; abre carbono/eritrita. T3 para basalto/aluminio requiere otro nodo y coste aún sin definir. |
 | Compactador estático → herramienta | 10 HI + 7 GE | F | Igual al compactador de Dune, pero sin recompensa AQL. |
 | Estación de reparación → banco | 20 HI + 10 PM + 5 SI | F; se coloca | Propuesta para cerrar el circuito de mantenimiento. El coste de cada reparación depende del daño. |
 
@@ -244,4 +255,4 @@ esperar. El diseño del selector y el ciclo de vida de cada sección están en
    Rechazar en tests recetas propias sin investigación, sin banco o con un
    material de zona posterior al tier previsto, salvo excepción documentada.
 4. Probar una cadena completa: chatarra → fabricador → refinería → cobre →
-   cutterray tier 2 → hierro, con personaje nuevo y con progreso guardado.
+   cutterray T1 canónico → hierro, con personaje nuevo y progreso guardado.

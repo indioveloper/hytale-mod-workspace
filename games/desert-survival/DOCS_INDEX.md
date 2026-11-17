@@ -11,10 +11,16 @@ superadas por ese estado.
 - [Presentación del proyecto](README.md)
 - [Estado actual y pendientes](STATUS.md)
 - [Plan maestro de diseño, 2026-11-17](docs/DESERT_SURVIVAL_MASTER_PLAN_2026-11-17.md) — decisiones nuevas y backlog; no describe funciones ya implementadas.
+- [Conciliación del plan con fuentes y prototipos](docs/MASTER_PLAN_RECONCILIATION_2026-11-17.md) — discrepancias, estado y decisiones abiertas.
 - [Plan de mundo desértico y biomas](docs/WORLDGEN_DESERT_PLAN.md)
 - [Arquitectura de nodos de recursos](docs/RESOURCE_NODE_ARCHITECTURE.md)
 - [Progresión de recursos](docs/RESOURCE_PROGRESSION_RESEARCH.md)
 - [Loot y blueprints](docs/LOOT_AND_BLUEPRINTS_DRAFT.md)
+- [Catálogo y contrato de esquemas únicos](docs/UNIQUE_SCHEMATICS_CATALOG.md)
+- [Red de energía de bases](docs/BASE_POWER_GRID.md)
+- [Anillos del desierto profundo](docs/DEEP_DESERT_WORLDGEN.md)
+- [Combate y energía del personaje](docs/CHARACTER_COMBAT_AND_POWER.md)
+- [Misiones, facciones y lore](docs/PROGRESSION_QUESTS_AND_LORE.md)
 
 Las matrices detalladas citadas en el plan maestro (`CUTTERRAY_DUNE_PROGRESION_CANONICA.md` y `DESERT_SURVIVAL_UNIQUE_SCHEMATICS_AND_CUTTERAYS.md`) no se recibieron con el adjunto; sus cifras siguen pendientes de incorporar.
 

@@ -4,19 +4,23 @@ Current status (sources vs installed vs tested) and short handoff: [STATUS.md](S
 Narrative handoff: [2026-11-16 handoff](docs/HANDOFF_2026-11-16.md).
 It distinguishes installed JARs, source-only work and design proposals.
 
-Pre-production workspace for a closed-map survival mode inspired by desert
+Pre-production workspace for a desert survival mode inspired by desert
 survival games: progressive resource regions, hostile bases, heat, thirst,
 sandstorms, large environmental threats, base construction and vehicles.
+The current WorldGen prototype ends in `Void` beyond its fourth zone; the
+[2026-11-17 master plan](docs/DESERT_SURVIVAL_MASTER_PLAN_2026-11-17.md)
+proposes four additional outer rings, eventually an infinite deep desert.
+That expansion is design only.
 
 Current work focuses on the asset bottleneck:
 
-- six cutterray tiers and their extraction beams;
+- an improvised cutterray T0 and normal T1–T6, plus proposed unique variants;
 - large resource nodes with progressive cutter requirements;
 - construction pieces, base machinery, weapons, armor and stillsuits.
 
 The first usable asset is the
 [`cutterray-t3`](prototypes/cutterray-t3/README.md) visual prototype. Resource
-progression research and the chosen hybrid node implementation live under
+progression research and the proposed hybrid node architecture live under
 [`docs`](docs).
 
 The first loot and blueprint proposal is documented in
@@ -39,6 +43,10 @@ assigns suggested ingredients and workstations to those unlocks, places
 materials in the four zones and compares block-based building with prefabs.
 The [custom building selector proposal](docs/BUILD_SELECTOR_RESEARCH.md) covers
 the catalog, 3D preview and placement workflow for pieces and prefab modules.
+
+The version-by-version notes below are historical. For the current installed
+version and game validation, use [STATUS.md](STATUS.md); for adopted future
+design, use the [master plan](docs/DESERT_SURVIVAL_MASTER_PLAN_2026-11-17.md).
 An isolated [build-selector prototype](prototypes/build-selector/README.md)
 implements seven multi-block prefabs with a picker, 3D preview and in-world
 placement ghost. Version 0.3.0 adds a fixed controls HUD, a 40 x 40 x 100

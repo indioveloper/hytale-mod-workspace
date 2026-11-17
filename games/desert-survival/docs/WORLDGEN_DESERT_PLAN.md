@@ -6,10 +6,11 @@ dungeons sin especia, especia mediana y cuevas, especia abundante, y desierto
 profundo procedural infinito. Ninguno de esos anillos está implementado.
 El evento de gusano sigue siendo una idea exploratoria.
 
-Estado 2026-11-16: el pack `prototypes/desert-worldgen` 0.2.0 esta instalado
-y el usuario confirmo en `dune2` las cuatro zonas, los nodos y los prefabs
-vanilla. Este documento conserva el plan original; el estado operativo esta
-en `../STATUS.md` y la implementacion en el README del prototipo. El
+Estado 2026-11-17: el pack `prototypes/desert-worldgen` 0.4.1 está instalado;
+su revisión visual y la llave garantizada siguen pendientes de smoke test.
+El usuario confirmó previamente zonas, nodos y prefabs como prototipo.
+El estado operativo está en `../STATUS.md` y la implementación en el README
+del prototipo. El
 laboratorio `experiments/asset-packs/worldgen-v2-lab` esta fijado a
 0.7.0-pre.1 y no se debe copiar sin validacion contra 0.7.7.
 
@@ -33,20 +34,23 @@ individuales siguen siendo procedurales.
 | 1 | Refugio, dunas bajas y ruinas | Chatarra; células de combustible escasas |
 | 2 | Dunas abiertas y afloramientos | Cobre; células de combustible más frecuentes |
 | 3 | Cañones y minas sombreadas | Hierro y componentes de bases enemigas |
-| 4 | Desierto profundo y roca dura | Aluminio y materiales avanzados futuros |
+| 4 | Roca dura del mapa inicial | Hierro y bases T3/T4; aluminio y materiales avanzados son futuros |
 
 La abundancia exacta de células de combustible queda pendiente de balance.
 Los nodos de recurso actuales son bloques de un único anclaje con modelo grande.
-La propuesta es colocarlos como `Manual` Props de un bloque, con posiciones
-procedurales, `Locator` y `Pattern` para que se apoyen en suelo válido. Las
+La implementación comprobada usa props `Column` con `Mesh2D`, jitter máximo
+0,5 y patrón de suelo. La combinación anterior `Locator` + `Manual` no colocaba
+los nodos. Las
 bases enemigas y otros espacios diseñados a mano usarían `Prefab` Props. Los
 materiales del subsuelo se asignan en `MaterialProvider`; los nodos visibles se
 colocan mediante Props para controlar separación, rareza y accesibilidad.
 
-El `WorldStructure` por sí mismo no convierte un mundo infinito en un mapa
-cerrado. Hay que definir una frontera de juego: una banda exterior hostil o
-intransitable y un control de posición del servidor. No inferir límites solo
-por el aspecto del terreno.
+El `Void` actual después de 1400 bloques corta el terreno, pero no constituye
+una frontera jugable. El plan maestro propone sustituirla más adelante por
+cuatro anillos exteriores; su transición y persistencia están sin diseñar.
+El número de zona del mapa tampoco equivale al tier de cutterray: la zona 4
+actual contiene hierro, mientras que la progresión canónica alcanza aluminio
+con cutterray T3. Ver [progresión de recursos](RESOURCE_PROGRESSION_RESEARCH.md).
 
 ## Orden de implementación
 

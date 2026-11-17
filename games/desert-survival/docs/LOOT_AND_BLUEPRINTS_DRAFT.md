@@ -94,12 +94,14 @@ For naming in Spanish:
 - **Plano de base:** saved prefab/layout used to reconstruct a building.
 - **Intel:** future research currency, separate from both.
 
-## MVP boundary
+## Historical MVP boundary (superseded)
 
-Factions and the research tree are outside the MVP, so Intel should not yet be
-a spendable progression system. Either omit it or store Intel pickups as a
-future-proof counter without exposing a shop. The MVP can be carried by
-guaranteed essential schematics plus rare limited-use unique schematics.
+The original proposal below excluded research. That boundary is obsolete:
+Research already implements spendable Intel and a 48-node prototype. Unique
+blueprints and personal permits remain design only. A chest currently described
+as yielding a blueprint should not be treated as granting a working unique
+crafting permission. Loot pools and sources must be reconciled with the
+[unique schematic contract](UNIQUE_SCHEMATICS_CATALOG.md) before implementation.
 
 First implementation slice:
 

@@ -13,6 +13,9 @@ El [plan maestro del 2026-11-17](docs/DESERT_SURVIVAL_MASTER_PLAN_2026-11-17.md)
 actualiza decisiones de diseño sobre cutterrays, permisos de blueprints,
 Códice y desierto profundo. Es planificación: no cambia las versiones,
 artefactos instalados ni pruebas confirmadas de la tabla siguiente.
+La [conciliación documental](docs/MASTER_PLAN_RECONCILIATION_2026-11-17.md)
+enumera las discrepancias entre ese diseño y los prototipos. Las matrices
+numéricas externas de cutterray/únicos aún no están disponibles.
 
 ## Tabla de estado
 
@@ -44,7 +47,7 @@ cambios locales. Para las sesiones de diseño sin Hytale, empezar por
 
 ## Handoff breve: que falta
 
-1. Smoke test de lo instalado sin cambiar JARs: Research 0.2.7 (receta del
+1. Smoke test de lo instalado sin cambiar JARs: Research 0.2.8 (receta del
    cuchillo en Herramientas tras investigar `CO-0.2`; extractor y bolsa tras
    `AG-0.1`), Build Selector 0.6.2 (generador con fuel, purificador, recetas
    vanilla ocultas), extraccion de celulas de combustible con el cutterray.

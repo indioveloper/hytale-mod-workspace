@@ -1,5 +1,12 @@
 # Desert Survival WorldGen (0.4.1)
 
+Design reconciliation (2026-11-17): this pack has four finite zones and a
+`Void` boundary, not the four planned outer rings or infinite deep desert.
+Zone number is not cutterray tier. Aluminum, carbon, eritrite, jasmium,
+titanium and stravidium nodes are not placed here. See
+[world design](../../docs/WORLDGEN_DESERT_PLAN.md) and
+[deep desert proposal](../../docs/DEEP_DESERT_WORLDGEN.md).
+
 Asset pack WorldGen V2 para el runtime estable `0.7.7` que implementa los pasos
 1 y 2 (y un primer corte del 3) de
 [`docs/WORLDGEN_DESERT_PLAN.md`](../../docs/WORLDGEN_DESERT_PLAN.md): una
