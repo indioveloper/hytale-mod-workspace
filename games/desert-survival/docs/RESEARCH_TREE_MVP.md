@@ -22,6 +22,12 @@ are a later progression proposal, not a current gate on research.
 The stable IDs use `AG`, `CO`, `CN`, `EX` and `VE`. Display names can change;
 save data and future recipe checks must continue using the IDs.
 The [research-to-item map](RESEARCH_UNLOCKS_AND_ITEMS.md) uses only display names.
+The existing cutterray nodes now display the canonical progression:
+`CN-0.2` = improvised T0, `CN-1.2` = T1 and `CN-2.2` = T2. The T3 node
+for basalt/aluminum will be added after `CN-2.2` when higher bands are
+implemented. The linked `Tool_Cutterray_T3_Prototype` remains an experimental
+copper/iron tool with its original asset ID; it is not proof of canonical T2
+or T3 functionality. See [resource progression](RESOURCE_PROGRESSION_RESEARCH.md).
 
 ## Intel contract
 

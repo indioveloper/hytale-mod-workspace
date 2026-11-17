@@ -1,6 +1,8 @@
 # Conciliación del plan maestro con el workspace
 
-Fecha: 2026-11-17. Fuente de decisiones de diseño:
+Fecha: 2026-11-17. Revisión de incongruencias completada sobre fuentes
+locales; los cambios de nombres y outputs **compilan, pero aún no están
+instalados ni probados en juego**. Fuente de decisiones de diseño:
 [plan maestro](DESERT_SURVIVAL_MASTER_PLAN_2026-11-17.md). Fuente de versiones,
 instalaciones y smoke tests: [STATUS](../STATUS.md). Esta revisión actualiza
 documentos, **no** código, assets ni JAR instalados. Las dos matrices citadas
@@ -13,9 +15,9 @@ no se han inferido sus cifras.
 | `STATUS.md` | Se conserva la separación fuentes/instalado/probado y se corrige Research 0.2.8 en el handoff. | Probar 0.2.8, Build Selector 0.6.2, WorldGen 0.4.1 y Enemy Base 0.3.2. |
 | `DOCS_INDEX.md` | Enlaza plan, esta conciliación y los cinco nuevos documentos de agenda. | Mantenerlo al día tras cada decisión. |
 | `RESOURCE_PROGRESSION_RESEARCH.md` | T0–T6 y variantes T1.5–T6.5; enlaza el desajuste con los nombres Research. | Matrices de rendimiento/energía ausentes. |
-| `RESOURCE_NODE_ARCHITECTURE.md` | Se declara híbrido bloque+entidad como propuesta; el prototipo real es bloque modelado. | Validar si el híbrido justifica su coste de red y persistencia. |
+| `RESOURCE_NODE_ARCHITECTURE.md` | Se adopta bloque modelado único como línea base; bloque+entidad queda condicionado a una necesidad comprobada. | Variantes visuales y estado persistente de desgaste. |
 | `RESEARCH_TREE_MVP.md` | Separa rueda fija de 48 nodos del Códice futuro de siete pestañas y permisos únicos. | Definir ampliación de tiers y migración de IDs sin romper saves. |
-| `RESEARCH_UNLOCKS_AND_ITEMS.md` | Corrige integración parcial de recetas 0.2.8 y marca nombres de cutterray heredados. | Resolver correspondencia de los nodos actuales con T0–T3. |
+| `RESEARCH_UNLOCKS_AND_ITEMS.md` | Fija `CN-0.2`→T0, `CN-1.2`→T1, `CN-2.2`→T2, sin cambiar IDs de nodo; outputs futuros T0/T1/T2 y asset experimental T3 separado. | Crear assets/recetas, nodo T3 posterior y probar migración de personajes. |
 | `LOOT_AND_BLUEPRINTS_DRAFT.md` | Marca la antigua exclusión de Research del MVP como obsoleta; añade vínculo al contrato de únicos. | Integrar BP físico, permisos y pools; «plano» actual no los implementa. |
 | `CRAFTING_MATERIALS_ZONES_AND_BUILDING.md` | Separa costes sugeridos de recetas reales, corrige distribución actual y corta el salto a aluminio. | Catálogo de materiales intermedios, recetas y estaciones reales. |
 | `WORLDGEN_DESERT_PLAN.md` | Actualiza pack 0.4.1, props `Column`, zona 4 de hierro y frontera `Void`; anillos exteriores futuros. | Transición de saves y frontera jugable. |
@@ -30,12 +32,15 @@ Nuevas agendas de diseño: [esquemas únicos](UNIQUE_SCHEMATICS_CATALOG.md),
 [combate y Power Packs](CHARACTER_COMBAT_AND_POWER.md) y
 [misiones y lore](PROGRESSION_QUESTS_AND_LORE.md).
 
-## Fricciones que necesitan decisión antes de implementar
+## Resoluciones y trabajo restante
 
-1. Los nodos Research actuales llaman tier 1/2/3 a cutterrays que el nuevo
-   diseño ordena T0/T1/T2/T3. No cambiar IDs persistidos solo para renombrar;
-   diseñar tabla de migración, receta y acceso a materiales. El prototipo T3
-   extrae cobre/hierro y no prueba basalto/aluminio.
+1. **Resuelto en fuentes:** `CN-0.2` = T0, `CN-1.2` = T1, `CN-2.2` = T2.
+   Conservan IDs, costes y prerrequisitos; cambian nombre/descripción y outputs
+   de recetas aún inexistentes. El item `Tool_Cutterray_T3_Prototype` conserva
+   su ID como herramienta experimental de cobre/hierro, con nombre visible
+   explícito. T3 canónico requiere nodo posterior y asset nuevos. Las pruebas
+   de catálogo y paquete pasaron; falta instalar y probar en juego. Los JAR
+   actualmente instalados aún muestran nombres antiguos.
 2. Las 48 investigaciones y la rueda actual cubren bandas 0–2. El Códice de
    siete pestañas y tiers 0–6 es un objetivo, no una UI ya disponible.
 3. Los cofres especiales contienen un «plano» provisional, no el esquema único

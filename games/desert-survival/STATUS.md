@@ -9,6 +9,11 @@ PC y lo que el usuario ha confirmado dentro del juego. Detalle narrativo en
 Runtime: Hytale estable `0.7.7`. `UserData` = `%APPDATA%\Hytale\UserData`.
 El usuario hace los smoke tests; no abrir el juego desde el agente.
 
+**Companion web en pausa por petición del usuario (2026-11-17):** no editar,
+regenerar, exportar ni desplegar `companion/` hasta nueva orden. Su estado
+histórico permanece en la tabla; no iniciar los pendientes del punto 5 del
+handoff mientras dure la pausa.
+
 El [plan maestro del 2026-11-17](docs/DESERT_SURVIVAL_MASTER_PLAN_2026-11-17.md)
 actualiza decisiones de diseño sobre cutterrays, permisos de blueprints,
 Códice y desierto profundo. Es planificación: no cambia las versiones,
@@ -16,6 +21,11 @@ artefactos instalados ni pruebas confirmadas de la tabla siguiente.
 La [conciliación documental](docs/MASTER_PLAN_RECONCILIATION_2026-11-17.md)
 enumera las discrepancias entre ese diseño y los prototipos. Las matrices
 numéricas externas de cutterray/únicos aún no están disponibles.
+La correspondencia de nombres Research T0/T1/T2 se corrigió en fuentes locales
+después del último JAR y se compiló contra 0.7.7: **no está instalada ni
+probada en juego**. El item
+experimental conserva su ID `Tool_Cutterray_T3_Prototype`; su nombre visible
+local ya no promete extracción de basalto/aluminio.
 
 ## Tabla de estado
 

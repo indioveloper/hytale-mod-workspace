@@ -1,5 +1,11 @@
 # Items y arbol de tecnologia: estado y pendientes (2026-11-15)
 
+Documento histórico del 2026-11-15. Los nombres «Cutterray tier 1/2/3» de
+las tablas originales ya no son la escala de diseño vigente: `CN-0.2` = T0,
+`CN-1.2` = T1 y `CN-2.2` = T2; el item con ID T3 sigue siendo experimental.
+Consultar [progresión actual](RESOURCE_PROGRESSION_RESEARCH.md) y
+[STATUS](../STATUS.md) antes de usar la tabla como guía de implementación.
+
 **Actualizacion posterior del mismo dia:** Research 0.2.5 ya implementa el
 puente `ResearchUnlocks` -> `CraftingPlugin.learnRecipe`, lo sincroniza al
 entrar y anade `/research reset`. `CO-0.2` ya tiene una receta real:

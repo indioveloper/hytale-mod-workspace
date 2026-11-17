@@ -107,6 +107,11 @@ Cada fase requiere criterios de aceptación y smoke tests antes de ampliar alcan
 
 ## 7. Archivos fuente que Codex debe reconciliar
 
+Conciliación documental inicial completada el 2026-11-17; la
+[tabla de conciliación](MASTER_PLAN_RECONCILIATION_2026-11-17.md) contiene las
+decisiones posteriores, incluido el mapeo estable `CN-0.2`/`CN-1.2`/`CN-2.2`
+a T0/T1/T2. Esta sección conserva la lista de fuentes revisadas.
+
 - `STATUS.md` y `DOCS_INDEX.md` (estado e índice)
 - `docs/RESOURCE_PROGRESSION_RESEARCH.md`
 - `docs/RESOURCE_NODE_ARCHITECTURE.md`

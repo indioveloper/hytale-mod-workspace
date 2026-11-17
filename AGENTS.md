@@ -1,5 +1,10 @@
 # Contexto para agentes
 
+Nota 2026-11-17 para Desert Survival: el usuario ha pausado el companion web.
+No editar, regenerar, exportar ni desplegar `games/desert-survival/companion/`
+hasta que lo ordene expresamente. El estado y las tareas activas se siguen en
+`games/desert-survival/STATUS.md` y en Linear.
+
 Actualizacion 2026-09-04: Raynor Holograms forma parte de la suite publica
 (experimental). Release 0.8.3; rama codex/update7-pre-release: 0.8.4-u7pre.1,
 ServerVersion =0.7.0-pre.1. Matrices y exportadores incluyen seis mods.

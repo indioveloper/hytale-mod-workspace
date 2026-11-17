@@ -21,14 +21,16 @@ no un catálogo implementado. Los identificadores internos de investigación
 se conservan en código y en el guardado para no romper partidas; la interfaz y
 esta lista muestran nombres.
 
-**Migración pendiente de nomenclatura:** las tres bandas de investigación
-actuales (chatarra/cobre/hierro) llaman a sus cutterrays «tier 1/2/3».
-El [plan maestro](DESERT_SURVIVAL_MASTER_PLAN_2026-11-17.md) adopta T0
-improvisado (cobre), T1 (hierro), T2 (carbono/eritrita), T3
-(basalto/aluminio), T4–T6. Por ello, los nombres y recursos nuevos de las
-filas de cutterray más abajo son **históricos**, no reglas vigentes. Antes de
-crear recetas, hay que mapear nodos e IDs existentes a esa escala sin romper
-guardados; el prototipo `Tool_Cutterray_T3_Prototype` no prueba el T3 canónico.
+**Correspondencia vigente:** `CN-0.2` = improvisado T0, `CN-1.2` = T1,
+`CN-2.2` = T2. `ResearchUnlocks` ya asigna respectivamente outputs futuros
+`Tool_Cutterray_T0_Prototype`, `Tool_Cutterray_T1_Prototype` y
+`Tool_Cutterray_T2_Prototype`, aún sin assets ni recetas. El
+[plan maestro](DESERT_SURVIVAL_MASTER_PLAN_2026-11-17.md)
+reserva T3 para basalto/aluminio; ese nodo aún no existe. Los IDs internos y
+prerrequisitos se conservan. El item heredado `Tool_Cutterray_T3_Prototype`
+continúa enlazado a `CN-2.2` solo como prueba de rayo/cobre/hierro; no es el
+T2 funcional ni el T3 canónico. Ver la
+[tabla de correspondencia](RESOURCE_PROGRESSION_RESEARCH.md).
 
 ## Disciplina del agua
 
@@ -74,15 +76,15 @@ No requiere añadir otro nodo al árbol.
 | Banda | Investigación | Objetos que desbloquea | Implementación propuesta |
 | --- | --- | --- | --- |
 | Chatarra | Power Pack básico | Power Pack básico | Batería portátil recargable para herramientas; primero definir capacidad, consumo y recarga comunes antes de exigir energía al cutterray. |
-| Chatarra | Cutterray tier 1 (nombre heredado) | Cutterray improvisado T0 propuesto | Reutilizar rayo y extracción provisional de cinco segundos; acceso a chatarra, granito y cobre. Renombrado y vínculo de receta pendientes. |
+| Chatarra | Cutterray improvisado T0 (`CN-0.2`) | Cutterray improvisado T0 propuesto | Reutilizar rayo y extracción provisional de cinco segundos; acceso a chatarra, granito y cobre. Receta pendiente. |
 | Chatarra | Fabricador | Fabricador | Banco colocable que agrupa recetas investigadas; la receta de cada salida consulta el desbloqueo del jugador y sus ingredientes reales. |
 | Chatarra | Refinería pequeña de mineral | Refinería pequeña de mineral | Bloque con entradas de mena y combustible/energía, proceso temporizado y salida de material refinado. |
 | Chatarra | Refinería química pequeña | Refinería química pequeña | Misma base de máquina, con recetas químicas separadas: agua procesada, componentes y consumibles. |
 | Cobre | Power Pack tier 2 | Power Pack tier 2 | Segunda batería con más capacidad; compatibilidad con herramientas anteriores. |
-| Cobre | Cutterray tier 2 (nombre heredado) | Cutterray T1 propuesto | Añade hierro según progresión canónica; rendimiento y energía exactos pendientes de matrices. |
+| Cobre | Cutterray T1 (`CN-1.2`) | Cutterray T1 propuesto | Añade hierro según progresión canónica; rendimiento y energía exactos pendientes de matrices. |
 | Cobre | Cofre | Cofre de base | Bloque contenedor persistente; reutilizar primero la interacción de inventario nativa y añadir permisos de base más adelante. |
 | Hierro | Power Pack tier 3 | Power Pack tier 3 | Tercera batería, con capacidad superior y el mismo sistema de carga. |
-| Hierro | Cutterray tier 3 (nombre heredado) | Escalón canónico por decidir | El T2 canónico abre carbono/eritrita; el T3 abre basalto/aluminio. Hace falta decidir la correspondencia de este nodo, sus prerrequisitos y el nodo adicional, sin cambiar IDs guardados. |
+| Hierro | Cutterray T2 (`CN-2.2`) | Cutterray T2 propuesto | El output futuro T2 abrirá carbono/eritrita cuando existan esos nodos; también se conserva el item experimental de cobre/hierro como salida de prueba. El T3 canónico vendrá después. |
 | Hierro | Compactador estático | Compactador estático | Herramienta que transforma una zona pequeña de arena en superficie estable durante un tiempo; sin recompensa AQL. Definir permisos para no alterar bases ajenas. |
 | Hierro | Estación de reparación | Estación de reparación | Banco colocable que consume componentes para restaurar durabilidad de equipo compatible, con coste proporcional al desgaste. |
 
@@ -187,16 +189,16 @@ diseño y no son requisitos ocultos de estas recetas.
 | Investigación de construcción | Dónde se fabrica | Uso o transformación posterior |
 | --- | --- | --- |
 | Power Pack básico | Campo | Se recarga en fuente de energía por definir. |
-| Cutterray tier 1 (nombre heredado) | Campo | Salida T0 improvisada propuesta; extrae chatarra, granito y cobre. Migración pendiente. |
+| Cutterray improvisado T0 | Campo | Salida T0 propuesta; extrae chatarra, granito y cobre. Receta pendiente. |
 | Fabricador | Selector de construcción | Aparece al investigarlo; prototipo sin fabricación todavía. |
 | Generador de energía | Selector de construcción | Aparece con Fabricador; consume células y entrega 100 de potencia. |
 | Refinería pequeña de mineral | Selector de construcción | Aparece al investigarla; procesamiento pendiente. |
 | Refinería química pequeña | Selector de construcción | Aparece al investigarla; procesamiento pendiente. |
 | Power Pack tier 2 | Fabricador | Se recarga; compatible con herramientas anteriores. |
-| Cutterray tier 2 (nombre heredado) | Fabricador | Salida T1 propuesta; añade hierro. Migración pendiente. |
+| Cutterray T1 | Fabricador | Salida T1 propuesta; añade hierro. Receta pendiente. |
 | Cofre | Fabricador | Se coloca y almacena objetos. |
 | Power Pack tier 3 | Fabricador | Se recarga; compatible con herramientas anteriores. |
-| Cutterray tier 3 (nombre heredado) | Fabricador | Correspondencia abierta: T2 canónico añade carbono/eritrita; T3 canónico añade basalto/aluminio. |
+| Cutterray T2 | Fabricador | Salida T2 propuesta; añadirá carbono/eritrita. El item experimental vinculado aún no lo hace. |
 | Compactador estático | Fabricador | Herramienta de uso sobre arena; no es una estación. |
 | Estación de reparación | Fabricador | Se coloca; sus recetas reparan equipo en esa estación. |
 

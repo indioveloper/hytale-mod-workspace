@@ -55,7 +55,23 @@ denominado T3 no implementa por sí solo esta progresión completa.
 El acero se representará como lingotes, placas y componentes refinados. No tendrá
 nodo de extracción propio.
 
-El [borrador de materiales y recetas](CRAFTING_MATERIALS_ZONES_AND_BUILDING.md)
-conserva costes de balance propuestos, pero sus nombres «cutterray tier 1/2/3»
-preceden a esta escala. Research tiene nodos e IDs persistidos para esos
-nombres; falta decidir su correspondencia exacta sin romper personajes.
+La correspondencia con los nodos Research existentes queda fijada así, sin
+cambiar IDs de investigación ni prerrequisitos:
+
+| Nodo guardado | Nombre visible vigente | Banda de Research | Recurso nuevo canónico | Estado real |
+| --- | --- | --- | --- | --- |
+| `CN-0.2` | Cutterray improvisado T0 | Chatarra | Chatarra, granito y cobre | Output futuro `Tool_Cutterray_T0_Prototype`; aún sin asset/receta. |
+| `CN-1.2` | Cutterray T1 | Cobre | Hierro | Output futuro `Tool_Cutterray_T1_Prototype`; aún sin asset/receta. |
+| `CN-2.2` | Cutterray T2 | Hierro | Carbono y eritrita | Output futuro `Tool_Cutterray_T2_Prototype` sin asset/receta; también conserva `Tool_Cutterray_T3_Prototype` como item experimental de cobre/hierro. |
+
+El T3 canónico (basalto y aluminio) necesita un nodo posterior a `CN-2.2` y
+su propia receta y **otro ID de item**: `Tool_Cutterray_T3_Prototype` debe
+seguir siendo experimental y no recibir una futura receta de T3 canónico,
+porque `CN-2.2` ya lo enlaza. El ID del nuevo nodo se asignará al ampliar el
+árbol; no reutilizar `CN-2.2` ni renombrar el ID del prototipo para fingir una migración. Los
+IDs de output futuros T0/T1/T2 ya corresponden a esos nodos en fuentes.
+Los personajes que investigaron antes reciben las recetas nuevas al entrar,
+según la sincronización existente de Research; comprobarlo cuando haya assets.
+El ID del item experimental T3 permanece intacto. El
+[borrador de costes](CRAFTING_MATERIALS_ZONES_AND_BUILDING.md) los presenta
+solo como presupuestos de balance.

@@ -15,9 +15,10 @@ cobre e hierro; no coloca aluminio, carbono, eritrita ni chatarra como nodo
 propio. El [plan maestro](DESERT_SURVIVAL_MASTER_PLAN_2026-11-17.md) fija la
 escala de cutterray T0 improvisado (cobre), T1 (hierro), T2
 (carbono/eritrita), T3 (basalto/aluminio), T4–T6. Los nombres «cutterray tier
-1/2/3» de este borrador son etiquetas heredadas de los nodos Research y no
-deben publicarse como escala final. Falta acordar su migración sin alterar IDs
-persistidos y recibir las matrices exactas de rendimiento/energía.
+1/2/3» de la versión anterior eran etiquetas heredadas. La correspondencia
+vigente conserva los IDs: `CN-0.2` = T0, `CN-1.2` = T1 y `CN-2.2` = T2.
+El T3 requiere un nodo futuro posterior. Faltan las matrices exactas de
+rendimiento/energía y las recetas reales.
 Build Selector 0.6.2 revela estaciones investigadas en su selector, pero cobra
 basalto vanilla temporal; el fabricador y las refinerías no procesan aún.
 
@@ -144,15 +145,15 @@ propia. Propuesta de receta de arranque: `5 CH + 4 FV`, en Campo, capacidad
 | Investigación → salida | Coste propuesto | Dónde | Base de la adaptación |
 | --- | --- | --- | --- |
 | Power Pack básico → batería | 1 CH | Campo | Igual al improvisado de Dune; regeneración de energía por definir. |
-| Cutterray tier 1 (nombre Research heredado) → T0 improvisado propuesto | 2 CH | Campo | Coste sugerido del cutter improvisado; acceso canónico a chatarra, granito y cobre. |
+| Cutterray improvisado T0 (`CN-0.2`) | 2 CH | Campo | Coste sugerido; acceso canónico a chatarra, granito y cobre. |
 | Fabricador → banco | 75 CH | Campo; se coloca | Igual al fabricador general de Dune. |
 | Refinería pequeña de mineral → máquina | 90 CH | F; se coloca | Igual a la pequeña de Dune. Sus procesos desbloquean CU y HI. |
 | Refinería química pequeña → máquina | 45 CU | F; se coloca | Igual a la pequeña de Dune; habilita SI. |
 | Power Pack tier 2 → batería | 5 CU + 3 CE | F | Dune usa 5 cobre + 3 capacitores para Mk1. |
-| Cutterray tier 2 (nombre Research heredado) → T1 propuesto | 6 CU + 4 GE | F | Coste sugerido de Mk1; abre hierro. |
+| Cutterray T1 (`CN-1.2`) | 6 CU + 4 GE | F | Coste sugerido de Mk1; abre hierro. |
 | Cofre → bloque contenedor | 12 CU + 4 PM | F; se coloca | Adaptación: se movió a cobre para el MVP; el cofre de Dune pide hierro. |
 | Power Pack tier 3 → batería | 8 HI + 5 CE | F | Dune usa 8 hierro + 5 capacitores para Mk2. |
-| Cutterray tier 3 (nombre Research heredado) → T2 propuesto | 10 HI + 7 GE | F | Coste sugerido de Mk2; abre carbono/eritrita. T3 para basalto/aluminio requiere otro nodo y coste aún sin definir. |
+| Cutterray T2 (`CN-2.2`) | 10 HI + 7 GE | F | Coste sugerido de Mk2; abrirá carbono/eritrita. T3 para basalto/aluminio requiere otro nodo y coste aún sin definir. |
 | Compactador estático → herramienta | 10 HI + 7 GE | F | Igual al compactador de Dune, pero sin recompensa AQL. |
 | Estación de reparación → banco | 20 HI + 10 PM + 5 SI | F; se coloca | Propuesta para cerrar el circuito de mantenimiento. El coste de cada reparación depende del daño. |
 

@@ -1,13 +1,17 @@
 # Cutterray T3 prototype 0.1.9
 
 Design reconciliation (2026-11-17): `T3` is this prototype's existing asset
-name and code profile, **not proof of the canonical T3**. The adopted progression
+ID and code profile, **not proof of the canonical T3**. Its display name in
+local sources is now «Experimental Cutterray (Prototype)»; a local JAR builds,
+but has not been installed or smoke tested. The adopted progression
 is improvised T0 (copper/granite/scrap), T1 iron, T2 carbon/eritrite, T3
 basalt/aluminum, T4 jasmium, T5 titanium/stravidium, T6 higher yield. This
 prototype only demonstrates copper/iron/fuel-cell extraction. The profile table
 below is provisional and must be replaced with the missing exact yield/energy
-matrices before a tier migration. Preserve asset IDs and saved data until a
-migration is specified. See the [resource progression](../../docs/RESOURCE_PROGRESSION_RESEARCH.md).
+matrices before a tier migration. Preserve asset IDs and saved data. Research
+maps its existing nodes `CN-0.2`/`CN-1.2`/`CN-2.2` to T0/T1/T2 while this
+item stays a test output for `CN-2.2`. See the
+[resource progression](../../docs/RESOURCE_PROGRESSION_RESEARCH.md).
 
 First in-game visual prototype for the industrial tier 3 cutterray. The design
 uses an original low-poly silhouette, a graphite/copper shell, cyan energy

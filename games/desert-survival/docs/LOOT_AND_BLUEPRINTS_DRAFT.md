@@ -92,7 +92,7 @@ For naming in Spanish:
 
 - **Esquema:** item recipe/unlock and its crafting permissions.
 - **Plano de base:** saved prefab/layout used to reconstruct a building.
-- **Intel:** future research currency, separate from both.
+- **Intel:** implemented research currency, separate from both.
 
 ## Historical MVP boundary (superseded)
 

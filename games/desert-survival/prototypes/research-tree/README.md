@@ -10,6 +10,14 @@ tiers 0–2. Unique blueprint discovery and per-recipe permits do not exist in
 this plugin. Some recipes are taught by Research, but their game visibility
 requires the smoke test recorded in [STATUS](../../STATUS.md). Later biome
 missions may gate access to regions; they do not currently gate research.
+Display names in local sources now map `CN-0.2` to T0, `CN-1.2` to T1 and
+`CN-2.2` to T2. A local JAR compiles and passes the package check, but has not
+been installed or smoke tested. The existing
+`Tool_Cutterray_T3_Prototype` output linked to `CN-2.2` is an experimental
+copper/iron test item, not a working T2 or canonical T3. Node IDs, Intel costs
+and prerequisites have not changed. The planned outputs now use T0/T1/T2 item
+IDs; Research will teach their recipes on join to previously researched
+characters once those assets exist.
 
 ## Player loop
 

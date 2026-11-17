@@ -1,16 +1,22 @@
 # Resource node architecture
 
-Status (2026-11-17): this document describes a **proposed later architecture**.
-The playable 0.1.9 prototype uses a single large modeled block, without a
-separate visual entity or persistent hybrid anchor. WorldGen places that block
-with a `Column` prop. Do not describe the hybrid below as implemented. The
-[master plan](DESERT_SURVIVAL_MASTER_PLAN_2026-11-17.md) defines the future
-T0–T6 resource access order; its exact yield and energy matrices are still
-missing from this workspace. Five seconds remains a prototype timing rule.
+Status (2026-11-17): **the working baseline is one modeled block per node**.
+The playable 0.1.9 prototype and WorldGen 0.4.1 already use this approach;
+WorldGen places it with a `Column` prop. Keep the server authoritative for
+contact, rewards and depletion. Model swaps or block states can show damage
+without adding an entity per deposit. Five seconds is a prototype timing rule;
+the exact T0–T6 yield and energy matrices are still missing.
 
-## Decision for the MVP
+## Baseline and escalation criterion
 
-Use a hybrid node: one technical anchor block plus one visual model entity.
+Use the modeled block as both anchor and visible node for the current MVP.
+Only add a separate visual entity if a validated design needs independent
+animation, movable lobes or hit regions that a modeled block cannot provide.
+That change requires chunk reload and networking tests before replacing the
+existing node assets.
+
+The following hybrid architecture is a **contingency**, not the current MVP:
+one technical anchor block plus one visual model entity.
 
 The anchor block owns placement, persistence, world-generation occupancy,
 respawn timing and a stable position in the chunk. The entity owns the large,
@@ -44,25 +50,22 @@ entity be rebuilt if it is ever missing.
 
 ## Evolution path
 
-The MVP uses one entity and three whole-model states to keep networking and
-asset work small. Later, a node can expose independent lobes as child entities
-or attachments when per-lobe cutting materially improves play. Update 8 adds
-conditional model attachments, but the first implementation must not depend on
-that pre-release feature while the target runtime remains stable 0.7.x.
+The current modeled block can gain `intact`, `damaged` and `depleted` variants.
+If per-lobe cutting later improves play enough to justify more network state,
+an entity or attachment may be added. This remains outside the stable 0.7.x
+prototype.
 
-Suggested state owned by the anchor:
+Suggested authoritative state owned by the block or its persistent companion:
 
 - resource type and required cutter tier;
 - remaining yield and extraction progress;
 - intact, damaged, depleted or regenerating state;
 - respawn timestamp and randomized next yield;
-- UUID of the current visual entity;
+- visual state or, only if the contingency is adopted, UUID of the visual entity;
 - optional biome/quality modifiers.
 
-The entity should use `ModelComponent` with a deliberately authored hitbox.
-Update 7 makes this safer for later size variants because entity hitboxes now
-follow the entity scale component, but the MVP should still prefer fixed
-model sizes and explicit hitbox dimensions.
+If an entity is introduced later, it needs a deliberately authored hitbox,
+explicit size tests and a recovery path when the entity is missing on reload.
 
 ## Deferred cutterray analysis mode
 
