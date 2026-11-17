@@ -1,4 +1,4 @@
-# Cutterray T3 prototype
+# Cutterray T3 prototype 0.1.9
 
 First in-game visual prototype for the industrial tier 3 cutterray. The design
 uses an original low-poly silhouette, a graphite/copper shell, cyan energy
@@ -12,12 +12,15 @@ elements and a dedicated `Origin_Projectile` bone at the emitter.
   plugin plus a short server-side expiry refreshed by every extraction pulse.
   This keeps the beam continuous while use is held without leaving it attached
   after release. Heat/energy and final tier gating remain outside this prototype.
-- Includes `Resource_Node_Copper_Prototype` and
-  `Resource_Node_Iron_Prototype`, large single-anchor blocks used to test beam
+- Includes `Resource_Node_Copper_Prototype`,
+  `Resource_Node_Iron_Prototype` and `Resource_Node_Fuel_Cells_Prototype`,
+  large single-anchor blocks used to test beam
   targeting, material gating and cutter-only gathering. Iron requires a T2 or
   better cutterray; the current T3 prototype can extract both. Sustained
   contact grants material directly at seconds 1, 2, 3 and 4; at second 5 the
-  node breaks and grants a final randomized quantity. Native item
+  node breaks and grants a final randomized quantity. The fuel-cell node
+  requires a T1 or better cutterray and grants the new
+  `Fuel_Cell_Prototype` item; its machinery use is not implemented yet. Native item
   pickup notifications keep a single accumulating pop-up visible. Losing
   contact for roughly 0.65 seconds resets progress.
   It is intentionally a stand-in for the documented block-anchor plus visual
@@ -36,6 +39,7 @@ Regenerate the cutterray and resource-node assets:
 .\tools\Generate-CutterrayAssets.ps1
 .\tools\Generate-CopperNodeAssets.ps1
 .\tools\Generate-IronNodeAssets.ps1
+.\tools\Generate-FuelCellNodeAssets.ps1
 ```
 
 Build the test mod from the workspace root against the runtime being tested:
@@ -45,16 +49,18 @@ Build the test mod from the workspace root against the runtime being tested:
   -ProjectPath .\games\desert-survival\prototypes\cutterray-t3 `
   -SourceRoot src `
   -PackageRoot . `
-  -ArtifactName Raynor_Desert_Survival_Cutterray_T3_Prototype-0_1_8.jar
+  -ArtifactName Raynor_Desert_Survival_Cutterray_T3_Prototype-0_1_9.jar
 ```
 
 The next in-game pass must verify that the PNG icon is used, that holding use
 repeats the drill animation, that the beam starts near the emitter and that it
 stays visually continuous until shortly after release. Give both nodes with
 `/give Resource_Node_Copper_Prototype 1` and
-`/give Resource_Node_Iron_Prototype 1`, place them on flat ground and verify
-that the T3 cutterray deposits the corresponding vanilla ore directly into the
-inventory.
+`/give Resource_Node_Iron_Prototype 1` and
+`/give Resource_Node_Fuel_Cells_Prototype 1`, place them on flat ground and
+verify that the T3 cutterray deposits copper, iron or the custom
+`Fuel_Cell_Prototype` directly into the inventory. The new drop can also be
+inspected with `/give Fuel_Cell_Prototype 1`.
 
 ## Deferred analysis mode
 

@@ -46,9 +46,21 @@ The wheel is therefore fixed for this version. If later tiers exceed its
 space, use explicit mouse-click navigation between wheel regions or a larger
 scrollable layout until the planned Noesis UI becomes available to server mods.
 
-Research currently records progression but does not yet gate recipes: most
-target items do not exist. Crafting integration should query the stable node ID,
-not the displayed label.
+Research 0.2.8 teaches item recipes when a node is researched and again on
+join for existing characters. The first real recipe is the scrap knife from
+`CO-0.2`: 3 scrap at Fieldcraft/Tools, with `KnowledgeRequired: true`.
+`AG-0.1` also teaches the improvised extractor (20 scrap) and the empty small
+blood bag (2 plastic, 3 plant fibre) at Fieldcraft/Tools. The full bag is a
+creative test item until corpse extraction is implemented.
+The improvised extractor now inherits a native crude hammer item contract and
+uses a distinct shears icon/model placeholder so it appears as a tool recipe.
+Most target items still do not exist, so their listed unlocks remain future
+contracts. Custom machine processes must check the stable node ID on the
+server; the native crafting check only covers native recipes.
+The [research-to-item map](../../docs/RESEARCH_UNLOCKS_AND_ITEMS.md) lists all
+48 unlocks and the proposed item implementation. Visible text uses names only;
+the internal IDs remain stable for existing saves. Version 0.2.3 also shows
+missing prerequisite names instead of internal IDs in validation feedback.
 
 ## Commands
 
@@ -58,6 +70,8 @@ not the displayed label.
 - `/research grant <amount>`: prototype-only Intel helper.
 - `/research tier <0|1|2>`: prototype-only material-access bridge; it does not
   block research.
+- `/research reset`: development helper that clears Intel, researched nodes and
+  recipes learned from this tree.
 
 To test the pickup, find it provisionally under `Items.Tools` in creative, or
 give/spawn `Intel_Pickup_Prototype`, drop it and walk
@@ -70,7 +84,7 @@ Run from the repository root against the exact server JAR being tested:
 ```powershell
 .\scripts\Build-JavaMod.ps1 `
   -ProjectPath .\games\desert-survival\prototypes\research-tree `
-  -ArtifactName DesertSurvival-Research-0.2.2.jar `
+  -ArtifactName DesertSurvival-Research-0.2.8.jar `
   -ServerJar C:\path\to\HytaleServer.jar
 ```
 
@@ -89,7 +103,7 @@ Validate that Research packages only its own UI assets:
 
 ```powershell
 .\games\desert-survival\prototypes\research-tree\tools\Test-Package.ps1 `
-  -ArchivePath .\games\desert-survival\prototypes\research-tree\.build\dist\DesertSurvival-Research-0.2.2.jar
+  -ArchivePath .\games\desert-survival\prototypes\research-tree\.build\dist\DesertSurvival-Research-0.2.8.jar
 ```
 
 This is an isolated UI package paired with the last known working
@@ -136,7 +150,7 @@ are removed. In-game visual review is pending.
 - The Intel world model temporarily inherits a potion silhouette; its custom
   icon communicates the intended data-shard/orb shape. The final object and VFX
   belong to the dungeon reward art pass.
-- Recipe locking, the research station, shared/team research and respecs are
+- Most recipes, the research station, shared/team research and respecs remain
   outside this prototype.
 - Basic construction kit, construction gun, beacon behavior, simplified
   suspensor and surveying kit still require separate design decisions.

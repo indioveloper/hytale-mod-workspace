@@ -1,5 +1,10 @@
 # Loot and blueprints - first design draft
 
+Historical first draft: its MVP paragraph below predates the implemented
+research prototype. The current research and crafting direction is in
+[`RESEARCH_TREE_MVP.md`](RESEARCH_TREE_MVP.md) and
+[`CRAFTING_MATERIALS_ZONES_AND_BUILDING.md`](CRAFTING_MATERIALS_ZONES_AND_BUILDING.md).
+
 ## What Dune: Awakening does
 
 Dune separates several progression channels that should not be collapsed into

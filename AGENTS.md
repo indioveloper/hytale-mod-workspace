@@ -217,8 +217,37 @@ que registren los mismos IDs.
   efectos de Trigger Volumes para NPCs viven en `mods/asset-packs/raynor-npcs`;
   la carpeta `npcs/vanilla` conserva contratos y notas de diseno del juego.
 - `games/desert-survival`: prototipos aislados del modo de supervivencia.
-  Continuacion del 2026-11-12 (noche) y punto de entrada para retomar:
+  Punto de entrada para retomar: `games/desert-survival/STATUS.md` (tabla
+  fuentes / instalado / probado y handoff breve). Cronologia en
   `DESERT_SURVIVAL_CONTINUATION_2026-11-12.md` en la raiz.
+  `prototypes/desert-worldgen` 0.2.0: pack WorldGen V2 para 0.7.7 con la
+  instancia `Raynor_Desert_Survival` (seed fija, guarda chunks): WorldStructure
+  `NoiseRange` sobre la distancia deformada al origen, cuatro biomas por zona
+  (refugio 0-260, dunas 260-560, canones 560-900, profundo 900-1400, `Void`
+  fuera) generados por `tools/generate_biomes.py`, y nodos de recurso de
+  Cutterray colocados por Props `Mesh2D` + `Column` (0.1.0/0.1.1 con
+  `Locator` + `Manual` no colocaban nada; 0.1.0 ademas fallo porque Cutterray
+  estaba desactivado en el save, ahora es dependencia del manifiesto). `Build-Pack.ps1`
+  valida estructura y decodifica cada asset con los codecs del servidor
+  (`Mesh.Jitter` maximo 0.5; `AssetManager` no se puede cargar fuera del
+  servidor). 0.1.2 paso el smoke test (zonas y nodos visibles). 0.2.0 anade
+  prefabs vanilla con prop `Prefab` (yaw aleatorio, `LoadEntities`): ruinas de
+  arenisca blanca en zona 1 cada ~150 bloques, puestos `Encounter/Zone2/Tier1`
+  cada ~320 y ruinas drywood rojas en zona 3; el test comprueba las carpetas
+  en `Assets.zip`. ZIP 0.2.0 instalado en `UserData/Mods` con SHA-256
+  `5C36289234DE1308B95400200132178F34CE5ACA1A6C1D920162C79EDAAEBE93`; se abre
+  con `/instances`. Smoke test 2026-11-16 correcto: zonas, nodos y prefabs visibles.
+  `games/desert-survival/companion/`: web estatica (sin dependencias) que
+  replica la rueda del arbol de investigacion con paneo, zoom, detalle por
+  nodo, recetas desbloqueadas y simulacion local; sus datos se generan con
+  `companion/tools/Export-ResearchCatalog.ps1` desde el Java del prototipo
+  (regenerar tras editar el catalogo). Sin despliegue.
+  Cutterray T3 0.1.9 en fuentes: anade el nodo
+  `Resource_Node_Fuel_Cells_Prototype` y el drop custom
+  `Fuel_Cell_Prototype`, extraible en cinco segundos desde tier 1 con el mismo
+  rendimiento por tier que cobre y hierro. Compilado contra 0.7.7; sin
+  despliegue ni smoke test. `docs/WORLDGEN_DESERT_PLAN.md` propone cuatro
+  biomas sobre terreno desértico procedural y distribucion de nodos por Props.
   `research-tree` 0.1.5 tiene 48 nodos, Intel persistente y un borrador de UI
   radial con cinco sectores, tres anillos y detalle a la derecha. Investigar
   depende de Intel y prerrequisitos, no del material alcanzado. El ultimo par
@@ -263,6 +292,175 @@ que registren los mismos IDs.
   de Combate y tildes, sin leyenda de tiers ni confirmacion de seleccion.
   Compila y pasa tests contra 0.7.7; instalado en `UserData/Mods`, pendiente
   de smoke test del usuario. 0.2.1 se archivo como `.jar.replaced`.
+  Research 0.2.3 en fuentes: el aviso de prerrequisitos usa nombres visibles en
+  vez de IDs internos. Research 0.2.4 en fuentes: cada nodo lista sus salidas
+  (`ResearchUnlocks`), investigar y entrar ensenan esas recetas al modulo
+  nativo de crafting (`CraftingPlugin.learnRecipe`, item id y
+  `<item>_Recipe_Generated_0`), guardia `isOutputUnlocked` para maquinas, y
+  primera pareja real `Ingredient_Scrap_Prototype` + `Weapon_Kindjal_T0_Prototype`
+  con receta inline de campo y `KnowledgeRequired`. Instalado; el smoke test
+  mostro la receta ausente del crafteo de campo. Research 0.2.5: la receta
+  declara `BenchRequirement` `Fieldcraft`/`Tools` (sin el, ningun banco la
+  registra), el item pasa a `Weapon_Scrap_Knife_Prototype` (Cuchillo de
+  chatarra) y se anade `/research reset`. Instalado en `UserData/Mods`
+  (0.2.4 archivado); smoke test pendiente. `docs/RESEARCH_UNLOCKS_AND_ITEMS.md`
+  relaciona los 48 nodos con sus objetos y propuesta de implementacion.
+  Research 0.2.5 liga la primera receta real al nodo `CO-0.2`; los demas
+  objetos de la tabla aun no tienen receta. Compila y pasa tests de catalogo
+  y paquete contra 0.7.7.
+  `games/desert-survival/docs/CRAFTING_MATERIALS_ZONES_AND_BUILDING.md` es el
+  borrador de costes por objeto, materiales por zona, estaciones y construccion
+  basada en secciones prefab de varios bloques. Son cifras de diseno, no
+  recetas implementadas.
+  El prototipo build-selector 0.1.0 cargo en dune1, pero no encontro los
+  prefabs por omitir `.prefab.json`: menu sin vista 3D y sin pegado. La 0.2.0
+  corrige la ruta y, tras elegir una seccion, cierra el menu, equipa el plano
+  de construccion y muestra un fantasma privado. La 0.2.0 instalado en dune1
+  mostro el fantasma fijo, pero las interacciones fallaron: los JSON con
+  `Type`/`Next` estaban en `RootInteractions` y el log mostro `Missing interaction`.
+  La 0.2.1 los mueve a `Item/Interactions`, sincroniza el slot activo y actualiza
+  el fantasma desde la camara cada tick. Clic izquierdo coloca y derecho cancela.
+  Compila y pasa test de paquete contra 0.7.7; instalada en dune1/mods con
+  SHA-256 igual al build y smoke test pendiente. No hay costes, bloqueos
+  Research, permisos de base ni desmontaje persistente.
+  La 0.2.2 en fuentes conserva pieza y fantasma tras colocar; mapea `Use` a
+  siguiente, `Ability1` a anterior y `Pick` a giro. Q/E y rueda no son teclas
+  asignables desde este plugin de servidor; los controles fisicos dependen del
+  cliente. Compila y pasa test de paquete; instalada en dune1/mods con SHA-256
+  igual al build, la 0.2.1 archivada y smoke test pendiente.
+  Build Selector 0.2.3 en fuentes: `Ability2` cicla categorias y las seis
+  acciones del plano usan `HudInputBindingEntry` para que el HUD vanilla
+  `InputBindings` muestre iconos de las teclas configuradas. Al cancelar,
+  vuelve al slot anterior. Compila y pasa test de paquete contra 0.7.7;
+  instalada en dune1/mods con SHA-256 igual al build, la 0.2.2 archivada y
+  smoke test pendiente.
+  Build Selector 0.2.4 en fuentes: seis prefabs en dos categorias, incluidas
+  maquinas placeholder colocables (fabricador de supervivencia y reciclador de
+  sangre). Habilidades 1/2 ciclan piezas, 3/4 ciclan categorias y cada cambio
+  anuncia categoria y pieza en el chat. Para Q/E/R/T, el cliente debe asignar
+  Habilidad 4 a T; el plugin no configura teclas fisicas. Compila y pasa test
+  de paquete contra 0.7.7; instalada en dune1/mods con SHA-256 igual al build,
+  0.2.3 archivada y smoke test pendiente.
+  Build Selector 0.3.0 en fuentes: HUD fijo inferior izquierdo con iconos de
+  tecla vanilla; Q/E recorren piezas y R avanza de categoria. F alterna
+  colocacion y desmontaje, y el chat solo anuncia colocacion, desmontaje y
+  categoria. La consola de base crea un claim de 40x40x100 centrado en ella.
+  Las piezas tienen registro persistente y coste temporal en bloques de
+  basalto: cobra de inventario y cofres cargados del claim, reembolsa a cofres
+  preferentes, inventario o saldo reclamable desde el menu. Protege los
+  eventos normales de bloque frente a otros jugadores. No importa piezas
+  colocadas con 0.2.4; no protege pegados directos de Builder Tools. Compila
+  contra 0.7.7 y pasa test de paquete; instalada en `dune1/mods` con SHA-256
+  `460CD76189650CC0175BCE092C56B3E8D81CF79C21E0966AAF23E7467F18712C`,
+  igual al build. La 0.2.4 queda archivada; smoke test del usuario pendiente.
+  Actualizacion 2026-11-15: Build Selector 0.6.0 en fuentes mueve el HUD al
+  lado derecho, simplifica el selector y agrega generador con inventario de
+  celulas y autonomia persistente, mas purificador de sangre con interfaz y
+  conversion 250 ml de sangre a 50 ml de agua. La potencia del generador es
+  fija (100 unidades prototipo), sin almacenamiento ni consumidores conectados.
+  Research 0.2.6 agrega las recetas del extractor improvisado y la bolsa
+  hematica pequena al nodo AG-0.1. La bolsa llena es un item creativo de
+  prueba; la extraccion de cadaveres sigue pendiente. Ambas versiones compilan
+  contra 0.7.7 y estan instaladas juntas (Research global, Build Selector en
+  dune1/mods) con SHA-256 igual al build; smoke test del usuario pendiente.
+  Actualizacion 2026-11-16: Build Selector 0.6.1 enlaza el bloque legacy
+  `Desert_Water_Purifier_Prototype` con la misma UI de sangre, elimina el
+  spam del chat del generador y muestra potencia/autonomia en una pagina
+  propia. El generador activo alimenta el purificador en el mismo claim o
+  dentro de 12 bloques sin claim, y el HUD de base muestra su potencia.
+  Research 0.2.7 da al extractor improvisado un Parent de herramienta nativa
+  y un icono placeholder distinto para corregir su ausencia del crafteo.
+  Ambas versiones estan instaladas, Research global y Build Selector en
+  dune1/mods. SHA-256: Research
+  `C514E880B5E676533F5F4D20F29881BC7320D5AA796F5720E1930AC447835E48`,
+  Build Selector
+  `85C4BE6DC72EF3155FCF773421CBAA6E5AA96006E6A5BA631D92E34C5794CCE9`.
+  La visibilidad de esa receta y las dos UIs requieren smoke test del usuario.
+  Actualizacion 2026-11-16 (Build Selector 0.6.2): la 0.6.1
+  mostro solo la pagina custom del generador, sin inventario. La 0.6.2
+  vuelve a `Page.Bench` con `ContainerWindow` de cuatro ranuras. El
+  selector desplaza una lista de maquinas que se muestran al investigar
+  sus IDs: purificador AG-0.2, fabricador y generador CN-0.3,
+  refinerias CN-0.4 y CN-0.5. Los dos ultimos bancos y el fabricador son
+  prototipos sin procesamiento. Las recetas de bolsillo del purificador y
+  generador se retiran; las herramientas improvisadas existentes siguen en
+  Fieldcraft. Un filtro por jugador oculta recetas vanilla seleccionadas
+  con `UpdateRecipes.Remove` y cancela su `CraftRecipeEvent.Pre`; no modifica
+  el asset map global. Las piezas nuevas siguen cobrando basalto temporal.
+  Compila y pasa test de paquete contra 0.7.7. Instalada en `dune1/mods`
+  con SHA-256 `AE6BA4801923C5E95A5D37251DF8074D1C52987122DF621A6977474DB0EC55E5`,
+  igual al build; la 0.6.1 esta archivada. Smoke test del usuario pendiente.
+  Build Selector 0.3.1 en fuentes: reemplaza los iconos rotos del HUD con
+  estilos y pictogramas del legend vanilla, muestra coste/disponibilidad de
+  basalto en verde o rojo, escudo no instalado y energia 0:00. Dibuja al
+  propietario el perimetro cian del claim y un contorno naranja del prefab
+  registrado apuntado para desmontar usando paquetes privados de display de
+  Trigger Volumes, sin crear volumenes funcionales. El resultado visual en
+  cliente requiere smoke test. Compila contra 0.7.7, pasa test de paquete y
+  esta instalada en `dune1/mods` con SHA-256
+  `1B85EE45B5D6218A40B3127A01F1FF65107B6165D75F69E8C4C218B73BFB1574`,
+  igual al build. La 0.3.0 esta archivada.
+  Build Selector 0.4.0 en fuentes: Q recorre las siete piezas y cambia de
+  categoria al cruzar el limite; E/R no enviaban Ability2/3 al item porque
+  esas entradas corresponden a las ranuras de habilidad. El HUD de desmontaje
+  es rojo y oculta la navegacion; se suprime la confirmacion de colocacion y
+  desmontaje en chat. El estado de base vive en un HUD aparte, visible dentro
+  del claim, con nombre del dueno, escudo y tiempo. La consola abre un
+  contenedor nativo de cuatro ranuras para `Fuel_Cell_Prototype` de Cutterray
+  0.1.9; consume una celula por cinco minutos de energia y persiste saldo y
+  tiempo en el ledger. El escudo aun no altera los permisos del claim. Las
+  consolas 0.3.1 se migran in situ al entrar en su claim. Compila y pasa la
+  prueba de paquete contra 0.7.7; instalada en `dune1/mods` con SHA-256
+  `BDF76B90C0B466A8D00769B84F308A5BC98D9AAAC024D77092BE68D0E841BE84`.
+  Cutterray 0.1.9 esta activo en `UserData/Mods` con SHA-256
+  `6587F8E59B33F00A9C799791FC2C7E6DFBBE4B71C94B23BB631FD5506386E962`.
+  No hay Group:Name activos duplicados entre mods globales y `dune1`.
+  Smoke test pendiente.
+  Build Selector 0.4.1 corrige la navegacion sin tocar bindings del cliente:
+  Q avanza solo dentro de la categoria actual y agacharse + Q llama a
+  `cycleCategory` leyendo `MovementStatesComponent.crouching` durante la
+  misma interaccion Ability1 que ya funciona. El HUD muestra ambos gestos.
+  Compila y pasa test de paquete contra 0.7.7; smoke test pendiente.
+  Build Selector 0.5.0 en fuentes: corrige la altura de ambos paneles HUD;
+  al seleccionar el plano sin sesion inicia directamente con la consola y
+  su perimetro fantasma naranja. Con el plano equipado cancela las
+  interacciones con bloques, incluidos cofres y consola. Retirar una consola
+  exige dos clics en diez segundos y muestra una advertencia roja; se eliminan
+  del ledger las piezas del claim, pero sus bloques quedan fisicamente en el
+  mundo sin proteccion ni derecho a reembolso. El sitio abandonado admite
+  nueva consola en el mismo origen, incluso con cofres existentes. Compila
+  y pasa test de paquete contra 0.7.7; instalada en `dune1/mods` con SHA-256
+  `5EF818AD714BA0BF04840D69E41ABD9F12149F492C75D23C18559896408EA6A3`.
+  La 0.4.0 queda archivada y la 0.4.1 no llego a instalarse. Smoke test pendiente.
+  Build Selector 0.5.1 usa el icono vanilla `RowHintIconMouseMiddleClick`
+  para girar, tras comprobar `ToolsLegendsCommon.ui`; el `HotkeyLabel`
+  anterior se mostraba vacio/cortado. Compila, pasa test de paquete y esta
+  instalada en `dune1/mods` con SHA-256
+  `2C43322254558E860D7AF8ECA6A03DA09F14655FF217079589F5826EC651653F`.
+  La 0.5.0 queda archivada; smoke test pendiente.
+  Build Selector 0.5.2 sustituye agacharse + Q por clic derecho para cambiar
+  de categoria en modo colocar; en desmontaje, clic derecho sale. Q avanza
+  piezas. Muestra en rojo los perimetros de bases cercanas al apuntar con una
+  consola nueva, junto al perimetro futuro naranja. El bloque central declara
+  `Open_Container`, y la apertura del inventario de combustible activa la
+  pagina nativa `Page.Bench` con la ventana. El plano sigue bloqueando el uso
+  de bloques: interactuar con la consola con otro objeto o la mano vacia.
+  Compila y pasa test de paquete contra 0.7.7. Instalada en `dune1/mods`
+  con SHA-256 `C9A11D544496ABCB0777E4AF5F26D893DB99B724024931BC32F8A8F747703197`,
+  igual al build; la 0.5.1 esta archivada. Smoke test pendiente.
+  Build Selector 0.5.3 en fuentes: consola nativa de un bloque con claim
+  registrado tras la colocacion, mas purificador de agua y generador de
+  energia como bancos nativos vacios con modelos vanilla provisionales.
+  El prefab antiguo de consola sigue en el paquete para saves existentes,
+  pero sale del selector; el plano empieza con el suelo. La consola nativa
+  se recupera como item al desmontarla. El panel de colocacion es marron
+  para piezas de base y azul para maquinaria; cambiar de categoria no
+  escribe en el chat. El generador coincide con `CN-0.3` de Research 0.2.5,
+  pero aun carece de receta. El purificador de agua es distinto del
+  purificador de sangre `AG-0.2`. Compila y pasa test de paquete contra
+  0.7.7. Instalada en `dune1/mods` con SHA-256
+  `396B0ABC66261856D88B120EDD721F59C5C52CD6C681092174D6207872D1D783`,
+  igual al build; 0.5.2 archivada. Smoke test pendiente.
 - `mods/java/scoreboards`: prototipo `2.0.12` validado contra estable `0.6.2`. Usa
   `ObjectiveDataStore`, assets dinamicos y la tarea `OrbGenesisManualCount`;
   permite editar definiciones mediante `/scoreboard`, controlar instancias con

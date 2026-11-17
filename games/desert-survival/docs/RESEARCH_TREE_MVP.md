@@ -6,11 +6,12 @@
 - Five sectors: Water, Combat, Construction, Exploration and Vehicles.
 - Three material tiers: Scrap (0), Copper (1), Iron (2).
 - 48 explicit nodes. Zero-cost nodes still require an intentional click.
-- A fixed horizontal sector row opens a focused three-column table rather than
-  rendering every node at once. Each tier column scrolls independently.
+- The current interface shows all nodes on a fixed wheel, with square icons,
+  dependency lines and a detail panel on the right.
 
 The stable IDs use `AG`, `CO`, `CN`, `EX` and `VE`. Display names can change;
 save data and future recipe checks must continue using the IDs.
+The [research-to-item map](RESEARCH_UNLOCKS_AND_ITEMS.md) uses only display names.
 
 ## Intel contract
 
