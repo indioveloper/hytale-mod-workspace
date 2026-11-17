@@ -6,6 +6,8 @@ lo implementado, lo instalado y lo probado en juego. Los handoffs y README
 históricos describen decisiones anteriores y pueden contener versiones ya
 superadas por ese estado.
 
+También puedes descargar la [documentación completa en PDF (29 documentos)](docs/Desert_Survival_Documentacion_2026-11-17.pdf).
+
 ## Visión y planificación
 
 - [Presentación del proyecto](README.md)
